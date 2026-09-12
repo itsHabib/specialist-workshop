@@ -1,0 +1,2 @@
+# This copied corpus is hash-pinned to Workbench's original CRLF bytes.
+skills/ci-triage/workbench-evaluation.jsonl -text whitespace=cr-at-eol

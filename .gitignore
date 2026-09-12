@@ -1,0 +1,8 @@
+.venv/
+.state/
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
+.env
+artifacts/screenshots/

@@ -4,7 +4,7 @@ The POC was exercised locally on 2026-09-12. Numerical outcomes are reported sep
 
 ## Automated checks
 
-`python -m pytest -q`: 32 passing tests at the current implementation stage. Checks cover:
+`python -m pytest -q`: 33 passing tests at the current implementation stage. Checks cover:
 
 - seed provenance and exact cross-split input separation;
 - malformed model outputs, empty/invented quotes, invalid source-line selections;
@@ -34,5 +34,7 @@ Using a real browser against the local HTTP server:
 - Opened experiment details, the measured loss plot, raw logs, and individual test cases.
 - Inspected a complete 51-case result table and its source-log/response detail.
 - Checked 1440-pixel desktop and 390-pixel mobile widths without horizontal overflow.
+- Ran real specialist inference on a new assertion-failure excerpt; received the correct label and exact source line.
+- Saved that CI correction through the UI; practice grew to 241 examples while the evaluated checkpoint remained frozen.
 
 No cloud reference provider or paid training service was configured. No Workbench source, delivery state, live CI, or merge authority was changed.

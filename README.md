@@ -2,6 +2,8 @@
 
 A working local POC for teaching a language model one narrow task. Bring a skill package, submit an input, inspect structured output, save corrections, train an actual QLoRA adapter, and compare recorded results.
 
+Measured first result: label accuracy improved from 33.3% to 54.9%, below the 56.9% majority-label baseline. This proves the learning loop runs; the classifier needs better data. See [the full experiment](docs/EXPERIMENT.md).
+
 The first skill comes from Workbench: classify a failed CI log as `real-break`, `infra`, or `flake`, with a verbatim evidence quote. The platform also accepts other text-classification skills. It does not call Gate, retry jobs, send mail, or alter Workbench state.
 
 ## Run

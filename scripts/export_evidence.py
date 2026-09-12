@@ -17,6 +17,16 @@ def main():
             continue
         excluded = {"adapter_path", "rows", "log"}
         summary = {key: value for key, value in job.items() if key not in excluded}
+        snapshot = store.STATE / "jobs" / job["id"] / "skill.json"
+        if snapshot.exists():
+            skill = store.read_json(snapshot)
+            summary["evidence_mode"] = skill.get("evidence_mode", "quote")
+        recipe_path = store.STATE / "jobs" / job["id"] / "recipe.json"
+        if recipe_path.exists():
+            recipe = store.read_json(recipe_path)
+            command = recipe["command"]
+            summary["learning_rate"] = float(command[command.index("--learning-rate") + 1])
+            summary["training_hash"] = recipe["training_hash"]
         summaries.append(summary)
         if job["kind"] == "train":
             log = store.STATE / "jobs" / job["id"] / "training.log"

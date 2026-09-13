@@ -67,3 +67,7 @@ Useful implementation references: [MLX-LM LoRA guide](https://github.com/ml-expl
 ## Resettable workflow specimen
 
 `practice.py` adds one finite CI environment: read fixture evidence and write an advisory in a disposable directory. The browser replays actions through `/api/practice/step`; model actions use the existing skill/checkpoint inference API. `arithmetic.py` is a narrow deterministic baseline for Blox quantities. These are skill-specific experiments, not an arbitrary tool-execution platform. [Measured results and limits](WORKFLOW-EXPERIMENTS.md) retain failed transfers, real-text diagnostic replays, and the frontier subset.
+
+## Reusable task packages
+
+`packages.py` owns versioned contracts, examples, split boundaries and correction versions. `experiment.py` owns finite supervised jobs and artifact/checkpoint binding. `completion.py` separates a pinned model transport envelope from task JSON. `environments.py` exposes reviewed observe/step/outcome implementations. Generic package APIs and the `/packages` page call these same boundaries; they do not execute uploaded code. [Monday walkthrough and explicit extension limits](MONDAY.md).

@@ -1,0 +1,143 @@
+{
+  "code_revision": "d43442d0372babdcf434df033432e1ccd03c7532",
+  "scope": "Local substrate validation on synthetic task packages, not a qualified specialist or production validation.",
+  "packages": [
+    {
+      "reference": "ci-practice@4d95cda858ad0e538553f458e4df414ee05d6978fa517fb1678897b28ed5337b",
+      "id": "ci-practice",
+      "name": "Resettable CI evidence specimen",
+      "counts": {
+        "train": 240,
+        "development": 20,
+        "final": 40
+      },
+      "contract_hash": "978253438c45e04b1a9dac2e194826d9ff0c32f042a3c8b68ad7b0d103f8ff07",
+      "final_hash": "8080722ce44185718b3f1fe6eba6d37c54c193a2a39ddc7beb8eefdf0e5a4767",
+      "provenance": {
+        "source": "Authored CI fixtures; illustrative environment. No additional CI training is claimed.",
+        "interface": "Observe/step/outcome runs under a reviewed installed adapter; data contains scenarios only."
+      },
+      "environment": "ci-evidence-v1"
+    },
+    {
+      "reference": "roxiq-planning@1a335d7790cc057e62d38879704920af88a7d78e96cc350fa97f73e39f144b2d",
+      "id": "roxiq-planning",
+      "name": "RoxIQ bounded analytics planning",
+      "counts": {
+        "train": 160,
+        "development": 6,
+        "final": 24
+      },
+      "contract_hash": "73d2c3a802100d9b9d397ea92e89509929c194633f3e1dd2a37793a9f15421df",
+      "final_hash": "de984f14a2ef456a9e95240e397d8e204c4a105ba7db6a0e6f1db35e7801f425",
+      "provenance": {
+        "source": "Synthetic contexts shaped by RoxIQ contracts; no live data.",
+        "adjudication": "Blind coordinating agent; independent model judgment, not human ground truth."
+      },
+      "environment": null
+    },
+    {
+      "reference": "support-intake@dd72cbdfb154394c1a5aceefe8f808e4f82ba7356902f02e230c1f393b425a94",
+      "id": "support-intake",
+      "name": "Support intake starter",
+      "counts": {
+        "train": 6,
+        "development": 2,
+        "final": 4
+      },
+      "contract_hash": "64bc8f4af0e865a79169f2ced782ad56bddb2246bb892cf25923168e35e4de45",
+      "final_hash": "f636b0e122fd894f468d46f2aff240a0cf3087dbee355372ac1d14223fc86683",
+      "provenance": {
+        "purpose": "Tiny template and pipeline smoke test only. Replace it with approved, reviewed examples before any efficacy claim.",
+        "data": "Synthetic; no company/customer data."
+      },
+      "environment": null
+    }
+  ],
+  "correction": {
+    "before": {
+      "reference": "support-intake@dd72cbdfb154394c1a5aceefe8f808e4f82ba7356902f02e230c1f393b425a94",
+      "id": "support-intake",
+      "name": "Support intake starter",
+      "counts": {
+        "train": 6,
+        "development": 2,
+        "final": 4
+      },
+      "contract_hash": "64bc8f4af0e865a79169f2ced782ad56bddb2246bb892cf25923168e35e4de45",
+      "final_hash": "f636b0e122fd894f468d46f2aff240a0cf3087dbee355372ac1d14223fc86683",
+      "provenance": {
+        "purpose": "Tiny template and pipeline smoke test only. Replace it with approved, reviewed examples before any efficacy claim.",
+        "data": "Synthetic; no company/customer data."
+      },
+      "environment": null
+    },
+    "after": {
+      "reference": "support-intake@a79a73a8d06fca4c0575d2d8787a7205b7bc64a1538a80cf69909ab4428b13ee",
+      "id": "support-intake",
+      "name": "Support intake starter",
+      "counts": {
+        "train": 7,
+        "development": 2,
+        "final": 4
+      },
+      "contract_hash": "64bc8f4af0e865a79169f2ced782ad56bddb2246bb892cf25923168e35e4de45",
+      "final_hash": "f636b0e122fd894f468d46f2aff240a0cf3087dbee355372ac1d14223fc86683",
+      "provenance": {
+        "purpose": "Tiny template and pipeline smoke test only. Replace it with approved, reviewed examples before any efficacy claim.",
+        "data": "Synthetic; no company/customer data.",
+        "parent_version": "support-intake@dd72cbdfb154394c1a5aceefe8f808e4f82ba7356902f02e230c1f393b425a94"
+      },
+      "environment": null
+    },
+    "development_unchanged": true,
+    "final_unchanged": true,
+    "added": [
+      {
+        "id": "correction-1789258833158",
+        "family": "password",
+        "input": {
+          "message": "My recovery link expired after one hour."
+        },
+        "expected": {
+          "owner": "accounts",
+          "urgency": "normal",
+          "reason": "access"
+        },
+        "provenance": "Browser validation: reviewed synthetic practice correction"
+      }
+    ]
+  },
+  "runs": [
+    "pkg-a4fcda2473de",
+    "pkg-83f69b96072c",
+    "pkg-2b9c5ace91ad",
+    "pkg-2c0442ce7331",
+    "pkg-f0a24974e753",
+    "pkg-513b01be5963",
+    "pkg-dbeb81ac83e2",
+    "pkg-232d7e57b58f"
+  ],
+  "telemetry_caveat": "The two retained support model evaluations lack per-row raw_valid. Their recorded aggregate zero is unmeasured, not a valid format score. The later majority run records raw_valid=true for all four rows. Do not compare runs across grader hashes.",
+  "checkpoint_caveat": "Legacy weights were adopted with a complete current artifact manifest; the adoption does not retroactively attest historical adapter configuration.",
+  "inference_caveat": "The current generic checkpoint inference is schema-valid with correct=null. It selects both Harbor and Summit for a Summit-only request, so manual inspection finds an intent error. No semantic success is claimed.",
+  "browser": {
+    "package_import": true,
+    "practice_correction": true,
+    "checkpoint_inference": "pkg-dbeb81ac83e2",
+    "desktop_width": 1440,
+    "mobile_width": 390,
+    "horizontal_page_overflow": false
+  },
+  "artifact_hashes": {
+    "pkg-232d7e57b58f.json": "442e1d3e53f3fdcb7161bb38d809fb6c63d3ea22c73b216cef5cd28f81351dd5",
+    "pkg-2b9c5ace91ad.json": "b9963120e9b895f832f00793f4fa9b5abc652f7161a70baea91fe8a5ed41981c",
+    "pkg-2c0442ce7331.json": "c1d9269684b9151a341dc3c887621ef1f6edf794fcb893743ff684e803ca8f19",
+    "pkg-513b01be5963.json": "daaf8af3c2ea42ecbc6f4a61efb533621e9f33a9fa212b0a846d007ebc63aebd",
+    "pkg-83f69b96072c.json": "82d8db4175e3dae0af97a854e5cce2c942c6f4340e70760c9061fdd04e4b5dab",
+    "pkg-a4fcda2473de.json": "4da2d8364ea80b7a86808e5b11d6a65d3f14aab78de98f6b3054b61b54e8f71e",
+    "pkg-dbeb81ac83e2.json": "d0dd27c0bd45247989c84ad4557a364d8753ac8008a1aeb141e783da558eaa9e",
+    "pkg-f0a24974e753.json": "188bd1c004015aeac463b5c12d180b7c9a52f149c4acf79649327813f003b565",
+    "support-training.log": "9138b7f04d5e95ae9595fc7fde8932ed0ec9045b80c435e07236c77a27e174f0"
+  }
+}

@@ -1,16 +1,18 @@
 # Specialist Workshop
 
-A working local POC for teaching a language model one narrow task. Bring a skill package, submit an input, inspect structured output, save corrections, train an actual QLoRA adapter, and compare recorded results.
+A local experiment workbench for finding and training useful specialists. Start with [the Monday walkthrough](docs/MONDAY.md) or open [Task packages](http://127.0.0.1:8787/packages). Import a task contract and data, compare baselines, train real weights, inspect mistakes, and save corrections as new immutable versions.
 
-New: [the practice lab](http://127.0.0.1:8787/practice) runs a resettable CI evidence workflow. Two further trained adapters were measured against rules and a frontier reference; neither earned rollout. See [workflow experiments](docs/WORKFLOW-EXPERIMENTS.md).
+The original workshop remains a working POC for teaching a language model one narrow task. Bring a skill package, submit an input, inspect structured output, save corrections, train an actual QLoRA adapter, and compare recorded results.
+
+Worked examples: [bounded analytics planning](docs/ANALYTICS-EXPERIMENT.md) separates interpretation from deterministic execution. [The practice lab](http://127.0.0.1:8787/practice) runs a resettable CI evidence workflow. Two further trained adapters were measured against rules and a frontier reference; neither earned rollout. See [workflow experiments](docs/WORKFLOW-EXPERIMENTS.md).
 
 Measured first result: label accuracy improved from 33.3% to 54.9%, below the 56.9% majority-label baseline. This proves the learning loop runs; the classifier needs better data. See [the full experiment](docs/EXPERIMENT.md).
 
-The first skill comes from Workbench: classify a failed CI log as `real-break`, `infra`, or `flake`, with a verbatim evidence quote. The platform also accepts other text-classification skills. It does not call Gate, retry jobs, send mail, or alter Workbench state.
+The first skill comes from Workbench: classify a failed CI log as `real-break`, `infra`, or `flake`, with a verbatim evidence quote. The original skill interface accepts other text-classification tasks; the package interface also supports custom JSON-object schemas and installed semantic graders. It does not call Gate, retry jobs, send mail, or alter Workbench state.
 
 ## Run
 
-The local training backend requires Apple Silicon. The development machine used Python 3.14. A pinned 4-bit Qwen2.5-1.5B model downloads from Hugging Face on first use (about 1 GB); subsequent inference and training are local.
+The local training backend requires Apple Silicon. The development machine used Python 3.14. Task packages use pinned Qwen3-4B (about 2.5 GB); the original classifier uses Qwen2.5-1.5B (about 1 GB). Models download from Hugging Face on first use; subsequent local inference and training use the cache.
 
 ```sh
 python3 -m venv .venv
@@ -18,7 +20,9 @@ python3 -m venv .venv
 .venv/bin/uvicorn workshop.app:app --host 127.0.0.1 --port 8787
 ```
 
-Open [the workshop](http://127.0.0.1:8787). `requirements-lock.txt` records the complete environment used for the initial experiments. `requirements.txt` is the smaller installation contract.
+Open [Task packages](http://127.0.0.1:8787/packages) and follow [the walkthrough](docs/MONDAY.md). `requirements-lock.txt` records the current experiment environment. `requirements.txt` is the smaller installation contract. [Readiness evidence and review](docs/READINESS.md) describe what was checked.
+
+The [original classification workshop](http://127.0.0.1:8787) also remains available:
 
 1. Run a base-model inference or evaluation.
 2. Train a specialist. The default recipe runs 150 supervised steps over practice examples.
@@ -28,7 +32,7 @@ Open [the workshop](http://127.0.0.1:8787). `requirements-lock.txt` records the 
 
 Training writes real `.safetensors` adapter weights. There are no fake model calls, prefilled scores, retrieval-as-training substitutions, or automatic remote fallbacks. A poor result remains visible.
 
-## API
+## Original classification API
 
 ```sh
 curl http://127.0.0.1:8787/api/infer \
@@ -50,7 +54,7 @@ For a trained model, set `model` to `specialist` and provide a completed trainin
 | `GET /api/runs/{id}` | Read progress, raw logs, and per-case results |
 | `GET /openapi.json` | Machine-readable API contract |
 
-See [the starter skill](static/skill-template.json) for the package format. All skills currently use the same output contract: `{bucket, evidence}`. Inputs, label definitions, instructions, and separate train/validation/test datasets are customizable. Arbitrary uploaded code and tool execution are outside this POC.
+See [the starter skill](static/skill-template.json) for the package format. The original skill interface uses the output contract: `{bucket, evidence}`. Inputs, label definitions, instructions, and separate train/validation/test datasets are customizable. Arbitrary uploaded code and tool execution are outside this POC.
 
 ## Optional reference provider
 
@@ -80,6 +84,9 @@ Local artifacts live under `.state/` (gitignored), or `WORKSHOP_STATE`. Keep the
 ```sh
 .venv/bin/python -m pytest -q
 node --check static/app.js
+node --check static/packages.js
+node --check static/practice.js
+node --check static/analytics.js
 ```
 
 This is a single-user localhost application. Run one Uvicorn worker. It is not ready for exposure to other machines: hosted use requires authentication, tenant isolation, quotas, and a durable job service.

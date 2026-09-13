@@ -1,0 +1,13 @@
+Loading pretrained model
+Loading datasets
+Training
+Trainable parameters: 0.091% (3.670M/4022.468M)
+Starting training..., iters: 20
+Calculating loss...:   0%|          | 0/2 [00:00<?, ?it/s]Calculating loss...:  50%|█████     | 1/2 [00:01<00:01,  1.86s/it]Calculating loss...: 100%|██████████| 2/2 [00:02<00:00,  1.14it/s]Calculating loss...: 100%|██████████| 2/2 [00:02<00:00,  1.03s/it]
+Iter 1: Val loss 5.527, Val took 2.076s
+Iter 10: Train loss 2.268, Learning Rate 2.000e-05, It/sec 1.191, Tokens/sec 25.733, Trained Tokens 216, Peak mem 2.991 GB
+Calculating loss...:   0%|          | 0/2 [00:00<?, ?it/s]Calculating loss...:  50%|█████     | 1/2 [00:00<00:00,  5.06it/s]Calculating loss...: 100%|██████████| 2/2 [00:00<00:00,  5.03it/s]Calculating loss...: 100%|██████████| 2/2 [00:00<00:00,  5.03it/s]
+Iter 20: Val loss 0.523, Val took 0.405s
+Iter 20: Train loss 0.647, Learning Rate 2.000e-05, It/sec 2.574, Tokens/sec 55.090, Trained Tokens 430, Peak mem 2.991 GB
+Iter 20: Saved adapter weights to /Users/mh/dev/specialist-workshop/.state/package-runs/pkg-a4fcda2473de/adapter/adapters.safetensors and /Users/mh/dev/specialist-workshop/.state/package-runs/pkg-a4fcda2473de/adapter/0000020_adapters.safetensors.
+Saved final weights to /Users/mh/dev/specialist-workshop/.state/package-runs/pkg-a4fcda2473de/adapter/adapters.safetensors.

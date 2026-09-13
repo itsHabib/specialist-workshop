@@ -1,0 +1,77 @@
+{
+  "id": "pkg-513b01be5963",
+  "package": "support-intake@dd72cbdfb154394c1a5aceefe8f808e4f82ba7356902f02e230c1f393b425a94",
+  "operation": "adopt",
+  "policy": "base",
+  "checkpoint": null,
+  "input": null,
+  "steps": 120,
+  "source": "/Users/mh/dev/specialist-workshop/.state/package-runs/pkg-a4fcda2473de",
+  "status": "completed",
+  "created_at": 1789258851.344341,
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "contract_hash": "64bc8f4af0e865a79169f2ced782ad56bddb2246bb892cf25923168e35e4de45",
+  "final_hash": "f636b0e122fd894f468d46f2aff240a0cf3087dbee355372ac1d14223fc86683",
+  "grader": "json-exact-v1",
+  "grader_hash": "c36626fab04c1088148ccfa0ea632f5fbc35a5a546d636f9601e385aa09b4dd1",
+  "completion_protocol": "empty-think-v1",
+  "code_files": {
+    "experiment.py": "2b7c7edb6135143cc3a8d46710953ce8503d0974a8e4c9d809859afcba77e64f",
+    "packages.py": "99693f26c3e001e38a02dc7cd7519f63cd393b9ad1b8e50094170c865f3b87c6",
+    "analytics.py": "6c0f04a63ae5901c0586dec84f64476a985b4cb887be909ddb8da97ca8b1b29d",
+    "completion.py": "e81ad4ab34b37a948e6ea4d7ba25d806fdc1757c96b86a4b3e3aa28c16f8a443",
+    "environments.py": "3032c48f8e066062a2052225befda55f56fe4231b2d02950578a92b145968652",
+    "practice.py": "51e45684d7dbe16e8af92eae55a0e86c86cc4742ddf9c8d91ccd0c4d96ef3e8d"
+  },
+  "local_cost_usd": null,
+  "started_at": 1789258851.345759,
+  "training_data_hashes": {
+    "train": "46821dd02e84ce2e330b5a608ddddde2eef0aa56dd6062791d317ed98c513213",
+    "valid": "4199095022507546bbf51648af917fc56e363f99bda2611e145864163af5334f"
+  },
+  "adapter_sha256": "4053e311f19613bd96261d1bd9b724d1bd1d5f7c3e3d9bb3938d332ea2296f0f",
+  "source_training": {
+    "id": "pkg-a4fcda2473de",
+    "package": "support-intake@dd72cbdfb154394c1a5aceefe8f808e4f82ba7356902f02e230c1f393b425a94",
+    "operation": "train",
+    "policy": "base",
+    "checkpoint": null,
+    "input": null,
+    "steps": 20,
+    "source": null,
+    "status": "completed",
+    "created_at": 1789258103.5817258,
+    "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+    "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "contract_hash": "64bc8f4af0e865a79169f2ced782ad56bddb2246bb892cf25923168e35e4de45",
+    "final_hash": "f636b0e122fd894f468d46f2aff240a0cf3087dbee355372ac1d14223fc86683",
+    "grader": "json-exact-v1",
+    "grader_hash": "eafa9bf400dc26203d9fcd61341df2516ac00125379630e5013678d3172293ff",
+    "completion_protocol": "empty-think-v1",
+    "local_cost_usd": null,
+    "started_at": 1789258103.583601,
+    "training_data_hashes": {
+      "train": "46821dd02e84ce2e330b5a608ddddde2eef0aa56dd6062791d317ed98c513213",
+      "valid": "4199095022507546bbf51648af917fc56e363f99bda2611e145864163af5334f"
+    },
+    "recipe": {
+      "steps": 20,
+      "batch_size": 1,
+      "layers": 8,
+      "learning_rate": 2e-05,
+      "seed": 29,
+      "max_sequence_length": 2048,
+      "mask_prompt": true
+    },
+    "adapter_sha256": "4053e311f19613bd96261d1bd9b724d1bd1d5f7c3e3d9bb3938d332ea2296f0f",
+    "finished_at": 1789258121.150625
+  },
+  "adapter_manifest": {
+    "0000020_adapters.safetensors": "4053e311f19613bd96261d1bd9b724d1bd1d5f7c3e3d9bb3938d332ea2296f0f",
+    "adapter_config.json": "c5e7886f741913fd9b674ca44f8d814b1bfd2b0f28c92ba443c89ddb0d27fcbc",
+    "adapters.safetensors": "4053e311f19613bd96261d1bd9b724d1bd1d5f7c3e3d9bb3938d332ea2296f0f"
+  },
+  "source_configuration_provenance": "Legacy source lacked a configuration digest; current files are bound at this new adoption, not retroactively attested",
+  "finished_at": 1789258851.38006
+}

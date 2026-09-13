@@ -1,0 +1,142 @@
+{
+  "id": "pkg-232d7e57b58f",
+  "package": "support-intake@dd72cbdfb154394c1a5aceefe8f808e4f82ba7356902f02e230c1f393b425a94",
+  "operation": "evaluate",
+  "policy": "majority",
+  "checkpoint": null,
+  "input": null,
+  "steps": 120,
+  "source": null,
+  "status": "completed",
+  "created_at": 1789259377.105697,
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "contract_hash": "64bc8f4af0e865a79169f2ced782ad56bddb2246bb892cf25923168e35e4de45",
+  "final_hash": "f636b0e122fd894f468d46f2aff240a0cf3087dbee355372ac1d14223fc86683",
+  "grader": "json-exact-v1",
+  "grader_hash": "c36626fab04c1088148ccfa0ea632f5fbc35a5a546d636f9601e385aa09b4dd1",
+  "completion_protocol": "empty-think-v1",
+  "code_files": {
+    "experiment.py": "2b7c7edb6135143cc3a8d46710953ce8503d0974a8e4c9d809859afcba77e64f",
+    "packages.py": "99693f26c3e001e38a02dc7cd7519f63cd393b9ad1b8e50094170c865f3b87c6",
+    "analytics.py": "6c0f04a63ae5901c0586dec84f64476a985b4cb887be909ddb8da97ca8b1b29d",
+    "completion.py": "e81ad4ab34b37a948e6ea4d7ba25d806fdc1757c96b86a4b3e3aa28c16f8a443",
+    "environments.py": "3032c48f8e066062a2052225befda55f56fe4231b2d02950578a92b145968652",
+    "practice.py": "51e45684d7dbe16e8af92eae55a0e86c86cc4742ddf9c8d91ccd0c4d96ef3e8d"
+  },
+  "local_cost_usd": null,
+  "started_at": 1789259377.107211,
+  "rows": [
+    {
+      "id": "f1",
+      "family": "mfa",
+      "input": {
+        "message": "I lost my authenticator and cannot get into my profile."
+      },
+      "expected": {
+        "owner": "accounts",
+        "urgency": "normal",
+        "reason": "access"
+      },
+      "raw": "{\"owner\": \"accounts\", \"reason\": \"access\", \"urgency\": \"normal\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "correct": true,
+      "accepted": true,
+      "abstained": false,
+      "output": {
+        "owner": "accounts",
+        "reason": "access",
+        "urgency": "normal"
+      },
+      "error": null,
+      "raw_valid": true
+    },
+    {
+      "id": "f2",
+      "family": "invoice-tax",
+      "input": {
+        "message": "The invoice has the wrong tax information."
+      },
+      "expected": {
+        "owner": "payments",
+        "urgency": "normal",
+        "reason": "charge"
+      },
+      "raw": "{\"owner\": \"accounts\", \"reason\": \"access\", \"urgency\": \"normal\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "correct": false,
+      "accepted": false,
+      "abstained": false,
+      "output": {
+        "owner": "accounts",
+        "reason": "access",
+        "urgency": "normal"
+      },
+      "error": null,
+      "raw_valid": true
+    },
+    {
+      "id": "f3",
+      "family": "webhook-outage",
+      "input": {
+        "message": "Webhooks to external systems stopped delivering for all customers five minutes ago and are still down."
+      },
+      "expected": {
+        "owner": "integrations",
+        "urgency": "urgent",
+        "reason": "connection"
+      },
+      "raw": "{\"owner\": \"accounts\", \"reason\": \"access\", \"urgency\": \"normal\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "correct": false,
+      "accepted": false,
+      "abstained": false,
+      "output": {
+        "owner": "accounts",
+        "reason": "access",
+        "urgency": "normal"
+      },
+      "error": null,
+      "raw_valid": true
+    },
+    {
+      "id": "f4",
+      "family": "unspecified-emergency",
+      "input": {
+        "message": "Urgent! Something is wrong, call me."
+      },
+      "expected": {
+        "owner": "clarify",
+        "urgency": "unknown",
+        "reason": "missing-context"
+      },
+      "raw": "{\"owner\": \"accounts\", \"reason\": \"access\", \"urgency\": \"normal\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "correct": false,
+      "accepted": false,
+      "abstained": false,
+      "output": {
+        "owner": "accounts",
+        "reason": "access",
+        "urgency": "normal"
+      },
+      "error": null,
+      "raw_valid": true
+    }
+  ],
+  "metrics": {
+    "count": 4,
+    "correct": 1,
+    "valid": 4,
+    "accepted": 1,
+    "abstained": 0,
+    "invalid": 0,
+    "raw_valid": 4,
+    "median_ms": 0.0
+  },
+  "finished_at": 1789259377.108314
+}

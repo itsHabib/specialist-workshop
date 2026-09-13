@@ -13,6 +13,49 @@ requests produce a clarification reason; unsupported evidence produces no query.
 The explanations/questions displayed by the UI are templates, not separately
 trained or evaluated model prose.
 
+## Measured outcome
+
+No specialist earned rollout. On the 24 frozen requests, the original strict
+JSON evaluation produced:
+
+| Policy | Correct intent | Valid schema/context | Unjustified executions | Median latency |
+| --- | ---: | ---: | ---: | ---: |
+| Always clarify metric | 1/24 | 24/24 | 0 | deterministic |
+| Qwen3-4B base | 7/24 | 18/24 | 6 | 3,339.5 ms generation |
+| Base plus checklist | 7/24 | 16/24 | 5 | 2,997.5 ms generation |
+| Trained adapter, strict raw JSON | 0/24 | 0/24 | 0 | 2,797.5 ms generation |
+| Frontier reference | 24/24 | 24/24 | 0 | 3,168.5 ms whole CLI |
+
+The adapter's original zero concealed an integration error: the pinned tokenizer
+inserts an empty `<think>...</think>` channel into assistant training messages,
+and all 24 completions reproduced it before their JSON. Inspecting the actual
+serialized training target traced this to the model template. The platform now
+previews that boundary before training, preserves raw output, and separately
+scores content after recognizing only an empty leading channel.
+
+A **post-hoc replay of the retained completions**, without rerunning the model or
+changing labels, gives the adapter **12/24 correct, 21/24 valid, and six
+unjustified executions**. Base/checklist/reference scores remain unchanged.
+[The replay](../experiments/analytics/transport-replay.json) is a diagnostic under
+a revised completion protocol, not a new untouched qualification. The original
+strict scores remain visible. Removing an empty transport channel does not repair
+wrong identities, scopes or decisions. Nonempty reasoning and arbitrary malformed
+prefixes remain invalid. The always-clarify control also unnecessarily abstained
+on 13 executable requests.
+
+The 120-step training took 537.46 seconds with a reported peak MLX allocation of
+5.578 GB, updating 3.670 million parameters (0.091% of the model). Development
+loss fell from 3.473 to 0.095. This was a short run with fewer updates than one
+nominal pass over 160 examples; it does not establish an optimized recipe.
+The reference's 24 requests reported $0.3022495 in API-equivalent CLI usage,
+not a verified incremental invoice. Different timing scopes do not establish
+a serving speed advantage. Local hardware/energy costs were not measured.
+
+This experiment supplied a useful platform requirement: make model templates,
+raw outputs, semantic targets and decoder versions inspectable. The next task
+can reuse that machinery through [task packages](MONDAY.md), while preserving
+this negative result.
+
 ## Why this resembles the Shopify task
 
 Shopify's Flow specialist translates merchant intent into a composed automation,

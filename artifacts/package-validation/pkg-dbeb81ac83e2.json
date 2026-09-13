@@ -1,0 +1,134 @@
+{
+  "id": "pkg-dbeb81ac83e2",
+  "package": "roxiq-planning@1a335d7790cc057e62d38879704920af88a7d78e96cc350fa97f73e39f144b2d",
+  "operation": "infer",
+  "policy": "specialist",
+  "checkpoint": "pkg-f0a24974e753",
+  "input": {
+    "request": "Show all my running at Summit.",
+    "context": {
+      "selected_athlete_id": 100,
+      "athletes": [
+        {
+          "id": 100,
+          "name": "Morgan Vale"
+        },
+        {
+          "id": 101,
+          "name": "Jordan Reed"
+        }
+      ],
+      "results": [
+        {
+          "id": 1001,
+          "athlete_id": 100,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 1002,
+          "athlete_id": 100,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 1003,
+          "athlete_id": 101,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  "steps": 120,
+  "source": null,
+  "status": "completed",
+  "created_at": 1789259437.111289,
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "contract_hash": "73d2c3a802100d9b9d397ea92e89509929c194633f3e1dd2a37793a9f15421df",
+  "final_hash": "de984f14a2ef456a9e95240e397d8e204c4a105ba7db6a0e6f1db35e7801f425",
+  "grader": "roxiq-plan-v1",
+  "grader_hash": "065f15b5aea03f30c797495bc3b589800b0ee87e1c7d81b5905c61adc9b77b38",
+  "completion_protocol": "empty-think-v1",
+  "code_files": {
+    "experiment.py": "2b7c7edb6135143cc3a8d46710953ce8503d0974a8e4c9d809859afcba77e64f",
+    "packages.py": "99693f26c3e001e38a02dc7cd7519f63cd393b9ad1b8e50094170c865f3b87c6",
+    "analytics.py": "6c0f04a63ae5901c0586dec84f64476a985b4cb887be909ddb8da97ca8b1b29d",
+    "completion.py": "e81ad4ab34b37a948e6ea4d7ba25d806fdc1757c96b86a4b3e3aa28c16f8a443",
+    "environments.py": "3032c48f8e066062a2052225befda55f56fe4231b2d02950578a92b145968652",
+    "practice.py": "51e45684d7dbe16e8af92eae55a0e86c86cc4742ddf9c8d91ccd0c4d96ef3e8d"
+  },
+  "local_cost_usd": null,
+  "started_at": 1789259437.217279,
+  "result": {
+    "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[1001,1002],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+    "content": "{\"action\":\"value\",\"result_ids\":[1001,1002],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+    "transport": "empty-think-v1",
+    "empty_channel_removed": true,
+    "elapsed_ms": 1800,
+    "input_tokens": 867,
+    "output_tokens": 35,
+    "valid": true,
+    "correct": null,
+    "accepted": false,
+    "abstained": false,
+    "output": {
+      "action": "value",
+      "result_ids": [
+        1001,
+        1002
+      ],
+      "metrics": [
+        "run_total"
+      ],
+      "scope": "none",
+      "reason": "none"
+    },
+    "error": null,
+    "raw_valid": false
+  },
+  "finished_at": 1789259440.7686431
+}

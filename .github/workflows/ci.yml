@@ -13,4 +13,7 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m pytest -q
       - run: node --check static/app.js
+      - run: node --check static/practice.js
+      - run: node --check static/analytics.js
+      - run: node --check static/packages.js
       - run: git diff --exit-code

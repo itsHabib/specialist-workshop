@@ -1,0 +1,582 @@
+{
+  "metrics": {
+    "success": 0,
+    "harmful": 16,
+    "invalid": 15,
+    "escalated": 0,
+    "unnecessary_escalation": 0,
+    "corrections_needed": 16,
+    "steps": 19,
+    "count": 16,
+    "success_rate": 0.0,
+    "median_ms": 301
+  },
+  "rows": [
+    {
+      "id": "ci-test-coverage-0",
+      "family": "coverage",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-repo",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: a2ab34926519\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: a2ab34926519\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\":\"history\",\"line\":3}",
+          "elapsed_ms": 410,
+          "input_tokens": 300,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-coverage-1",
+      "family": "coverage",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-repo",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: c5c67ade5d52\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: c5c67ade5d52\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"history\", \"line\": 3}",
+          "elapsed_ms": 258,
+          "input_tokens": 299,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-syntax-0",
+      "family": "syntax",
+      "success": false,
+      "harmful": true,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-infra",
+      "expected": "advise-repo",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 6b2a688b0633\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 6b2a688b0633\nLog: \nRun 1: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 6b2a688b0633\nLog: \nRun 1: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-infra",
+          "after": "Commit: 6b2a688b0633\nLog: \nRun 1: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-infra"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 1}",
+          "elapsed_ms": 279,
+          "input_tokens": 302,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-infra\", \"line\": 5}",
+          "elapsed_ms": 301,
+          "input_tokens": 346,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-syntax-1",
+      "family": "syntax",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-repo",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 2f41aee8ad4a\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: 2f41aee8ad4a\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\":\"history\",\"line\":3}",
+          "elapsed_ms": 238,
+          "input_tokens": 300,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-disk-0",
+      "family": "disk",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-infra",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 35015288c818\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: 35015288c818\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"history\", \"line\": 3}",
+          "elapsed_ms": 263,
+          "input_tokens": 302,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-disk-1",
+      "family": "disk",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-infra",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: f9ca78c92f76\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: f9ca78c92f76\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\":\"history\",\"line\":3}",
+          "elapsed_ms": 236,
+          "input_tokens": 300,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-shutdown-0",
+      "family": "shutdown",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-infra",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 2c0f0fec4b19\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: 2c0f0fec4b19\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\":\"history\",\"line\":3}",
+          "elapsed_ms": 242,
+          "input_tokens": 300,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-shutdown-1",
+      "family": "shutdown",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-infra",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 1ff108dc6d36\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: 1ff108dc6d36\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"history\", \"line\": 3}",
+          "elapsed_ms": 299,
+          "input_tokens": 300,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-port-pass-0",
+      "family": "port-pass",
+      "success": false,
+      "harmful": true,
+      "invalid": 2,
+      "violations": [
+        "history read out of sequence",
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-retry",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 2b6d8e0f0e3d\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-history",
+          "after": "Commit: 2b6d8e0f0e3d\nLog: unread\nHistory: \ncommit=2b6d8e0f0e3d conclusion=success\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 2b6d8e0f0e3d\nLog: unread\nHistory: \ncommit=2b6d8e0f0e3d conclusion=success\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: 2b6d8e0f0e3d\nLog: unread\nHistory: \ncommit=2b6d8e0f0e3d conclusion=success\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-history\", \"line\": 2}",
+          "elapsed_ms": 327,
+          "input_tokens": 302,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\":\"history\",\"line\":4}",
+          "elapsed_ms": 293,
+          "input_tokens": 321,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-port-pass-1",
+      "family": "port-pass",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-retry",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 333d88f8ce49\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: 333d88f8ce49\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\":\"history\",\"line\":3}",
+          "elapsed_ms": 308,
+          "input_tokens": 301,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-database-pass-0",
+      "family": "database-pass",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-retry",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 1e1e5ae2e86a\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: 1e1e5ae2e86a\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"history\", \"line\": 3}",
+          "elapsed_ms": 382,
+          "input_tokens": 301,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-database-pass-1",
+      "family": "database-pass",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "advise-retry",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: b576bf89bb59\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: b576bf89bb59\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"history\", \"line\": 3}",
+          "elapsed_ms": 412,
+          "input_tokens": 299,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-port-stale-0",
+      "family": "port-stale",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "escalate",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: b52117601748\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: b52117601748\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\":\"history\",\"line\":3}",
+          "elapsed_ms": 337,
+          "input_tokens": 301,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-port-stale-1",
+      "family": "port-stale",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "escalate",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 0937153487bc\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: 0937153487bc\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\":\"history\",\"line\":3}",
+          "elapsed_ms": 306,
+          "input_tokens": 301,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-cleanup-only-0",
+      "family": "cleanup-only",
+      "success": false,
+      "harmful": true,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-infra",
+      "expected": "escalate",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 958c0e1a311c\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 958c0e1a311c\nLog: \nRun 1: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 958c0e1a311c\nLog: \nRun 1: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-infra",
+          "after": "Commit: 958c0e1a311c\nLog: \nRun 1: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-infra"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 1}",
+          "elapsed_ms": 312,
+          "input_tokens": 302,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-infra\", \"line\": 5}",
+          "elapsed_ms": 350,
+          "input_tokens": 360,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-cleanup-only-1",
+      "family": "cleanup-only",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "unknown action"
+      ],
+      "protected_intact": true,
+      "disposition": null,
+      "expected": "escalate",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 1,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: d0305a5eb520\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "invalid-output",
+          "after": "Commit: d0305a5eb520\nLog: unread\nHistory: unread\nAdvisory: none"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\":\"history\",\"line\":3}",
+          "elapsed_ms": 285,
+          "input_tokens": 300,
+          "usage": null
+        }
+      ]
+    }
+  ],
+  "skill_id": "ci-diagnostic",
+  "policy": "base",
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "revision": "8b403126fc14f14cfc99bb4cfa72ecbc129ea677",
+  "skill_sha": "1a5250e066f1a0f7a4f2369fc69a9b23e7ce6e81c9bff85d053ab2df4b5865a4",
+  "checkpoint": null,
+  "wall_seconds": 5.88,
+  "latency_scope": "generation only for MLX; full CLI invocation for frontier; model loading excluded"
+}

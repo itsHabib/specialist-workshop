@@ -1,0 +1,542 @@
+[
+  {
+    "id": "dev-0",
+    "family": "development",
+    "request": "Give my run_1 at Summit.",
+    "context": {
+      "selected_athlete_id": 401,
+      "athletes": [
+        {
+          "id": 401,
+          "name": "Morgan Vale"
+        },
+        {
+          "id": 402,
+          "name": "Jordan Reed"
+        }
+      ],
+      "results": [
+        {
+          "id": 4011,
+          "athlete_id": 401,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4012,
+          "athlete_id": 401,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4013,
+          "athlete_id": 402,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "action": "value",
+      "result_ids": [
+        4012
+      ],
+      "metrics": [
+        "run_1"
+      ],
+      "scope": "none",
+      "reason": "none"
+    }
+  },
+  {
+    "id": "dev-1",
+    "family": "development",
+    "request": "What happened to my roxzone from Harbor to Summit?",
+    "context": {
+      "selected_athlete_id": 401,
+      "athletes": [
+        {
+          "id": 401,
+          "name": "Morgan Vale"
+        },
+        {
+          "id": 402,
+          "name": "Jordan Reed"
+        }
+      ],
+      "results": [
+        {
+          "id": 4011,
+          "athlete_id": 401,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4012,
+          "athlete_id": 401,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4013,
+          "athlete_id": 402,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "action": "delta",
+      "result_ids": [
+        4011,
+        4012
+      ],
+      "metrics": [
+        "roxzone"
+      ],
+      "scope": "none",
+      "reason": "none"
+    }
+  },
+  {
+    "id": "dev-2",
+    "family": "development",
+    "request": "Benchmark my latest rowing with everyone.",
+    "context": {
+      "selected_athlete_id": 401,
+      "athletes": [
+        {
+          "id": 401,
+          "name": "Morgan Vale"
+        },
+        {
+          "id": 402,
+          "name": "Jordan Reed"
+        }
+      ],
+      "results": [
+        {
+          "id": 4011,
+          "athlete_id": 401,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4012,
+          "athlete_id": 401,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4013,
+          "athlete_id": 402,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "action": "benchmark",
+      "result_ids": [
+        4012
+      ],
+      "metrics": [
+        "rowing"
+      ],
+      "scope": "global",
+      "reason": "none"
+    }
+  },
+  {
+    "id": "dev-3",
+    "family": "development",
+    "request": "Compare my rowing at Harbor with only season 7 people.",
+    "context": {
+      "selected_athlete_id": 401,
+      "athletes": [
+        {
+          "id": 401,
+          "name": "Morgan Vale"
+        },
+        {
+          "id": 402,
+          "name": "Jordan Reed"
+        }
+      ],
+      "results": [
+        {
+          "id": 4011,
+          "athlete_id": 401,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4012,
+          "athlete_id": 401,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4013,
+          "athlete_id": 402,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "action": "unsupported",
+      "result_ids": [],
+      "metrics": [],
+      "scope": "none",
+      "reason": "unavailable"
+    }
+  },
+  {
+    "id": "dev-4",
+    "family": "development",
+    "request": "How did I do?",
+    "context": {
+      "selected_athlete_id": 401,
+      "athletes": [
+        {
+          "id": 401,
+          "name": "Morgan Vale"
+        },
+        {
+          "id": 402,
+          "name": "Jordan Reed"
+        }
+      ],
+      "results": [
+        {
+          "id": 4011,
+          "athlete_id": 401,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4012,
+          "athlete_id": 401,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4013,
+          "athlete_id": 402,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "action": "clarify",
+      "result_ids": [],
+      "metrics": [],
+      "scope": "none",
+      "reason": "race"
+    }
+  },
+  {
+    "id": "dev-5",
+    "family": "development",
+    "request": "Show my sled pull and rowing at Summit.",
+    "context": {
+      "selected_athlete_id": 401,
+      "athletes": [
+        {
+          "id": 401,
+          "name": "Morgan Vale"
+        },
+        {
+          "id": 402,
+          "name": "Jordan Reed"
+        }
+      ],
+      "results": [
+        {
+          "id": 4011,
+          "athlete_id": 401,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4012,
+          "athlete_id": 401,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 4013,
+          "athlete_id": 402,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "action": "value",
+      "result_ids": [
+        4012
+      ],
+      "metrics": [
+        "sled_pull",
+        "rowing"
+      ],
+      "scope": "none",
+      "reason": "none"
+    }
+  }
+]

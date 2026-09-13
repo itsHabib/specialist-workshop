@@ -1,0 +1,933 @@
+{
+  "metrics": {
+    "count": 48,
+    "accuracy": 1.0,
+    "evidence_rate": 1.0,
+    "accepted_rate": 1.0,
+    "schema_rate": 1.0,
+    "raw_json_rate": 1.0,
+    "median_ms": 0
+  },
+  "rows": [
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 300 seconds, 4 repetitions of 82 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 839 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-0-consistent",
+      "input": "Prescription f4365af2\nWarmup 300 seconds, 4 repetitions of 82 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 839 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.2317499602213502,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 300 seconds, 4 repetitions of 82 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 823 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-0-time-overrun",
+      "input": "Prescription 3fafc47a\nWarmup 300 seconds, 4 repetitions of 82 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 823 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.009167008101940155,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 4 lengths of 10 metres plus test 40 metres; claimed total 40 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-0-distance-conflict",
+      "input": "Prescription 8d2b8d89\nTechnique 4 lengths of 10 metres plus test 40 metres; claimed total 40 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.04304107278585434,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 300 seconds, 4 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-0-needs-context",
+      "input": "Prescription 4b6afdd3\nWarmup 300 seconds, 4 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.004999921657145023,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 300 seconds, 5 repetitions of 80 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 1001 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-1-consistent",
+      "input": "Prescription 29e42963\nWarmup 300 seconds, 5 repetitions of 80 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 1001 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.006749993190169334,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 300 seconds, 5 repetitions of 80 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 940 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-1-time-overrun",
+      "input": "Prescription 6344d687\nWarmup 300 seconds, 5 repetitions of 80 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 940 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.006166985258460045,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 5 lengths of 15 metres plus test 40 metres; claimed total 75 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-1-distance-conflict",
+      "input": "Prescription 25271b9f\nTechnique 5 lengths of 15 metres plus test 40 metres; claimed total 75 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.004458008334040642,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 300 seconds, 5 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-1-needs-context",
+      "input": "Prescription b3d27597\nWarmup 300 seconds, 5 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.00458303838968277,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 300 seconds, 8 repetitions of 72 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1221 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-2-consistent",
+      "input": "Prescription e18c0522\nWarmup 300 seconds, 8 repetitions of 72 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1221 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.005875015631318092,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 300 seconds, 8 repetitions of 72 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1205 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-2-time-overrun",
+      "input": "Prescription dcd36ef5\nWarmup 300 seconds, 8 repetitions of 72 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1205 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.005458015948534012,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 8 lengths of 10 metres plus test 40 metres; claimed total 80 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-2-distance-conflict",
+      "input": "Prescription 3aca116e\nTechnique 8 lengths of 10 metres plus test 40 metres; claimed total 80 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.003915978595614433,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 300 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-2-needs-context",
+      "input": "Prescription 581e6571\nWarmup 300 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.004499917849898338,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 120 seconds, 5 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 555 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-3-consistent",
+      "input": "Prescription 37a72754\nWarmup 120 seconds, 5 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 555 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.005875015631318092,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 120 seconds, 5 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 539 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-3-time-overrun",
+      "input": "Prescription cb7476a0\nWarmup 120 seconds, 5 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 539 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.00566698145121336,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 5 lengths of 15 metres plus test 40 metres; claimed total 75 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-3-distance-conflict",
+      "input": "Prescription 77a8ab54\nTechnique 5 lengths of 15 metres plus test 40 metres; claimed total 75 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.003834022209048271,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 120 seconds, 5 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-3-needs-context",
+      "input": "Prescription 46bac262\nWarmup 120 seconds, 5 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.004208995960652828,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 120 seconds, 8 repetitions of 69 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 957 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-4-consistent",
+      "input": "Prescription 08959316\nWarmup 120 seconds, 8 repetitions of 69 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 957 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.006416928954422474,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 120 seconds, 8 repetitions of 69 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 882 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-4-time-overrun",
+      "input": "Prescription 199e9f90\nWarmup 120 seconds, 8 repetitions of 69 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 882 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.005707959644496441,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 8 lengths of 10 metres plus test 40 metres; claimed total 80 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-4-distance-conflict",
+      "input": "Prescription 55737bbd\nTechnique 8 lengths of 10 metres plus test 40 metres; claimed total 80 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.004041008651256561,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 120 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-4-needs-context",
+      "input": "Prescription 2de97b48\nWarmup 120 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.00429095234721899,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 300 seconds, 4 repetitions of 63 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 777 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-5-consistent",
+      "input": "Prescription c834ca73\nWarmup 300 seconds, 4 repetitions of 63 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 777 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.005625071935355663,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 300 seconds, 4 repetitions of 63 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 716 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-5-time-overrun",
+      "input": "Prescription 494e38db\nWarmup 300 seconds, 4 repetitions of 63 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 716 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.005499925464391708,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 4 lengths of 15 metres plus test 40 metres; claimed total 60 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-5-distance-conflict",
+      "input": "Prescription 7225ac55\nTechnique 4 lengths of 15 metres plus test 40 metres; claimed total 60 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.003917026333510876,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 300 seconds, 4 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-5-needs-context",
+      "input": "Prescription 5ab9173f\nWarmup 300 seconds, 4 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.004250090569257736,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 240 seconds, 8 repetitions of 39 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 897 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-6-consistent",
+      "input": "Prescription cc34e862\nWarmup 240 seconds, 8 repetitions of 39 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 897 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.005500041879713535,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 240 seconds, 8 repetitions of 39 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 867 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-6-time-overrun",
+      "input": "Prescription 24225699\nWarmup 240 seconds, 8 repetitions of 39 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 867 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.006166985258460045,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 8 lengths of 15 metres plus test 40 metres; claimed total 120 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-6-distance-conflict",
+      "input": "Prescription b6c6ae0c\nTechnique 8 lengths of 15 metres plus test 40 metres; claimed total 120 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.004041008651256561,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 240 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-6-needs-context",
+      "input": "Prescription 3eac8995\nWarmup 240 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.004416098818182945,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 300 seconds, 3 repetitions of 93 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 730 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-7-consistent",
+      "input": "Prescription 20174063\nWarmup 300 seconds, 3 repetitions of 93 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 730 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.006332993507385254,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 300 seconds, 3 repetitions of 93 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 714 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-7-time-overrun",
+      "input": "Prescription c657e9ed\nWarmup 300 seconds, 3 repetitions of 93 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 714 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.005458947271108627,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 3 lengths of 10 metres plus test 40 metres; claimed total 30 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-7-distance-conflict",
+      "input": "Prescription e6b9a5bd\nTechnique 3 lengths of 10 metres plus test 40 metres; claimed total 30 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.0037919962778687477,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 300 seconds, 3 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-7-needs-context",
+      "input": "Prescription cb6d1d86\nWarmup 300 seconds, 3 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.004041939973831177,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 300 seconds, 7 repetitions of 20 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 800 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-8-consistent",
+      "input": "Prescription 5f56e248\nWarmup 300 seconds, 7 repetitions of 20 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 800 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.00566698145121336,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 300 seconds, 7 repetitions of 20 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 739 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-8-time-overrun",
+      "input": "Prescription e3db7224\nWarmup 300 seconds, 7 repetitions of 20 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 739 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.005500041879713535,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 7 lengths of 20 metres plus test 40 metres; claimed total 140 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-8-distance-conflict",
+      "input": "Prescription 7b478578\nTechnique 7 lengths of 20 metres plus test 40 metres; claimed total 140 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.004375004209578037,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 300 seconds, 7 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-8-needs-context",
+      "input": "Prescription bdae9326\nWarmup 300 seconds, 7 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.004208995960652828,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 240 seconds, 8 repetitions of 57 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1086 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-9-consistent",
+      "input": "Prescription d4a903f6\nWarmup 240 seconds, 8 repetitions of 57 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1086 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.005749985575675964,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 240 seconds, 8 repetitions of 57 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 966 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-9-time-overrun",
+      "input": "Prescription 92108be7\nWarmup 240 seconds, 8 repetitions of 57 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 966 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.005749985575675964,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 8 lengths of 20 metres plus test 40 metres; claimed total 160 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-9-distance-conflict",
+      "input": "Prescription 55498430\nTechnique 8 lengths of 20 metres plus test 40 metres; claimed total 160 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.004584086127579212,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 240 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-9-needs-context",
+      "input": "Prescription 8dd8f281\nWarmup 240 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.004166038706898689,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 240 seconds, 7 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 858 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-10-consistent",
+      "input": "Prescription 521baf0a\nWarmup 240 seconds, 7 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 858 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.005499925464391708,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 240 seconds, 7 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 797 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-10-time-overrun",
+      "input": "Prescription f64fd424\nWarmup 240 seconds, 7 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 797 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.005499925464391708,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 7 lengths of 20 metres plus test 40 metres; claimed total 140 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-10-distance-conflict",
+      "input": "Prescription 02165464\nTechnique 7 lengths of 20 metres plus test 40 metres; claimed total 140 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.004624947905540466,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 240 seconds, 7 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-10-needs-context",
+      "input": "Prescription 74c7dd9b\nWarmup 240 seconds, 7 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.004166970029473305,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "consistent",
+        "evidence": "Warmup 300 seconds, 3 repetitions of 52 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 726 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-11-consistent",
+      "input": "Prescription a479d528\nWarmup 300 seconds, 3 repetitions of 52 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 726 seconds.",
+      "expected": "consistent",
+      "elapsed_ms": 0.00558304600417614,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "time-overrun",
+        "evidence": "Warmup 300 seconds, 3 repetitions of 52 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 651 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-11-time-overrun",
+      "input": "Prescription 01d5a3af\nWarmup 300 seconds, 3 repetitions of 52 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 651 seconds.",
+      "expected": "time-overrun",
+      "elapsed_ms": 0.005375011824071407,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "distance-conflict",
+        "evidence": "Technique 3 lengths of 15 metres plus test 40 metres; claimed total 45 metres."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"distance-conflict\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-11-distance-conflict",
+      "input": "Prescription 0aea7a97\nTechnique 3 lengths of 15 metres plus test 40 metres; claimed total 45 metres.",
+      "expected": "distance-conflict",
+      "elapsed_ms": 0.0038329744711518288,
+      "input_tokens": null,
+      "usage": null
+    },
+    {
+      "output": {
+        "bucket": "needs-context",
+        "evidence": "Warmup 300 seconds, 3 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"needs-context\", \"line\": 2}",
+      "raw_json_valid": true,
+      "source_line": 2,
+      "id": "math-test-11-needs-context",
+      "input": "Prescription 1fca313c\nWarmup 300 seconds, 3 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "elapsed_ms": 0.004125060513615608,
+      "input_tokens": null,
+      "usage": null
+    }
+  ],
+  "skill_id": "blox-arithmetic",
+  "policy": "rules",
+  "model_id": "rules",
+  "revision": null,
+  "skill_sha": "d03e484f8f895b4b410cfa3eb6bad4015aabe3741dcc7e10148a692094a359f1",
+  "checkpoint": null,
+  "wall_seconds": 0.002,
+  "latency_scope": "generation only for MLX; full CLI invocation for frontier; model loading excluded"
+}

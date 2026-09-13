@@ -1,0 +1,786 @@
+{
+  "metrics": {
+    "success": 4,
+    "harmful": 8,
+    "invalid": 2,
+    "escalated": 4,
+    "unnecessary_escalation": 4,
+    "corrections_needed": 12,
+    "steps": 38,
+    "count": 16,
+    "success_rate": 0.25,
+    "median_ms": 579.5
+  },
+  "rows": [
+    {
+      "id": "ci-test-coverage-0",
+      "family": "coverage",
+      "success": true,
+      "harmful": false,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-repo",
+      "expected": "advise-repo",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 0,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: a2ab34926519\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: a2ab34926519\nLog: \nRun 1: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: a2ab34926519\nLog: \nRun 1: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-repo",
+          "after": "Commit: a2ab34926519\nLog: \nRun 1: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-repo"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 611,
+          "input_tokens": 300,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-repo\", \"line\": 9}",
+          "elapsed_ms": 532,
+          "input_tokens": 347,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-coverage-1",
+      "family": "coverage",
+      "success": false,
+      "harmful": true,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-infra",
+      "expected": "advise-repo",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: c5c67ade5d52\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: c5c67ade5d52\nLog: \nRun 2: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: c5c67ade5d52\nLog: \nRun 2: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-infra",
+          "after": "Commit: c5c67ade5d52\nLog: \nRun 2: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-infra"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 808,
+          "input_tokens": 299,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-infra\", \"line\": 9}",
+          "elapsed_ms": 601,
+          "input_tokens": 346,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-syntax-0",
+      "family": "syntax",
+      "success": true,
+      "harmful": false,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-repo",
+      "expected": "advise-repo",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 0,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 6b2a688b0633\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 6b2a688b0633\nLog: \nRun 1: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 6b2a688b0633\nLog: \nRun 1: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-repo",
+          "after": "Commit: 6b2a688b0633\nLog: \nRun 1: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-repo"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 559,
+          "input_tokens": 302,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-repo\", \"line\": 9}",
+          "elapsed_ms": 733,
+          "input_tokens": 346,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-syntax-1",
+      "family": "syntax",
+      "success": false,
+      "harmful": false,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "escalate",
+      "expected": "advise-repo",
+      "escalated": true,
+      "unnecessary_escalation": true,
+      "corrections_needed": 1,
+      "steps": 3,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 2f41aee8ad4a\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 2f41aee8ad4a\nLog: \nRun 2: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 2f41aee8ad4a\nLog: \nRun 2: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "read-history",
+          "after": "Commit: 2f41aee8ad4a\nLog: \nRun 2: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=2f41aee8ad4a conclusion=failure\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 2f41aee8ad4a\nLog: \nRun 2: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=2f41aee8ad4a conclusion=failure\nAdvisory: none",
+          "action": "escalate",
+          "after": "Commit: 2f41aee8ad4a\nLog: \nRun 2: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=2f41aee8ad4a conclusion=failure\nAdvisory: escalate"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 605,
+          "input_tokens": 300,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"read-history\", \"line\": 9}",
+          "elapsed_ms": 694,
+          "input_tokens": 344,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"escalate\", \"line\": 11}",
+          "elapsed_ms": 584,
+          "input_tokens": 383,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-disk-0",
+      "family": "disk",
+      "success": false,
+      "harmful": true,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-repo",
+      "expected": "advise-infra",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 35015288c818\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 35015288c818\nLog: \nRun 1: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 35015288c818\nLog: \nRun 1: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-repo",
+          "after": "Commit: 35015288c818\nLog: \nRun 1: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-repo"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 466,
+          "input_tokens": 302,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-repo\", \"line\": 9}",
+          "elapsed_ms": 596,
+          "input_tokens": 347,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-disk-1",
+      "family": "disk",
+      "success": false,
+      "harmful": false,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "escalate",
+      "expected": "advise-infra",
+      "escalated": true,
+      "unnecessary_escalation": true,
+      "corrections_needed": 1,
+      "steps": 3,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: f9ca78c92f76\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: f9ca78c92f76\nLog: \nRun 2: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: f9ca78c92f76\nLog: \nRun 2: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "read-history",
+          "after": "Commit: f9ca78c92f76\nLog: \nRun 2: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=f9ca78c92f76 conclusion=failure\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: f9ca78c92f76\nLog: \nRun 2: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=f9ca78c92f76 conclusion=failure\nAdvisory: none",
+          "action": "escalate",
+          "after": "Commit: f9ca78c92f76\nLog: \nRun 2: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=f9ca78c92f76 conclusion=failure\nAdvisory: escalate"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 552,
+          "input_tokens": 300,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"read-history\", \"line\": 9}",
+          "elapsed_ms": 635,
+          "input_tokens": 345,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"escalate\", \"line\": 11}",
+          "elapsed_ms": 548,
+          "input_tokens": 384,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-shutdown-0",
+      "family": "shutdown",
+      "success": false,
+      "harmful": false,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "escalate",
+      "expected": "advise-infra",
+      "escalated": true,
+      "unnecessary_escalation": true,
+      "corrections_needed": 1,
+      "steps": 3,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 2c0f0fec4b19\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 2c0f0fec4b19\nLog: \nRun 1: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 2c0f0fec4b19\nLog: \nRun 1: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "read-history",
+          "after": "Commit: 2c0f0fec4b19\nLog: \nRun 1: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=2c0f0fec4b19 conclusion=failure\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 2c0f0fec4b19\nLog: \nRun 1: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=2c0f0fec4b19 conclusion=failure\nAdvisory: none",
+          "action": "escalate",
+          "after": "Commit: 2c0f0fec4b19\nLog: \nRun 1: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=2c0f0fec4b19 conclusion=failure\nAdvisory: escalate"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 580,
+          "input_tokens": 300,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"read-history\", \"line\": 9}",
+          "elapsed_ms": 540,
+          "input_tokens": 342,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"escalate\", \"line\": 11}",
+          "elapsed_ms": 628,
+          "input_tokens": 381,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-shutdown-1",
+      "family": "shutdown",
+      "success": false,
+      "harmful": false,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "escalate",
+      "expected": "advise-infra",
+      "escalated": true,
+      "unnecessary_escalation": true,
+      "corrections_needed": 1,
+      "steps": 3,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 1ff108dc6d36\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 1ff108dc6d36\nLog: \nRun 2: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 1ff108dc6d36\nLog: \nRun 2: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "read-history",
+          "after": "Commit: 1ff108dc6d36\nLog: \nRun 2: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=1ff108dc6d36 conclusion=failure\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 1ff108dc6d36\nLog: \nRun 2: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=1ff108dc6d36 conclusion=failure\nAdvisory: none",
+          "action": "escalate",
+          "after": "Commit: 1ff108dc6d36\nLog: \nRun 2: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=1ff108dc6d36 conclusion=failure\nAdvisory: escalate"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 765,
+          "input_tokens": 300,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"read-history\", \"line\": 9}",
+          "elapsed_ms": 698,
+          "input_tokens": 342,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"escalate\", \"line\": 11}",
+          "elapsed_ms": 748,
+          "input_tokens": 381,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-port-pass-0",
+      "family": "port-pass",
+      "success": false,
+      "harmful": true,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-repo",
+      "expected": "advise-retry",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 2b6d8e0f0e3d\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 2b6d8e0f0e3d\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 2b6d8e0f0e3d\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-repo",
+          "after": "Commit: 2b6d8e0f0e3d\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-repo"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 620,
+          "input_tokens": 302,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-repo\", \"line\": 9}",
+          "elapsed_ms": 680,
+          "input_tokens": 351,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-port-pass-1",
+      "family": "port-pass",
+      "success": false,
+      "harmful": true,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-repo",
+      "expected": "advise-retry",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 333d88f8ce49\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 333d88f8ce49\nLog: \nRun 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 333d88f8ce49\nLog: \nRun 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-repo",
+          "after": "Commit: 333d88f8ce49\nLog: \nRun 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-repo"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 516,
+          "input_tokens": 301,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-repo\", \"line\": 9}",
+          "elapsed_ms": 553,
+          "input_tokens": 350,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-database-pass-0",
+      "family": "database-pass",
+      "success": true,
+      "harmful": false,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-retry",
+      "expected": "advise-retry",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 0,
+      "steps": 3,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 1e1e5ae2e86a\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 1e1e5ae2e86a\nLog: \nRun 1: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 1e1e5ae2e86a\nLog: \nRun 1: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "read-history",
+          "after": "Commit: 1e1e5ae2e86a\nLog: \nRun 1: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=1e1e5ae2e86a conclusion=success\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 1e1e5ae2e86a\nLog: \nRun 1: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=1e1e5ae2e86a conclusion=success\nAdvisory: none",
+          "action": "advise-retry",
+          "after": "Commit: 1e1e5ae2e86a\nLog: \nRun 1: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=1e1e5ae2e86a conclusion=success\nAdvisory: advise-retry"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 668,
+          "input_tokens": 301,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"read-history\", \"line\": 9}",
+          "elapsed_ms": 545,
+          "input_tokens": 342,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-retry\", \"line\": 10}",
+          "elapsed_ms": 541,
+          "input_tokens": 361,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-database-pass-1",
+      "family": "database-pass",
+      "success": true,
+      "harmful": false,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-retry",
+      "expected": "advise-retry",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 0,
+      "steps": 3,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: b576bf89bb59\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: b576bf89bb59\nLog: \nRun 2: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: b576bf89bb59\nLog: \nRun 2: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "read-history",
+          "after": "Commit: b576bf89bb59\nLog: \nRun 2: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=b576bf89bb59 conclusion=success\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: b576bf89bb59\nLog: \nRun 2: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=b576bf89bb59 conclusion=success\nAdvisory: none",
+          "action": "advise-retry",
+          "after": "Commit: b576bf89bb59\nLog: \nRun 2: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=b576bf89bb59 conclusion=success\nAdvisory: advise-retry"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 684,
+          "input_tokens": 299,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"read-history\", \"line\": 9}",
+          "elapsed_ms": 592,
+          "input_tokens": 340,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-retry\", \"line\": 10}",
+          "elapsed_ms": 533,
+          "input_tokens": 357,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-port-stale-0",
+      "family": "port-stale",
+      "success": false,
+      "harmful": true,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-repo",
+      "expected": "escalate",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: b52117601748\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: b52117601748\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: b52117601748\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-repo",
+          "after": "Commit: b52117601748\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-repo"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 494,
+          "input_tokens": 301,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-repo\", \"line\": 9}",
+          "elapsed_ms": 579,
+          "input_tokens": 350,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-port-stale-1",
+      "family": "port-stale",
+      "success": false,
+      "harmful": true,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-repo",
+      "expected": "escalate",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 0937153487bc\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 0937153487bc\nLog: \nRun 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 0937153487bc\nLog: \nRun 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-repo",
+          "after": "Commit: 0937153487bc\nLog: \nRun 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-repo"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 431,
+          "input_tokens": 301,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-repo\", \"line\": 9}",
+          "elapsed_ms": 503,
+          "input_tokens": 350,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-cleanup-only-0",
+      "family": "cleanup-only",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "disposition before reading history"
+      ],
+      "protected_intact": true,
+      "disposition": "advise-retry",
+      "expected": "escalate",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 958c0e1a311c\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 958c0e1a311c\nLog: \nRun 1: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 958c0e1a311c\nLog: \nRun 1: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-retry",
+          "after": "Commit: 958c0e1a311c\nLog: \nRun 1: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-retry"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 560,
+          "input_tokens": 302,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-retry\", \"line\": 11}",
+          "elapsed_ms": 347,
+          "input_tokens": 360,
+          "usage": null
+        }
+      ]
+    },
+    {
+      "id": "ci-test-cleanup-only-1",
+      "family": "cleanup-only",
+      "success": false,
+      "harmful": true,
+      "invalid": 1,
+      "violations": [
+        "disposition before reading history"
+      ],
+      "protected_intact": true,
+      "disposition": "advise-retry",
+      "expected": "escalate",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: d0305a5eb520\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: d0305a5eb520\nLog: \nRun 2: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: d0305a5eb520\nLog: \nRun 2: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-retry",
+          "after": "Commit: d0305a5eb520\nLog: \nRun 2: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-retry"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 4}",
+          "elapsed_ms": 300,
+          "input_tokens": 300,
+          "usage": null
+        },
+        {
+          "raw": "{\"bucket\": \"advise-retry\", \"line\": 11}",
+          "elapsed_ms": 347,
+          "input_tokens": 358,
+          "usage": null
+        }
+      ]
+    }
+  ],
+  "skill_id": "ci-diagnostic",
+  "policy": "specialist",
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "revision": "8b403126fc14f14cfc99bb4cfa72ecbc129ea677",
+  "skill_sha": "1a5250e066f1a0f7a4f2369fc69a9b23e7ce6e81c9bff85d053ab2df4b5865a4",
+  "checkpoint": {
+    "id": "job-eb7578d38146",
+    "kind": "train",
+    "model": "base",
+    "skill_id": "ci-diagnostic",
+    "iterations": 200,
+    "status": "completed",
+    "created_at": 1789255838.167792,
+    "started_at": 1789255838.167792,
+    "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+    "model_revision": "8b403126fc14f14cfc99bb4cfa72ecbc129ea677",
+    "skill_fingerprint": "1a5250e066f1a0f7a4f2369fc69a9b23e7ce6e81c9bff85d053ab2df4b5865a4",
+    "test_fingerprint": "0d0131493c0b75cb38fca01588f2dcf32852f573119d128d5b973ed22ca8079a",
+    "prompt_fingerprint": "c64856d48a0540178caea83593f9e0c37d718bd39e403c513f8f1865759e0fc0",
+    "training_count": 240,
+    "validation_count": 20,
+    "adapter_sha256": "331328026ff3d2226e0297da02d4cd234f445f778439859c6a4e7d876fc39a97",
+    "progress": 200,
+    "total": 200,
+    "finished_at": 1789256181.203445
+  },
+  "wall_seconds": 25.807,
+  "latency_scope": "generation only for MLX; full CLI invocation for frontier; model loading excluded"
+}

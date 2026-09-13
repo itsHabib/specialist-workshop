@@ -89,3 +89,70 @@ def test_stale_run_is_marked_interrupted(client):
     store.atomic_json(path,dict(id="job-aaaaaaaaaaaa",status="running",created_at=0))
     with TestClient(module.app) as restarted:
         assert restarted.get("/api/runs/job-aaaaaaaaaaaa").json()["status"] == "interrupted"
+
+
+def test_practice_replays_only_known_fixtures_and_rejects_overlong_trace(client):
+    catalog = client.get("/api/practice").json()
+    identity = next(s["id"] for s in catalog["scenarios"] if s["family"] == "timeout-pass")
+    response = client.post("/api/practice/step", json={"scenario_id":identity,"actions":["read-log","read-history","advise-retry"]})
+    assert response.status_code == 200
+    assert response.json()["outcome"]["success"]
+    assert client.post("/api/practice/step",json={"scenario_id":"../../x","actions":[]}).status_code == 404
+    assert client.post("/api/practice/step",json={"scenario_id":identity,"actions":["read-log"]*6}).status_code == 422
+    reset = client.post("/api/practice/step",json={"scenario_id":identity,"actions":[]}).json()
+    assert not reset["outcome"]["done"]
+    assert "expected" not in reset["outcome"]
+    assert client.post("/api/practice/step",json={"scenario_id":identity,"actions":["read-log","read-history","advise-retry","read-log"]}).status_code == 422
+
+
+def test_analytics_contract_is_local_and_narrow(client, monkeypatch):
+    catalog=client.get('/api/analytics').json()
+    assert catalog['context']['selected_athlete_id']==301
+    assert len(catalog['examples'])==24
+    assert client.post('/api/analytics/infer',json={'question':'hi','policy':'shell'}).status_code==422
+    assert client.post('/api/analytics/infer',json={'question':'hi','context':{}}).status_code==422
+    monkeypatch.setattr(store,'runtime_busy',lambda:True)
+    assert client.post('/api/analytics/infer',json={'question':'hi'}).status_code==409
+    assert not module.operation_lock.locked()
+
+
+def test_analytics_failure_releases_operation_lock(client, monkeypatch):
+    monkeypatch.setattr(store,'runtime_busy',lambda:False)
+    original=store.read_json
+    def broken(path):
+        if str(path).endswith('test-inputs.json'):
+            raise FileNotFoundError('fixture unavailable')
+        return original(path)
+    monkeypatch.setattr(store,'read_json',broken)
+    with pytest.raises(FileNotFoundError):
+        client.post('/api/analytics/infer',json={'question':'hi'})
+    assert not module.operation_lock.locked()
+
+
+def test_package_import_schema_errors_and_correction_versioning(client):
+    payload=store.read_json(store.ROOT/'examples/support-intake.package.json')
+    imported=client.post('/api/packages',json=payload)
+    assert imported.status_code==200
+    ref=imported.json()['reference']
+    assert client.get('/api/packages/'+ref).json()['id']=='support-intake'
+    bad=dict(payload,output_schema={'type':'not-a-type'})
+    assert client.post('/api/packages',json=bad).status_code==422
+    row=dict(payload['train'][0],id='correction-test',input={'message':'Need a new password link.'})
+    updated=client.post('/api/packages/'+ref+'/corrections',json={'case':row})
+    assert updated.status_code==200
+    assert updated.json()['final_hash']==imported.json()['final_hash']
+    assert updated.json()['reference']!=ref
+    assert client.get('/api/packages/'+ref).json()['train']==payload['train']
+
+
+def test_package_run_rejects_bad_policy_and_releases_lock(client):
+    assert client.post('/api/package-runs',json={'reference':'bad','operation':'train'}).status_code==422
+    assert not module.operation_lock.locked()
+    assert client.post('/api/package-runs',json={'reference':'bad','operation':'merge'}).status_code==422
+
+
+def test_orphaned_package_run_is_interrupted_on_restart(client):
+    path=store.STATE/'package-runs/pkg-aaaaaaaaaaaa/run.json'
+    store.atomic_json(path,{'id':'pkg-aaaaaaaaaaaa','status':'running'})
+    with TestClient(module.app):
+        assert store.read_json(path)['status']=='interrupted'

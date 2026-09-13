@@ -1,0 +1,23 @@
+{
+  "adjudicator_thread": "01a09713-f27b-7d83-b7fa-30fd943302cd",
+  "kind": "independent model adjudication; not human expert labels",
+  "inputs_seen": [
+    "contract.txt",
+    "test-inputs.json",
+    "RoxIQ source contracts"
+  ],
+  "training_or_predictions_seen": false,
+  "input_sha256": "4cada7fc034aa386e1c1a0f7af82aa4d38724538165c84ec8f5fe0a99ae04981",
+  "contract_sha256": "bed5d0dc17376a24c2ab04ca936f737122462597bc63362d9d4c427a2744823b",
+  "test_sha256": "9d02cfba6478052add20c3dc6975a4b1774f5e9905009be86c1c5019767025c0",
+  "disagreements": [],
+  "notes": [
+    "Delta order matters; value/benchmark selection order and metric order do not.",
+    "Final-08 is unavailable, not a physiological causal question.",
+    "Missing available_metrics means unavailable. Final-24 must ignore the unrequested missing split.",
+    "Repeated context and names; not independent human user traffic.",
+    "No generated explanation or clarification text is scored. Benchmark means p50, not exact percentile rank.",
+    "Fixture execution does not establish live data availability or sample counts.",
+    "Family metadata must not be supplied to models. No final judgments enter training."
+  ]
+}

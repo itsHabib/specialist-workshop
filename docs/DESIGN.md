@@ -63,3 +63,7 @@ Single-process app coordination avoids overlapping submissions; an OS file lock 
 5. Consider reward-based training after the grader withstands adversarial tests. Start with the smallest credible experiment.
 
 Useful implementation references: [MLX-LM LoRA guide](https://github.com/ml-explore/mlx-lm/blob/main/mlx_lm/LORA.md), [pinned model](https://huggingface.co/mlx-community/Qwen2.5-1.5B-Instruct-4bit/tree/8b403126fc14f14cfc99bb4cfa72ecbc129ea677), [Shopify Flow](https://shopify.engineering/fine-tuning-agent-shopify-flow).
+
+## Resettable workflow specimen
+
+`practice.py` adds one finite CI environment: read fixture evidence and write an advisory in a disposable directory. The browser replays actions through `/api/practice/step`; model actions use the existing skill/checkpoint inference API. `arithmetic.py` is a narrow deterministic baseline for Blox quantities. These are skill-specific experiments, not an arbitrary tool-execution platform. [Measured results and limits](WORKFLOW-EXPERIMENTS.md) retain failed transfers, real-text diagnostic replays, and the frontier subset.

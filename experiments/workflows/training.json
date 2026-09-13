@@ -1,0 +1,32 @@
+[
+  {
+    "skill": "blox-arithmetic",
+    "checkpoint": "job-218412b484d0",
+    "adapter_sha256": "1242b9a04e491c0bee9dbd42c926a539b8d7b161480f59149d63ca29194c4eda",
+    "elapsed_seconds": 151.7298069000244,
+    "peak_mlx_gb": 2.527,
+    "iterations": 200,
+    "batch_size": 2,
+    "layers": 8,
+    "learning_rate": 2e-05,
+    "seed": 17,
+    "max_sequence_length": 1024,
+    "mask_prompt": true,
+    "training_hash": "f8685c09c2933b628db83c8caca46422131d53a5728ccd952a280d73b565f297"
+  },
+  {
+    "skill": "ci-diagnostic",
+    "checkpoint": "job-eb7578d38146",
+    "adapter_sha256": "331328026ff3d2226e0297da02d4cd234f445f778439859c6a4e7d876fc39a97",
+    "elapsed_seconds": 343.03565287590027,
+    "peak_mlx_gb": 3.128,
+    "iterations": 200,
+    "batch_size": 2,
+    "layers": 8,
+    "learning_rate": 2e-05,
+    "seed": 17,
+    "max_sequence_length": 1024,
+    "mask_prompt": true,
+    "training_hash": "a2032315a247bdb303bd4ab272b9e17a22e9ba878173dadc1966567dfcc72f62"
+  }
+]

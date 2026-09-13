@@ -30,6 +30,11 @@ async def lifespan(app):
         if job["status"] in ("queued", "running") and not store.runtime_busy():
             job.update(status="interrupted", error="Server restarted; this run was not completed.")
             store.atomic_json(store.STATE / "jobs" / job["id"] / "job.json", job)
+    for path in (store.STATE / "package-runs").glob("*/run.json"):
+        run = store.read_json(path)
+        if run["status"] in ("queued", "running") and not store.runtime_busy():
+            run.update(status="interrupted", error="Server restarted without an active runtime owner", finished_at=time.time())
+            store.atomic_json(path, run)
     yield
     for child in list(children):
         if child.poll() is None:
@@ -282,6 +287,230 @@ def run_detail(job_id: str):
         log_path = directory / "worker.log"
     job["log"] = log_path.read_text(errors="replace")[-16000:] if log_path.exists() else ""
     return job
+
+
+class PracticeRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    scenario_id: str = Field(max_length=100)
+    actions: list[str] = Field(default_factory=list, max_length=5)
+
+
+@app.get("/api/practice")
+def practice_cases():
+    from workshop.practice import ACTIONS
+    cases = store.read_json(store.ROOT / "experiments/workflows/scenarios.json")["train"]
+    selected = list({row["family"]: row for row in reversed(cases)}.values())
+    return dict(actions=ACTIONS, scenarios=[dict(id=s["id"], family=s["family"]) for s in selected])
+
+
+@app.post("/api/practice/step")
+def practice_step(request: PracticeRequest):
+    import tempfile
+    from workshop.practice import Practice
+    cases = store.read_json(store.ROOT / "experiments/workflows/scenarios.json")["train"]
+    case = next((s for s in cases if s["id"] == request.scenario_id), None)
+    if case is None:
+        raise HTTPException(404, "Practice scenario not found")
+    with tempfile.TemporaryDirectory(prefix="workshop-demo-") as directory:
+        env = Practice(case, directory)
+        try:
+            for action in request.actions:
+                env.step(action)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc))
+        outcome = env.outcome()
+        if not env.done:
+            outcome.pop("expected")
+        return dict(observation=env.observe(), outcome=outcome, trace=env.trace)
+
+
+@app.get("/api/workflow-experiments")
+def workflow_experiments():
+    results = []
+    for skill in ("blox-arithmetic", "ci-diagnostic"):
+        for policy in ("majority", "rules", "base", "specialist", "frontier"):
+            path = store.ROOT / "experiments/workflows" / f"{skill}-{policy}.json"
+            if path.exists():
+                result = store.read_json(path)
+                results.append(result)
+    return results
+
+
+class PackageCorrection(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    case: dict
+
+
+class PackageRunRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    reference: str
+    operation: str = Field(pattern="^(train|evaluate|infer|episodes)$")
+    policy: str = Field(default="base", pattern="^(base|specialist|reference|majority|rules)$")
+    checkpoint: str | None = None
+    input: str | dict | None = None
+    steps: int = Field(default=120, ge=1, le=300)
+
+
+@app.get("/api/packages")
+def package_list():
+    from workshop import packages
+    return [packages.summary(packages.Package.model_validate(store.read_json(path)))
+            for path in (store.STATE / "packages").glob("*/*.json")]
+
+
+@app.post("/api/packages")
+def package_import(payload: dict):
+    from workshop import packages
+    try:
+        return packages.import_package(packages.Package.model_validate(payload))
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)[:1000])
+
+
+@app.get("/api/package-template")
+def package_template():
+    return FileResponse(store.ROOT / "examples/support-intake.package.json", filename="task.package.json")
+
+
+@app.get("/api/packages/{reference}")
+def package_detail(reference: str):
+    from workshop import packages
+    try:
+        return packages.load(reference).model_dump()
+    except (ValueError, FileNotFoundError) as exc:
+        raise HTTPException(404, str(exc))
+
+
+@app.post("/api/packages/{reference}/corrections")
+def package_correction(reference: str, request: PackageCorrection):
+    from workshop import packages
+    try:
+        return packages.correct(reference, packages.Case.model_validate(request.case))
+    except (ValueError, FileNotFoundError) as exc:
+        raise HTTPException(422, str(exc)[:1000])
+
+
+def monitor_package(child, identity, log):
+    from workshop import experiment
+    try:
+        child.wait(timeout=3000)
+        run = experiment.read_run(identity)
+        if child.returncode or run["status"] in ("queued", "running"):
+            run.update(status="failed", error="Package worker exited unexpectedly", finished_at=time.time())
+            store.atomic_json(experiment.runs_root() / identity / "run.json", run)
+    except subprocess.TimeoutExpired:
+        os.killpg(child.pid, signal.SIGTERM)
+        child.wait(timeout=10)
+        run = experiment.read_run(identity)
+        run.update(status="failed", error="Package run timed out", finished_at=time.time())
+        store.atomic_json(experiment.runs_root() / identity / "run.json", run)
+    finally:
+        log.close()
+        children.discard(child)
+        operation_lock.release()
+
+
+@app.post("/api/package-runs", status_code=202)
+def package_start(request: PackageRunRequest):
+    from workshop import experiment
+    if store.runtime_busy() or not operation_lock.acquire(blocking=False):
+        raise HTTPException(409, "Local runtime is busy")
+    log = None
+    try:
+        run = experiment.new_run(request.reference, request.operation, request.policy, request.checkpoint, request.input, request.steps)
+        log = (experiment.runs_root() / run["id"] / "worker.log").open("w")
+        child = subprocess.Popen([sys.executable, "-m", "workshop.experiment", "worker", run["id"]],
+            cwd=store.ROOT, stdout=log, stderr=log, start_new_session=True,
+            env={**os.environ, "WORKSHOP_STATE": str(store.STATE)})
+        children.add(child)
+        threading.Thread(target=monitor_package, args=(child, run["id"], log), daemon=True).start()
+        return run
+    except Exception as exc:
+        if log:
+            log.close()
+        operation_lock.release()
+        raise HTTPException(422, str(exc)[:1000])
+
+
+@app.get("/api/package-runs")
+def package_runs():
+    from workshop import experiment
+    return [{k:v for k,v in store.read_json(path).items() if k not in ("rows","input","source_training")}
+            for path in sorted(experiment.runs_root().glob("*/run.json"), key=lambda p:p.stat().st_mtime, reverse=True)]
+
+
+@app.get("/api/package-runs/{identity}")
+def package_run(identity: str):
+    from workshop import experiment
+    try:
+        return experiment.read_run(identity)
+    except (ValueError, FileNotFoundError) as exc:
+        raise HTTPException(404, str(exc))
+
+
+@app.get("/packages")
+def package_page():
+    return FileResponse(store.ROOT / "static/packages.html")
+
+
+class AnalyticsRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    question: str = Field(min_length=1, max_length=2000)
+    policy: str = Field(default="structured", pattern="^(base|structured|specialist)$")
+
+
+@app.get("/api/analytics")
+def analytics_catalog():
+    directory = store.ROOT / "experiments/analytics"
+    cases = store.read_json(directory / "test-inputs.json")
+    results = []
+    for policy in ("clarify-control", "base", "structured", "specialist", "frontier"):
+        path = directory / f"{policy}.json"
+        if path.exists():
+            results.append(store.read_json(path))
+    training = directory / "training.json"
+    return dict(context=cases[0]["context"], examples=[c["request"] for c in cases], results=results,
+                training=store.read_json(training) if training.exists() else None)
+
+
+@app.post("/api/analytics/infer")
+def analytics_infer(request: AnalyticsRequest):
+    if store.runtime_busy() or not operation_lock.acquire(blocking=False):
+        raise HTTPException(409, "The local model runtime is busy; retry after the current operation.")
+    identity = store.new_id("analytics")
+    path = store.STATE / "inferences" / f"{identity}.json"
+    child = None
+    try:
+        context = store.read_json(store.ROOT / "experiments/analytics/test-inputs.json")[0]["context"]
+        store.atomic_json(path, dict(**request.model_dump(), context=context))
+        with path.with_suffix(".log").open("w") as log:
+            child = subprocess.Popen([sys.executable, str(store.ROOT / "scripts/run_analytics.py"), "infer", str(path)],
+                                     cwd=store.ROOT, stdout=log, stderr=log, start_new_session=True)
+            children.add(child)
+            child.wait(timeout=180)
+        if child.returncode:
+            raise HTTPException(500, "Analytics inference failed; inspect local record " + identity)
+        result = store.read_json(path.with_suffix(".result.json"))
+        result["id"] = identity
+        return result
+    except subprocess.TimeoutExpired:
+        os.killpg(child.pid, signal.SIGTERM)
+        child.wait(timeout=10)
+        raise HTTPException(504, "Analytics inference timed out")
+    finally:
+        if child:
+            children.discard(child)
+        operation_lock.release()
+
+
+@app.get("/analytics")
+def analytics_page():
+    return FileResponse(store.ROOT / "static/analytics.html")
+
+
+@app.get("/practice")
+def practice_page():
+    return FileResponse(store.ROOT / "static" / "practice.html")
 
 
 @app.get("/")

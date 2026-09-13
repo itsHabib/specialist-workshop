@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "blox-arithmetic": "d03e484f8f895b4b410cfa3eb6bad4015aabe3741dcc7e10148a692094a359f1",
+    "ci-diagnostic": "1a5250e066f1a0f7a4f2369fc69a9b23e7ce6e81c9bff85d053ab2df4b5865a4"
+  },
+  "scenarios_sha": "a4d687b1a56e512d4039af0a945efd52bc27baa1c3b1506692eae7c4fd8d66c9",
+  "protocol_sha": "481d074234d0d4039401a0cefb29a65940b9a50a15487d1d8a691fdd73375c6f",
+  "note": "Frozen before model runs. Synthetic, author-known. Original CI evidence untouched."
+}

@@ -1,0 +1,2040 @@
+{
+  "protocol": "empty-think-v1",
+  "note": "Post-hoc diagnostic replay of retained raw completions. No model rerun or label change. Strict original scores remain intact. Empty assistant channel traced to pinned tokenizer template.",
+  "policies": [
+    {
+      "policy": "base",
+      "source": "base.json",
+      "count": 24,
+      "correct": 7,
+      "valid": 18,
+      "unsafe": 6,
+      "rows": [
+        {
+          "id": "final-01",
+          "raw": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_total\", \"roxzone\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_total\", \"roxzone\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_total",
+              "roxzone"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-02",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "best_run_lap"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-03",
+          "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3013],\n  \"metrics\": [\"run_total\", \"roxzone\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"value\",\n  \"result_ids\": [3013],\n  \"metrics\": [\"run_total\", \"roxzone\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3013
+            ],
+            "metrics": [
+              "run_total",
+              "roxzone"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-04",
+          "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_8\"],\n  \"scope\": \"division\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_8\"],\n  \"scope\": \"division\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_8"
+            ],
+            "scope": "division",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-05",
+          "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3012],\n  \"metrics\": [\"run_8\"],\n  \"scope\": \"sex\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"value\",\n  \"result_ids\": [3012],\n  \"metrics\": [\"run_8\"],\n  \"scope\": \"sex\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "1 validation error for Plan\n  Value error, Only benchmark uses a comparison scope [type=value_error, input_value={'action': 'value', 'resu...'sex', 'reason': 'none'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+        },
+        {
+          "id": "final-06",
+          "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"wall_balls\", \"run_8\"],\n  \"scope\": \"division\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"wall_balls\", \"run_8\"],\n  \"scope\": \"division\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "wall_balls",
+              "run_8"
+            ],
+            "scope": "division",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-07",
+          "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"rowing\", \"sled_pull\"],\n  \"scope\": \"global\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"rowing\", \"sled_pull\"],\n  \"scope\": \"global\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "Requested value is absent or null"
+        },
+        {
+          "id": "final-08",
+          "raw": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_total\"],\n  \"scope\": \"division\",\n  \"reason\": \"athlete\"\n}",
+          "content": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_total\"],\n  \"scope\": \"division\",\n  \"reason\": \"athlete\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "1 validation error for Plan\n  Value error, Executable plans need selected results and metrics [type=value_error, input_value={'action': 'delta', 'resu...n', 'reason': 'athlete'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+        },
+        {
+          "id": "final-09",
+          "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3012],\n  \"metrics\": [\"run_8\"],\n  \"scope\": \"sex\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3012],\n  \"metrics\": [\"run_8\"],\n  \"scope\": \"sex\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "run_8"
+            ],
+            "scope": "sex",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-10",
+          "raw": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_1\", \"run_8\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_1\", \"run_8\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_1",
+              "run_8"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-11",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_total"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-12",
+          "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [301],\n  \"metrics\": [\"run_total\"],\n  \"scope\": \"division\",\n  \"reason\": \"athlete\"\n}",
+          "content": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [301],\n  \"metrics\": [\"run_total\"],\n  \"scope\": \"division\",\n  \"reason\": \"athlete\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "1 validation error for Plan\n  Value error, Executable plans need selected results and metrics [type=value_error, input_value={'action': 'benchmark', '...n', 'reason': 'athlete'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+        },
+        {
+          "id": "final-13",
+          "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3012],\n  \"metrics\": [\"total_time\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"value\",\n  \"result_ids\": [3012],\n  \"metrics\": [\"total_time\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-14",
+          "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3031],\n  \"metrics\": [\"total_time\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"value\",\n  \"result_ids\": [3031],\n  \"metrics\": [\"total_time\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3031
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-15",
+          "raw": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"sled_pull\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"sled_pull\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "Requested value is absent or null"
+        },
+        {
+          "id": "final-16",
+          "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"causal\"}",
+          "content": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"causal\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "unsupported",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "causal"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-17",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-18",
+          "raw": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"rowing\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"rowing\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-19",
+          "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"best_run_lap\"],\n  \"scope\": \"global\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"best_run_lap\"],\n  \"scope\": \"global\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "No supported pooled reference for metric"
+        },
+        {
+          "id": "final-20",
+          "raw": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-21",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_1",
+              "run_8"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-22",
+          "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"rowing\"],\n  \"scope\": \"division\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"rowing\"],\n  \"scope\": \"division\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "division",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-23",
+          "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3013],\n  \"metrics\": [\"run_total\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"value\",\n  \"result_ids\": [3013],\n  \"metrics\": [\"run_total\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3013
+            ],
+            "metrics": [
+              "run_total"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-24",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        }
+      ]
+    },
+    {
+      "policy": "structured",
+      "source": "structured.json",
+      "count": 24,
+      "correct": 7,
+      "valid": 16,
+      "unsafe": 5,
+      "rows": [
+        {
+          "id": "final-01",
+          "raw": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_total\", \"roxzone\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_total\", \"roxzone\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_total",
+              "roxzone"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-02",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "best_run_lap"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-03",
+          "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3013],\n  \"metrics\": [\"run_total\", \"roxzone\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"value\",\n  \"result_ids\": [3013],\n  \"metrics\": [\"run_total\", \"roxzone\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3013
+            ],
+            "metrics": [
+              "run_total",
+              "roxzone"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-04",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"run_8\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"run_8\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_8"
+            ],
+            "scope": "division",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-05",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[301],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[301],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "Unknown result identity"
+        },
+        {
+          "id": "final-06",
+          "raw": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"wall_balls\", \"run_8\"],\n  \"scope\": \"division\",\n  \"reason\": \"none\"\n}",
+          "content": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"wall_balls\", \"run_8\"],\n  \"scope\": \"division\",\n  \"reason\": \"none\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "1 validation error for Plan\n  Value error, Only benchmark uses a comparison scope [type=value_error, input_value={'action': 'delta', 'resu...sion', 'reason': 'none'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+        },
+        {
+          "id": "final-07",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"rowing\",\"sled_pull\"],\"scope\":\"global\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"rowing\",\"sled_pull\"],\"scope\":\"global\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "Requested value is absent or null"
+        },
+        {
+          "id": "final-08",
+          "raw": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_total\"],\n  \"scope\": \"division\",\n  \"reason\": \"athlete\"\n}",
+          "content": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_total\"],\n  \"scope\": \"division\",\n  \"reason\": \"athlete\"\n}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "1 validation error for Plan\n  Value error, Executable plans need selected results and metrics [type=value_error, input_value={'action': 'delta', 'resu...n', 'reason': 'athlete'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+        },
+        {
+          "id": "final-09",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "run_8"
+            ],
+            "scope": "sex",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-10",
+          "raw": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_1",
+              "run_8"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-11",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_total"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-12",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[301],\"metrics\":[\"run_total\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[301],\"metrics\":[\"run_total\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "Unknown result identity"
+        },
+        {
+          "id": "final-13",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3012,3013,3014,3015],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3012,3013,3014,3015],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "1 validation error for Plan\nresult_ids\n  List should have at most 2 items after validation, not 4 [type=too_long, input_value=[3012, 3013, 3014, 3015], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.13/v/too_long"
+        },
+        {
+          "id": "final-14",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3031],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3031],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3031
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-15",
+          "raw": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"sled_pull\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"sled_pull\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "Requested value is absent or null"
+        },
+        {
+          "id": "final-16",
+          "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"causal\"}",
+          "content": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"causal\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "unsupported",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "causal"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-17",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-18",
+          "raw": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-19",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"global\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"global\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "No supported pooled reference for metric"
+        },
+        {
+          "id": "final-20",
+          "raw": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-21",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_1",
+              "run_8"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-22",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"rowing\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"rowing\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "division",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-23",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3013
+            ],
+            "metrics": [
+              "run_total"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-24",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        }
+      ]
+    },
+    {
+      "policy": "specialist",
+      "source": "specialist.json",
+      "count": 24,
+      "correct": 12,
+      "valid": 21,
+      "unsafe": 6,
+      "rows": [
+        {
+          "id": "final-01",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_total",
+              "roxzone"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-02",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"best_run_lap\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"best_run_lap\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011
+            ],
+            "metrics": [
+              "best_run_lap"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-03",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3013
+            ],
+            "metrics": [
+              "run_total",
+              "roxzone"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-04",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"run_8\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"run_8\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_8"
+            ],
+            "scope": "division",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-05",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "run_8"
+            ],
+            "scope": "sex",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-06",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3011],\"metrics\":[\"wall_balls\",\"run_8\"],\"scope\":\"demographic\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3011],\"metrics\":[\"wall_balls\",\"run_8\"],\"scope\":\"demographic\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3011
+            ],
+            "metrics": [
+              "wall_balls",
+              "run_8"
+            ],
+            "scope": "demographic",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-07",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"rowing\",\"sled_pull\"],\"scope\":\"global\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"rowing\",\"sled_pull\"],\"scope\":\"global\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "rowing",
+              "sled_pull"
+            ],
+            "scope": "global",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-08",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_total"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-09",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "run_8"
+            ],
+            "scope": "sex",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-10",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_1",
+              "run_8"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-11",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011
+            ],
+            "metrics": [
+              "run_total"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-12",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_1\"],\"scope\":\"demographic\",\"reason\":\"race\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_1\"],\"scope\":\"demographic\",\"reason\":\"race\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "1 validation error for Plan\n  Value error, Executable plans need selected results and metrics [type=value_error, input_value={'action': 'benchmark', '...phic', 'reason': 'race'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+        },
+        {
+          "id": "final-13",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"athlete\"}",
+          "content": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"athlete\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "clarify",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "athlete"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-14",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3031],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3031],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3031
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-15",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"sled_pull\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"sled_pull\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "Requested value is absent or null"
+        },
+        {
+          "id": "final-16",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"causal\"}",
+          "content": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"causal\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "unsupported",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "causal"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-17",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-18",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"delta\",\"result_ids\":[3012,3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3012,3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3012,
+              3011
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-19",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"global\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"global\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": false,
+          "intent_correct": false,
+          "output": null,
+          "error": "No supported pooled reference for metric"
+        },
+        {
+          "id": "final-20",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-21",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "run_1",
+              "run_8"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-22",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"rowing\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"rowing\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "division",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-23",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": false,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3013
+            ],
+            "metrics": [
+              "run_total"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": true,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-24",
+          "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": true,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        }
+      ]
+    },
+    {
+      "policy": "frontier",
+      "source": "frontier.json",
+      "count": 24,
+      "correct": 24,
+      "valid": 24,
+      "unsafe": 0,
+      "rows": [
+        {
+          "id": "final-01",
+          "raw": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_total",
+              "roxzone"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-02",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "best_run_lap"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-03",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3013
+            ],
+            "metrics": [
+              "run_total",
+              "roxzone"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-04",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"run_8\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3011,3012],\"metrics\":[\"run_8\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "run_8"
+            ],
+            "scope": "division",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-05",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "run_8"
+            ],
+            "scope": "sex",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-06",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"wall_balls\",\"run_8\"],\"scope\":\"demographic\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"wall_balls\",\"run_8\"],\"scope\":\"demographic\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "wall_balls",
+              "run_8"
+            ],
+            "scope": "demographic",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-07",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"rowing\",\"sled_pull\"],\"scope\":\"global\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"rowing\",\"sled_pull\"],\"scope\":\"global\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "rowing",
+              "sled_pull"
+            ],
+            "scope": "global",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-08",
+          "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+          "content": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "unsupported",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "unavailable"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-09",
+          "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+          "content": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "unsupported",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "unavailable"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-10",
+          "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+          "content": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "clarify",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "metric"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-11",
+          "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"race\"}",
+          "content": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"race\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "clarify",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "race"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-12",
+          "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"cohort\"}",
+          "content": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"cohort\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "clarify",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "cohort"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-13",
+          "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"athlete\"}",
+          "content": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"athlete\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "clarify",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "athlete"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-14",
+          "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"athlete\"}",
+          "content": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"athlete\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "clarify",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "athlete"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-15",
+          "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+          "content": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "unsupported",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "unavailable"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-16",
+          "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"causal\"}",
+          "content": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"causal\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "unsupported",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "causal"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-17",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-18",
+          "raw": "{\"action\":\"delta\",\"result_ids\":[3012,3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3012,3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3012,
+              3011
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-19",
+          "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+          "content": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "unsupported",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "unavailable"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-20",
+          "raw": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "delta",
+            "result_ids": [
+              3011,
+              3012
+            ],
+            "metrics": [
+              "total_time"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-21",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "run_1",
+              "run_8"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-22",
+          "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"rowing\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"rowing\"],\"scope\":\"division\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "benchmark",
+            "result_ids": [
+              3012
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "division",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-23",
+          "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+          "content": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "unsupported",
+            "result_ids": [],
+            "metrics": [],
+            "scope": "none",
+            "reason": "unavailable"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        },
+        {
+          "id": "final-24",
+          "raw": "{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "content": "{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"rowing\"],\"scope\":\"none\",\"reason\":\"none\"}",
+          "transport": "empty-think-v1",
+          "empty_channel_removed": false,
+          "valid": true,
+          "intent_correct": true,
+          "output": {
+            "action": "value",
+            "result_ids": [
+              3011
+            ],
+            "metrics": [
+              "rowing"
+            ],
+            "scope": "none",
+            "reason": "none"
+          },
+          "error": null,
+          "unsafe_execution": false,
+          "unnecessary_abstention": false
+        }
+      ]
+    }
+  ]
+}

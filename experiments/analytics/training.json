@@ -1,0 +1,25 @@
+{
+  "status": "completed",
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "started_at": 1789256920.795934,
+  "max_training_tokens": 912,
+  "recipe": {
+    "iterations": 120,
+    "batch_size": 1,
+    "layers": 8,
+    "learning_rate": 2e-05,
+    "seed": 29,
+    "max_seq_length": 2048,
+    "mask_prompt": true
+  },
+  "input_manifest": {
+    "test-inputs.json": "4cada7fc034aa386e1c1a0f7af82aa4d38724538165c84ec8f5fe0a99ae04981",
+    "development.json": "9f312d783f6e0d035c42997d55811897b6f8ab45bf31f13e914a7c852e9b1402",
+    "contract.txt": "bed5d0dc17376a24c2ab04ca936f737122462597bc63362d9d4c427a2744823b",
+    "train.json": "dd3f1a2006ebc3f67f56d2ab4bda48168480bb912e2129570bd2b2b4afbaec3a",
+    "PROTOCOL.md": "eea488789999adf72abd0320dae62e95658bf02b6a91050b1347a28921d20d4c"
+  },
+  "adapter_sha256": "4f99886a2753fa97b330dd15b89dc693cfc9c047dce295ece2ee3281cf6c8ce8",
+  "finished_at": 1789257458.259624
+}

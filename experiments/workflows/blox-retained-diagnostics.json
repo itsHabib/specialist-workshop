@@ -1,0 +1,332 @@
+{
+  "note": "Exposed diagnostic defects selected after synthetic base results; not final holdout. Four cases within the label contract. The separate audit-overcount defect is outside this contract. Normalization is human-authored, not model extraction.",
+  "source_sha256": "c0c0a2d2397da9cf45fa0ebe13080c34f9b10430b72498279781e12168bdf73f",
+  "cases": [
+    {
+      "id": "retained-0",
+      "source_candidate": "casey-baseline-1-attempt1.block.json",
+      "input": "10:00 — 1 x 80m burpee broad jump for time, shuttle in a 10m lane down-and-back x8, pivot inside 2s. Record it. Reference is your race 5:47; this is today's honest number",
+      "expected": "distance-conflict",
+      "normalized": "8 down-and-back trips on a 10 metre lane; claimed distance 80 metres."
+    },
+    {
+      "id": "retained-2",
+      "source_candidate": "alonzo-guidance-1-attempt1.block.json",
+      "input": "8:00 — 1 x 80m for time in the 10m shuttle lane, down-and-back, pivot inside 2s. Pass: 9:58 or faster. Record and note where your pace fell off",
+      "expected": "time-overrun",
+      "normalized": "Benchmark completion 598 seconds; block budget 480 seconds."
+    },
+    {
+      "id": "retained-3",
+      "source_candidate": "alonzo-references-1-attempt1.block.json",
+      "input": "20:00 — start at race load 103kg, drag 50m hand-over-hand; adjust load until a 50m drag lands within ~5s of your 6:11 race split (gym floor friction differs from race carpet). Record that load. Then 4 x 50m at the recorded load, rest 2:00, seated low and continuous",
+      "expected": "time-overrun",
+      "normalized": "4 repetitions of 371 seconds; 120 seconds rest between repetitions; budget 1200 seconds."
+    },
+    {
+      "id": "retained-4",
+      "source_candidate": "nora-references-1-attempt1.block.json",
+      "input": "20:00 — technique: 4 × 10m burpee broad jump in a 10m lane, down-and-back, pivot and reset inside 2s (the turn is not a rest), rest 90s, land soft and drive from the crouch. Then rest 2:00 and baseline 40m for time (10m lane, four lengths), record\nBurpee broad jumps 6:19 at P50 — engine claims 16s (6:19 to 6:03). You are new to jump-landing, so 40m today, not the race 80m; the full distance is tested in week 7. The 40m time is your baseline. Audit: 8 + 20 + 6 + 5 = 39.",
+      "expected": "distance-conflict",
+      "normalized": "Technique 4 lengths of 10 metres plus test 40 metres; claimed total 40 metres."
+    }
+  ],
+  "policies": {
+    "rules-raw": {
+      "metrics": {
+        "count": 4,
+        "accuracy": 0.0,
+        "evidence_rate": 1.0,
+        "accepted_rate": 0.0,
+        "schema_rate": 1.0,
+        "raw_json_rate": 1.0,
+        "median_ms": 0
+      },
+      "rows": [
+        {
+          "output": {
+            "bucket": "needs-context",
+            "evidence": "10:00 — 1 x 80m burpee broad jump for time, shuttle in a 10m lane down-and-back x8, pivot inside 2s. Record it. Reference is your race 5:47; this is today's honest number"
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": false,
+          "errors": [],
+          "raw": "{\"bucket\": \"needs-context\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-0",
+          "elapsed_ms": 0.27662503998726606
+        },
+        {
+          "output": {
+            "bucket": "needs-context",
+            "evidence": "8:00 — 1 x 80m for time in the 10m shuttle lane, down-and-back, pivot inside 2s. Pass: 9:58 or faster. Record and note where your pace fell off"
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": false,
+          "errors": [],
+          "raw": "{\"bucket\": \"needs-context\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-2",
+          "elapsed_ms": 0.008333008736371994
+        },
+        {
+          "output": {
+            "bucket": "needs-context",
+            "evidence": "20:00 — start at race load 103kg, drag 50m hand-over-hand; adjust load until a 50m drag lands within ~5s of your 6:11 race split (gym floor friction differs from race carpet). Record that load. Then 4 x 50m at the recorded load, rest 2:00, seated low and continuous"
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": false,
+          "errors": [],
+          "raw": "{\"bucket\": \"needs-context\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-3",
+          "elapsed_ms": 0.009707990102469921
+        },
+        {
+          "output": {
+            "bucket": "needs-context",
+            "evidence": "20:00 — technique: 4 × 10m burpee broad jump in a 10m lane, down-and-back, pivot and reset inside 2s (the turn is not a rest), rest 90s, land soft and drive from the crouch. Then rest 2:00 and baseline 40m for time (10m lane, four lengths), record"
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": false,
+          "errors": [],
+          "raw": "{\"bucket\": \"needs-context\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-4",
+          "elapsed_ms": 0.015125027857720852
+        }
+      ]
+    },
+    "rules-human-normalized": {
+      "metrics": {
+        "count": 4,
+        "accuracy": 1.0,
+        "evidence_rate": 1.0,
+        "accepted_rate": 1.0,
+        "schema_rate": 1.0,
+        "raw_json_rate": 1.0,
+        "median_ms": 0
+      },
+      "rows": [
+        {
+          "output": {
+            "bucket": "distance-conflict",
+            "evidence": "8 down-and-back trips on a 10 metre lane; claimed distance 80 metres."
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": true,
+          "errors": [],
+          "raw": "{\"bucket\": \"distance-conflict\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-0",
+          "elapsed_ms": 0.008041970431804657
+        },
+        {
+          "output": {
+            "bucket": "time-overrun",
+            "evidence": "Benchmark completion 598 seconds; block budget 480 seconds."
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": true,
+          "errors": [],
+          "raw": "{\"bucket\": \"time-overrun\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-2",
+          "elapsed_ms": 0.0035830307751893997
+        },
+        {
+          "output": {
+            "bucket": "time-overrun",
+            "evidence": "4 repetitions of 371 seconds; 120 seconds rest between repetitions; budget 1200 seconds."
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": true,
+          "errors": [],
+          "raw": "{\"bucket\": \"time-overrun\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-3",
+          "elapsed_ms": 0.002874992787837982
+        },
+        {
+          "output": {
+            "bucket": "distance-conflict",
+            "evidence": "Technique 4 lengths of 10 metres plus test 40 metres; claimed total 40 metres."
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": true,
+          "errors": [],
+          "raw": "{\"bucket\": \"distance-conflict\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-4",
+          "elapsed_ms": 0.004292000085115433
+        }
+      ]
+    },
+    "base": {
+      "metrics": {
+        "count": 4,
+        "accuracy": 0.5,
+        "evidence_rate": 1.0,
+        "accepted_rate": 0.5,
+        "schema_rate": 1.0,
+        "raw_json_rate": 1.0,
+        "median_ms": 294
+      },
+      "rows": [
+        {
+          "output": {
+            "bucket": "time-overrun",
+            "evidence": "10:00 — 1 x 80m burpee broad jump for time, shuttle in a 10m lane down-and-back x8, pivot inside 2s. Record it. Reference is your race 5:47; this is today's honest number"
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": false,
+          "errors": [],
+          "raw": "{\"bucket\": \"time-overrun\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-0",
+          "elapsed_ms": 475
+        },
+        {
+          "output": {
+            "bucket": "time-overrun",
+            "evidence": "8:00 — 1 x 80m for time in the 10m shuttle lane, down-and-back, pivot inside 2s. Pass: 9:58 or faster. Record and note where your pace fell off"
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": true,
+          "errors": [],
+          "raw": "{\"bucket\": \"time-overrun\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-2",
+          "elapsed_ms": 264
+        },
+        {
+          "output": {
+            "bucket": "time-overrun",
+            "evidence": "20:00 — start at race load 103kg, drag 50m hand-over-hand; adjust load until a 50m drag lands within ~5s of your 6:11 race split (gym floor friction differs from race carpet). Record that load. Then 4 x 50m at the recorded load, rest 2:00, seated low and continuous"
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": true,
+          "errors": [],
+          "raw": "{\"bucket\": \"time-overrun\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-3",
+          "elapsed_ms": 278
+        },
+        {
+          "output": {
+            "bucket": "time-overrun",
+            "evidence": "20:00 — technique: 4 × 10m burpee broad jump in a 10m lane, down-and-back, pivot and reset inside 2s (the turn is not a rest), rest 90s, land soft and drive from the crouch. Then rest 2:00 and baseline 40m for time (10m lane, four lengths), record"
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": false,
+          "errors": [],
+          "raw": "{\"bucket\": \"time-overrun\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-4",
+          "elapsed_ms": 310
+        }
+      ]
+    },
+    "specialist": {
+      "metrics": {
+        "count": 4,
+        "accuracy": 0.5,
+        "evidence_rate": 0.5,
+        "accepted_rate": 0.25,
+        "schema_rate": 0.5,
+        "raw_json_rate": 1.0,
+        "median_ms": 394
+      },
+      "rows": [
+        {
+          "output": {
+            "bucket": "time-overrun",
+            "evidence": ""
+          },
+          "valid": false,
+          "evidence_valid": false,
+          "correct": false,
+          "errors": [
+            "Label or source-line selection is invalid."
+          ],
+          "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+          "raw_json_valid": true,
+          "source_line": 2,
+          "id": "retained-0",
+          "elapsed_ms": 306
+        },
+        {
+          "output": {
+            "bucket": "time-overrun",
+            "evidence": "8:00 — 1 x 80m for time in the 10m shuttle lane, down-and-back, pivot inside 2s. Pass: 9:58 or faster. Record and note where your pace fell off"
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": true,
+          "errors": [],
+          "raw": "{\"bucket\": \"time-overrun\", \"line\": 1}",
+          "raw_json_valid": true,
+          "source_line": 1,
+          "id": "retained-2",
+          "elapsed_ms": 343
+        },
+        {
+          "output": {
+            "bucket": "time-overrun",
+            "evidence": ""
+          },
+          "valid": false,
+          "evidence_valid": false,
+          "correct": true,
+          "errors": [
+            "Label or source-line selection is invalid."
+          ],
+          "raw": "{\"bucket\": \"time-overrun\", \"line\": 2}",
+          "raw_json_valid": true,
+          "source_line": 2,
+          "id": "retained-3",
+          "elapsed_ms": 446
+        },
+        {
+          "output": {
+            "bucket": "consistent",
+            "evidence": "Burpee broad jumps 6:19 at P50 — engine claims 16s (6:19 to 6:03). You are new to jump-landing, so 40m today, not the race 80m; the full distance is tested in week 7. The 40m time is your baseline. Audit: 8 + 20 + 6 + 5 = 39."
+          },
+          "valid": true,
+          "evidence_valid": true,
+          "correct": false,
+          "errors": [],
+          "raw": "{\"bucket\": \"consistent\", \"line\": 2}",
+          "raw_json_valid": true,
+          "source_line": 2,
+          "id": "retained-4",
+          "elapsed_ms": 926
+        }
+      ]
+    }
+  }
+}

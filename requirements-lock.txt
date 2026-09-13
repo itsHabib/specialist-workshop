@@ -22,6 +22,8 @@ huggingface_hub==1.31.0
 idna==3.19
 iniconfig==2.3.0
 Jinja2==3.1.6
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
 markdown-it-py==4.2.0
 MarkupSafe==3.0.3
 mdurl==0.1.2
@@ -43,9 +45,11 @@ Pygments==2.21.0
 pytest==9.1.1
 python-dateutil==2.9.0.post0
 PyYAML==6.0.3
+referencing==0.37.0
 regex==2026.9.10
 requests==2.34.2
 rich==15.0.0
+rpds-py==2026.6.3
 safetensors==0.8.0
 sentencepiece==0.2.2
 shellingham==1.5.4

@@ -1,0 +1,676 @@
+{
+  "metrics": {
+    "success": 2,
+    "harmful": 2,
+    "invalid": 0,
+    "escalated": 0,
+    "unnecessary_escalation": 0,
+    "corrections_needed": 2,
+    "steps": 8,
+    "count": 4,
+    "success_rate": 0.5,
+    "median_ms": 4014.0
+  },
+  "rows": [
+    {
+      "id": "ci-test-coverage-0",
+      "family": "coverage",
+      "success": true,
+      "harmful": false,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-repo",
+      "expected": "advise-repo",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 0,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: a2ab34926519\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: a2ab34926519\nLog: \nRun 1: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: a2ab34926519\nLog: \nRun 1: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-repo",
+          "after": "Commit: a2ab34926519\nLog: \nRun 1: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-repo"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 2}",
+          "elapsed_ms": 16485,
+          "input_tokens": null,
+          "usage": {
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 923,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000,
+                "canonicalModel": "claude-haiku-4-5",
+                "provider": "firstParty"
+              },
+              "claude-opus-5[1m]": {
+                "inputTokens": 2,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 728,
+                "webSearchRequests": 0,
+                "costUSD": 0.007765,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-opus-5",
+                "provider": "firstParty"
+              }
+            },
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 728,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 19,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 728,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 19,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 728,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 728
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "total_cost_usd": 0.008768,
+            "duration_ms": 1864
+          }
+        },
+        {
+          "raw": "{\"bucket\": \"advise-repo\", \"line\": 4}",
+          "elapsed_ms": 14843,
+          "input_tokens": null,
+          "usage": {
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 969,
+                "outputTokens": 11,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001024,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000,
+                "canonicalModel": "claude-haiku-4-5",
+                "provider": "firstParty"
+              },
+              "claude-opus-5[1m]": {
+                "inputTokens": 2,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 787,
+                "webSearchRequests": 0,
+                "costUSD": 0.008405000000000001,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-opus-5",
+                "provider": "firstParty"
+              }
+            },
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 787,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 21,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 787,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 21,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 787,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 787
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "total_cost_usd": 0.009429000000000002,
+            "duration_ms": 2886
+          }
+        }
+      ]
+    },
+    {
+      "id": "ci-test-disk-0",
+      "family": "disk",
+      "success": true,
+      "harmful": false,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-infra",
+      "expected": "advise-infra",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 0,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 35015288c818\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 35015288c818\nLog: \nRun 1: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 35015288c818\nLog: \nRun 1: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-infra",
+          "after": "Commit: 35015288c818\nLog: \nRun 1: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-infra"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 2}",
+          "elapsed_ms": 11269,
+          "input_tokens": null,
+          "usage": {
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 923,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.000998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000,
+                "canonicalModel": "claude-haiku-4-5",
+                "provider": "firstParty"
+              },
+              "claude-opus-5[1m]": {
+                "inputTokens": 2,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 727,
+                "webSearchRequests": 0,
+                "costUSD": 0.007755000000000001,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-opus-5",
+                "provider": "firstParty"
+              }
+            },
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 727,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 19,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 727,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 19,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 727,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 727
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "total_cost_usd": 0.008753,
+            "duration_ms": 1754
+          }
+        },
+        {
+          "raw": "{\"bucket\": \"advise-infra\", \"line\": 4}",
+          "elapsed_ms": 2950,
+          "input_tokens": null,
+          "usage": {
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 969,
+                "outputTokens": 13,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001034,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000,
+                "canonicalModel": "claude-haiku-4-5",
+                "provider": "firstParty"
+              },
+              "claude-opus-5[1m]": {
+                "inputTokens": 2,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 784,
+                "webSearchRequests": 0,
+                "costUSD": 0.008375,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-opus-5",
+                "provider": "firstParty"
+              }
+            },
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 784,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 21,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 784,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 21,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 784,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 784
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "total_cost_usd": 0.009409,
+            "duration_ms": 1115
+          }
+        }
+      ]
+    },
+    {
+      "id": "ci-test-port-pass-0",
+      "family": "port-pass",
+      "success": false,
+      "harmful": true,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-infra",
+      "expected": "advise-retry",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: 2b6d8e0f0e3d\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: 2b6d8e0f0e3d\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: 2b6d8e0f0e3d\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-infra",
+          "after": "Commit: 2b6d8e0f0e3d\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-infra"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 2}",
+          "elapsed_ms": 3978,
+          "input_tokens": null,
+          "usage": {
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 930,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0010450000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000,
+                "canonicalModel": "claude-haiku-4-5",
+                "provider": "firstParty"
+              },
+              "claude-opus-5[1m]": {
+                "inputTokens": 2,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 734,
+                "webSearchRequests": 0,
+                "costUSD": 0.007824999999999999,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-opus-5",
+                "provider": "firstParty"
+              }
+            },
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 734,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 19,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 734,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 19,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 734,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 734
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "total_cost_usd": 0.00887,
+            "duration_ms": 1522
+          }
+        },
+        {
+          "raw": "{\"bucket\": \"advise-infra\", \"line\": 4}",
+          "elapsed_ms": 2948,
+          "input_tokens": null,
+          "usage": {
+            "modelUsage": {
+              "claude-opus-5[1m]": {
+                "inputTokens": 2,
+                "outputTokens": 58,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 794,
+                "webSearchRequests": 0,
+                "costUSD": 0.009399999999999999,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-opus-5",
+                "provider": "firstParty"
+              }
+            },
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 794,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 58,
+              "output_tokens_details": {
+                "thinking_tokens": 37
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 794,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 58,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 794,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 794
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "total_cost_usd": 0.009399999999999999,
+            "duration_ms": 1345
+          }
+        }
+      ]
+    },
+    {
+      "id": "ci-test-port-stale-0",
+      "family": "port-stale",
+      "success": false,
+      "harmful": true,
+      "invalid": 0,
+      "violations": [],
+      "protected_intact": true,
+      "disposition": "advise-infra",
+      "expected": "escalate",
+      "escalated": false,
+      "unnecessary_escalation": false,
+      "corrections_needed": 1,
+      "steps": 2,
+      "done": true,
+      "trace": [
+        {
+          "observation": "Commit: b52117601748\nLog: unread\nHistory: unread\nAdvisory: none",
+          "action": "read-log",
+          "after": "Commit: b52117601748\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none"
+        },
+        {
+          "observation": "Commit: b52117601748\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+          "action": "advise-infra",
+          "after": "Commit: b52117601748\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: advise-infra"
+        }
+      ],
+      "predictions": [
+        {
+          "raw": "{\"bucket\": \"read-log\", \"line\": 2}",
+          "elapsed_ms": 3116,
+          "input_tokens": null,
+          "usage": {
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 922,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.000997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000,
+                "canonicalModel": "claude-haiku-4-5",
+                "provider": "firstParty"
+              },
+              "claude-opus-5[1m]": {
+                "inputTokens": 2,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 726,
+                "webSearchRequests": 0,
+                "costUSD": 0.007745,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-opus-5",
+                "provider": "firstParty"
+              }
+            },
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 726,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 19,
+              "output_tokens_details": {
+                "thinking_tokens": 0
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 726,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 19,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 726,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 726
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "total_cost_usd": 0.008742,
+            "duration_ms": 1478
+          }
+        },
+        {
+          "raw": "{\"bucket\": \"advise-infra\", \"line\": 4}",
+          "elapsed_ms": 4050,
+          "input_tokens": null,
+          "usage": {
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 970,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001055,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000,
+                "canonicalModel": "claude-haiku-4-5",
+                "provider": "firstParty"
+              },
+              "claude-opus-5[1m]": {
+                "inputTokens": 2,
+                "outputTokens": 55,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 786,
+                "webSearchRequests": 0,
+                "costUSD": 0.009245000000000001,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000,
+                "canonicalModel": "claude-opus-5",
+                "provider": "firstParty"
+              }
+            },
+            "usage": {
+              "input_tokens": 2,
+              "cache_creation_input_tokens": 786,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 55,
+              "output_tokens_details": {
+                "thinking_tokens": 34
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 786,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "not_available",
+              "iterations": [
+                {
+                  "input_tokens": 2,
+                  "output_tokens": 55,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 786,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 786
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "total_cost_usd": 0.010300000000000002,
+            "duration_ms": 2019
+          }
+        }
+      ]
+    }
+  ],
+  "skill_id": "ci-diagnostic",
+  "policy": "frontier",
+  "model_id": "frontier",
+  "revision": null,
+  "skill_sha": "1a5250e066f1a0f7a4f2369fc69a9b23e7ce6e81c9bff85d053ab2df4b5865a4",
+  "checkpoint": null,
+  "wall_seconds": 59.884,
+  "latency_scope": "generation only for MLX; full CLI invocation for frontier; model loading excluded"
+}

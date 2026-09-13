@@ -60,7 +60,7 @@ def check_frozen():
             raise ValueError(f'Frozen input changed: {name}')
 
 
-def train():
+def train(lock_fd):
     from huggingface_hub import snapshot_download
     from transformers import AutoTokenizer
     if (LOCAL/'training.json').exists():raise ValueError('A training record exists; preserve it')
@@ -86,7 +86,7 @@ def train():
     store.atomic_json(LOCAL/'training.json',record)
     try:
         with (LOCAL/'training.log').open('w') as log:
-            subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=2400)
+            subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=2400,pass_fds=(lock_fd,))
         record.update(status='completed',adapter_sha256=hashlib.sha256((adapter/'adapters.safetensors').read_bytes()).hexdigest())
     except Exception as exc:
         record.update(status='failed',error=str(exc));raise
@@ -176,7 +176,7 @@ def main():
     if args.operation=='frontier':evaluate('frontier');return
     with (store.STATE/'accelerator.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        if args.operation=='train':train();return
+        if args.operation=='train':train(lock.fileno());return
         if args.operation=='infer':infer(args.path);return
         evaluate(args.operation)
 

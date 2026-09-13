@@ -26,12 +26,34 @@ def read_run(identity):
     return store.read_json(runs_root()/identity/'run.json')
 
 
+def adapter_manifest(directory):
+    if not (directory/'adapters.safetensors').is_file() or not (directory/'adapter_config.json').is_file():
+        raise ValueError('Adapter weights and configuration are both required')
+    result={}
+    for path in sorted(directory.rglob('*')):
+        if path.is_symlink():raise ValueError('Adapter artifacts must not contain symlinks')
+        if path.is_file():result[str(path.relative_to(directory))]=hashlib.sha256(path.read_bytes()).hexdigest()
+    return result
+
+
+def run_compute(command,log,lock_fd,timeout=2400):
+    # The numerical child retains the same locked open-file description even
+    # if this supervisor is killed. New workers still see the accelerator busy.
+    return subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=timeout,pass_fds=(lock_fd,))
+
+
 def checkpoint(package,identity):
     run=read_run(identity)
     if run['status']!='completed' or run['operation'] not in ('train','adopt'):raise ValueError('Checkpoint is not completed training')
     if run['contract_hash']!=packages.contract_hash(package):raise ValueError('Checkpoint contract differs')
+    trained=packages.Package.model_validate(store.read_json(runs_root()/identity/'package.json'))
+    if packages.summary(trained)['reference']!=run['package']:raise ValueError('Checkpoint package snapshot changed')
+    if packages.summary(trained)['final_hash']!=packages.summary(package)['final_hash'] or digest(trained.episodes)!=digest(package.episodes):
+        raise ValueError('Checkpoint reserved evaluation set differs; cross-version holdout reuse is refused')
     if (run['model'],run['revision'])!=(MODEL_ID,MODEL_REVISION):raise ValueError('Checkpoint model differs')
     path=runs_root()/identity/'adapter'
+    if not run.get('adapter_manifest'):raise ValueError('Legacy checkpoint lacks configuration binding; re-adopt it as a new checkpoint')
+    if adapter_manifest(path)!=run['adapter_manifest']:raise ValueError('Checkpoint adapter files changed')
     if hashlib.sha256((path/'adapters.safetensors').read_bytes()).hexdigest()!=run['adapter_sha256']:raise ValueError('Checkpoint weights changed')
     return path
 
@@ -90,7 +112,7 @@ def training_data(package,directory):
     return data,hashes
 
 
-def train(package,run,directory):
+def train(package,run,directory,lock_fd):
     from huggingface_hub import snapshot_download
     from transformers import AutoTokenizer
     path=snapshot_download(MODEL_ID,revision=MODEL_REVISION);tokenizer=AutoTokenizer.from_pretrained(path)
@@ -103,21 +125,28 @@ def train(package,run,directory):
              '--save-every',str(run['steps']),'--seed','29']
     run.update(training_data_hashes=hashes,recipe=dict(steps=run['steps'],batch_size=1,layers=8,learning_rate=2e-5,seed=29,max_sequence_length=2048,mask_prompt=True))
     store.atomic_json(directory/'run.json',run)
-    with (directory/'training.log').open('w') as log:subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=2400)
+    with (directory/'training.log').open('w') as log:run_compute(command,log,lock_fd)
     run['adapter_sha256']=hashlib.sha256((directory/'adapter/adapters.safetensors').read_bytes()).hexdigest()
+    run['adapter_manifest']=adapter_manifest(directory/'adapter')
 
 
 def adopt(package,run,directory):
     """Import prior weights only when exact serialized training streams match."""
-    source=Path(run['source']).resolve();record=store.read_json(source/'training.json')
+    source=Path(run['source']).resolve();record_path=source/'training.json'
+    if not record_path.exists():record_path=source/'run.json'
+    record=store.read_json(record_path)
     if record['status']!='completed' or (record['model'],record['revision'])!=(MODEL_ID,MODEL_REVISION):raise ValueError('Source training identity mismatch')
     _,hashes=training_data(package,directory)
     for name,expected in hashes.items():
         if hashlib.sha256((source/'data'/f'{name}.jsonl').read_bytes()).hexdigest()!=expected:raise ValueError('Source training messages differ from package')
     weights=source/'adapter/adapters.safetensors'
     if hashlib.sha256(weights.read_bytes()).hexdigest()!=record['adapter_sha256']:raise ValueError('Source weights hash mismatch')
+    captured=adapter_manifest(source/'adapter')
+    if record.get('adapter_manifest') and captured!=record['adapter_manifest']:raise ValueError('Source adapter configuration/files changed')
     shutil.copytree(source/'adapter',directory/'adapter')
-    run.update(training_data_hashes=hashes,adapter_sha256=record['adapter_sha256'],source_training=record)
+    if adapter_manifest(directory/'adapter')!=captured:raise ValueError('Adapter changed during copy')
+    run.update(training_data_hashes=hashes,adapter_sha256=record['adapter_sha256'],source_training=record,adapter_manifest=captured,
+               source_configuration_provenance='Verified prior manifest' if record.get('adapter_manifest') else 'Legacy source lacked a configuration digest; current files are bound at this new adoption, not retroactively attested')
 
 
 def assess(package,value,prediction,expected=None):
@@ -129,7 +158,7 @@ def assess(package,value,prediction,expected=None):
 def metrics(rows):
     return dict(count=len(rows),correct=sum(r.get('correct') is True for r in rows),valid=sum(r.get('valid',False) for r in rows),
                 accepted=sum(r.get('accepted',False) for r in rows),abstained=sum(r.get('abstained',False) for r in rows),
-                invalid=sum(not r.get('valid',False) for r in rows),raw_valid=sum(r.get('raw_valid',False) for r in rows),median_ms=statistics.median(r.get('elapsed_ms',0) for r in rows) if rows else None)
+                invalid=sum(not r.get('valid',False) for r in rows),raw_valid=sum(r['raw_valid'] for r in rows) if all('raw_valid' in r for r in rows) else None,median_ms=statistics.median(r.get('elapsed_ms',0) for r in rows) if rows else None)
 
 
 def evaluate(package,run,directory):
@@ -140,7 +169,7 @@ def evaluate(package,run,directory):
     rows=[]
     for case in package.final:
         prediction=model.predict(package,case.input) if model else dict(raw=majority,elapsed_ms=0)
-        result=packages.score(package,case.input,prediction.get('content',prediction.get('content',prediction['raw'])),case.expected)
+        result=assess(package,case.input,prediction,case.expected)
         rows.append(dict(id=case.id,family=case.family,input=case.input,expected=case.expected,**prediction,**result))
         run.update(rows=rows,metrics=metrics(rows));store.atomic_json(directory/'run.json',run)
 
@@ -182,7 +211,7 @@ def new_run(reference,operation,policy='base',checkpoint_id=None,input_value=Non
     identity=store.new_id('pkg')
     run=dict(id=identity,package=reference,operation=operation,policy=policy,checkpoint=checkpoint_id,input=input_value,steps=steps,source=source,
              status='queued',created_at=time.time(),model=MODEL_ID,revision=MODEL_REVISION,**{k:v for k,v in packages.summary(package).items() if k in ('contract_hash','final_hash')},
-             grader=package.grader,grader_hash=digest(dict(schema=package.output_schema,grader=package.grader,unordered_fields=package.unordered_fields,environment=package.environment,transport=VERSION)),completion_protocol=VERSION,local_cost_usd=None)
+             grader=package.grader,grader_hash=digest(dict(schema=package.output_schema,grader=package.grader,unordered_fields=package.unordered_fields,environment=package.environment,transport=VERSION,implementation={name:hashlib.sha256((store.ROOT/'workshop'/name).read_bytes()).hexdigest() for name in ('packages.py','analytics.py','completion.py','environments.py','practice.py')})),completion_protocol=VERSION,code_files={name:hashlib.sha256((store.ROOT/'workshop'/name).read_bytes()).hexdigest() for name in ('experiment.py','packages.py','analytics.py','completion.py','environments.py','practice.py')},local_cost_usd=None)
     if operation=='episodes':run['final_hash']=digest(package.episodes)
     store.atomic_json(runs_root()/identity/'package.json',package.model_dump());store.atomic_json(runs_root()/identity/'run.json',run)
     return run
@@ -196,7 +225,7 @@ def worker(identity):
         with (store.STATE/'accelerator.lock').open('a') as lock:
             fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
             op=run['operation']
-            if op=='train':train(package,run,directory)
+            if op=='train':train(package,run,directory,lock.fileno())
             if op=='adopt':adopt(package,run,directory)
             if op=='evaluate':evaluate(package,run,directory)
             if op=='episodes':episodes(package,run,directory)

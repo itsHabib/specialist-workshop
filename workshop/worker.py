@@ -26,7 +26,7 @@ def evaluate(job, directory, skill):
         atomic_json(directory / "job.json", job)
 
 
-def train(job, directory, skill):
+def train(job, directory, skill, lock_fd):
     from huggingface_hub import snapshot_download
     from transformers import AutoTokenizer
     model_path = snapshot_download(MODEL_ID, revision=MODEL_REVISION)
@@ -51,7 +51,7 @@ def train(job, directory, skill):
     atomic_json(directory / "recipe.json", dict(command=command, model=MODEL_ID,
                 revision=MODEL_REVISION, training_hash=digest([r.model_dump() for r in skill.train])))
     with (directory / "training.log").open("w") as log:
-        subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=1800)
+        subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=1800, pass_fds=(lock_fd,))
     weights = adapter / "adapters.safetensors"
     if not weights.is_file():
         raise RuntimeError("Training returned without an adapter checkpoint.")
@@ -60,7 +60,7 @@ def train(job, directory, skill):
                progress=job["iterations"], total=job["iterations"])
 
 
-def run_job(job_id):
+def run_job(job_id, lock_fd):
     job = load_job(job_id)
     directory = STATE / "jobs" / job_id
     skill = Skill.model_validate(read_json(directory / "skill.json"))
@@ -68,7 +68,7 @@ def run_job(job_id):
     atomic_json(directory / "job.json", job)
     try:
         if job["kind"] == "train":
-            train(job, directory, skill)
+            train(job, directory, skill, lock_fd)
         if job["kind"] == "evaluate":
             evaluate(job, directory, skill)
         job["status"] = "completed"
@@ -106,7 +106,7 @@ def main():
     with (STATE / "accelerator.lock").open("w") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         if args.operation == "job":
-            run_job(args.subject)
+            run_job(args.subject, lock.fileno())
             return
         infer(args.subject)
 

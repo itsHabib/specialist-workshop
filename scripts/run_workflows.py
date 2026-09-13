@@ -110,7 +110,7 @@ def episodes(skill, policy, model=None):
     return dict(metrics=metrics, rows=rows)
 
 
-def run(skill_id, policy):
+def run(skill_id, policy, lock_fd=None):
     skill = Skill.model_validate(store.read_json(store.ROOT / "skills" / skill_id / "skill.json"))
     manifest = store.read_json(DEST / "manifest.json")
     if digest(skill.model_dump()) != manifest["skills"][skill_id]:
@@ -130,7 +130,7 @@ def run(skill_id, policy):
         store.atomic_json(directory / "skill.json", skill.model_dump())
         store.atomic_json(directory / "job.json", job)
         try:
-            train(job, directory, skill)
+            train(job, directory, skill, lock_fd)
             job["status"] = "completed"
         except Exception as exc:
             job.update(status="failed", error=str(exc))
@@ -180,7 +180,7 @@ def main():
         return
     with (store.STATE / "accelerator.lock").open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        run(args.skill, args.policy)
+        run(args.skill, args.policy, lock.fileno())
 
 
 if __name__ == "__main__":

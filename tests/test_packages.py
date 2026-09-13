@@ -96,3 +96,69 @@ def test_environment_interface_is_data_driven_and_rejects_unknown_adapters(isola
     env=create('ci-evidence-v1',scenario,isolated/'env')
     while not env.done:env.step(env.baseline())
     assert env.outcome()['success']
+
+
+def fake_checkpoint(package,isolated):
+    ref=packages.import_package(package)['reference'];run=experiment.new_run(ref,'train')
+    directory=experiment.runs_root()/run['id'];adapter=directory/'adapter';adapter.mkdir()
+    (adapter/'adapters.safetensors').write_bytes(b'test fixture, not model weights')
+    (adapter/'adapter_config.json').write_text('{"lora_parameters":{"scale":1}}')
+    import hashlib
+    run.update(status='completed',adapter_sha256=hashlib.sha256((adapter/'adapters.safetensors').read_bytes()).hexdigest(),adapter_manifest=experiment.adapter_manifest(adapter))
+    store.atomic_json(directory/'run.json',run)
+    return run
+
+
+def test_checkpoint_cannot_evaluate_training_rows_rotated_into_final(package,isolated):
+    run=fake_checkpoint(package,isolated)
+    swapped=package.model_dump();swapped['train'],swapped['final']=swapped['final'],swapped['train']
+    target=packages.Package.model_validate(swapped)
+    with pytest.raises(ValueError,match='reserved evaluation'):experiment.checkpoint(target,run['id'])
+    corrected=package.model_copy(deep=True)
+    corrected.train.append(package.train[0].model_copy(update={'id':'extra','input':{'message':'A new practice example'}}))
+    assert experiment.checkpoint(corrected,run['id']).is_dir()
+
+
+def test_checkpoint_binds_config_not_just_tensor_bytes(package,isolated):
+    run=fake_checkpoint(package,isolated)
+    directory=experiment.checkpoint(package,run['id'])
+    (directory/'adapter_config.json').write_text('{"lora_parameters":{"scale":99}}')
+    with pytest.raises(ValueError,match='adapter files changed'):experiment.checkpoint(package,run['id'])
+
+
+def test_evaluation_records_actual_raw_validity(package,isolated):
+    ref=packages.import_package(package)['reference'];run=experiment.new_run(ref,'evaluate',policy='majority');run=experiment.worker(run['id'])
+    assert run['status']=='completed'
+    assert run['metrics']['raw_valid']==run['metrics']['valid']==4
+    assert all(row['raw_valid'] for row in run['rows'])
+    assert experiment.metrics([{'valid':True}])['raw_valid'] is None
+
+
+def test_compute_child_keeps_lock_after_worker_death(tmp_path):
+    import fcntl,os,signal,subprocess,sys,time
+    if os.name!='posix':pytest.skip('POSIX runtime contract')
+    lock_path=tmp_path/'accelerator.lock';marker=tmp_path/'child.pid'
+    child_code=f"import os,time;from pathlib import Path;Path({str(marker)!r}).write_text(str(os.getpid()));time.sleep(20)"
+    parent_code=f"import fcntl,sys;from workshop.experiment import run_compute;f=open({str(lock_path)!r},'a');fcntl.flock(f,fcntl.LOCK_EX);log=open({str(tmp_path/'child.log')!r},'w');run_compute([sys.executable,'-c',{child_code!r}],log,f.fileno())"
+    parent=subprocess.Popen([sys.executable,'-c',parent_code],cwd=store.ROOT)
+    child=None
+    try:
+        deadline=time.monotonic()+5
+        while not marker.exists() and time.monotonic()<deadline:time.sleep(.02)
+        assert marker.exists();child=int(marker.read_text())
+        parent.kill();parent.wait(timeout=3)
+        with lock_path.open('a') as contender:
+            with pytest.raises(BlockingIOError):fcntl.flock(contender,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        os.kill(child,signal.SIGTERM);child=None
+        deadline=time.monotonic()+3
+        with lock_path.open('a') as contender:
+            while True:
+                try:fcntl.flock(contender,fcntl.LOCK_EX|fcntl.LOCK_NB);break
+                except BlockingIOError:
+                    if time.monotonic()>deadline:raise
+                    time.sleep(.02)
+    finally:
+        if parent.poll() is None:parent.kill();parent.wait(timeout=3)
+        if child:
+            try:os.kill(child,signal.SIGTERM)
+            except ProcessLookupError:pass

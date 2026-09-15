@@ -55,7 +55,8 @@ quality and latency requirements, not just lower token prices.
 
 ## What Workshop measures today
 
-The package `evaluate` command makes **one prediction per final case**. Its
+The package `evaluate` command makes **one prediction per development case**;
+`qualify` explicitly evaluates final cases. Both record the split and case hash. Its
 `accepted` field uses the held-out target after inference; it is not a deployable
 retry verifier. The separate environment runner supports multi-step episodes,
 which are not independent retries. Existing run timing and provider usage do not
@@ -65,8 +66,9 @@ The recorded support and analytics failures remain valid observations of those
 tested configurations. A [first diagnostic retry comparison](RETRY-EXPERIMENT.md) now records Luna
 recovering one failure and matching Astra on 12 exposed cases at lower API cost.
 The local adapter did not recover a task. Fresh economic qualification remains
-unmeasured. The standalone experiment script does not change the package evaluator
-or historical scores.
+unmeasured. The [portable retry script](MONDAY.md) accepts a package, policies, checkpoint,
+split and attempt/API budgets. The package evaluator remains single-attempt;
+historical scores are unchanged.
 
 The next experiment should use one task with a credible deployable verifier,
 freeze a bounded repair policy on development data, and record the complete

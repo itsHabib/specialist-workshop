@@ -78,15 +78,12 @@ retain the evidence. The executed source hash is checked before recomputing cost
 .venv/bin/python scripts/summarize_retry.py artifacts/retry-economics/run-2026-09-15
 ```
 
-The [runner](../scripts/retry_economics.py) now includes cache-write accounting.
-It is deliberately specific to the locally retained analytics package/checkpoint
-`pkg-f0a24974e753`; a fresh clone can inspect and reprice this evidence but cannot
-rerun local adapter inference without those excluded weights and state. In the
-original environment, set `OPENAI_API_KEY` and supply a new, nonexistent output path:
-
-```sh
-.venv/bin/python scripts/retry_economics.py --output .state/retry-next
-```
+The [current runner](../scripts/retry_economics.py) accepts an imported package,
+checkpoint, policies, split and attempt/API budgets. It defaults to development
+cases; see the [clean-clone walkthrough](MONDAY.md) to train and compare your own
+adapter. Local weights and state for this historical run are excluded from Git.
+The archived executed source and 12-case subset preserve the original recipe;
+new runs use all cases in the selected split and do not rewrite this evidence.
 
 No credentials or model weights are published. Four offline tests exercise stop
 behavior, non-oracle feedback, failure-inclusive cost denominators, and usage pricing;

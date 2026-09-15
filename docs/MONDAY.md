@@ -156,10 +156,23 @@ Compare completed evaluation IDs using:
 .venv/bin/python -m workshop.experiment compare pkg-<base-run> pkg-<adapter-run>
 ```
 
-Comparisons reject different final-set, grader/implementation or operation
-identities. Checkpoints bind the full adapter manifest, including configuration,
-and the exact reserved final/episode sets. Moving old training examples into a
-new “final” split cannot qualify an old checkpoint. The current conservative
+`evaluate` uses development cases by default. Iterate on that split, then freeze
+the package, checkpoint and policy before explicitly running final evaluation:
+
+```sh
+.venv/bin/python -m workshop.experiment run "$TASK_REF" qualify \
+  --policy specialist --checkpoint "$CHECKPOINT"
+```
+
+The browser exposes the same choice under **Final evaluation**. `qualify` records
+final-case results; it does not automatically approve a model. Once you inspect
+final failures, treat those cases as exposed and reserve fresh cases for a new
+qualification claim. Older `evaluate` records remain labeled as final.
+
+Comparisons reject different evaluated splits, case hashes, final-set identities,
+graders or operations. Checkpoints bind the full adapter manifest, including configuration,
+and the exact reserved development/final/episode sets. Moving old training examples into a
+new development or final split cannot evaluate an old checkpoint. The current conservative
 policy requires the same reserved evaluation identity for checkpoint reuse.
 
 Read `valid` (schema/context), `raw_valid` (before transport decoding), `correct`
@@ -177,9 +190,32 @@ may have a different scope. Preserve that distinction before claiming savings.
 Before deciding whether a specialist is worthwhile, compare the **complete cost
 of finishing tasks**, including retries, failed tasks, verification and fallback,
 at agreed quality and latency. Three cheap attempts can beat one expensive call.
-The current package evaluator is single-attempt; it does not yet run or price
-these policies. Follow the [economics protocol](ECONOMICS.md) for the next bounded
-experiment, and never use final-set answers to choose a retry's winning output.
+The package evaluator is single-attempt. The existing retry script accepts any
+imported package and a compatible checkpoint, with development as its default:
+
+```sh
+.venv/bin/python scripts/retry_economics.py --package "$TASK_REF" \
+  --checkpoint "$CHECKPOINT" --policies local-base local-specialist \
+  --attempts 3 --output .state/my-development-comparison
+.venv/bin/python scripts/summarize_retry.py .state/my-development-comparison
+```
+
+Together with the import and training commands above, this is the path from a
+clean clone to a comparison using your own adapter. Supply a new output directory
+for each run. `--split final` explicitly selects all final cases when you are ready.
+No checkpoint or MLX is needed for API-only policies: `--policies gpt-5.6-luna`
+uses `OPENAI_API_KEY`; Astra is also supported. API calls require that explicit
+policy selection and have a default $3 reservation budget (`--api-budget-usd`).
+`--attempts` applies to every selected model; use 1 for a one-shot control. The
+report includes first-attempt and complete-policy scores from the same trajectories.
+
+Prices are the recorded September 15, 2026 rates, not live billing quotes. Local
+cost stays unknown. No fallback or human-review cost is inferred. The current
+model/decoding presets remain fixed; this adds no backend configuration framework.
+Partial attempts are saved and the run fails if a request or budget check fails;
+failed runs cannot produce a completed comparison report. Keep private task
+outputs under `.state/`. Follow the [economics protocol](ECONOMICS.md), and never
+use expected answers to choose a retry's winning output.
 
 ## 6. Correct practice data without rewriting history
 

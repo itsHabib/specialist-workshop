@@ -344,7 +344,7 @@ class PackageCorrection(BaseModel):
 class PackageRunRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     reference: str
-    operation: str = Field(pattern="^(train|evaluate|infer|episodes)$")
+    operation: str = Field(pattern="^(train|evaluate|qualify|infer|episodes)$")
     policy: str = Field(default="base", pattern="^(base|specialist|reference|majority|rules)$")
     checkpoint: str | None = None
     input: str | dict | None = None

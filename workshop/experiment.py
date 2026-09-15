@@ -48,7 +48,7 @@ def checkpoint(package,identity):
     if run['contract_hash']!=packages.contract_hash(package):raise ValueError('Checkpoint contract differs')
     trained=packages.Package.model_validate(store.read_json(runs_root()/identity/'package.json'))
     if packages.summary(trained)['reference']!=run['package']:raise ValueError('Checkpoint package snapshot changed')
-    if packages.summary(trained)['final_hash']!=packages.summary(package)['final_hash'] or digest(trained.episodes)!=digest(package.episodes):
+    if packages.summary(trained)['final_hash']!=packages.summary(package)['final_hash'] or digest([c.model_dump() for c in trained.development])!=digest([c.model_dump() for c in package.development]) or digest(trained.episodes)!=digest(package.episodes):
         raise ValueError('Checkpoint reserved evaluation set differs; cross-version holdout reuse is refused')
     if (run['model'],run['revision'])!=(MODEL_ID,MODEL_REVISION):raise ValueError('Checkpoint model differs')
     path=runs_root()/identity/'adapter'
@@ -167,7 +167,8 @@ def evaluate(package,run,directory):
     if policy=='reference':model=Reference();run['model']=model.model;run['revision']=None
     majority=Counter(json.dumps(r.expected,sort_keys=True) for r in package.train).most_common(1)[0][0]
     rows=[]
-    for case in package.final:
+    # Legacy queued evaluations targeted final; never silently relabel those runs.
+    for case in getattr(package,run.get('evaluation_split','final')):
         prediction=model.predict(package,case.input) if model else dict(raw=majority,elapsed_ms=0)
         result=assess(package,case.input,prediction,case.expected)
         rows.append(dict(id=case.id,family=case.family,input=case.input,expected=case.expected,**prediction,**result))
@@ -198,12 +199,12 @@ def episodes(package,run,directory):
 
 def new_run(reference,operation,policy='base',checkpoint_id=None,input_value=None,steps=120,source=None):
     package=packages.load(reference)
-    if operation not in ('train','evaluate','infer','episodes','adopt'):raise ValueError('Unknown operation')
+    if operation not in ('train','evaluate','qualify','infer','episodes','adopt'):raise ValueError('Unknown operation')
     if policy not in ('base','specialist','reference','majority','rules'):raise ValueError('Unknown policy')
     if not 1<=steps<=300:raise ValueError('Steps must be 1..300')
     if operation=='infer' and not isinstance(input_value,(str,dict)):raise ValueError('Inference needs a JSON object or string input')
     if operation=='infer' and policy not in ('base','specialist','reference'):raise ValueError('Inference needs a model policy')
-    if operation=='evaluate' and policy=='rules':raise ValueError('Rule baseline is provided by an environment; use episodes')
+    if operation in ('evaluate','qualify') and policy=='rules':raise ValueError('Rule baseline is provided by an environment; use episodes')
     if operation=='episodes' and policy=='majority':raise ValueError('Use rules or a model for episodes')
     if operation=='train' and policy!='base':raise ValueError('Training starts from the base model')
     if policy=='specialist':checkpoint(package,checkpoint_id)
@@ -213,6 +214,9 @@ def new_run(reference,operation,policy='base',checkpoint_id=None,input_value=Non
              status='queued',created_at=time.time(),model=MODEL_ID,revision=MODEL_REVISION,**{k:v for k,v in packages.summary(package).items() if k in ('contract_hash','final_hash')},
              grader=package.grader,grader_hash=digest(dict(schema=package.output_schema,grader=package.grader,unordered_fields=package.unordered_fields,environment=package.environment,transport=VERSION,implementation={name:hashlib.sha256((store.ROOT/'workshop'/name).read_bytes()).hexdigest() for name in ('packages.py','analytics.py','completion.py','environments.py','practice.py')})),completion_protocol=VERSION,code_files={name:hashlib.sha256((store.ROOT/'workshop'/name).read_bytes()).hexdigest() for name in ('experiment.py','packages.py','analytics.py','completion.py','environments.py','practice.py')},local_cost_usd=None)
     if operation=='episodes':run['final_hash']=digest(package.episodes)
+    if operation in ('evaluate','qualify'):
+        split='final' if operation=='qualify' else 'development'
+        run.update(evaluation_split=split,evaluation_hash=digest([r.model_dump() for r in getattr(package,split)]))
     store.atomic_json(runs_root()/identity/'package.json',package.model_dump());store.atomic_json(runs_root()/identity/'run.json',run)
     return run
 
@@ -227,7 +231,7 @@ def worker(identity):
             op=run['operation']
             if op=='train':train(package,run,directory,lock.fileno())
             if op=='adopt':adopt(package,run,directory)
-            if op=='evaluate':evaluate(package,run,directory)
+            if op in ('evaluate','qualify'):evaluate(package,run,directory)
             if op=='episodes':episodes(package,run,directory)
             if op=='infer':
                 model=Reference() if run['policy']=='reference' else Local(checkpoint(package,run['checkpoint']) if run['policy']=='specialist' else None)
@@ -240,9 +244,9 @@ def worker(identity):
 
 def compare(identities):
     runs=[read_run(identity) for identity in identities]
-    if len({(r['final_hash'],r['grader_hash'],r['operation']) for r in runs})!=1:raise ValueError('Different evaluation sets, graders or operation types cannot be compared')
+    if len({(r.get('evaluation_split','final'),r.get('evaluation_hash',r['final_hash']),r['final_hash'],r['grader_hash'],r['operation']) for r in runs})!=1:raise ValueError('Different evaluation splits, sets, graders or operation types cannot be compared')
     if any(r['status']!='completed' for r in runs):raise ValueError('Only completed runs may be compared')
-    return [dict(id=r['id'],package=r['package'],policy=r['policy'],model=r['model'],checkpoint=r['checkpoint'],metrics=r.get('metrics'),wall_seconds=r['finished_at']-r['started_at'],local_cost_usd=r['local_cost_usd']) for r in runs]
+    return [dict(id=r['id'],package=r['package'],policy=r['policy'],model=r['model'],checkpoint=r['checkpoint'],evaluation_split=r.get('evaluation_split','final') if r['operation'] in ('evaluate','qualify') else None,metrics=r.get('metrics'),wall_seconds=r['finished_at']-r['started_at'],local_cost_usd=r['local_cost_usd']) for r in runs]
 
 
 def main():
@@ -251,7 +255,7 @@ def main():
     p=sub.add_parser('show');p.add_argument('reference')
     p=sub.add_parser('preview');p.add_argument('reference')
     p=sub.add_parser('correct');p.add_argument('reference');p.add_argument('case_path')
-    p=sub.add_parser('run');p.add_argument('reference');p.add_argument('operation',choices=['train','evaluate','infer','episodes','adopt']);p.add_argument('--policy',default='base');p.add_argument('--checkpoint');p.add_argument('--input-file');p.add_argument('--steps',type=int,default=120);p.add_argument('--source')
+    p=sub.add_parser('run');p.add_argument('reference');p.add_argument('operation',choices=['train','evaluate','qualify','infer','episodes','adopt']);p.add_argument('--policy',default='base');p.add_argument('--checkpoint');p.add_argument('--input-file');p.add_argument('--steps',type=int,default=120);p.add_argument('--source')
     p=sub.add_parser('worker');p.add_argument('identity')
     p=sub.add_parser('compare');p.add_argument('identities',nargs='+')
     args=parser.parse_args();store.initialize()

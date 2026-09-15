@@ -129,7 +129,7 @@ def test_checkpoint_binds_config_not_just_tensor_bytes(package,isolated):
 def test_evaluation_records_actual_raw_validity(package,isolated):
     ref=packages.import_package(package)['reference'];run=experiment.new_run(ref,'evaluate',policy='majority');run=experiment.worker(run['id'])
     assert run['status']=='completed'
-    assert run['metrics']['raw_valid']==run['metrics']['valid']==4
+    assert run['metrics']['raw_valid']==run['metrics']['valid']==2
     assert all(row['raw_valid'] for row in run['rows'])
     assert experiment.metrics([{'valid':True}])['raw_valid'] is None
 
@@ -162,3 +162,44 @@ def test_compute_child_keeps_lock_after_worker_death(tmp_path):
         if child:
             try:os.kill(child,signal.SIGTERM)
             except ProcessLookupError:pass
+
+
+def test_evaluation_defaults_to_development_and_final_is_explicit(package,isolated):
+    ref=packages.import_package(package)['reference']
+    dev=experiment.worker(experiment.new_run(ref,'evaluate',policy='majority')['id'])
+    final=experiment.worker(experiment.new_run(ref,'qualify',policy='majority')['id'])
+    assert dev['evaluation_split']=='development'
+    assert {r['id'] for r in dev['rows']}=={r.id for r in package.development}
+    assert final['evaluation_split']=='final'
+    assert {r['id'] for r in final['rows']}=={r.id for r in package.final}
+    with pytest.raises(ValueError,match='Different'):experiment.compare([dev['id'],final['id']])
+
+
+def test_development_hash_prevents_comparing_changed_dev_cases(package,isolated):
+    ref=packages.import_package(package)['reference']
+    first=experiment.worker(experiment.new_run(ref,'evaluate',policy='majority')['id'])
+    changed=package.model_copy(deep=True)
+    changed.development[0].input={'message':'Different development input'}
+    ref2=packages.import_package(changed)['reference']
+    second=experiment.worker(experiment.new_run(ref2,'evaluate',policy='majority')['id'])
+    assert first['final_hash']==second['final_hash']
+    with pytest.raises(ValueError,match='Different'):experiment.compare([first['id'],second['id']])
+
+
+def test_legacy_queued_evaluation_keeps_final_semantics(package,isolated):
+    ref=packages.import_package(package)['reference']
+    run=experiment.new_run(ref,'evaluate',policy='majority')
+    del run['evaluation_split'];del run['evaluation_hash']
+    store.atomic_json(experiment.runs_root()/run['id']/'run.json',run)
+    finished=experiment.worker(run['id'])
+    assert len(finished['rows'])==len(package.final)
+    assert experiment.compare([run['id']])[0]['evaluation_split']=='final'
+
+
+def test_checkpoint_rejects_training_rows_moved_to_development(package,isolated):
+    run=fake_checkpoint(package,isolated)
+    changed=package.model_dump()
+    changed['development'].append(changed['train'].pop())
+    target=packages.Package.model_validate(changed)
+    with pytest.raises(ValueError,match='reserved evaluation'):
+        experiment.checkpoint(target,run['id'])

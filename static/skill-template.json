@@ -1,0 +1,66 @@
+{
+  "id": "support-routing",
+  "name": "Support request routing",
+  "description": "Route a support message to access or billing, with a quote that explains the choice.",
+  "instructions": "Read the customer's support message and identify the team that should handle it.",
+  "labels": {
+    "access": "Sign-in, passwords, and account access.",
+    "billing": "Invoices, charges, and payments."
+  },
+  "train": [
+    {
+      "id": "train-1",
+      "input": "I forgot my password and cannot sign in.",
+      "expected": "access",
+      "evidence": "forgot my password"
+    },
+    {
+      "id": "train-2",
+      "input": "The login page rejects my verification code.",
+      "expected": "access",
+      "evidence": "rejects my verification code"
+    },
+    {
+      "id": "train-3",
+      "input": "My invoice has a duplicate charge this month.",
+      "expected": "billing",
+      "evidence": "duplicate charge"
+    },
+    {
+      "id": "train-4",
+      "input": "Please help me change my payment card.",
+      "expected": "billing",
+      "evidence": "change my payment card"
+    }
+  ],
+  "validation": [
+    {
+      "id": "val-1",
+      "input": "The password reset link is expired.",
+      "expected": "access",
+      "evidence": "password reset link is expired"
+    },
+    {
+      "id": "val-2",
+      "input": "I need a copy of last year's receipts.",
+      "expected": "billing",
+      "evidence": "copy of last year's receipts"
+    }
+  ],
+  "test": [
+    {
+      "id": "test-1",
+      "input": "My account is locked after too many login attempts.",
+      "expected": "access"
+    },
+    {
+      "id": "test-2",
+      "input": "You billed me after I cancelled my subscription.",
+      "expected": "billing"
+    }
+  ],
+  "provenance": {
+    "source": "Authored starter examples",
+    "limits": "Tiny illustrative dataset. Add representative examples and test cases before interpreting performance."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "pkg-a4fcda2473de",
+  "package": "support-intake@dd72cbdfb154394c1a5aceefe8f808e4f82ba7356902f02e230c1f393b425a94",
+  "operation": "train",
+  "policy": "base",
+  "checkpoint": null,
+  "input": null,
+  "steps": 20,
+  "source": null,
+  "status": "completed",
+  "created_at": 1789258103.5817258,
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "contract_hash": "64bc8f4af0e865a79169f2ced782ad56bddb2246bb892cf25923168e35e4de45",
+  "final_hash": "f636b0e122fd894f468d46f2aff240a0cf3087dbee355372ac1d14223fc86683",
+  "grader": "json-exact-v1",
+  "grader_hash": "eafa9bf400dc26203d9fcd61341df2516ac00125379630e5013678d3172293ff",
+  "completion_protocol": "empty-think-v1",
+  "local_cost_usd": null,
+  "started_at": 1789258103.583601,
+  "training_data_hashes": {
+    "train": "46821dd02e84ce2e330b5a608ddddde2eef0aa56dd6062791d317ed98c513213",
+    "valid": "4199095022507546bbf51648af917fc56e363f99bda2611e145864163af5334f"
+  },
+  "recipe": {
+    "steps": 20,
+    "batch_size": 1,
+    "layers": 8,
+    "learning_rate": 2e-05,
+    "seed": 29,
+    "max_sequence_length": 2048,
+    "mask_prompt": true
+  },
+  "adapter_sha256": "4053e311f19613bd96261d1bd9b724d1bd1d5f7c3e3d9bb3938d332ea2296f0f",
+  "finished_at": 1789258121.150625
+}

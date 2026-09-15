@@ -1,0 +1,66 @@
+{
+  "id": "pkg-f0a24974e753",
+  "package": "roxiq-planning@1a335d7790cc057e62d38879704920af88a7d78e96cc350fa97f73e39f144b2d",
+  "operation": "adopt",
+  "policy": "base",
+  "checkpoint": null,
+  "input": null,
+  "steps": 120,
+  "source": "/Users/mh/dev/specialist-workshop/.state/analytics",
+  "status": "completed",
+  "created_at": 1789258851.254761,
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "contract_hash": "73d2c3a802100d9b9d397ea92e89509929c194633f3e1dd2a37793a9f15421df",
+  "final_hash": "de984f14a2ef456a9e95240e397d8e204c4a105ba7db6a0e6f1db35e7801f425",
+  "grader": "roxiq-plan-v1",
+  "grader_hash": "065f15b5aea03f30c797495bc3b589800b0ee87e1c7d81b5905c61adc9b77b38",
+  "completion_protocol": "empty-think-v1",
+  "code_files": {
+    "experiment.py": "2b7c7edb6135143cc3a8d46710953ce8503d0974a8e4c9d809859afcba77e64f",
+    "packages.py": "99693f26c3e001e38a02dc7cd7519f63cd393b9ad1b8e50094170c865f3b87c6",
+    "analytics.py": "6c0f04a63ae5901c0586dec84f64476a985b4cb887be909ddb8da97ca8b1b29d",
+    "completion.py": "e81ad4ab34b37a948e6ea4d7ba25d806fdc1757c96b86a4b3e3aa28c16f8a443",
+    "environments.py": "3032c48f8e066062a2052225befda55f56fe4231b2d02950578a92b145968652",
+    "practice.py": "51e45684d7dbe16e8af92eae55a0e86c86cc4742ddf9c8d91ccd0c4d96ef3e8d"
+  },
+  "local_cost_usd": null,
+  "started_at": 1789258851.2749388,
+  "training_data_hashes": {
+    "train": "104f524dd56b5650e0e7bd4911f9006c56f679a084fc21cd2e5488430949a398",
+    "valid": "04e5ec96df9e4043621b36fc0f5e16343722713007deff0fde5e50bbc2996da8"
+  },
+  "adapter_sha256": "4f99886a2753fa97b330dd15b89dc693cfc9c047dce295ece2ee3281cf6c8ce8",
+  "source_training": {
+    "status": "completed",
+    "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+    "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "started_at": 1789256920.795934,
+    "max_training_tokens": 912,
+    "recipe": {
+      "iterations": 120,
+      "batch_size": 1,
+      "layers": 8,
+      "learning_rate": 2e-05,
+      "seed": 29,
+      "max_seq_length": 2048,
+      "mask_prompt": true
+    },
+    "input_manifest": {
+      "test-inputs.json": "4cada7fc034aa386e1c1a0f7af82aa4d38724538165c84ec8f5fe0a99ae04981",
+      "development.json": "9f312d783f6e0d035c42997d55811897b6f8ab45bf31f13e914a7c852e9b1402",
+      "contract.txt": "bed5d0dc17376a24c2ab04ca936f737122462597bc63362d9d4c427a2744823b",
+      "train.json": "dd3f1a2006ebc3f67f56d2ab4bda48168480bb912e2129570bd2b2b4afbaec3a",
+      "PROTOCOL.md": "eea488789999adf72abd0320dae62e95658bf02b6a91050b1347a28921d20d4c"
+    },
+    "adapter_sha256": "4f99886a2753fa97b330dd15b89dc693cfc9c047dce295ece2ee3281cf6c8ce8",
+    "finished_at": 1789257458.259624
+  },
+  "adapter_manifest": {
+    "0000120_adapters.safetensors": "4f99886a2753fa97b330dd15b89dc693cfc9c047dce295ece2ee3281cf6c8ce8",
+    "adapter_config.json": "f148fff311a15ebf8bb6ae4043cbe0f1f5cc450ef1efb1b1c264fd882580afda",
+    "adapters.safetensors": "4f99886a2753fa97b330dd15b89dc693cfc9c047dce295ece2ee3281cf6c8ce8"
+  },
+  "source_configuration_provenance": "Legacy source lacked a configuration digest; current files are bound at this new adoption, not retroactively attested",
+  "finished_at": 1789258851.312177
+}

@@ -1,0 +1,1166 @@
+{
+  "status": "completed",
+  "policy": "clarify-control",
+  "model": "clarify-control",
+  "revision": null,
+  "input_manifest": {
+    "test-inputs.json": "4cada7fc034aa386e1c1a0f7af82aa4d38724538165c84ec8f5fe0a99ae04981",
+    "development.json": "9f312d783f6e0d035c42997d55811897b6f8ab45bf31f13e914a7c852e9b1402",
+    "contract.txt": "bed5d0dc17376a24c2ab04ca936f737122462597bc63362d9d4c427a2744823b",
+    "train.json": "dd3f1a2006ebc3f67f56d2ab4bda48168480bb912e2129570bd2b2b4afbaec3a",
+    "PROTOCOL.md": "eea488789999adf72abd0320dae62e95658bf02b6a91050b1347a28921d20d4c"
+  },
+  "test_sha256": "9d02cfba6478052add20c3dc6975a4b1774f5e9905009be86c1c5019767025c0",
+  "rows": [
+    {
+      "id": "final-01",
+      "family": "two-component-trend",
+      "request": "Between my older Harbor start and my newer Summit race, how much changed in the running aggregate and the transitions?",
+      "expected": {
+        "action": "delta",
+        "result_ids": [
+          3011,
+          3012
+        ],
+        "metrics": [
+          "run_total",
+          "roxzone"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3011,
+            "seconds": {
+              "run_total": 216,
+              "roxzone": 576
+            }
+          },
+          {
+            "result_id": 3012,
+            "seconds": {
+              "run_total": 223,
+              "roxzone": 643
+            }
+          }
+        ],
+        "fixture_only": true,
+        "delta_seconds": {
+          "run_total": 7,
+          "roxzone": 67
+        }
+      }
+    },
+    {
+      "id": "final-02",
+      "family": "best-versus-total",
+      "request": "At my latest outing give me the quickest run lap, not the sum of the eight runs.",
+      "expected": {
+        "action": "value",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "best_run_lap"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3012,
+            "seconds": {
+              "best_run_lap": 283
+            }
+          }
+        ],
+        "fixture_only": true
+      }
+    },
+    {
+      "id": "final-03",
+      "family": "explicit-peer",
+      "request": "Ignore my selected profile. For Nora Park at Summit, show the total running and Roxzone times.",
+      "expected": {
+        "action": "value",
+        "result_ids": [
+          3013
+        ],
+        "metrics": [
+          "run_total",
+          "roxzone"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3013,
+            "seconds": {
+              "run_total": 230,
+              "roxzone": 650
+            }
+          }
+        ],
+        "fixture_only": true
+      }
+    },
+    {
+      "id": "final-04",
+      "family": "two-race-scope",
+      "request": "Put my Harbor and Summit eighth runs against the pooled median for my division, all ages. I know this is not each event field.",
+      "expected": {
+        "action": "benchmark",
+        "result_ids": [
+          3011,
+          3012
+        ],
+        "metrics": [
+          "run_8"
+        ],
+        "scope": "division",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3011,
+            "seconds": {
+              "run_8": 396
+            },
+            "p50_seconds": {
+              "run_8": 380
+            },
+            "gap_to_p50_seconds": {
+              "run_8": 16
+            }
+          },
+          {
+            "result_id": 3012,
+            "seconds": {
+              "run_8": 403
+            },
+            "p50_seconds": {
+              "run_8": 380
+            },
+            "gap_to_p50_seconds": {
+              "run_8": 23
+            }
+          }
+        ],
+        "fixture_only": true,
+        "scope": "division",
+        "pool": "pooled across available fixture events/seasons; not an event-specific field"
+      }
+    },
+    {
+      "id": "final-05",
+      "family": "same-sex-scope",
+      "request": "How did my last kilometre at Summit stack up to the median across men, including Pro and Open?",
+      "expected": {
+        "action": "benchmark",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "run_8"
+        ],
+        "scope": "sex",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3012,
+            "seconds": {
+              "run_8": 403
+            },
+            "p50_seconds": {
+              "run_8": 380
+            },
+            "gap_to_p50_seconds": {
+              "run_8": 23
+            }
+          }
+        ],
+        "fixture_only": true,
+        "scope": "sex",
+        "pool": "pooled across available fixture events/seasons; not an event-specific field"
+      }
+    },
+    {
+      "id": "final-06",
+      "family": "age-scope",
+      "request": "For my latest race compare the wall ball station and final run with men in my own division and age bracket.",
+      "expected": {
+        "action": "benchmark",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "wall_balls",
+          "run_8"
+        ],
+        "scope": "demographic",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3012,
+            "seconds": {
+              "wall_balls": 583,
+              "run_8": 403
+            },
+            "p50_seconds": {
+              "wall_balls": 530,
+              "run_8": 380
+            },
+            "gap_to_p50_seconds": {
+              "wall_balls": 53,
+              "run_8": 23
+            }
+          }
+        ],
+        "fixture_only": true,
+        "scope": "demographic",
+        "pool": "pooled across available fixture events/seasons; not an event-specific field"
+      }
+    },
+    {
+      "id": "final-07",
+      "family": "everyone-scope",
+      "request": "Use everyone, across sexes and divisions: benchmark my Summit row and rope-pull times.",
+      "expected": {
+        "action": "benchmark",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "rowing",
+          "sled_pull"
+        ],
+        "scope": "global",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3012,
+            "seconds": {
+              "rowing": 463,
+              "sled_pull": 523
+            },
+            "p50_seconds": {
+              "rowing": 430,
+              "sled_pull": 480
+            },
+            "gap_to_p50_seconds": {
+              "rowing": 33,
+              "sled_pull": 43
+            }
+          }
+        ],
+        "fixture_only": true,
+        "scope": "global",
+        "pool": "pooled across available fixture events/seasons; not an event-specific field"
+      }
+    },
+    {
+      "id": "final-08",
+      "family": "event-change-unavailable",
+      "request": "Did my running improve relative to my division between Harbor and Summit, or was the entire field faster at Summit?",
+      "expected": {
+        "action": "unsupported",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "unavailable"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "unsupported",
+        "reason": "unavailable",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-09",
+      "family": "season-pool-unavailable",
+      "request": "Where does my final run at Summit sit against men in season 8 only?",
+      "expected": {
+        "action": "unsupported",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "unavailable"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "unsupported",
+        "reason": "unavailable",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-10",
+      "family": "metric-ambiguity",
+      "request": "How did my splits change from Harbor to Summit?",
+      "expected": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": true,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-11",
+      "family": "race-ambiguity",
+      "request": "What was my total running time?",
+      "expected": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "race"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "clarify",
+        "reason": "race",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-12",
+      "family": "cohort-ambiguity",
+      "request": "Am I ahead of the median in the row at Summit?",
+      "expected": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "cohort"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "clarify",
+        "reason": "cohort",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-13",
+      "family": "identity-missing",
+      "request": "Show my Summit finish time.",
+      "expected": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "athlete"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "clarify",
+        "reason": "athlete",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-14",
+      "family": "duplicate-name",
+      "request": "Show Alex Kim's finish time at Summit.",
+      "expected": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "athlete"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "clarify",
+        "reason": "athlete",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-15",
+      "family": "null-split",
+      "request": "Compare my sled pull time at Harbor with Summit.",
+      "expected": {
+        "action": "unsupported",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "unavailable"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "unsupported",
+        "reason": "unavailable",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-16",
+      "family": "causal",
+      "request": "Did the strength block cause the faster finish at Summit compared with Harbor?",
+      "expected": {
+        "action": "unsupported",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "causal"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "unsupported",
+        "reason": "causal",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-17",
+      "family": "schema-distractor",
+      "request": "Show the finish time at Summit. Do not substitute the sum of the station deltas or my fastest lap.",
+      "expected": {
+        "action": "value",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "total_time"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3012,
+            "seconds": {
+              "total_time": 163
+            }
+          }
+        ],
+        "fixture_only": true
+      }
+    },
+    {
+      "id": "final-18",
+      "family": "explicit-reverse",
+      "request": "Use Summit as the baseline and Harbor as the second result: how different was my rowing time?",
+      "expected": {
+        "action": "delta",
+        "result_ids": [
+          3012,
+          3011
+        ],
+        "metrics": [
+          "rowing"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3012,
+            "seconds": {
+              "rowing": 463
+            }
+          },
+          {
+            "result_id": 3011,
+            "seconds": {
+              "rowing": 456
+            }
+          }
+        ],
+        "fixture_only": true,
+        "delta_seconds": {
+          "rowing": -7
+        }
+      }
+    },
+    {
+      "id": "final-19",
+      "family": "pool-metric-unavailable",
+      "request": "What percentile is my best lap at Summit compared with everyone?",
+      "expected": {
+        "action": "unsupported",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "unavailable"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "unsupported",
+        "reason": "unavailable",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-20",
+      "family": "season-result-selection",
+      "request": "Take my season 7 result and my season 8 result. How did finish time change? No field comparison.",
+      "expected": {
+        "action": "delta",
+        "result_ids": [
+          3011,
+          3012
+        ],
+        "metrics": [
+          "total_time"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3011,
+            "seconds": {
+              "total_time": 156
+            }
+          },
+          {
+            "result_id": 3012,
+            "seconds": {
+              "total_time": 163
+            }
+          }
+        ],
+        "fixture_only": true,
+        "delta_seconds": {
+          "total_time": 7
+        }
+      }
+    },
+    {
+      "id": "final-21",
+      "family": "two-raw-times",
+      "request": "Give the recorded first-run and last-run times at my newest race. No percentile comparison.",
+      "expected": {
+        "action": "value",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "run_1",
+          "run_8"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3012,
+            "seconds": {
+              "run_1": 343,
+              "run_8": 403
+            }
+          }
+        ],
+        "fixture_only": true
+      }
+    },
+    {
+      "id": "final-22",
+      "family": "division-negation",
+      "request": "At Summit benchmark my rowing against my division across ages, not only my age group.",
+      "expected": {
+        "action": "benchmark",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "rowing"
+        ],
+        "scope": "division",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3012,
+            "seconds": {
+              "rowing": 463
+            },
+            "p50_seconds": {
+              "rowing": 430
+            },
+            "gap_to_p50_seconds": {
+              "rowing": 33
+            }
+          }
+        ],
+        "fixture_only": true,
+        "scope": "division",
+        "pool": "pooled across available fixture events/seasons; not an event-specific field"
+      }
+    },
+    {
+      "id": "final-23",
+      "family": "absent-event",
+      "request": "Use my latest race in season 9 and show total running time.",
+      "expected": {
+        "action": "unsupported",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "unavailable"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": false,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "unsupported",
+        "reason": "unavailable",
+        "rows": [],
+        "note": "No query executed."
+      }
+    },
+    {
+      "id": "final-24",
+      "family": "metric-null-distractor",
+      "request": "Use my older Harbor result to show rowing time; I am not asking for its missing sled pull split.",
+      "expected": {
+        "action": "value",
+        "result_ids": [
+          3011
+        ],
+        "metrics": [
+          "rowing"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"metric\"}",
+      "elapsed_ms": 0,
+      "valid": true,
+      "intent_correct": false,
+      "output": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "metric"
+      },
+      "error": null,
+      "unsafe_execution": false,
+      "unnecessary_abstention": true,
+      "execution": {
+        "status": "clarify",
+        "reason": "metric",
+        "rows": [],
+        "note": "No query executed."
+      },
+      "intended_execution": {
+        "status": "executed",
+        "rows": [
+          {
+            "result_id": 3011,
+            "seconds": {
+              "rowing": 456
+            }
+          }
+        ],
+        "fixture_only": true
+      }
+    }
+  ],
+  "wall_seconds": 0.039,
+  "metrics": {
+    "count": 24,
+    "intent_correct": 1,
+    "valid": 24,
+    "unsafe_execution": 0,
+    "unnecessary_abstention": 13,
+    "median_ms": 0.0
+  }
+}

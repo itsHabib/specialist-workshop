@@ -1,0 +1,20 @@
+Trainable parameters: 0.171% (2.638M/1543.714M)
+Iter 1: Val loss 1.328, Val took 1.079s
+Iter 10: Train loss 0.669, Learning Rate 2.000e-04, It/sec 1.578, Tokens/sec 106.487, Trained Tokens 675, Peak mem 2.347 GB
+Iter 20: Train loss 0.372, Learning Rate 2.000e-04, It/sec 1.704, Tokens/sec 107.529, Trained Tokens 1306, Peak mem 2.527 GB
+Iter 30: Train loss 0.346, Learning Rate 2.000e-04, It/sec 1.777, Tokens/sec 110.895, Trained Tokens 1930, Peak mem 2.527 GB
+Iter 40: Train loss 0.208, Learning Rate 2.000e-04, It/sec 1.740, Tokens/sec 106.811, Trained Tokens 2544, Peak mem 2.527 GB
+Iter 50: Val loss 0.232, Val took 0.812s
+Iter 50: Train loss 0.516, Learning Rate 2.000e-04, It/sec 1.741, Tokens/sec 111.449, Trained Tokens 3184, Peak mem 2.527 GB
+Iter 60: Train loss 0.242, Learning Rate 2.000e-04, It/sec 1.757, Tokens/sec 114.351, Trained Tokens 3835, Peak mem 2.527 GB
+Iter 70: Train loss 0.810, Learning Rate 2.000e-04, It/sec 1.719, Tokens/sec 108.122, Trained Tokens 4464, Peak mem 2.527 GB
+Iter 80: Train loss 0.757, Learning Rate 2.000e-04, It/sec 1.638, Tokens/sec 99.282, Trained Tokens 5070, Peak mem 2.527 GB
+Iter 90: Train loss 1.838, Learning Rate 2.000e-04, It/sec 1.486, Tokens/sec 94.084, Trained Tokens 5703, Peak mem 2.527 GB
+Iter 100: Val loss 0.557, Val took 1.005s
+Iter 100: Train loss 1.130, Learning Rate 2.000e-04, It/sec 1.494, Tokens/sec 95.314, Trained Tokens 6341, Peak mem 2.527 GB
+Iter 110: Train loss 0.367, Learning Rate 2.000e-04, It/sec 1.378, Tokens/sec 88.475, Trained Tokens 6983, Peak mem 2.527 GB
+Iter 120: Train loss 0.256, Learning Rate 2.000e-04, It/sec 1.256, Tokens/sec 78.987, Trained Tokens 7612, Peak mem 2.527 GB
+Iter 130: Train loss 0.118, Learning Rate 2.000e-04, It/sec 1.074, Tokens/sec 67.461, Trained Tokens 8240, Peak mem 2.527 GB
+Iter 140: Train loss 0.066, Learning Rate 2.000e-04, It/sec 1.044, Tokens/sec 66.738, Trained Tokens 8879, Peak mem 2.527 GB
+Iter 150: Val loss 0.152, Val took 1.392s
+Iter 150: Train loss 0.049, Learning Rate 2.000e-04, It/sec 1.034, Tokens/sec 62.777, Trained Tokens 9486, Peak mem 2.527 GB

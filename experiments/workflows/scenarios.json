@@ -1,0 +1,968 @@
+{
+  "train": [
+    {
+      "id": "ci-train-assertion-0",
+      "family": "assertion",
+      "commit": "2834f6ef3f34",
+      "log": "Run 1: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=2834f6ef3f34 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-1",
+      "family": "assertion",
+      "commit": "324528737820",
+      "log": "Run 2: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=324528737820 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-2",
+      "family": "assertion",
+      "commit": "654c6b10a200",
+      "log": "Run 3: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=654c6b10a200 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-3",
+      "family": "assertion",
+      "commit": "d80eceacdd8b",
+      "log": "Run 4: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=d80eceacdd8b conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-4",
+      "family": "assertion",
+      "commit": "44257333a066",
+      "log": "Run 5: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=44257333a066 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-5",
+      "family": "assertion",
+      "commit": "745bd9881fb2",
+      "log": "Run 6: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=745bd9881fb2 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-6",
+      "family": "assertion",
+      "commit": "4966f030d4b0",
+      "log": "Run 7: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=4966f030d4b0 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-7",
+      "family": "assertion",
+      "commit": "e51e262debcb",
+      "log": "Run 8: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=e51e262debcb conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-8",
+      "family": "assertion",
+      "commit": "a2c57021fd58",
+      "log": "Run 9: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=a2c57021fd58 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-9",
+      "family": "assertion",
+      "commit": "7374c9a43f2d",
+      "log": "Run 10: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=7374c9a43f2d conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-10",
+      "family": "assertion",
+      "commit": "c16e49c374d2",
+      "log": "Run 11: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=c16e49c374d2 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-assertion-11",
+      "family": "assertion",
+      "commit": "5a648c2f4d5b",
+      "log": "Run 12: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=5a648c2f4d5b conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-0",
+      "family": "typescript",
+      "commit": "1955052bf145",
+      "log": "Run 1: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=1955052bf145 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-1",
+      "family": "typescript",
+      "commit": "43af96916d5d",
+      "log": "Run 2: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=43af96916d5d conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-2",
+      "family": "typescript",
+      "commit": "2dd27df671c0",
+      "log": "Run 3: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=2dd27df671c0 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-3",
+      "family": "typescript",
+      "commit": "eb77bcc60660",
+      "log": "Run 4: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=eb77bcc60660 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-4",
+      "family": "typescript",
+      "commit": "5b71bfb5f78c",
+      "log": "Run 5: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=5b71bfb5f78c conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-5",
+      "family": "typescript",
+      "commit": "537595f53735",
+      "log": "Run 6: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=537595f53735 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-6",
+      "family": "typescript",
+      "commit": "0b56bd8b3df3",
+      "log": "Run 7: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=0b56bd8b3df3 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-7",
+      "family": "typescript",
+      "commit": "a0ab7c10dc40",
+      "log": "Run 8: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=a0ab7c10dc40 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-8",
+      "family": "typescript",
+      "commit": "1e5311e06ff4",
+      "log": "Run 9: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=1e5311e06ff4 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-9",
+      "family": "typescript",
+      "commit": "2555b16e3ada",
+      "log": "Run 10: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=2555b16e3ada conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-10",
+      "family": "typescript",
+      "commit": "f15d869cf4a9",
+      "log": "Run 11: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=f15d869cf4a9 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-typescript-11",
+      "family": "typescript",
+      "commit": "b665a48667b2",
+      "log": "Run 12: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=b665a48667b2 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-train-auth-0",
+      "family": "auth",
+      "commit": "79d99c542fc1",
+      "log": "Run 1: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=79d99c542fc1 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-1",
+      "family": "auth",
+      "commit": "78c10eecad49",
+      "log": "Run 2: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=78c10eecad49 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-2",
+      "family": "auth",
+      "commit": "60cafee7e8d0",
+      "log": "Run 3: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=60cafee7e8d0 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-3",
+      "family": "auth",
+      "commit": "52fec6887300",
+      "log": "Run 4: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=52fec6887300 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-4",
+      "family": "auth",
+      "commit": "e40b1b2f9631",
+      "log": "Run 5: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=e40b1b2f9631 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-5",
+      "family": "auth",
+      "commit": "a660fd310c70",
+      "log": "Run 6: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=a660fd310c70 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-6",
+      "family": "auth",
+      "commit": "1828edbeba33",
+      "log": "Run 7: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=1828edbeba33 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-7",
+      "family": "auth",
+      "commit": "2e90f022bd24",
+      "log": "Run 8: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=2e90f022bd24 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-8",
+      "family": "auth",
+      "commit": "c91df553dcda",
+      "log": "Run 9: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=c91df553dcda conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-9",
+      "family": "auth",
+      "commit": "50bc12d53e2b",
+      "log": "Run 10: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=50bc12d53e2b conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-10",
+      "family": "auth",
+      "commit": "f7df63fb927d",
+      "log": "Run 11: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=f7df63fb927d conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-auth-11",
+      "family": "auth",
+      "commit": "b219b0a708f3",
+      "log": "Run 12: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=b219b0a708f3 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-0",
+      "family": "dns",
+      "commit": "5983137a6ab7",
+      "log": "Run 1: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=5983137a6ab7 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-1",
+      "family": "dns",
+      "commit": "934b0307ed95",
+      "log": "Run 2: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=934b0307ed95 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-2",
+      "family": "dns",
+      "commit": "e01fa94a98a8",
+      "log": "Run 3: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=e01fa94a98a8 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-3",
+      "family": "dns",
+      "commit": "53c46f53037e",
+      "log": "Run 4: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=53c46f53037e conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-4",
+      "family": "dns",
+      "commit": "73f303c5356e",
+      "log": "Run 5: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=73f303c5356e conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-5",
+      "family": "dns",
+      "commit": "eccb3740aed5",
+      "log": "Run 6: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=eccb3740aed5 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-6",
+      "family": "dns",
+      "commit": "35262c7fda4f",
+      "log": "Run 7: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=35262c7fda4f conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-7",
+      "family": "dns",
+      "commit": "d0dae9372501",
+      "log": "Run 8: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=d0dae9372501 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-8",
+      "family": "dns",
+      "commit": "bb30b621a4ba",
+      "log": "Run 9: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=bb30b621a4ba conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-9",
+      "family": "dns",
+      "commit": "0ec932c1f8c0",
+      "log": "Run 10: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=0ec932c1f8c0 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-10",
+      "family": "dns",
+      "commit": "f9b0d4d19c67",
+      "log": "Run 11: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=f9b0d4d19c67 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-dns-11",
+      "family": "dns",
+      "commit": "04586b658fc7",
+      "log": "Run 12: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=04586b658fc7 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-train-timeout-pass-0",
+      "family": "timeout-pass",
+      "commit": "0d9974d47346",
+      "log": "Run 1: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=0d9974d47346 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-1",
+      "family": "timeout-pass",
+      "commit": "f5ca3bf308d2",
+      "log": "Run 2: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=f5ca3bf308d2 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-2",
+      "family": "timeout-pass",
+      "commit": "9141747982b3",
+      "log": "Run 3: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=9141747982b3 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-3",
+      "family": "timeout-pass",
+      "commit": "81e927c8372d",
+      "log": "Run 4: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=81e927c8372d conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-4",
+      "family": "timeout-pass",
+      "commit": "3258def11122",
+      "log": "Run 5: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=3258def11122 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-5",
+      "family": "timeout-pass",
+      "commit": "04acc72180e7",
+      "log": "Run 6: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=04acc72180e7 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-6",
+      "family": "timeout-pass",
+      "commit": "99990834eb3f",
+      "log": "Run 7: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=99990834eb3f conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-7",
+      "family": "timeout-pass",
+      "commit": "89ad4f95b063",
+      "log": "Run 8: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=89ad4f95b063 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-8",
+      "family": "timeout-pass",
+      "commit": "a6237af33f31",
+      "log": "Run 9: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=a6237af33f31 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-9",
+      "family": "timeout-pass",
+      "commit": "cf279344391d",
+      "log": "Run 10: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=cf279344391d conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-10",
+      "family": "timeout-pass",
+      "commit": "fe5cba0e821a",
+      "log": "Run 11: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=fe5cba0e821a conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-pass-11",
+      "family": "timeout-pass",
+      "commit": "06814679b9a1",
+      "log": "Run 12: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=06814679b9a1 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-0",
+      "family": "socket-pass",
+      "commit": "71d4ffcd34f6",
+      "log": "Run 1: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=71d4ffcd34f6 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-1",
+      "family": "socket-pass",
+      "commit": "e0daac28ba79",
+      "log": "Run 2: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=e0daac28ba79 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-2",
+      "family": "socket-pass",
+      "commit": "ff4575591752",
+      "log": "Run 3: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=ff4575591752 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-3",
+      "family": "socket-pass",
+      "commit": "256510c77a1f",
+      "log": "Run 4: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=256510c77a1f conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-4",
+      "family": "socket-pass",
+      "commit": "09b86d671145",
+      "log": "Run 5: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=09b86d671145 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-5",
+      "family": "socket-pass",
+      "commit": "df7c53fe126a",
+      "log": "Run 6: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=df7c53fe126a conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-6",
+      "family": "socket-pass",
+      "commit": "e4da0a3993e1",
+      "log": "Run 7: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=e4da0a3993e1 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-7",
+      "family": "socket-pass",
+      "commit": "36ff75fb48c3",
+      "log": "Run 8: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=36ff75fb48c3 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-8",
+      "family": "socket-pass",
+      "commit": "7b1f852a75da",
+      "log": "Run 9: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=7b1f852a75da conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-9",
+      "family": "socket-pass",
+      "commit": "4e2f654a7740",
+      "log": "Run 10: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=4e2f654a7740 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-10",
+      "family": "socket-pass",
+      "commit": "7615b0d62a1b",
+      "log": "Run 11: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=7615b0d62a1b conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-socket-pass-11",
+      "family": "socket-pass",
+      "commit": "25f564c2dd2e",
+      "log": "Run 12: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=25f564c2dd2e conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-train-timeout-stale-0",
+      "family": "timeout-stale",
+      "commit": "dc8b247ecae9",
+      "log": "Run 1: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=dc8b247ecae9 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-1",
+      "family": "timeout-stale",
+      "commit": "e4e918ded48a",
+      "log": "Run 2: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=e4e918ded48a conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-2",
+      "family": "timeout-stale",
+      "commit": "aa7cf527e5bb",
+      "log": "Run 3: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=aa7cf527e5bb conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-3",
+      "family": "timeout-stale",
+      "commit": "c33541572772",
+      "log": "Run 4: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=c33541572772 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-4",
+      "family": "timeout-stale",
+      "commit": "d119ed34b3ca",
+      "log": "Run 5: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=d119ed34b3ca conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-5",
+      "family": "timeout-stale",
+      "commit": "ab3e1758fae3",
+      "log": "Run 6: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=ab3e1758fae3 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-6",
+      "family": "timeout-stale",
+      "commit": "e9e5b7abc6b7",
+      "log": "Run 7: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=e9e5b7abc6b7 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-7",
+      "family": "timeout-stale",
+      "commit": "85ed70a2d316",
+      "log": "Run 8: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=85ed70a2d316 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-8",
+      "family": "timeout-stale",
+      "commit": "efe3091291cf",
+      "log": "Run 9: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=efe3091291cf conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-9",
+      "family": "timeout-stale",
+      "commit": "b517845f7286",
+      "log": "Run 10: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=b517845f7286 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-10",
+      "family": "timeout-stale",
+      "commit": "0a7e6244c43a",
+      "log": "Run 11: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=0a7e6244c43a conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-timeout-stale-11",
+      "family": "timeout-stale",
+      "commit": "f24d17103c0c",
+      "log": "Run 12: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=f24d17103c0c conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-0",
+      "family": "opaque",
+      "commit": "c72f047c486a",
+      "log": "Run 1: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=c72f047c486a conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-1",
+      "family": "opaque",
+      "commit": "e3705ed547b8",
+      "log": "Run 2: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=e3705ed547b8 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-2",
+      "family": "opaque",
+      "commit": "f2f2f868f2b5",
+      "log": "Run 3: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=f2f2f868f2b5 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-3",
+      "family": "opaque",
+      "commit": "62bbdcae4615",
+      "log": "Run 4: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=62bbdcae4615 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-4",
+      "family": "opaque",
+      "commit": "05fb32b0cc40",
+      "log": "Run 5: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=05fb32b0cc40 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-5",
+      "family": "opaque",
+      "commit": "e532badee069",
+      "log": "Run 6: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=e532badee069 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-6",
+      "family": "opaque",
+      "commit": "dc04ccd3cdae",
+      "log": "Run 7: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=dc04ccd3cdae conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-7",
+      "family": "opaque",
+      "commit": "65881495385f",
+      "log": "Run 8: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=65881495385f conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-8",
+      "family": "opaque",
+      "commit": "37352f764400",
+      "log": "Run 9: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=37352f764400 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-9",
+      "family": "opaque",
+      "commit": "4c4f406099c8",
+      "log": "Run 10: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=4c4f406099c8 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-10",
+      "family": "opaque",
+      "commit": "677e577fa495",
+      "log": "Run 11: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=677e577fa495 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-train-opaque-11",
+      "family": "opaque",
+      "commit": "ea7c7f37a460",
+      "log": "Run 12: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=ea7c7f37a460 conclusion=failure",
+      "expected": "escalate"
+    }
+  ],
+  "validation": [
+    {
+      "id": "ci-validation-undefined-0",
+      "family": "undefined",
+      "commit": "37e8db5b3524",
+      "log": "Run 1: checking application\nundefined: BuildConfig\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=37e8db5b3524 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-validation-undefined-1",
+      "family": "undefined",
+      "commit": "09defe190f04",
+      "log": "Run 2: checking application\nundefined: BuildConfig\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=09defe190f04 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-validation-rate-limit-0",
+      "family": "rate-limit",
+      "commit": "a0b33189d720",
+      "log": "Run 1: checking application\n429 Too Many Requests from registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=a0b33189d720 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-validation-rate-limit-1",
+      "family": "rate-limit",
+      "commit": "a01c356ac8a2",
+      "log": "Run 2: checking application\n429 Too Many Requests from registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=a01c356ac8a2 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-validation-busy-pass-0",
+      "family": "busy-pass",
+      "commit": "006170e9476f",
+      "log": "Run 1: checking application\nEBUSY: resource busy or locked\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=006170e9476f conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-validation-busy-pass-1",
+      "family": "busy-pass",
+      "commit": "985383fb71be",
+      "log": "Run 2: checking application\nEBUSY: resource busy or locked\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=985383fb71be conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-validation-opaque-stale-0",
+      "family": "opaque-stale",
+      "commit": "adc3029f1ce1",
+      "log": "Run 1: checking application\nstep killed unexpectedly\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=adc3029f1ce1 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-validation-opaque-stale-1",
+      "family": "opaque-stale",
+      "commit": "0bf870e51b7c",
+      "log": "Run 2: checking application\nstep killed unexpectedly\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=0bf870e51b7c conclusion=failure",
+      "expected": "escalate"
+    }
+  ],
+  "test": [
+    {
+      "id": "ci-test-coverage-0",
+      "family": "coverage",
+      "commit": "a2ab34926519",
+      "log": "Run 1: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=a2ab34926519 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-test-coverage-1",
+      "family": "coverage",
+      "commit": "c5c67ade5d52",
+      "log": "Run 2: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=c5c67ade5d52 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-test-syntax-0",
+      "family": "syntax",
+      "commit": "6b2a688b0633",
+      "log": "Run 1: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=6b2a688b0633 conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-test-syntax-1",
+      "family": "syntax",
+      "commit": "2f41aee8ad4a",
+      "log": "Run 2: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=2f41aee8ad4a conclusion=failure",
+      "expected": "advise-repo"
+    },
+    {
+      "id": "ci-test-disk-0",
+      "family": "disk",
+      "commit": "35015288c818",
+      "log": "Run 1: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=35015288c818 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-test-disk-1",
+      "family": "disk",
+      "commit": "f9ca78c92f76",
+      "log": "Run 2: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=f9ca78c92f76 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-test-shutdown-0",
+      "family": "shutdown",
+      "commit": "2c0f0fec4b19",
+      "log": "Run 1: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=2c0f0fec4b19 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-test-shutdown-1",
+      "family": "shutdown",
+      "commit": "1ff108dc6d36",
+      "log": "Run 2: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=1ff108dc6d36 conclusion=failure",
+      "expected": "advise-infra"
+    },
+    {
+      "id": "ci-test-port-pass-0",
+      "family": "port-pass",
+      "commit": "2b6d8e0f0e3d",
+      "log": "Run 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=2b6d8e0f0e3d conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-test-port-pass-1",
+      "family": "port-pass",
+      "commit": "333d88f8ce49",
+      "log": "Run 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=333d88f8ce49 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-test-database-pass-0",
+      "family": "database-pass",
+      "commit": "1e1e5ae2e86a",
+      "log": "Run 1: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=1e1e5ae2e86a conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-test-database-pass-1",
+      "family": "database-pass",
+      "commit": "b576bf89bb59",
+      "log": "Run 2: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=b576bf89bb59 conclusion=success",
+      "expected": "advise-retry"
+    },
+    {
+      "id": "ci-test-port-stale-0",
+      "family": "port-stale",
+      "commit": "b52117601748",
+      "log": "Run 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=b52117601748 conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-test-port-stale-1",
+      "family": "port-stale",
+      "commit": "0937153487bc",
+      "log": "Run 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=0937153487bc conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-test-cleanup-only-0",
+      "family": "cleanup-only",
+      "commit": "958c0e1a311c",
+      "log": "Run 1: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=958c0e1a311c conclusion=failure",
+      "expected": "escalate"
+    },
+    {
+      "id": "ci-test-cleanup-only-1",
+      "family": "cleanup-only",
+      "commit": "d0305a5eb520",
+      "log": "Run 2: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device",
+      "history": "commit=000000000000 conclusion=success\ncommit=d0305a5eb520 conclusion=failure",
+      "expected": "escalate"
+    }
+  ]
+}

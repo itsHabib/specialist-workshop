@@ -1,0 +1,19 @@
+name: Check workshop
+on:
+  push:
+  pull_request:
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - run: node --check static/app.js
+      - run: node --check static/practice.js
+      - run: node --check static/analytics.js
+      - run: node --check static/packages.js
+      - run: git diff --exit-code

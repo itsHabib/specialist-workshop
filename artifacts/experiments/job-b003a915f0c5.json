@@ -1,0 +1,821 @@
+{
+  "run": {
+    "skill_id": "ci-triage",
+    "kind": "evaluate",
+    "model": "base",
+    "checkpoint": null,
+    "iterations": 150,
+    "id": "job-b003a915f0c5",
+    "status": "completed",
+    "created_at": 1789240070.1156712,
+    "progress": 51,
+    "total": 51,
+    "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+    "model_revision": "8b403126fc14f14cfc99bb4cfa72ecbc129ea677",
+    "skill_fingerprint": "c6e65e44f96acafff3592e62155b53e1cee376417fd8058967ebe9f47eac3b86",
+    "test_fingerprint": "1a0f19e8c4087c96c6e9b345fc77bd08802642e1ae7e736397bcf2999e1eb7ff",
+    "training_count": 240,
+    "validation_count": 9,
+    "started_at": 1789240070.260115,
+    "metrics": {
+      "count": 51,
+      "accuracy": 0.058823529411764705,
+      "evidence_rate": 0.0,
+      "accepted_rate": 0.0,
+      "median_ms": 1718
+    },
+    "finished_at": 1789240157.825598,
+    "evidence_mode": "quote"
+  },
+  "rows": [
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-00",
+      "source": "dossier-26001022393 cargo fmt --check diff",
+      "expected": "real-break",
+      "elapsed_ms": 980,
+      "input_tokens": 1235
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is not properly configured or the runner is outdated.\"\n}\n```",
+      "id": "wb-01",
+      "source": "dossier-26001158306 cargo fmt --check diff (different file)",
+      "expected": "real-break",
+      "elapsed_ms": 715,
+      "input_tokens": 1138
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-02",
+      "source": "dossier-26001505045 cargo fmt --check diff",
+      "expected": "real-break",
+      "elapsed_ms": 838,
+      "input_tokens": 1234
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-03",
+      "source": "dossier-26001690858 clippy redundant_closure -D warnings",
+      "expected": "real-break",
+      "elapsed_ms": 2295,
+      "input_tokens": 1329
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"the trait bound `store::NewPhase: Default` is not satisfied\"\n}\n```",
+      "id": "wb-04",
+      "source": "dossier-26011017976 compile E0277 Default not implemented",
+      "expected": "real-break",
+      "elapsed_ms": 3038,
+      "input_tokens": 2844
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-05",
+      "source": "dossier-26378673223 clippy too_long_first_doc_paragraph",
+      "expected": "real-break",
+      "elapsed_ms": 1662,
+      "input_tokens": 1739
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"missing field `test_list_call_counter` in initializer of `S3Config`\"\n}\n```",
+      "id": "wb-06",
+      "source": "dossier-26799913495 compile E0063 missing field test_list_call_counter",
+      "expected": "real-break",
+      "elapsed_ms": 2391,
+      "input_tokens": 2842
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"flake\",\n  \"evidence\": \"If the same commit ran unchanged, a critical vulnerability would be found, marking the check as failed.\"\n}\n```",
+      "id": "wb-07",
+      "source": "dossier-27232064142 cargo-audit serde_yml unsound (security-gate edge)",
+      "expected": "real-break",
+      "elapsed_ms": 1146,
+      "input_tokens": 933
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"If the same commit ran unchanged, the `node --trace-deprecation ...` warning would be triggered.\"\n}\n```",
+      "id": "wb-08",
+      "source": "gate-28762855981 setup-go go.mod does not exist",
+      "expected": "infra",
+      "elapsed_ms": 1752,
+      "input_tokens": 1505
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"Either ANTHROPIC_API_KEY, CLAUDE_CODE_OAUTH_TOKEN, or workload identity federation (ANTHROPIC_FEDERATION_RULE_ID and ANTHROPIC_ORGANIZATION_ID) is required when using direct Anthropic API.\"\n}\n```",
+      "id": "wb-09",
+      "source": "gate-28762900323 claude-code installation token exchange (0 bytes)",
+      "expected": "infra",
+      "elapsed_ms": 2181,
+      "input_tokens": 1594
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-10",
+      "source": "gate-28767609335 golangci-lint config schema invalid (version-drift edge)",
+      "expected": "real-break",
+      "elapsed_ms": 1534,
+      "input_tokens": 1050
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment, credentials, runner, or dependency registry needs repair.\"\n}\n```",
+      "id": "wb-11",
+      "source": "huddle-26007231213 claude-code missing ANTHROPIC_API_KEY / internal error",
+      "expected": "infra",
+      "elapsed_ms": 2246,
+      "input_tokens": 2522
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is not properly configured or the credentials are incorrect.\"\n}\n```",
+      "id": "wb-12",
+      "source": "huddle-26011328903 claude-code token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1609,
+      "input_tokens": 1614
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment, credentials, runner, or dependency registry needs repair.\"\n}\n```",
+      "id": "wb-13",
+      "source": "huddle-26320041557 claude-code token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1725,
+      "input_tokens": 1653
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment or credentials need repair.\"\n}\n```",
+      "id": "wb-14",
+      "source": "roxiq-26729840206 go test FAIL internal/scraper",
+      "expected": "real-break",
+      "elapsed_ms": 1800,
+      "input_tokens": 1890
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"If the same commit ran unchanged, the filtered out cross-city division events would still occur.\"\n}\n```",
+      "id": "wb-15",
+      "source": "roxiq-27112905851 go test overall FAIL (scraper ok, fail elsewhere)",
+      "expected": "real-break",
+      "elapsed_ms": 2077,
+      "input_tokens": 1891
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-16",
+      "source": "roxiq-27113387416 revive unused-parameter lint",
+      "expected": "real-break",
+      "elapsed_ms": 1461,
+      "input_tokens": 1364
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-17",
+      "source": "roxiq-27561620172 terraform registry 429 provider install",
+      "expected": "infra",
+      "elapsed_ms": 2072,
+      "input_tokens": 1668
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-18",
+      "source": "roxiq-28219476298 postgres \"database system is starting up\" race",
+      "expected": "flake",
+      "elapsed_ms": 1813,
+      "input_tokens": 1743
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"Transient test failure could pass on an unchanged retry.\"\n}\n```",
+      "id": "wb-19",
+      "source": "roxiq-28336714025 postgres socket not ready race",
+      "expected": "flake",
+      "elapsed_ms": 1718,
+      "input_tokens": 1717
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"If the same commit ran unchanged, the psql error would occur.\"\n}\n```",
+      "id": "wb-20",
+      "source": "roxiq-28550369287 postgres socket not ready (after image pull)",
+      "expected": "flake",
+      "elapsed_ms": 1712,
+      "input_tokens": 1654
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment or dependencies need repair.\"\n}\n```",
+      "id": "wb-21",
+      "source": "ship-27113727014 coverage branches 84.68%<85% cursor-runner",
+      "expected": "real-break",
+      "elapsed_ms": 3114,
+      "input_tokens": 3736
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment, credentials, runner, or dependency registry needs repair.\"\n}\n```",
+      "id": "wb-22",
+      "source": "ship-27285635802 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1668,
+      "input_tokens": 1649
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is not properly configured for the current environment.\"\n}\n```",
+      "id": "wb-23",
+      "source": "ship-27323698168 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1625,
+      "input_tokens": 1600
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-24",
+      "source": "ship-27396066529 prettier format-check e2e",
+      "expected": "real-break",
+      "elapsed_ms": 1099,
+      "input_tokens": 718
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is not properly configured or the runner is not set up correctly.\"\n}\n```",
+      "id": "wb-25",
+      "source": "ship-27407769875 windows vitest run failed, tests passed",
+      "expected": "flake",
+      "elapsed_ms": 2053,
+      "input_tokens": 1885
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment, credentials, runner, or dependency registry needs repair.\"\n}\n```",
+      "id": "wb-26",
+      "source": "ship-27809984223 prettier format-check 3 files",
+      "expected": "real-break",
+      "elapsed_ms": 2456,
+      "input_tokens": 2357
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-27",
+      "source": "ship-27810529820 prettier format-check",
+      "expected": "real-break",
+      "elapsed_ms": 1054,
+      "input_tokens": 704
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is not properly configured or the test coverage is not enabled.\"\n}\n```",
+      "id": "wb-28",
+      "source": "ship-27811062325 coverage lines 89.98%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2929,
+      "input_tokens": 3411
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is outdated and requires repair.\"\n}\n```",
+      "id": "wb-29",
+      "source": "ship-27831159382 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2251,
+      "input_tokens": 2975
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is outdated and requires repair.\"\n}\n```",
+      "id": "wb-30",
+      "source": "ship-27832268156 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2463,
+      "input_tokens": 3012
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is outdated and requires repair.\"\n}\n```",
+      "id": "wb-31",
+      "source": "ship-27856703101 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2390,
+      "input_tokens": 3013
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"A code, test, config, or dependency change in the repository is needed.\"\n}\n```",
+      "id": "wb-32",
+      "source": "ship-28466478958 eslint 6 problems max-params/type-imports",
+      "expected": "real-break",
+      "elapsed_ms": 1311,
+      "input_tokens": 1175
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"Transient test or service-startup failure could pass on an unchanged retry\"\n}\n```",
+      "id": "wb-33",
+      "source": "ship-28494955622 coverage test-harness",
+      "expected": "real-break",
+      "elapsed_ms": 2638,
+      "input_tokens": 3146
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is outdated and requires a Node.js upgrade.\"\n}\n```",
+      "id": "wb-34",
+      "source": "ship-28561988262 coverage core (sdk-throw fixture noise present)",
+      "expected": "real-break",
+      "elapsed_ms": 1608,
+      "input_tokens": 1990
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is not properly configured or the test setup is incorrect.\"\n}\n```",
+      "id": "wb-35",
+      "source": "ship-28566379823 AssertionError expected 'failed' to be 'succeeded' service.test.ts",
+      "expected": "real-break",
+      "elapsed_ms": 3196,
+      "input_tokens": 4174
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"level\": 50,\n  \"time\": 1782968676692,\n  \"pid\": 4965,\n  \"hostname\": \"runnervmkkn4f\",\n  \"workflowRunId\": \"wf_00000000000000000000000001\",\n  \"phase\": \"ph_00000000000000000000000001\",\n  \"failureCategory\": \"sdk-throw\",\n  \"msg\": \"run failed\"\n}\n```",
+      "id": "wb-36",
+      "source": "ship-28566698485 coverage branches 84.91%<85% core",
+      "expected": "real-break",
+      "elapsed_ms": 4388,
+      "input_tokens": 3896
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The workflow file must exist and have identical content to the version on the repository's default branch. If you're seeing this on a PR when you first add a code review workflow file to your repository, this is normal and you should ignore this error.\"\n}\n```",
+      "id": "wb-37",
+      "source": "ship-28595211551 claude post-buffered-inline-comments empty key",
+      "expected": "infra",
+      "elapsed_ms": 2106,
+      "input_tokens": 1554
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"real-break\",\n  \"evidence\": \"Either ANTHROPIC_API_KEY, CLAUDE_CODE_OAUTH_TOKEN, or workload identity federation (ANTHROPIC_FEDERATION_RULE_ID and ANTHROPIC_ORGANIZATION_ID) is required when using direct Anthropic API.\"\n}\n```",
+      "id": "wb-38",
+      "source": "triage-28807014654 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 2102,
+      "input_tokens": 1590
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The connection to the PostgreSQL server on the specified socket failed, indicating a problem with the database server's availability.\"\n}\n```",
+      "id": "wb-39",
+      "source": "wellness-ai-27560353270 postgres db-test shutting down / not ready",
+      "expected": "flake",
+      "elapsed_ms": 1733,
+      "input_tokens": 1842
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is not configured to handle GitHub Actions on non-human actors.\"\n}\n```",
+      "id": "wb-40",
+      "source": "wellness-ai-27561505809 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1734,
+      "input_tokens": 1400
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "The CI environment is not reachable due to a network issue."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\":\"infra\",\"evidence\":\"The CI environment is not reachable due to a network issue.\"}",
+      "id": "wb-41",
+      "source": "isolated npm ETIMEDOUT",
+      "expected": "infra",
+      "elapsed_ms": 459,
+      "input_tokens": 173
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "A transient test or service-startup failure could pass on an unchanged retry."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\":\"infra\",\"evidence\":\"A transient test or service-startup failure could pass on an unchanged retry.\"}",
+      "id": "wb-42",
+      "source": "isolated test assertion",
+      "expected": "real-break",
+      "elapsed_ms": 464,
+      "input_tokens": 181
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is experiencing a transient network issue or rate limit.\"\n}\n```",
+      "id": "wb-43",
+      "source": "isolated npm 429",
+      "expected": "infra",
+      "elapsed_ms": 573,
+      "input_tokens": 178
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "Test timeout of 30000ms exceeded on attempt 1; passed on retry."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\":\"infra\",\"evidence\":\"Test timeout of 30000ms exceeded on attempt 1; passed on retry.\"}",
+      "id": "wb-44",
+      "source": "isolated timeout-passed-on-retry",
+      "expected": "flake",
+      "elapsed_ms": 628,
+      "input_tokens": 176
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "A code, test, config, or dependency change in the repository is needed."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\":\"infra\",\"evidence\":\"A code, test, config, or dependency change in the repository is needed.\"}",
+      "id": "wb-45",
+      "source": "isolated type error",
+      "expected": "real-break",
+      "elapsed_ms": 596,
+      "input_tokens": 175
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "The self-hosted runner received a shutdown signal and disconnected."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\":\"infra\",\"evidence\":\"The self-hosted runner received a shutdown signal and disconnected.\"}",
+      "id": "wb-46",
+      "source": "isolated runner shutdown",
+      "expected": "infra",
+      "elapsed_ms": 512,
+      "input_tokens": 168
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "The CI environment, credentials, runner, or dependency registry needs repair."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\":\"infra\",\"evidence\":\"The CI environment, credentials, runner, or dependency registry needs repair.\"}",
+      "id": "wb-47",
+      "source": "isolated coverage threshold",
+      "expected": "real-break",
+      "elapsed_ms": 518,
+      "input_tokens": 174
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The CI environment is not configured to handle the visibility of elements correctly.\"\n}\n```",
+      "id": "wb-48",
+      "source": "isolated playwright retry",
+      "expected": "flake",
+      "elapsed_ms": 611,
+      "input_tokens": 175
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "The CI environment, credentials, runner, or dependency registry needs repair."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\":\"infra\",\"evidence\":\"The CI environment, credentials, runner, or dependency registry needs repair.\"}",
+      "id": "wb-49",
+      "source": "isolated git resolve host",
+      "expected": "infra",
+      "elapsed_ms": 495,
+      "input_tokens": 179
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "A transient test or service-startup failure could pass on an unchanged retry."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\":\"infra\",\"evidence\":\"A transient test or service-startup failure could pass on an unchanged retry.\"}",
+      "id": "wb-50",
+      "source": "isolated assertion length",
+      "expected": "real-break",
+      "elapsed_ms": 508,
+      "input_tokens": 171
+    }
+  ]
+}

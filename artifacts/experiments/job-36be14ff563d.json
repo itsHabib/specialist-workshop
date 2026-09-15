@@ -1,0 +1,951 @@
+{
+  "run": {
+    "skill_id": "ci-triage",
+    "kind": "evaluate",
+    "model": "specialist",
+    "checkpoint": "job-79523af5d404",
+    "iterations": 150,
+    "id": "job-36be14ff563d",
+    "status": "completed",
+    "created_at": 1789240585.6169631,
+    "progress": 51,
+    "total": 51,
+    "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+    "model_revision": "8b403126fc14f14cfc99bb4cfa72ecbc129ea677",
+    "skill_fingerprint": "db48dc6e83a8110605b72dd41024331893d9dc92c37755ba7a34d035364b30f3",
+    "test_fingerprint": "1a0f19e8c4087c96c6e9b345fc77bd08802642e1ae7e736397bcf2999e1eb7ff",
+    "training_count": 240,
+    "validation_count": 9,
+    "grader_version": "v2-label-schema-separated",
+    "prompt_fingerprint": "eef0cbd50fa5996b6ab5c5267abfd2ed1d07675c3eec03984f87977e7364a5d9",
+    "inference_settings": {
+      "temperature": 0,
+      "max_tokens": 220,
+      "seed": 17
+    },
+    "started_at": 1789240585.71412,
+    "metrics": {
+      "count": 51,
+      "accuracy": 0.09803921568627451,
+      "evidence_rate": 0.47058823529411764,
+      "accepted_rate": 0.058823529411764705,
+      "schema_rate": 0.5294117647058824,
+      "raw_json_rate": 0.7254901960784313,
+      "median_ms": 1295
+    },
+    "finished_at": 1789240657.195144,
+    "evidence_mode": "line"
+  },
+  "rows": [
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"{\"{\" \"line\":   3 \"  3  ",
+      "raw_json_valid": false,
+      "id": "wb-00",
+      "source": "dossier-26001022393 cargo fmt --check diff",
+      "expected": "real-break",
+      "elapsed_ms": 790,
+      "input_tokens": 1426
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "-            ]"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-01",
+      "source": "dossier-26001158306 cargo fmt --check diff (different file)",
+      "expected": "real-break",
+      "elapsed_ms": 650,
+      "input_tokens": 1328
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "line\":      ",
+      "raw_json_valid": false,
+      "id": "wb-02",
+      "source": "dossier-26001505045 cargo fmt --check diff",
+      "expected": "real-break",
+      "elapsed_ms": 654,
+      "input_tokens": 1425
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "-            vec!["
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-03",
+      "source": "dossier-26001690858 clippy redundant_closure -D warnings",
+      "expected": "real-break",
+      "elapsed_ms": 1533,
+      "input_tokens": 1605
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "Cache restored successfully"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-04",
+      "source": "dossier-26011017976 compile E0277 Default not implemented",
+      "expected": "real-break",
+      "elapsed_ms": 2324,
+      "input_tokens": 3214
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "  - CARGO_HOME"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-05",
+      "source": "dossier-26378673223 clippy too_long_first_doc_paragraph",
+      "expected": "real-break",
+      "elapsed_ms": 1235,
+      "input_tokens": 1940
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "  - /home/runner/work/dossier/dossier/Cargo.lock"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-06",
+      "source": "dossier-26799913495 compile E0063 missing field test_list_call_counter",
+      "expected": "real-break",
+      "elapsed_ms": 2059,
+      "input_tokens": 3223
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "Since name constraints are restrictions on otherwise properly-issued certificates, this bug is reachable only after signature verification and requires misissuance to exploit."
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-07",
+      "source": "dossier-27232064142 cargo-audit serde_yml unsound (security-gate edge)",
+      "expected": "real-break",
+      "elapsed_ms": 774,
+      "input_tokens": 1140
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "Initialized empty Git repository in /home/runner/work/gate/gate/.git/"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-08",
+      "source": "gate-28762855981 setup-go go.mod does not exist",
+      "expected": "infra",
+      "elapsed_ms": 1156,
+      "input_tokens": 1695
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"",
+      "raw_json_valid": false,
+      "id": "wb-09",
+      "source": "gate-28762900323 claude-code installation token exchange (0 bytes)",
+      "expected": "infra",
+      "elapsed_ms": 1629,
+      "input_tokens": 1798
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"",
+      "raw_json_valid": false,
+      "id": "wb-10",
+      "source": "gate-28767609335 golangci-lint config schema invalid (version-drift edge)",
+      "expected": "real-break",
+      "elapsed_ms": 1164,
+      "input_tokens": 1196
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "  \"is_error\": true,"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-11",
+      "source": "huddle-26007231213 claude-code missing ANTHROPIC_API_KEY / internal error",
+      "expected": "infra",
+      "elapsed_ms": 2033,
+      "input_tokens": 2732
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "error: Claude Code returned an error result: Failed to authenticate. API Error: 401 Invalid bearer token"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-12",
+      "source": "huddle-26011328903 claude-code token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1865,
+      "input_tokens": 1819
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "      at readMessages (/home/runner/work/_actions/anthropics/claude-code-action/v1/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs:60:19184)"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-13",
+      "source": "huddle-26320041557 claude-code token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1651,
+      "input_tokens": 1858
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"",
+      "raw_json_valid": false,
+      "id": "wb-14",
+      "source": "roxiq-26729840206 go test FAIL internal/scraper",
+      "expected": "real-break",
+      "elapsed_ms": 1674,
+      "input_tokens": 2104
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"3333333 ",
+      "raw_json_valid": false,
+      "id": "wb-15",
+      "source": "roxiq-27112905851 go test overall FAIL (scraper ok, fail elsewhere)",
+      "expected": "real-break",
+      "elapsed_ms": 1773,
+      "input_tokens": 2105
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "go: downloading github.com/davecgh/go-spew v1.1.1"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3} ",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-16",
+      "source": "roxiq-27113387416 revive unused-parameter lint",
+      "expected": "real-break",
+      "elapsed_ms": 1270,
+      "input_tokens": 1554
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "\u001b[0m\u001b[1mInitializing provider plugins...\u001b[0m"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-17",
+      "source": "roxiq-27561620172 terraform registry 429 provider install",
+      "expected": "infra",
+      "elapsed_ms": 1448,
+      "input_tokens": 1876
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "line\":   3 \"{\"{\"\n \"line\":  3}",
+      "raw_json_valid": false,
+      "id": "wb-18",
+      "source": "roxiq-28219476298 postgres \"database system is starting up\" race",
+      "expected": "flake",
+      "elapsed_ms": 1519,
+      "input_tokens": 1973
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": " f63c7a8df82b Extracting [========================>                          ]  54.59MB/111.3MB"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3} ",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-19",
+      "source": "roxiq-28336714025 postgres socket not ready race",
+      "expected": "flake",
+      "elapsed_ms": 1819,
+      "input_tokens": 1947
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": " f63c7a8df82b Download complete "
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-20",
+      "source": "roxiq-28550369287 postgres socket not ready (after image pull)",
+      "expected": "flake",
+      "elapsed_ms": 1520,
+      "input_tokens": 1901
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "  [stack]: [Getter/Setter],"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-21",
+      "source": "ship-27113727014 coverage branches 84.68%<85% cursor-runner",
+      "expected": "real-break",
+      "elapsed_ms": 2993,
+      "input_tokens": 4122
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": ""
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-22",
+      "source": "ship-27285635802 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1295,
+      "input_tokens": 1854
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "error: Claude Code returned an error result: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/settings/usage"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-23",
+      "source": "ship-27323698168 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1275,
+      "input_tokens": 1805
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"{\"{\"{\" \"{\"",
+      "raw_json_valid": false,
+      "id": "wb-24",
+      "source": "ship-27396066529 prettier format-check e2e",
+      "expected": "real-break",
+      "elapsed_ms": 660,
+      "input_tokens": 910
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": ""
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-25",
+      "source": "ship-27407769875 windows vitest run failed, tests passed",
+      "expected": "flake",
+      "elapsed_ms": 1426,
+      "input_tokens": 2108
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "+ eslint 9.39.4"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-26",
+      "source": "ship-27809984223 prettier format-check 3 files",
+      "expected": "real-break",
+      "elapsed_ms": 1993,
+      "input_tokens": 2773
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "\u001b[36;1mmake check\u001b[0m"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-27",
+      "source": "ship-27810529820 prettier format-check",
+      "expected": "real-break",
+      "elapsed_ms": 731,
+      "input_tokens": 896
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": " errors.ts         |     100 |      100 |     100 |     100 |                                                                                                 "
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-28",
+      "source": "ship-27811062325 coverage lines 89.98%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2377,
+      "input_tokens": 3705
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "[command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-29",
+      "source": "ship-27831159382 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2250,
+      "input_tokens": 3227
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3! ",
+      "raw_json_valid": false,
+      "id": "wb-30",
+      "source": "ship-27832268156 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2269,
+      "input_tokens": 3264
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3! ",
+      "raw_json_valid": false,
+      "id": "wb-31",
+      "source": "ship-27856703101 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2036,
+      "input_tokens": 3265
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "\u001b[36;1mmake check\u001b[0m"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-32",
+      "source": "ship-28466478958 eslint 6 problems max-params/type-imports",
+      "expected": "real-break",
+      "elapsed_ms": 970,
+      "input_tokens": 1429
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "[command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local --name-only --get-regexp core\\.sshCommand"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-33",
+      "source": "ship-28494955622 coverage test-harness",
+      "expected": "real-break",
+      "elapsed_ms": 2323,
+      "input_tokens": 3408
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": ""
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-34",
+      "source": "ship-28561988262 coverage core (sdk-throw fixture noise present)",
+      "expected": "real-break",
+      "elapsed_ms": 2182,
+      "input_tokens": 2205
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "line\": 3 \"-break\", \"line\":     3 \"flake\", \"line\",33 \"-break \"",
+      "raw_json_valid": false,
+      "id": "wb-35",
+      "source": "ship-28566379823 AssertionError expected 'failed' to be 'succeeded' service.test.ts",
+      "expected": "real-break",
+      "elapsed_ms": 2954,
+      "input_tokens": 4481
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "line\": 33}",
+      "raw_json_valid": false,
+      "id": "wb-36",
+      "source": "ship-28566698485 coverage branches 84.91%<85% core",
+      "expected": "real-break",
+      "elapsed_ms": 3003,
+      "input_tokens": 4203
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\":!  3 \"line\": 3}",
+      "raw_json_valid": false,
+      "id": "wb-37",
+      "source": "ship-28595211551 claude post-buffered-inline-comments empty key",
+      "expected": "infra",
+      "elapsed_ms": 1292,
+      "input_tokens": 1750
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"",
+      "raw_json_valid": false,
+      "id": "wb-38",
+      "source": "triage-28807014654 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1169,
+      "input_tokens": 1794
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": " 3709d6f016e4 Extracting [================>                                  ]  33.98MB/105.2MB"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-39",
+      "source": "wellness-ai-27560353270 postgres db-test shutting down / not ready",
+      "expected": "flake",
+      "elapsed_ms": 1346,
+      "input_tokens": 2072
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "App token successfully obtained"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-40",
+      "source": "wellness-ai-27561505809 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1184,
+      "input_tokens": 1603
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": ""
+      },
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Label or source-line selection is invalid."
+      ],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-41",
+      "source": "isolated npm ETIMEDOUT",
+      "expected": "infra",
+      "elapsed_ms": 337,
+      "input_tokens": 191
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": ""
+      },
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Label or source-line selection is invalid."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-42",
+      "source": "isolated test assertion",
+      "expected": "real-break",
+      "elapsed_ms": 352,
+      "input_tokens": 199
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": ""
+      },
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Label or source-line selection is invalid."
+      ],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-43",
+      "source": "isolated npm 429",
+      "expected": "infra",
+      "elapsed_ms": 347,
+      "input_tokens": 196
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": ""
+      },
+      "valid": false,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Label or source-line selection is invalid."
+      ],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-44",
+      "source": "isolated timeout-passed-on-retry",
+      "expected": "flake",
+      "elapsed_ms": 362,
+      "input_tokens": 194
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": ""
+      },
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Label or source-line selection is invalid."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-45",
+      "source": "isolated type error",
+      "expected": "real-break",
+      "elapsed_ms": 338,
+      "input_tokens": 193
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": ""
+      },
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Label or source-line selection is invalid."
+      ],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-46",
+      "source": "isolated runner shutdown",
+      "expected": "infra",
+      "elapsed_ms": 354,
+      "input_tokens": 186
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": ""
+      },
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Label or source-line selection is invalid."
+      ],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-47",
+      "source": "isolated coverage threshold",
+      "expected": "real-break",
+      "elapsed_ms": 366,
+      "input_tokens": 192
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": ""
+      },
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Label or source-line selection is invalid."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-48",
+      "source": "isolated playwright retry",
+      "expected": "flake",
+      "elapsed_ms": 365,
+      "input_tokens": 193
+    },
+    {
+      "output": {
+        "bucket": "-break-break333",
+        "evidence": ""
+      },
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Label or source-line selection is invalid."
+      ],
+      "raw": "{\"bucket\": \"-break-break333\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-49",
+      "source": "isolated git resolve host",
+      "expected": "infra",
+      "elapsed_ms": 451,
+      "input_tokens": 197
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": ""
+      },
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Label or source-line selection is invalid."
+      ],
+      "raw": "{\"bucket\": \"flake\", \"line\": 3}",
+      "raw_json_valid": true,
+      "source_line": 3,
+      "id": "wb-50",
+      "source": "isolated assertion length",
+      "expected": "real-break",
+      "elapsed_ms": 377,
+      "input_tokens": 188
+    }
+  ]
+}

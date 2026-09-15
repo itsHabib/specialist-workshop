@@ -1,0 +1,1704 @@
+{
+  "id": "blox-arithmetic",
+  "name": "Blox arithmetic screen",
+  "description": "Check explicit time and distance arithmetic; escalate missing quantities. Synthetic controlled transfer experiment.",
+  "instructions": "Check only the explicit arithmetic in this prescription. Rest BETWEEN n repetitions occurs n-1 times. A down-and-back trip covers twice the lane length. Include warmup, cooldown and technique when stated. Missing work duration or pace means needs-context. Do not infer ability or coaching safety. Ignore the opaque prescription identifier.",
+  "labels": {
+    "consistent": "Explicit arithmetic agrees with the stated distance and fits the time budget. This is not coaching clearance.",
+    "time-overrun": "The explicitly specified work plus rest exceeds its stated time budget.",
+    "distance-conflict": "The explicitly specified distances disagree with the claimed total distance.",
+    "needs-context": "A required duration, repetition count, or distance is unspecified; do not invent it."
+  },
+  "evidence_mode": "line",
+  "train": [
+    {
+      "id": "math-train-0-consistent",
+      "input": "Prescription 1fa83260\nBenchmark completion 455 seconds; block budget 515 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 455 seconds; block budget 515 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-0-time-overrun",
+      "input": "Prescription de20d536\nBenchmark completion 455 seconds; block budget 454 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 455 seconds; block budget 454 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-0-distance-conflict",
+      "input": "Prescription 7c0aeae2\n5 down-and-back trips on a 15 metre lane; claimed distance 75 metres.",
+      "expected": "distance-conflict",
+      "evidence": "5 down-and-back trips on a 15 metre lane; claimed distance 75 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-0-needs-context",
+      "input": "Prescription 0737e22f\n5 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "5 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-1-consistent",
+      "input": "Prescription 0237e295\n5 repetitions of 55 seconds; 30 seconds rest between repetitions; budget 396 seconds.",
+      "expected": "consistent",
+      "evidence": "5 repetitions of 55 seconds; 30 seconds rest between repetitions; budget 396 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-1-time-overrun",
+      "input": "Prescription e0a3d9fa\n5 repetitions of 55 seconds; 30 seconds rest between repetitions; budget 380 seconds.",
+      "expected": "time-overrun",
+      "evidence": "5 repetitions of 55 seconds; 30 seconds rest between repetitions; budget 380 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-1-distance-conflict",
+      "input": "Prescription f12244e5\n5 down-and-back trips on a 15 metre lane; claimed distance 75 metres.",
+      "expected": "distance-conflict",
+      "evidence": "5 down-and-back trips on a 15 metre lane; claimed distance 75 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-1-needs-context",
+      "input": "Prescription a920b7fa\n5 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "5 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-2-consistent",
+      "input": "Prescription b8c893d8\nBenchmark completion 624 seconds; block budget 684 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 624 seconds; block budget 684 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-2-time-overrun",
+      "input": "Prescription 31e7b8b7\nBenchmark completion 624 seconds; block budget 609 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 624 seconds; block budget 609 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-2-distance-conflict",
+      "input": "Prescription 185ab48a\n8 down-and-back trips on a 20 metre lane; claimed distance 160 metres.",
+      "expected": "distance-conflict",
+      "evidence": "8 down-and-back trips on a 20 metre lane; claimed distance 160 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-2-needs-context",
+      "input": "Prescription 4ca2ae15\n8 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "8 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-3-consistent",
+      "input": "Prescription 1164b847\n8 repetitions of 28 seconds; 30 seconds rest between repetitions; budget 494 seconds.",
+      "expected": "consistent",
+      "evidence": "8 repetitions of 28 seconds; 30 seconds rest between repetitions; budget 494 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-3-time-overrun",
+      "input": "Prescription aa466856\n8 repetitions of 28 seconds; 30 seconds rest between repetitions; budget 374 seconds.",
+      "expected": "time-overrun",
+      "evidence": "8 repetitions of 28 seconds; 30 seconds rest between repetitions; budget 374 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-3-distance-conflict",
+      "input": "Prescription d7d82a66\n8 down-and-back trips on a 20 metre lane; claimed distance 160 metres.",
+      "expected": "distance-conflict",
+      "evidence": "8 down-and-back trips on a 20 metre lane; claimed distance 160 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-3-needs-context",
+      "input": "Prescription fc876289\n8 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "8 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-4-consistent",
+      "input": "Prescription 53e98e78\nBenchmark completion 330 seconds; block budget 390 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 330 seconds; block budget 390 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-4-time-overrun",
+      "input": "Prescription 95e18d94\nBenchmark completion 330 seconds; block budget 329 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 330 seconds; block budget 329 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-4-distance-conflict",
+      "input": "Prescription 25d9efd3\n5 down-and-back trips on a 15 metre lane; claimed distance 75 metres.",
+      "expected": "distance-conflict",
+      "evidence": "5 down-and-back trips on a 15 metre lane; claimed distance 75 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-4-needs-context",
+      "input": "Prescription 90df46c1\n5 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "5 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-5-consistent",
+      "input": "Prescription e524d9b8\n8 repetitions of 88 seconds; 30 seconds rest between repetitions; budget 915 seconds.",
+      "expected": "consistent",
+      "evidence": "8 repetitions of 88 seconds; 30 seconds rest between repetitions; budget 915 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-5-time-overrun",
+      "input": "Prescription 7402b16d\n8 repetitions of 88 seconds; 30 seconds rest between repetitions; budget 899 seconds.",
+      "expected": "time-overrun",
+      "evidence": "8 repetitions of 88 seconds; 30 seconds rest between repetitions; budget 899 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-5-distance-conflict",
+      "input": "Prescription 3a555d27\n8 down-and-back trips on a 20 metre lane; claimed distance 160 metres.",
+      "expected": "distance-conflict",
+      "evidence": "8 down-and-back trips on a 20 metre lane; claimed distance 160 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-5-needs-context",
+      "input": "Prescription 2ccaab12\n8 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "8 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-6-consistent",
+      "input": "Prescription a6429f50\nBenchmark completion 392 seconds; block budget 452 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 392 seconds; block budget 452 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-6-time-overrun",
+      "input": "Prescription 945b1aa9\nBenchmark completion 392 seconds; block budget 377 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 392 seconds; block budget 377 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-6-distance-conflict",
+      "input": "Prescription 25c9e12b\n8 down-and-back trips on a 20 metre lane; claimed distance 160 metres.",
+      "expected": "distance-conflict",
+      "evidence": "8 down-and-back trips on a 20 metre lane; claimed distance 160 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-6-needs-context",
+      "input": "Prescription db4d29f3\n8 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "8 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-7-consistent",
+      "input": "Prescription 0947f5e0\n6 repetitions of 56 seconds; 15 seconds rest between repetitions; budget 471 seconds.",
+      "expected": "consistent",
+      "evidence": "6 repetitions of 56 seconds; 15 seconds rest between repetitions; budget 471 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-7-time-overrun",
+      "input": "Prescription 056bedee\n6 repetitions of 56 seconds; 15 seconds rest between repetitions; budget 396 seconds.",
+      "expected": "time-overrun",
+      "evidence": "6 repetitions of 56 seconds; 15 seconds rest between repetitions; budget 396 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-7-distance-conflict",
+      "input": "Prescription d2544517\n6 down-and-back trips on a 10 metre lane; claimed distance 60 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 down-and-back trips on a 10 metre lane; claimed distance 60 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-7-needs-context",
+      "input": "Prescription fba0a366\n6 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "6 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-8-consistent",
+      "input": "Prescription a9441686\nBenchmark completion 204 seconds; block budget 219 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 204 seconds; block budget 219 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-8-time-overrun",
+      "input": "Prescription 52cd7773\nBenchmark completion 204 seconds; block budget 144 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 204 seconds; block budget 144 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-8-distance-conflict",
+      "input": "Prescription 50051e41\n6 down-and-back trips on a 10 metre lane; claimed distance 60 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 down-and-back trips on a 10 metre lane; claimed distance 60 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-8-needs-context",
+      "input": "Prescription c55c777a\n6 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "6 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-9-consistent",
+      "input": "Prescription 77124ee0\n5 repetitions of 40 seconds; 15 seconds rest between repetitions; budget 320 seconds.",
+      "expected": "consistent",
+      "evidence": "5 repetitions of 40 seconds; 15 seconds rest between repetitions; budget 320 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-9-time-overrun",
+      "input": "Prescription 2ed19d05\n5 repetitions of 40 seconds; 15 seconds rest between repetitions; budget 245 seconds.",
+      "expected": "time-overrun",
+      "evidence": "5 repetitions of 40 seconds; 15 seconds rest between repetitions; budget 245 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-9-distance-conflict",
+      "input": "Prescription b6ba86fe\n5 down-and-back trips on a 10 metre lane; claimed distance 50 metres.",
+      "expected": "distance-conflict",
+      "evidence": "5 down-and-back trips on a 10 metre lane; claimed distance 50 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-9-needs-context",
+      "input": "Prescription cb04cc26\n5 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "5 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-10-consistent",
+      "input": "Prescription 01d69e55\nBenchmark completion 380 seconds; block budget 395 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 380 seconds; block budget 395 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-10-time-overrun",
+      "input": "Prescription b860c270\nBenchmark completion 380 seconds; block budget 379 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 380 seconds; block budget 379 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-10-distance-conflict",
+      "input": "Prescription c4144c95\n4 down-and-back trips on a 10 metre lane; claimed distance 40 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 down-and-back trips on a 10 metre lane; claimed distance 40 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-10-needs-context",
+      "input": "Prescription 66437f76\n4 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "4 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-11-consistent",
+      "input": "Prescription 2062e3f1\n6 repetitions of 59 seconds; 30 seconds rest between repetitions; budget 564 seconds.",
+      "expected": "consistent",
+      "evidence": "6 repetitions of 59 seconds; 30 seconds rest between repetitions; budget 564 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-11-time-overrun",
+      "input": "Prescription de0acdd7\n6 repetitions of 59 seconds; 30 seconds rest between repetitions; budget 489 seconds.",
+      "expected": "time-overrun",
+      "evidence": "6 repetitions of 59 seconds; 30 seconds rest between repetitions; budget 489 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-11-distance-conflict",
+      "input": "Prescription dcf0115a\n6 down-and-back trips on a 15 metre lane; claimed distance 90 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 down-and-back trips on a 15 metre lane; claimed distance 90 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-11-needs-context",
+      "input": "Prescription 2da3e576\n6 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "6 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-12-consistent",
+      "input": "Prescription 4a477a9c\nBenchmark completion 469 seconds; block budget 529 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 469 seconds; block budget 529 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-12-time-overrun",
+      "input": "Prescription c48cb239\nBenchmark completion 469 seconds; block budget 468 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 469 seconds; block budget 468 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-12-distance-conflict",
+      "input": "Prescription 844d3a60\n7 down-and-back trips on a 20 metre lane; claimed distance 140 metres.",
+      "expected": "distance-conflict",
+      "evidence": "7 down-and-back trips on a 20 metre lane; claimed distance 140 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-12-needs-context",
+      "input": "Prescription 617bb353\n7 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "7 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-13-consistent",
+      "input": "Prescription 792f38b4\n6 repetitions of 24 seconds; 15 seconds rest between repetitions; budget 220 seconds.",
+      "expected": "consistent",
+      "evidence": "6 repetitions of 24 seconds; 15 seconds rest between repetitions; budget 220 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-13-time-overrun",
+      "input": "Prescription e943cf04\n6 repetitions of 24 seconds; 15 seconds rest between repetitions; budget 159 seconds.",
+      "expected": "time-overrun",
+      "evidence": "6 repetitions of 24 seconds; 15 seconds rest between repetitions; budget 159 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-13-distance-conflict",
+      "input": "Prescription 5459bab5\n6 down-and-back trips on a 20 metre lane; claimed distance 120 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 down-and-back trips on a 20 metre lane; claimed distance 120 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-13-needs-context",
+      "input": "Prescription a9e5ac31\n6 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "6 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-14-consistent",
+      "input": "Prescription 51ae262d\nBenchmark completion 312 seconds; block budget 313 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 312 seconds; block budget 313 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-14-time-overrun",
+      "input": "Prescription e5b56620\nBenchmark completion 312 seconds; block budget 252 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 312 seconds; block budget 252 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-14-distance-conflict",
+      "input": "Prescription 93994c6a\n4 down-and-back trips on a 15 metre lane; claimed distance 60 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 down-and-back trips on a 15 metre lane; claimed distance 60 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-14-needs-context",
+      "input": "Prescription a9649914\n4 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "4 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-15-consistent",
+      "input": "Prescription e9252365\n4 repetitions of 27 seconds; 30 seconds rest between repetitions; budget 199 seconds.",
+      "expected": "consistent",
+      "evidence": "4 repetitions of 27 seconds; 30 seconds rest between repetitions; budget 199 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-15-time-overrun",
+      "input": "Prescription 11659a58\n4 repetitions of 27 seconds; 30 seconds rest between repetitions; budget 138 seconds.",
+      "expected": "time-overrun",
+      "evidence": "4 repetitions of 27 seconds; 30 seconds rest between repetitions; budget 138 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-15-distance-conflict",
+      "input": "Prescription 48b507f2\n4 down-and-back trips on a 20 metre lane; claimed distance 80 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 down-and-back trips on a 20 metre lane; claimed distance 80 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-15-needs-context",
+      "input": "Prescription 30bb9187\n4 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "4 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-16-consistent",
+      "input": "Prescription 035f9b14\nBenchmark completion 504 seconds; block budget 519 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 504 seconds; block budget 519 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-16-time-overrun",
+      "input": "Prescription f851ecf0\nBenchmark completion 504 seconds; block budget 444 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 504 seconds; block budget 444 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-16-distance-conflict",
+      "input": "Prescription 12067cf2\n8 down-and-back trips on a 15 metre lane; claimed distance 120 metres.",
+      "expected": "distance-conflict",
+      "evidence": "8 down-and-back trips on a 15 metre lane; claimed distance 120 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-16-needs-context",
+      "input": "Prescription 3cce4b66\n8 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "8 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-17-consistent",
+      "input": "Prescription f2a8ff59\n8 repetitions of 69 seconds; 15 seconds rest between repetitions; budget 672 seconds.",
+      "expected": "consistent",
+      "evidence": "8 repetitions of 69 seconds; 15 seconds rest between repetitions; budget 672 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-17-time-overrun",
+      "input": "Prescription 56427b7f\n8 repetitions of 69 seconds; 15 seconds rest between repetitions; budget 597 seconds.",
+      "expected": "time-overrun",
+      "evidence": "8 repetitions of 69 seconds; 15 seconds rest between repetitions; budget 597 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-17-distance-conflict",
+      "input": "Prescription 26bf7458\n8 down-and-back trips on a 20 metre lane; claimed distance 160 metres.",
+      "expected": "distance-conflict",
+      "evidence": "8 down-and-back trips on a 20 metre lane; claimed distance 160 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-17-needs-context",
+      "input": "Prescription 8d2c3325\n8 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "8 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-18-consistent",
+      "input": "Prescription 3b88df3e\nBenchmark completion 208 seconds; block budget 268 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 208 seconds; block budget 268 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-18-time-overrun",
+      "input": "Prescription 12e0d730\nBenchmark completion 208 seconds; block budget 148 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 208 seconds; block budget 148 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-18-distance-conflict",
+      "input": "Prescription 4119a473\n4 down-and-back trips on a 20 metre lane; claimed distance 80 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 down-and-back trips on a 20 metre lane; claimed distance 80 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-18-needs-context",
+      "input": "Prescription 4d1140fc\n4 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "4 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-19-consistent",
+      "input": "Prescription c918f952\n6 repetitions of 22 seconds; 45 seconds rest between repetitions; budget 372 seconds.",
+      "expected": "consistent",
+      "evidence": "6 repetitions of 22 seconds; 45 seconds rest between repetitions; budget 372 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-19-time-overrun",
+      "input": "Prescription 2987c208\n6 repetitions of 22 seconds; 45 seconds rest between repetitions; budget 356 seconds.",
+      "expected": "time-overrun",
+      "evidence": "6 repetitions of 22 seconds; 45 seconds rest between repetitions; budget 356 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-19-distance-conflict",
+      "input": "Prescription 5a913134\n6 down-and-back trips on a 20 metre lane; claimed distance 120 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 down-and-back trips on a 20 metre lane; claimed distance 120 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-19-needs-context",
+      "input": "Prescription 42315d01\n6 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "6 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-20-consistent",
+      "input": "Prescription a18dd00e\nBenchmark completion 304 seconds; block budget 319 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 304 seconds; block budget 319 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-20-time-overrun",
+      "input": "Prescription f2c15226\nBenchmark completion 304 seconds; block budget 303 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 304 seconds; block budget 303 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-20-distance-conflict",
+      "input": "Prescription db35e81e\n4 down-and-back trips on a 10 metre lane; claimed distance 40 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 down-and-back trips on a 10 metre lane; claimed distance 40 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-20-needs-context",
+      "input": "Prescription 16ffe79e\n4 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "4 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-21-consistent",
+      "input": "Prescription ed24acc0\n3 repetitions of 83 seconds; 30 seconds rest between repetitions; budget 369 seconds.",
+      "expected": "consistent",
+      "evidence": "3 repetitions of 83 seconds; 30 seconds rest between repetitions; budget 369 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-21-time-overrun",
+      "input": "Prescription d8d6a1ac\n3 repetitions of 83 seconds; 30 seconds rest between repetitions; budget 249 seconds.",
+      "expected": "time-overrun",
+      "evidence": "3 repetitions of 83 seconds; 30 seconds rest between repetitions; budget 249 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-21-distance-conflict",
+      "input": "Prescription 555cc968\n3 down-and-back trips on a 15 metre lane; claimed distance 45 metres.",
+      "expected": "distance-conflict",
+      "evidence": "3 down-and-back trips on a 15 metre lane; claimed distance 45 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-21-needs-context",
+      "input": "Prescription 4ef66cd0\n3 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "3 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-22-consistent",
+      "input": "Prescription a660c338\nBenchmark completion 372 seconds; block budget 373 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 372 seconds; block budget 373 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-22-time-overrun",
+      "input": "Prescription 7a051d6c\nBenchmark completion 372 seconds; block budget 357 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 372 seconds; block budget 357 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-22-distance-conflict",
+      "input": "Prescription c34dc6a0\n4 down-and-back trips on a 15 metre lane; claimed distance 60 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 down-and-back trips on a 15 metre lane; claimed distance 60 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-22-needs-context",
+      "input": "Prescription eea7043f\n4 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "4 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-23-consistent",
+      "input": "Prescription a6781867\n3 repetitions of 65 seconds; 15 seconds rest between repetitions; budget 285 seconds.",
+      "expected": "consistent",
+      "evidence": "3 repetitions of 65 seconds; 15 seconds rest between repetitions; budget 285 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-23-time-overrun",
+      "input": "Prescription d6145509\n3 repetitions of 65 seconds; 15 seconds rest between repetitions; budget 165 seconds.",
+      "expected": "time-overrun",
+      "evidence": "3 repetitions of 65 seconds; 15 seconds rest between repetitions; budget 165 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-23-distance-conflict",
+      "input": "Prescription aab434e3\n3 down-and-back trips on a 15 metre lane; claimed distance 45 metres.",
+      "expected": "distance-conflict",
+      "evidence": "3 down-and-back trips on a 15 metre lane; claimed distance 45 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-23-needs-context",
+      "input": "Prescription 154c158f\n3 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "3 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-24-consistent",
+      "input": "Prescription 7073e6fd\nBenchmark completion 186 seconds; block budget 246 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 186 seconds; block budget 246 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-24-time-overrun",
+      "input": "Prescription d1e2fdf2\nBenchmark completion 186 seconds; block budget 185 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 186 seconds; block budget 185 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-24-distance-conflict",
+      "input": "Prescription 5d9221e6\n6 down-and-back trips on a 15 metre lane; claimed distance 90 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 down-and-back trips on a 15 metre lane; claimed distance 90 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-24-needs-context",
+      "input": "Prescription 3aa7a735\n6 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "6 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-25-consistent",
+      "input": "Prescription ed0dbe87\n7 repetitions of 88 seconds; 15 seconds rest between repetitions; budget 707 seconds.",
+      "expected": "consistent",
+      "evidence": "7 repetitions of 88 seconds; 15 seconds rest between repetitions; budget 707 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-25-time-overrun",
+      "input": "Prescription ac865cd2\n7 repetitions of 88 seconds; 15 seconds rest between repetitions; budget 646 seconds.",
+      "expected": "time-overrun",
+      "evidence": "7 repetitions of 88 seconds; 15 seconds rest between repetitions; budget 646 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-25-distance-conflict",
+      "input": "Prescription 6b215b93\n7 down-and-back trips on a 15 metre lane; claimed distance 105 metres.",
+      "expected": "distance-conflict",
+      "evidence": "7 down-and-back trips on a 15 metre lane; claimed distance 105 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-25-needs-context",
+      "input": "Prescription e6cc7ab7\n7 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "7 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-26-consistent",
+      "input": "Prescription bb737626\nBenchmark completion 522 seconds; block budget 582 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 522 seconds; block budget 582 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-26-time-overrun",
+      "input": "Prescription 8d214d33\nBenchmark completion 522 seconds; block budget 507 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 522 seconds; block budget 507 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-26-distance-conflict",
+      "input": "Prescription d30d149c\n6 down-and-back trips on a 20 metre lane; claimed distance 120 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 down-and-back trips on a 20 metre lane; claimed distance 120 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-26-needs-context",
+      "input": "Prescription b40b299e\n6 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "6 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-27-consistent",
+      "input": "Prescription 9e0b545f\n4 repetitions of 21 seconds; 30 seconds rest between repetitions; budget 234 seconds.",
+      "expected": "consistent",
+      "evidence": "4 repetitions of 21 seconds; 30 seconds rest between repetitions; budget 234 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-27-time-overrun",
+      "input": "Prescription 4680b15b\n4 repetitions of 21 seconds; 30 seconds rest between repetitions; budget 159 seconds.",
+      "expected": "time-overrun",
+      "evidence": "4 repetitions of 21 seconds; 30 seconds rest between repetitions; budget 159 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-27-distance-conflict",
+      "input": "Prescription 03523a6d\n4 down-and-back trips on a 15 metre lane; claimed distance 60 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 down-and-back trips on a 15 metre lane; claimed distance 60 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-27-needs-context",
+      "input": "Prescription 6278b520\n4 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "4 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-28-consistent",
+      "input": "Prescription 78f1f2be\nBenchmark completion 140 seconds; block budget 141 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 140 seconds; block budget 141 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-28-time-overrun",
+      "input": "Prescription 7a7b6c91\nBenchmark completion 140 seconds; block budget 125 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 140 seconds; block budget 125 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-28-distance-conflict",
+      "input": "Prescription 7f44475a\n7 down-and-back trips on a 20 metre lane; claimed distance 140 metres.",
+      "expected": "distance-conflict",
+      "evidence": "7 down-and-back trips on a 20 metre lane; claimed distance 140 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-28-needs-context",
+      "input": "Prescription 00309eee\n7 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "7 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-29-consistent",
+      "input": "Prescription 070e736b\n7 repetitions of 65 seconds; 45 seconds rest between repetitions; budget 740 seconds.",
+      "expected": "consistent",
+      "evidence": "7 repetitions of 65 seconds; 45 seconds rest between repetitions; budget 740 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-29-time-overrun",
+      "input": "Prescription 434c400d\n7 repetitions of 65 seconds; 45 seconds rest between repetitions; budget 710 seconds.",
+      "expected": "time-overrun",
+      "evidence": "7 repetitions of 65 seconds; 45 seconds rest between repetitions; budget 710 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-29-distance-conflict",
+      "input": "Prescription 87244cee\n7 down-and-back trips on a 15 metre lane; claimed distance 105 metres.",
+      "expected": "distance-conflict",
+      "evidence": "7 down-and-back trips on a 15 metre lane; claimed distance 105 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-29-needs-context",
+      "input": "Prescription 936c20d9\n7 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "7 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-30-consistent",
+      "input": "Prescription eda10d0f\nBenchmark completion 248 seconds; block budget 249 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 248 seconds; block budget 249 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-30-time-overrun",
+      "input": "Prescription 072df231\nBenchmark completion 248 seconds; block budget 188 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 248 seconds; block budget 188 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-30-distance-conflict",
+      "input": "Prescription 39b6d578\n4 down-and-back trips on a 10 metre lane; claimed distance 40 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 down-and-back trips on a 10 metre lane; claimed distance 40 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-30-needs-context",
+      "input": "Prescription d2881eaf\n4 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "4 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-31-consistent",
+      "input": "Prescription df61d944\n5 repetitions of 27 seconds; 45 seconds rest between repetitions; budget 375 seconds.",
+      "expected": "consistent",
+      "evidence": "5 repetitions of 27 seconds; 45 seconds rest between repetitions; budget 375 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-31-time-overrun",
+      "input": "Prescription 56ff09fd\n5 repetitions of 27 seconds; 45 seconds rest between repetitions; budget 314 seconds.",
+      "expected": "time-overrun",
+      "evidence": "5 repetitions of 27 seconds; 45 seconds rest between repetitions; budget 314 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-31-distance-conflict",
+      "input": "Prescription 1005bd42\n5 down-and-back trips on a 20 metre lane; claimed distance 100 metres.",
+      "expected": "distance-conflict",
+      "evidence": "5 down-and-back trips on a 20 metre lane; claimed distance 100 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-31-needs-context",
+      "input": "Prescription cd17b058\n5 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "5 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-32-consistent",
+      "input": "Prescription 770c86f4\nBenchmark completion 135 seconds; block budget 195 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 135 seconds; block budget 195 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-32-time-overrun",
+      "input": "Prescription 95b5fb25\nBenchmark completion 135 seconds; block budget 134 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 135 seconds; block budget 134 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-32-distance-conflict",
+      "input": "Prescription 50c7c213\n5 down-and-back trips on a 20 metre lane; claimed distance 100 metres.",
+      "expected": "distance-conflict",
+      "evidence": "5 down-and-back trips on a 20 metre lane; claimed distance 100 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-32-needs-context",
+      "input": "Prescription 5e7760bf\n5 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "5 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-33-consistent",
+      "input": "Prescription fb6b10b8\n3 repetitions of 89 seconds; 15 seconds rest between repetitions; budget 298 seconds.",
+      "expected": "consistent",
+      "evidence": "3 repetitions of 89 seconds; 15 seconds rest between repetitions; budget 298 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-33-time-overrun",
+      "input": "Prescription 5519adf1\n3 repetitions of 89 seconds; 15 seconds rest between repetitions; budget 237 seconds.",
+      "expected": "time-overrun",
+      "evidence": "3 repetitions of 89 seconds; 15 seconds rest between repetitions; budget 237 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-33-distance-conflict",
+      "input": "Prescription 5930a3d1\n3 down-and-back trips on a 10 metre lane; claimed distance 30 metres.",
+      "expected": "distance-conflict",
+      "evidence": "3 down-and-back trips on a 10 metre lane; claimed distance 30 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-33-needs-context",
+      "input": "Prescription 2465e198\n3 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "3 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-34-consistent",
+      "input": "Prescription 4526ef58\nBenchmark completion 116 seconds; block budget 176 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 116 seconds; block budget 176 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-34-time-overrun",
+      "input": "Prescription eeed8c73\nBenchmark completion 116 seconds; block budget 115 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 116 seconds; block budget 115 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-34-distance-conflict",
+      "input": "Prescription ad270e35\n4 down-and-back trips on a 20 metre lane; claimed distance 80 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 down-and-back trips on a 20 metre lane; claimed distance 80 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-34-needs-context",
+      "input": "Prescription 1b3ec9d3\n4 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "4 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-35-consistent",
+      "input": "Prescription 8413e536\n6 repetitions of 33 seconds; 45 seconds rest between repetitions; budget 424 seconds.",
+      "expected": "consistent",
+      "evidence": "6 repetitions of 33 seconds; 45 seconds rest between repetitions; budget 424 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-35-time-overrun",
+      "input": "Prescription ed4debeb\n6 repetitions of 33 seconds; 45 seconds rest between repetitions; budget 363 seconds.",
+      "expected": "time-overrun",
+      "evidence": "6 repetitions of 33 seconds; 45 seconds rest between repetitions; budget 363 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-35-distance-conflict",
+      "input": "Prescription d42cc124\n6 down-and-back trips on a 15 metre lane; claimed distance 90 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 down-and-back trips on a 15 metre lane; claimed distance 90 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-35-needs-context",
+      "input": "Prescription bf8f03df\n6 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "6 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-36-consistent",
+      "input": "Prescription c3a5e284\nBenchmark completion 364 seconds; block budget 379 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 364 seconds; block budget 379 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-36-time-overrun",
+      "input": "Prescription 84e27bd3\nBenchmark completion 364 seconds; block budget 363 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 364 seconds; block budget 363 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-36-distance-conflict",
+      "input": "Prescription c4a0e9c4\n7 down-and-back trips on a 20 metre lane; claimed distance 140 metres.",
+      "expected": "distance-conflict",
+      "evidence": "7 down-and-back trips on a 20 metre lane; claimed distance 140 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-36-needs-context",
+      "input": "Prescription 6ba857c8\n7 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "7 repetitions at a self-selected pace; rest as needed; budget 240 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-37-consistent",
+      "input": "Prescription 5f53c7e9\n4 repetitions of 32 seconds; 15 seconds rest between repetitions; budget 233 seconds.",
+      "expected": "consistent",
+      "evidence": "4 repetitions of 32 seconds; 15 seconds rest between repetitions; budget 233 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-37-time-overrun",
+      "input": "Prescription 81f58e88\n4 repetitions of 32 seconds; 15 seconds rest between repetitions; budget 158 seconds.",
+      "expected": "time-overrun",
+      "evidence": "4 repetitions of 32 seconds; 15 seconds rest between repetitions; budget 158 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-37-distance-conflict",
+      "input": "Prescription 6bf8dc2f\n4 down-and-back trips on a 10 metre lane; claimed distance 40 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 down-and-back trips on a 10 metre lane; claimed distance 40 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-37-needs-context",
+      "input": "Prescription 90f81590\n4 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "4 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-38-consistent",
+      "input": "Prescription 24c79035\nBenchmark completion 160 seconds; block budget 175 seconds.",
+      "expected": "consistent",
+      "evidence": "Benchmark completion 160 seconds; block budget 175 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-38-time-overrun",
+      "input": "Prescription 6be05a02\nBenchmark completion 160 seconds; block budget 100 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Benchmark completion 160 seconds; block budget 100 seconds.",
+      "source": "authored family: single-benchmark"
+    },
+    {
+      "id": "math-train-38-distance-conflict",
+      "input": "Prescription c4c712af\n8 down-and-back trips on a 10 metre lane; claimed distance 80 metres.",
+      "expected": "distance-conflict",
+      "evidence": "8 down-and-back trips on a 10 metre lane; claimed distance 80 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-38-needs-context",
+      "input": "Prescription 1cec6790\n8 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "8 repetitions at a self-selected pace; rest as needed; budget 420 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    },
+    {
+      "id": "math-train-39-consistent",
+      "input": "Prescription 403133b4\n8 repetitions of 68 seconds; 45 seconds rest between repetitions; budget 860 seconds.",
+      "expected": "consistent",
+      "evidence": "8 repetitions of 68 seconds; 45 seconds rest between repetitions; budget 860 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-39-time-overrun",
+      "input": "Prescription 7262ea3f\n8 repetitions of 68 seconds; 45 seconds rest between repetitions; budget 858 seconds.",
+      "expected": "time-overrun",
+      "evidence": "8 repetitions of 68 seconds; 45 seconds rest between repetitions; budget 858 seconds.",
+      "source": "authored family: repetition-budget"
+    },
+    {
+      "id": "math-train-39-distance-conflict",
+      "input": "Prescription cf0a8f39\n8 down-and-back trips on a 15 metre lane; claimed distance 120 metres.",
+      "expected": "distance-conflict",
+      "evidence": "8 down-and-back trips on a 15 metre lane; claimed distance 120 metres.",
+      "source": "authored family: train-distance"
+    },
+    {
+      "id": "math-train-39-needs-context",
+      "input": "Prescription f4d0eefa\n8 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "expected": "needs-context",
+      "evidence": "8 repetitions at a self-selected pace; rest as needed; budget 360 seconds. Work duration is unspecified.",
+      "source": "authored family: train-missing"
+    }
+  ],
+  "validation": [
+    {
+      "id": "math-validation-0-consistent",
+      "input": "Prescription 5f660018\n1000 metres at 414 seconds per kilometre; budget 429 seconds.",
+      "expected": "consistent",
+      "evidence": "1000 metres at 414 seconds per kilometre; budget 429 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-0-time-overrun",
+      "input": "Prescription 28402650\n1000 metres at 414 seconds per kilometre; budget 354 seconds.",
+      "expected": "time-overrun",
+      "evidence": "1000 metres at 414 seconds per kilometre; budget 354 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-0-distance-conflict",
+      "input": "Prescription cbf1edab\n8 lengths of 15 metres; claimed distance 240 metres.",
+      "expected": "distance-conflict",
+      "evidence": "8 lengths of 15 metres; claimed distance 240 metres.",
+      "source": "authored family: validation-distance"
+    },
+    {
+      "id": "math-validation-0-needs-context",
+      "input": "Prescription 36e13430\n800 metres at an unspecified pace; budget 240 seconds.",
+      "expected": "needs-context",
+      "evidence": "800 metres at an unspecified pace; budget 240 seconds.",
+      "source": "authored family: validation-missing"
+    },
+    {
+      "id": "math-validation-1-consistent",
+      "input": "Prescription 58bbbd0e\n1000 metres at 318 seconds per kilometre; budget 319 seconds.",
+      "expected": "consistent",
+      "evidence": "1000 metres at 318 seconds per kilometre; budget 319 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-1-time-overrun",
+      "input": "Prescription d9fe9e87\n1000 metres at 318 seconds per kilometre; budget 258 seconds.",
+      "expected": "time-overrun",
+      "evidence": "1000 metres at 318 seconds per kilometre; budget 258 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-1-distance-conflict",
+      "input": "Prescription 52b58b8b\n8 lengths of 10 metres; claimed distance 160 metres.",
+      "expected": "distance-conflict",
+      "evidence": "8 lengths of 10 metres; claimed distance 160 metres.",
+      "source": "authored family: validation-distance"
+    },
+    {
+      "id": "math-validation-1-needs-context",
+      "input": "Prescription 452e1b88\n800 metres at an unspecified pace; budget 300 seconds.",
+      "expected": "needs-context",
+      "evidence": "800 metres at an unspecified pace; budget 300 seconds.",
+      "source": "authored family: validation-missing"
+    },
+    {
+      "id": "math-validation-2-consistent",
+      "input": "Prescription 8b26236a\n1000 metres at 246 seconds per kilometre; budget 247 seconds.",
+      "expected": "consistent",
+      "evidence": "1000 metres at 246 seconds per kilometre; budget 247 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-2-time-overrun",
+      "input": "Prescription 71ea6b24\n1000 metres at 246 seconds per kilometre; budget 245 seconds.",
+      "expected": "time-overrun",
+      "evidence": "1000 metres at 246 seconds per kilometre; budget 245 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-2-distance-conflict",
+      "input": "Prescription 2be7ee2f\n6 lengths of 15 metres; claimed distance 180 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 lengths of 15 metres; claimed distance 180 metres.",
+      "source": "authored family: validation-distance"
+    },
+    {
+      "id": "math-validation-2-needs-context",
+      "input": "Prescription c6202be7\n600 metres at an unspecified pace; budget 300 seconds.",
+      "expected": "needs-context",
+      "evidence": "600 metres at an unspecified pace; budget 300 seconds.",
+      "source": "authored family: validation-missing"
+    },
+    {
+      "id": "math-validation-3-consistent",
+      "input": "Prescription f0f48d88\n1000 metres at 198 seconds per kilometre; budget 258 seconds.",
+      "expected": "consistent",
+      "evidence": "1000 metres at 198 seconds per kilometre; budget 258 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-3-time-overrun",
+      "input": "Prescription 54496465\n1000 metres at 198 seconds per kilometre; budget 183 seconds.",
+      "expected": "time-overrun",
+      "evidence": "1000 metres at 198 seconds per kilometre; budget 183 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-3-distance-conflict",
+      "input": "Prescription 61d90907\n4 lengths of 10 metres; claimed distance 80 metres.",
+      "expected": "distance-conflict",
+      "evidence": "4 lengths of 10 metres; claimed distance 80 metres.",
+      "source": "authored family: validation-distance"
+    },
+    {
+      "id": "math-validation-3-needs-context",
+      "input": "Prescription 228c88e6\n400 metres at an unspecified pace; budget 240 seconds.",
+      "expected": "needs-context",
+      "evidence": "400 metres at an unspecified pace; budget 240 seconds.",
+      "source": "authored family: validation-missing"
+    },
+    {
+      "id": "math-validation-4-consistent",
+      "input": "Prescription f22b4ad9\n1000 metres at 126 seconds per kilometre; budget 141 seconds.",
+      "expected": "consistent",
+      "evidence": "1000 metres at 126 seconds per kilometre; budget 141 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-4-time-overrun",
+      "input": "Prescription bba80b99\n1000 metres at 126 seconds per kilometre; budget 111 seconds.",
+      "expected": "time-overrun",
+      "evidence": "1000 metres at 126 seconds per kilometre; budget 111 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-4-distance-conflict",
+      "input": "Prescription debad28a\n5 lengths of 15 metres; claimed distance 150 metres.",
+      "expected": "distance-conflict",
+      "evidence": "5 lengths of 15 metres; claimed distance 150 metres.",
+      "source": "authored family: validation-distance"
+    },
+    {
+      "id": "math-validation-4-needs-context",
+      "input": "Prescription 036900a3\n500 metres at an unspecified pace; budget 240 seconds.",
+      "expected": "needs-context",
+      "evidence": "500 metres at an unspecified pace; budget 240 seconds.",
+      "source": "authored family: validation-missing"
+    },
+    {
+      "id": "math-validation-5-consistent",
+      "input": "Prescription 6441d33f\n1000 metres at 372 seconds per kilometre; budget 373 seconds.",
+      "expected": "consistent",
+      "evidence": "1000 metres at 372 seconds per kilometre; budget 373 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-5-time-overrun",
+      "input": "Prescription e025ae09\n1000 metres at 372 seconds per kilometre; budget 371 seconds.",
+      "expected": "time-overrun",
+      "evidence": "1000 metres at 372 seconds per kilometre; budget 371 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-5-distance-conflict",
+      "input": "Prescription 44fdcd18\n6 lengths of 10 metres; claimed distance 120 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 lengths of 10 metres; claimed distance 120 metres.",
+      "source": "authored family: validation-distance"
+    },
+    {
+      "id": "math-validation-5-needs-context",
+      "input": "Prescription 562bf8bd\n600 metres at an unspecified pace; budget 120 seconds.",
+      "expected": "needs-context",
+      "evidence": "600 metres at an unspecified pace; budget 120 seconds.",
+      "source": "authored family: validation-missing"
+    },
+    {
+      "id": "math-validation-6-consistent",
+      "input": "Prescription 4bbce85c\n1000 metres at 270 seconds per kilometre; budget 285 seconds.",
+      "expected": "consistent",
+      "evidence": "1000 metres at 270 seconds per kilometre; budget 285 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-6-time-overrun",
+      "input": "Prescription ecef2991\n1000 metres at 270 seconds per kilometre; budget 269 seconds.",
+      "expected": "time-overrun",
+      "evidence": "1000 metres at 270 seconds per kilometre; budget 269 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-6-distance-conflict",
+      "input": "Prescription fa030032\n6 lengths of 15 metres; claimed distance 180 metres.",
+      "expected": "distance-conflict",
+      "evidence": "6 lengths of 15 metres; claimed distance 180 metres.",
+      "source": "authored family: validation-distance"
+    },
+    {
+      "id": "math-validation-6-needs-context",
+      "input": "Prescription f65772bf\n600 metres at an unspecified pace; budget 240 seconds.",
+      "expected": "needs-context",
+      "evidence": "600 metres at an unspecified pace; budget 240 seconds.",
+      "source": "authored family: validation-missing"
+    },
+    {
+      "id": "math-validation-7-consistent",
+      "input": "Prescription ad14c5ec\n1000 metres at 408 seconds per kilometre; budget 409 seconds.",
+      "expected": "consistent",
+      "evidence": "1000 metres at 408 seconds per kilometre; budget 409 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-7-time-overrun",
+      "input": "Prescription c96c718a\n1000 metres at 408 seconds per kilometre; budget 348 seconds.",
+      "expected": "time-overrun",
+      "evidence": "1000 metres at 408 seconds per kilometre; budget 348 seconds.",
+      "source": "authored family: pace-budget"
+    },
+    {
+      "id": "math-validation-7-distance-conflict",
+      "input": "Prescription ba0c3a71\n5 lengths of 10 metres; claimed distance 100 metres.",
+      "expected": "distance-conflict",
+      "evidence": "5 lengths of 10 metres; claimed distance 100 metres.",
+      "source": "authored family: validation-distance"
+    },
+    {
+      "id": "math-validation-7-needs-context",
+      "input": "Prescription cbd67595\n500 metres at an unspecified pace; budget 300 seconds.",
+      "expected": "needs-context",
+      "evidence": "500 metres at an unspecified pace; budget 300 seconds.",
+      "source": "authored family: validation-missing"
+    }
+  ],
+  "test": [
+    {
+      "id": "math-test-0-consistent",
+      "input": "Prescription f4365af2\nWarmup 300 seconds, 4 repetitions of 82 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 839 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 300 seconds, 4 repetitions of 82 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 839 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-0-time-overrun",
+      "input": "Prescription 3fafc47a\nWarmup 300 seconds, 4 repetitions of 82 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 823 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 300 seconds, 4 repetitions of 82 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 823 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-0-distance-conflict",
+      "input": "Prescription 8d2b8d89\nTechnique 4 lengths of 10 metres plus test 40 metres; claimed total 40 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 4 lengths of 10 metres plus test 40 metres; claimed total 40 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-0-needs-context",
+      "input": "Prescription 4b6afdd3\nWarmup 300 seconds, 4 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 300 seconds, 4 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-1-consistent",
+      "input": "Prescription 29e42963\nWarmup 300 seconds, 5 repetitions of 80 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 1001 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 300 seconds, 5 repetitions of 80 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 1001 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-1-time-overrun",
+      "input": "Prescription 6344d687\nWarmup 300 seconds, 5 repetitions of 80 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 940 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 300 seconds, 5 repetitions of 80 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 940 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-1-distance-conflict",
+      "input": "Prescription 25271b9f\nTechnique 5 lengths of 15 metres plus test 40 metres; claimed total 75 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 5 lengths of 15 metres plus test 40 metres; claimed total 75 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-1-needs-context",
+      "input": "Prescription b3d27597\nWarmup 300 seconds, 5 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 300 seconds, 5 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-2-consistent",
+      "input": "Prescription e18c0522\nWarmup 300 seconds, 8 repetitions of 72 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1221 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 300 seconds, 8 repetitions of 72 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1221 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-2-time-overrun",
+      "input": "Prescription dcd36ef5\nWarmup 300 seconds, 8 repetitions of 72 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1205 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 300 seconds, 8 repetitions of 72 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1205 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-2-distance-conflict",
+      "input": "Prescription 3aca116e\nTechnique 8 lengths of 10 metres plus test 40 metres; claimed total 80 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 8 lengths of 10 metres plus test 40 metres; claimed total 80 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-2-needs-context",
+      "input": "Prescription 581e6571\nWarmup 300 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 300 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-3-consistent",
+      "input": "Prescription 37a72754\nWarmup 120 seconds, 5 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 555 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 120 seconds, 5 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 555 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-3-time-overrun",
+      "input": "Prescription cb7476a0\nWarmup 120 seconds, 5 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 539 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 120 seconds, 5 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 539 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-3-distance-conflict",
+      "input": "Prescription 77a8ab54\nTechnique 5 lengths of 15 metres plus test 40 metres; claimed total 75 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 5 lengths of 15 metres plus test 40 metres; claimed total 75 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-3-needs-context",
+      "input": "Prescription 46bac262\nWarmup 120 seconds, 5 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 120 seconds, 5 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-4-consistent",
+      "input": "Prescription 08959316\nWarmup 120 seconds, 8 repetitions of 69 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 957 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 120 seconds, 8 repetitions of 69 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 957 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-4-time-overrun",
+      "input": "Prescription 199e9f90\nWarmup 120 seconds, 8 repetitions of 69 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 882 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 120 seconds, 8 repetitions of 69 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 882 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-4-distance-conflict",
+      "input": "Prescription 55737bbd\nTechnique 8 lengths of 10 metres plus test 40 metres; claimed total 80 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 8 lengths of 10 metres plus test 40 metres; claimed total 80 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-4-needs-context",
+      "input": "Prescription 2de97b48\nWarmup 120 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 120 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-5-consistent",
+      "input": "Prescription c834ca73\nWarmup 300 seconds, 4 repetitions of 63 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 777 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 300 seconds, 4 repetitions of 63 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 777 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-5-time-overrun",
+      "input": "Prescription 494e38db\nWarmup 300 seconds, 4 repetitions of 63 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 716 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 300 seconds, 4 repetitions of 63 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 716 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-5-distance-conflict",
+      "input": "Prescription 7225ac55\nTechnique 4 lengths of 15 metres plus test 40 metres; claimed total 60 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 4 lengths of 15 metres plus test 40 metres; claimed total 60 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-5-needs-context",
+      "input": "Prescription 5ab9173f\nWarmup 300 seconds, 4 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 300 seconds, 4 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-6-consistent",
+      "input": "Prescription cc34e862\nWarmup 240 seconds, 8 repetitions of 39 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 897 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 240 seconds, 8 repetitions of 39 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 897 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-6-time-overrun",
+      "input": "Prescription 24225699\nWarmup 240 seconds, 8 repetitions of 39 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 867 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 240 seconds, 8 repetitions of 39 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 867 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-6-distance-conflict",
+      "input": "Prescription b6c6ae0c\nTechnique 8 lengths of 15 metres plus test 40 metres; claimed total 120 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 8 lengths of 15 metres plus test 40 metres; claimed total 120 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-6-needs-context",
+      "input": "Prescription 3eac8995\nWarmup 240 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 240 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-7-consistent",
+      "input": "Prescription 20174063\nWarmup 300 seconds, 3 repetitions of 93 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 730 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 300 seconds, 3 repetitions of 93 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 730 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-7-time-overrun",
+      "input": "Prescription c657e9ed\nWarmup 300 seconds, 3 repetitions of 93 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 714 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 300 seconds, 3 repetitions of 93 seconds, 15 seconds rest between repetitions, cooldown 120 seconds; budget 714 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-7-distance-conflict",
+      "input": "Prescription e6b9a5bd\nTechnique 3 lengths of 10 metres plus test 40 metres; claimed total 30 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 3 lengths of 10 metres plus test 40 metres; claimed total 30 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-7-needs-context",
+      "input": "Prescription cb6d1d86\nWarmup 300 seconds, 3 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 300 seconds, 3 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-8-consistent",
+      "input": "Prescription 5f56e248\nWarmup 300 seconds, 7 repetitions of 20 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 800 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 300 seconds, 7 repetitions of 20 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 800 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-8-time-overrun",
+      "input": "Prescription e3db7224\nWarmup 300 seconds, 7 repetitions of 20 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 739 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 300 seconds, 7 repetitions of 20 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 739 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-8-distance-conflict",
+      "input": "Prescription 7b478578\nTechnique 7 lengths of 20 metres plus test 40 metres; claimed total 140 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 7 lengths of 20 metres plus test 40 metres; claimed total 140 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-8-needs-context",
+      "input": "Prescription bdae9326\nWarmup 300 seconds, 7 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 300 seconds, 7 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-9-consistent",
+      "input": "Prescription d4a903f6\nWarmup 240 seconds, 8 repetitions of 57 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1086 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 240 seconds, 8 repetitions of 57 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 1086 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-9-time-overrun",
+      "input": "Prescription 92108be7\nWarmup 240 seconds, 8 repetitions of 57 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 966 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 240 seconds, 8 repetitions of 57 seconds, 30 seconds rest between repetitions, cooldown 120 seconds; budget 966 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-9-distance-conflict",
+      "input": "Prescription 55498430\nTechnique 8 lengths of 20 metres plus test 40 metres; claimed total 160 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 8 lengths of 20 metres plus test 40 metres; claimed total 160 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-9-needs-context",
+      "input": "Prescription 8dd8f281\nWarmup 240 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 240 seconds, 8 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-10-consistent",
+      "input": "Prescription 521baf0a\nWarmup 240 seconds, 7 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 858 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 240 seconds, 7 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 858 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-10-time-overrun",
+      "input": "Prescription f64fd424\nWarmup 240 seconds, 7 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 797 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 240 seconds, 7 repetitions of 24 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 797 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-10-distance-conflict",
+      "input": "Prescription 02165464\nTechnique 7 lengths of 20 metres plus test 40 metres; claimed total 140 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 7 lengths of 20 metres plus test 40 metres; claimed total 140 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-10-needs-context",
+      "input": "Prescription 74c7dd9b\nWarmup 240 seconds, 7 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 240 seconds, 7 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    },
+    {
+      "id": "math-test-11-consistent",
+      "input": "Prescription a479d528\nWarmup 300 seconds, 3 repetitions of 52 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 726 seconds.",
+      "expected": "consistent",
+      "evidence": "Warmup 300 seconds, 3 repetitions of 52 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 726 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-11-time-overrun",
+      "input": "Prescription 01d5a3af\nWarmup 300 seconds, 3 repetitions of 52 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 651 seconds.",
+      "expected": "time-overrun",
+      "evidence": "Warmup 300 seconds, 3 repetitions of 52 seconds, 45 seconds rest between repetitions, cooldown 120 seconds; budget 651 seconds.",
+      "source": "authored family: compound-budget"
+    },
+    {
+      "id": "math-test-11-distance-conflict",
+      "input": "Prescription 0aea7a97\nTechnique 3 lengths of 15 metres plus test 40 metres; claimed total 45 metres.",
+      "expected": "distance-conflict",
+      "evidence": "Technique 3 lengths of 15 metres plus test 40 metres; claimed total 45 metres.",
+      "source": "authored family: test-distance"
+    },
+    {
+      "id": "math-test-11-needs-context",
+      "input": "Prescription 1fca313c\nWarmup 300 seconds, 3 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "expected": "needs-context",
+      "evidence": "Warmup 300 seconds, 3 sled pulls of unspecified duration, cooldown 120 seconds; budget 1200 seconds.",
+      "source": "authored family: test-missing"
+    }
+  ],
+  "provenance": {
+    "origin": "Authored synthetic arithmetic inspired by exposed Blox failure cases; no personal workout history.",
+    "split": "Train: repetitions, benchmarks, round trips. Dev: pace and lengths. Final: compound-time and summed-distance. Arithmetic primitives are shared; final operation families are absent from training.",
+    "labels": "Generator arithmetic cross-checked by executable parser; same author, not independent adjudication."
+  }
+}

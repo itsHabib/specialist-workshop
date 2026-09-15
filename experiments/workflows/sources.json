@@ -1,0 +1,14 @@
+{
+  "workbench_ci": {
+    "path": "/Users/mh/dev/workbench/cmd/gate/internal/verify/ciclassify.go",
+    "sha256": "023b959d516053aa5d0dca190db9790b67501d8aba8835f9677c9f5475228346"
+  },
+  "blox_validator": {
+    "path": "/Users/mh/dev/roxiq/blox/internal/blox/genplan/validate.go",
+    "sha256": "7f378122955ecb5d6127e2d7ecf81415c0da19f6e8dca11b70d21b8ad02d4f6a"
+  },
+  "blox_retained": {
+    "path": "/Users/mh/dev/workout-lab/2026-09-07/experiment/failure-cases.json",
+    "sha256": "c0c0a2d2397da9cf45fa0ebe13080c34f9b10430b72498279781e12168bdf73f"
+  }
+}

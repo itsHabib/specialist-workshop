@@ -1,0 +1,134 @@
+{
+  "id": "pkg-2b9c5ace91ad",
+  "package": "support-intake@dd72cbdfb154394c1a5aceefe8f808e4f82ba7356902f02e230c1f393b425a94",
+  "operation": "evaluate",
+  "policy": "specialist",
+  "checkpoint": "pkg-a4fcda2473de",
+  "input": null,
+  "steps": 120,
+  "source": null,
+  "status": "completed",
+  "created_at": 1789258588.859321,
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "contract_hash": "64bc8f4af0e865a79169f2ced782ad56bddb2246bb892cf25923168e35e4de45",
+  "final_hash": "f636b0e122fd894f468d46f2aff240a0cf3087dbee355372ac1d14223fc86683",
+  "grader": "json-exact-v1",
+  "grader_hash": "eafa9bf400dc26203d9fcd61341df2516ac00125379630e5013678d3172293ff",
+  "completion_protocol": "empty-think-v1",
+  "local_cost_usd": null,
+  "started_at": 1789258588.862174,
+  "rows": [
+    {
+      "id": "f1",
+      "family": "mfa",
+      "input": {
+        "message": "I lost my authenticator and cannot get into my profile."
+      },
+      "expected": {
+        "owner": "accounts",
+        "urgency": "normal",
+        "reason": "access"
+      },
+      "raw": "</tool_call>\n\n</tool_call>\n\n{\"owner\":\"accounts\",\"urgency\":\"normal\",\"reason\":\"access\"}",
+      "content": "</tool_call>\n\n</tool_call>\n\n{\"owner\":\"accounts\",\"urgency\":\"normal\",\"reason\":\"access\"}",
+      "transport": "empty-think-v1",
+      "empty_channel_removed": false,
+      "elapsed_ms": 625,
+      "input_tokens": 122,
+      "output_tokens": 18,
+      "valid": false,
+      "correct": false,
+      "accepted": false,
+      "abstained": false,
+      "output": null,
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "id": "f2",
+      "family": "invoice-tax",
+      "input": {
+        "message": "The invoice has the wrong tax information."
+      },
+      "expected": {
+        "owner": "payments",
+        "urgency": "normal",
+        "reason": "charge"
+      },
+      "raw": "</tool_call>\n\n</tool_call>\n\n{\"owner\":\"payments\",\"urgency\":\"normal\",\"reason\":\"charge\"}",
+      "content": "</tool_call>\n\n</tool_call>\n\n{\"owner\":\"payments\",\"urgency\":\"normal\",\"reason\":\"charge\"}",
+      "transport": "empty-think-v1",
+      "empty_channel_removed": false,
+      "elapsed_ms": 609,
+      "input_tokens": 118,
+      "output_tokens": 18,
+      "valid": false,
+      "correct": false,
+      "accepted": false,
+      "abstained": false,
+      "output": null,
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "id": "f3",
+      "family": "webhook-outage",
+      "input": {
+        "message": "Webhooks to external systems stopped delivering for all customers five minutes ago and are still down."
+      },
+      "expected": {
+        "owner": "integrations",
+        "urgency": "urgent",
+        "reason": "connection"
+      },
+      "raw": "</tool_call>\n\n</tool_call>\n\n{\"owner\":\"integrations\",\"urgency\":\"normal\",\"reason\":\"connection\"}",
+      "content": "</tool_call>\n\n</tool_call>\n\n{\"owner\":\"integrations\",\"urgency\":\"normal\",\"reason\":\"connection\"}",
+      "transport": "empty-think-v1",
+      "empty_channel_removed": false,
+      "elapsed_ms": 645,
+      "input_tokens": 128,
+      "output_tokens": 19,
+      "valid": false,
+      "correct": false,
+      "accepted": false,
+      "abstained": false,
+      "output": null,
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "id": "f4",
+      "family": "unspecified-emergency",
+      "input": {
+        "message": "Urgent! Something is wrong, call me."
+      },
+      "expected": {
+        "owner": "clarify",
+        "urgency": "unknown",
+        "reason": "missing-context"
+      },
+      "raw": "</tool_call>\n\n</tool_call>\n\n{\"owner\":\"clarify\",\"urgency\":\"urgent\",\"reason\":\"missing-context\"}",
+      "content": "</tool_call>\n\n</tool_call>\n\n{\"owner\":\"clarify\",\"urgency\":\"urgent\",\"reason\":\"missing-context\"}",
+      "transport": "empty-think-v1",
+      "empty_channel_removed": false,
+      "elapsed_ms": 635,
+      "input_tokens": 121,
+      "output_tokens": 20,
+      "valid": false,
+      "correct": false,
+      "accepted": false,
+      "abstained": false,
+      "output": null,
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    }
+  ],
+  "metrics": {
+    "count": 4,
+    "correct": 0,
+    "valid": 0,
+    "accepted": 0,
+    "abstained": 0,
+    "invalid": 4,
+    "raw_valid": 0,
+    "median_ms": 630.0
+  },
+  "finished_at": 1789258592.1191082
+}

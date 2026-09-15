@@ -1,0 +1,819 @@
+{
+  "run": {
+    "skill_id": "ci-triage",
+    "kind": "evaluate",
+    "model": "base",
+    "checkpoint": null,
+    "iterations": 150,
+    "id": "job-36f610bf41f3",
+    "status": "completed",
+    "created_at": 1789239606.802835,
+    "progress": 51,
+    "total": 51,
+    "model_id": "mlx-community/Qwen2.5-0.5B-Instruct-4bit",
+    "model_revision": "53a32aee5e9447773fd2b85988395066aef3700a",
+    "skill_fingerprint": "c6e65e44f96acafff3592e62155b53e1cee376417fd8058967ebe9f47eac3b86",
+    "test_fingerprint": "1a0f19e8c4087c96c6e9b345fc77bd08802642e1ae7e736397bcf2999e1eb7ff",
+    "training_count": 240,
+    "validation_count": 9,
+    "started_at": 1789239606.9046452,
+    "metrics": {
+      "count": 51,
+      "accuracy": 0.058823529411764705,
+      "evidence_rate": 0.0392156862745098,
+      "accepted_rate": 0.0,
+      "median_ms": 366
+    },
+    "finished_at": 1789239632.537875,
+    "evidence_mode": "quote"
+  },
+  "rows": [
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-00",
+      "source": "dossier-26001022393 cargo fmt --check diff",
+      "expected": "real-break",
+      "elapsed_ms": 973,
+      "input_tokens": 1235
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-01",
+      "source": "dossier-26001158306 cargo fmt --check diff (different file)",
+      "expected": "real-break",
+      "elapsed_ms": 313,
+      "input_tokens": 1138
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-02",
+      "source": "dossier-26001505045 cargo fmt --check diff",
+      "expected": "real-break",
+      "elapsed_ms": 317,
+      "input_tokens": 1234
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"Cargo.lock is not compiled due to multiple warnings.\"\n}\n```",
+      "id": "wb-03",
+      "source": "dossier-26001690858 clippy redundant_closure -D warnings",
+      "expected": "real-break",
+      "elapsed_ms": 372,
+      "input_tokens": 1329
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-04",
+      "source": "dossier-26011017976 compile E0277 Default not implemented",
+      "expected": "real-break",
+      "elapsed_ms": 583,
+      "input_tokens": 2844
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-05",
+      "source": "dossier-26378673223 clippy too_long_first_doc_paragraph",
+      "expected": "real-break",
+      "elapsed_ms": 371,
+      "input_tokens": 1739
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-06",
+      "source": "dossier-26799913495 compile E0063 missing field test_list_call_counter",
+      "expected": "real-break",
+      "elapsed_ms": 531,
+      "input_tokens": 2842
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"Since name constraints are restrictions on otherwise properly-issued certificates, this bug is reachable only after signature verification and requires misssuance to exploit. This vulnerability is identified as [GHSA-965h-392x-2mh5](https://github.com/rustls/webpki/security/advisories/GHSA-965h-392x-2mh5). Thank you to @1seal for the report). This is advisory triage, not permission to retry or merge.\"\n}\n```",
+      "id": "wb-07",
+      "source": "dossier-27232064142 cargo-audit serde_yml unsound (security-gate edge)",
+      "expected": "real-break",
+      "elapsed_ms": 763,
+      "input_tokens": 933
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-08",
+      "source": "gate-28762855981 setup-go go.mod does not exist",
+      "expected": "infra",
+      "elapsed_ms": 349,
+      "input_tokens": 1505
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-09",
+      "source": "gate-28762900323 claude-code installation token exchange (0 bytes)",
+      "expected": "infra",
+      "elapsed_ms": 348,
+      "input_tokens": 1594
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-10",
+      "source": "gate-28767609335 golangci-lint config schema invalid (version-drift edge)",
+      "expected": "real-break",
+      "elapsed_ms": 477,
+      "input_tokens": 1050
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\"bucket\": \"infra\", \"evidence\": \"The same commit ran unchanged.\"}\n```",
+      "id": "wb-11",
+      "source": "huddle-26007231213 claude-code missing ANTHROPIC_API_KEY / internal error",
+      "expected": "infra",
+      "elapsed_ms": 449,
+      "input_tokens": 2522
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-12",
+      "source": "huddle-26011328903 claude-code token exchange",
+      "expected": "infra",
+      "elapsed_ms": 325,
+      "input_tokens": 1614
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-13",
+      "source": "huddle-26320041557 claude-code token exchange",
+      "expected": "infra",
+      "elapsed_ms": 328,
+      "input_tokens": 1653
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, leading to a failed CI log.\"\n}\n```",
+      "id": "wb-14",
+      "source": "roxiq-26729840206 go test FAIL internal/scraper",
+      "expected": "real-break",
+      "elapsed_ms": 403,
+      "input_tokens": 1890
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, leading to a failure in the CI process.\"\n}\n```",
+      "id": "wb-15",
+      "source": "roxiq-27112905851 go test overall FAIL (scraper ok, fail elsewhere)",
+      "expected": "real-break",
+      "elapsed_ms": 417,
+      "input_tokens": 1891
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"go: downloading github.com/ykadowak/zerologlint v0.1.5\"\n}\n```",
+      "id": "wb-16",
+      "source": "roxiq-27113387416 revive unused-parameter lint",
+      "expected": "real-break",
+      "elapsed_ms": 377,
+      "input_tokens": 1364
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-17",
+      "source": "roxiq-27561620172 terraform registry 429 provider install",
+      "expected": "infra",
+      "elapsed_ms": 363,
+      "input_tokens": 1668
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-18",
+      "source": "roxiq-28219476298 postgres \"database system is starting up\" race",
+      "expected": "flake",
+      "elapsed_ms": 366,
+      "input_tokens": 1743
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-19",
+      "source": "roxiq-28336714025 postgres socket not ready race",
+      "expected": "flake",
+      "elapsed_ms": 340,
+      "input_tokens": 1717
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The code, test, config, or dependency change in the repository is needed. The CI environment, credentials, runner, or dependency registry needs repair.\"\n}\n```",
+      "id": "wb-20",
+      "source": "roxiq-28550369287 postgres socket not ready (after image pull)",
+      "expected": "flake",
+      "elapsed_ms": 447,
+      "input_tokens": 1654
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, which could pass on an unchanged retry.\"\n}\n```",
+      "id": "wb-21",
+      "source": "ship-27113727014 coverage branches 84.68%<85% cursor-runner",
+      "expected": "real-break",
+      "elapsed_ms": 655,
+      "input_tokens": 3736
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-22",
+      "source": "ship-27285635802 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 349,
+      "input_tokens": 1649
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-23",
+      "source": "ship-27323698168 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 337,
+      "input_tokens": 1600
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, leading to a failure in the CI process.\"\n}\n```",
+      "id": "wb-24",
+      "source": "ship-27396066529 prettier format-check e2e",
+      "expected": "real-break",
+      "elapsed_ms": 278,
+      "input_tokens": 718
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-25",
+      "source": "ship-27407769875 windows vitest run failed, tests passed",
+      "expected": "flake",
+      "elapsed_ms": 368,
+      "input_tokens": 1885
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-26",
+      "source": "ship-27809984223 prettier format-check 3 files",
+      "expected": "real-break",
+      "elapsed_ms": 428,
+      "input_tokens": 2357
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, leading to a failure in the CI process.\"\n}\n```",
+      "id": "wb-27",
+      "source": "ship-27810529820 prettier format-check",
+      "expected": "real-break",
+      "elapsed_ms": 274,
+      "input_tokens": 704
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, which could lead to coverage issues.\"\n}\n```",
+      "id": "wb-28",
+      "source": "ship-27811062325 coverage lines 89.98%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 629,
+      "input_tokens": 3411
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, indicating that the CI environment, credentials, runner, or dependency registry needs repair.\"\n}\n```",
+      "id": "wb-29",
+      "source": "ship-27831159382 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 611,
+      "input_tokens": 2975
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, indicating that the codebase has not been modified. This could be due to a variety of reasons such as a recent code change, a new feature, or a bug fix. The CI environment and credentials should be checked for any recent changes that may have affected the codebase. If the issue persists, it may be necessary to review the codebase for any recent code changes or merge conflicts. \"\n}\n```",
+      "id": "wb-30",
+      "source": "ship-27832268156 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 892,
+      "input_tokens": 3012
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, which could pass on an unchanged retry.\"\n}\n```",
+      "id": "wb-31",
+      "source": "ship-27856703101 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 582,
+      "input_tokens": 3013
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, leading to a failure in the CI process.\"\n}\n```",
+      "id": "wb-32",
+      "source": "ship-28466478958 eslint 6 problems max-params/type-imports",
+      "expected": "real-break",
+      "elapsed_ms": 357,
+      "input_tokens": 1175
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged, causing a transient test or service-startup failure to pass on an unchanged retry.\"\n}\n```",
+      "id": "wb-33",
+      "source": "ship-28494955622 coverage test-harness",
+      "expected": "real-break",
+      "elapsed_ms": 681,
+      "input_tokens": 3146
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-34",
+      "source": "ship-28561988262 coverage core (sdk-throw fixture noise present)",
+      "expected": "real-break",
+      "elapsed_ms": 427,
+      "input_tokens": 1990
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"0 |     100 |     100 |                   \n src/cursor-runs   |   84.87 |    78.17 |   85.18 |   84.87 |                   \n  ...n-cap-wire.ts |      62 |    85.71 |   44.44 |      62 | ...34,57-60,72-73 \n  duration-cap.ts  |   85.88 |     76.4 |    92.5 |   85.88 | ...54-667,671-672 \n  event-pump.ts    |     100 |      100 |     100 |     100 |                   \n  orphan-resume.ts |     100 |      ",
+      "id": "wb-35",
+      "source": "ship-28566379823 AssertionError expected 'failed' to be 'succeeded' service.test.ts",
+      "expected": "real-break",
+      "elapsed_ms": 1807,
+      "input_tokens": 4174
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"artifacts\",\n  \"evidence\": \"Coverage for branches (84.9%) does not meet global threshold (85%)\\nundefined\"\n}\n```json\n```json\n{\n  \"bucket\": \"artifacts\",\n  \"evidence\": \"Coverage for branches (84.9%) does not meet global threshold (85%)\\nundefined\"\n}\n```json\n```json\n{\n  \"bucket\": \"artifacts\",\n  \"evidence\": \"Coverage for branches (84.9%) does not meet global threshold (85%)\\nundefined\"\n}\n```json\n```json\n{\n  \"bucket\": \"artifacts\",\n  \"evidence\": \"Coverage for branches (84.9%) does not meet global threshold (85%)\\nundefined\"\n}\n```json\n```json\n{\n  \"bucket\": \"artifacts\",\n  \"evidence\": \"Coverage for branches (84.9%) does not meet global threshold (85%)\\nundefined\"\n}\n```json\n",
+      "id": "wb-36",
+      "source": "ship-28566698485 coverage branches 84.91%<85% core",
+      "expected": "real-break",
+      "elapsed_ms": 1608,
+      "input_tokens": 3896
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-37",
+      "source": "ship-28595211551 claude post-buffered-inline-comments empty key",
+      "expected": "infra",
+      "elapsed_ms": 354,
+      "input_tokens": 1554
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-38",
+      "source": "triage-28807014654 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 344,
+      "input_tokens": 1590
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-39",
+      "source": "wellness-ai-27560353270 postgres db-test shutting down / not ready",
+      "expected": "flake",
+      "elapsed_ms": 401,
+      "input_tokens": 1842
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"The same commit ran unchanged.\"\n}\n```",
+      "id": "wb-40",
+      "source": "wellness-ai-27561505809 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 383,
+      "input_tokens": 1400
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "The CI environment, credentials, runner, or dependency registry needs repair."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"evidence\": \"The CI environment, credentials, runner, or dependency registry needs repair.\"}",
+      "id": "wb-41",
+      "source": "isolated npm ETIMEDOUT",
+      "expected": "infra",
+      "elapsed_ms": 244,
+      "input_tokens": 173
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"rejects expired token\"\n}\n```",
+      "id": "wb-42",
+      "source": "isolated test assertion",
+      "expected": "real-break",
+      "elapsed_ms": 307,
+      "input_tokens": 181
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "```json\n{\n  \"bucket\": \"infra\",\n  \"evidence\": \"npm ERR! 429 Too Many Requests - GET https://registry.npmjs.org/lodash\"\n}\n```",
+      "id": "wb-43",
+      "source": "isolated npm 429",
+      "expected": "infra",
+      "elapsed_ms": 344,
+      "input_tokens": 178
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "30000ms timeout on attempt 1; passed on retry"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"evidence\": \"30000ms timeout on attempt 1; passed on retry\"}",
+      "id": "wb-44",
+      "source": "isolated timeout-passed-on-retry",
+      "expected": "flake",
+      "elapsed_ms": 306,
+      "input_tokens": 176
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "The error occurred due to a missing or invalid property 'id' in the 'handler.ts' file."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"evidence\": \"The error occurred due to a missing or invalid property 'id' in the 'handler.ts' file.\"}",
+      "id": "wb-45",
+      "source": "isolated type error",
+      "expected": "real-break",
+      "elapsed_ms": 286,
+      "input_tokens": 175
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "shutdown signal received and runner disconnected"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"evidence\": \"shutdown signal received and runner disconnected\"}",
+      "id": "wb-46",
+      "source": "isolated runner shutdown",
+      "expected": "infra",
+      "elapsed_ms": 246,
+      "input_tokens": 168
+    },
+    {
+      "output": {
+        "bucket": "labels",
+        "evidence": "84.9% is below the required 85% threshold"
+      },
+      "valid": false,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [
+        "Output does not match the skill's label and field contract."
+      ],
+      "raw": "{\n  \"bucket\": \"labels\",\n  \"evidence\": \"84.9% is below the required 85% threshold\"\n}",
+      "id": "wb-47",
+      "source": "isolated coverage threshold",
+      "expected": "real-break",
+      "elapsed_ms": 274,
+      "input_tokens": 174
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "element not visible after 5s, retried and passed on rerun"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"infra\", \"evidence\": \"element not visible after 5s, retried and passed on rerun\"}",
+      "id": "wb-48",
+      "source": "isolated playwright retry",
+      "expected": "flake",
+      "elapsed_ms": 273,
+      "input_tokens": 175
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "https://github.com/itsHabib/ship: Could not resolve host"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"evidence\": \"https://github.com/itsHabib/ship: Could not resolve host\"}",
+      "id": "wb-49",
+      "source": "isolated git resolve host",
+      "expected": "infra",
+      "elapsed_ms": 290,
+      "input_tokens": 179
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "The CI environment, credentials, runner, or dependency registry needs repair."
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"evidence\": \"The CI environment, credentials, runner, or dependency registry needs repair.\"}",
+      "id": "wb-50",
+      "source": "isolated assertion length",
+      "expected": "real-break",
+      "elapsed_ms": 239,
+      "input_tokens": 171
+    }
+  ]
+}

@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Specialist — a workshop for small models</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Specialist home"
+        ><span class="brandmark"><i></i><i></i><i></i></span>specialist<span
+          class="brand-dot"
+          >.</span
+        ></a
+      >
+      <div class="workspace">
+        <span class="workspace-icon">W</span>
+        <div>Personal workshop<small>LOCAL DEVELOPMENT</small></div>
+        <span class="workspace-arrow">⌄</span>
+      </div>
+      <div class="nav-label">BUILD & LEARN</div>
+      <nav aria-label="Main navigation">
+        <button data-page="workshop" class="nav-item active">
+          <span>◈</span>Workshop
+        </button>
+        <button data-page="experiments" class="nav-item">
+          <span>◷</span>Experiments<span id="run-count" class="nav-count"
+            >0</span
+          >
+        </button>
+        <button data-page="library" class="nav-item">
+          <span>▤</span>Skill library
+        </button>
+        <button data-page="api" class="nav-item">
+          <span>⌘</span>Developer API
+        </button>
+      <a class="nav-item" href="/packages"><span>▣</span>Task packages</a>
+      <a class="nav-item" href="/analytics"><span>◇</span>Analytics specialist</a>
+      <a class="nav-item" href="/practice"><span>↻</span>Practice lab</a>
+      </nav>
+      <div class="sidebar-note">
+        <div class="tiny-orbit">✳</div>
+        <strong>One job. Learned deeply.</strong>
+        <p>Turn examples and corrections into a model you can measure.</p>
+        <div class="local-pill"><span class="dot"></span> Runs on your Mac</div>
+      </div>
+      <div class="sidebar-bottom">
+        <span class="avatar">M</span>
+        <div>Workbench lab<small>Prototype · v0.1</small></div>
+        <span class="tiny">↗</span>
+      </div>
+    </aside>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="breadcrumb">
+          Your skills <span>/</span>
+          <strong id="crumb">CI failure triage</strong>
+        </div>
+        <div class="topbar-right">
+          <span id="runtime-state" class="runtime"
+            ><span class="dot"></span> Local runtime</span
+          ><button id="api-shortcut" class="text-button">API docs ↗</button>
+        </div>
+      </header>
+      <main>
+        <section id="page-workshop" class="page">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">THE SPECIALIZATION WORKSHOP</div>
+              <h1>Teach a model your kind of work.</h1>
+              <p>
+                Start with examples. Learn from corrections. See what actually
+                improves.
+              </p>
+            </div>
+            <button id="import-shortcut" class="button secondary">
+              ＋ Bring your own skill
+            </button>
+          </div>
+          <section class="hero">
+            <div class="hero-copy">
+              <span class="hero-tag"
+                ><span class="dot"></span> ACTIVE SKILL
+                <span class="divider">/</span>
+                <span id="skill-origin">WORKBENCH</span></span
+              >
+              <h2 id="skill-name">CI failure triage</h2>
+              <p id="skill-description"></p>
+              <div class="hero-footer">
+                <span>↳ Structured output</span><span>◉ Verbatim evidence</span
+                ><span>◇ Local fine-tuning</span>
+              </div>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="orbit orbit-three"></div>
+              <div class="core">s<span>✳</span></div>
+              <span class="orbit-point p1">input</span
+              ><span class="orbit-point p2">examples</span
+              ><span class="orbit-point p3">expertise</span>
+              <div class="art-caption">GENERAL CAPABILITY → SPECIFIC SKILL</div>
+            </div>
+          </section>
+          <div class="pipeline">
+            <div>
+              <span class="step-index complete">01</span
+              ><span
+                ><strong>Define the skill</strong
+                ><small id="label-count">3 labels · one contract</small></span
+              ><span class="step-arrow">→</span>
+            </div>
+            <div>
+              <span class="step-index complete">02</span
+              ><span
+                ><strong>Provide examples</strong
+                ><small id="example-count">Loading data…</small></span
+              ><span class="step-arrow">→</span>
+            </div>
+            <div>
+              <span class="step-index">03</span
+              ><span
+                ><strong>Train & compare</strong
+                ><small>Real weights, measured results</small></span
+              ><span class="step-arrow">→</span>
+            </div>
+            <div>
+              <span class="step-index">04</span
+              ><span
+                ><strong>Use your specialist</strong
+                ><small>Input in. JSON out.</small></span
+              >
+            </div>
+          </div>
+          <div class="section-title">
+            <div>
+              <h3>The evidence so far</h3>
+              <span id="eval-caption"
+                >Same inputs. Same prompt. Separate test set.</span
+              >
+            </div>
+            <button id="show-experiments" class="text-button">
+              Explore experiments ↗
+            </button>
+          </div>
+          <div id="scorecards" class="scorecards"></div>
+          <p class="metric-note">
+            Accuracy measures agreement with existing labels. A matching quote
+            is a mechanical check, not proof of a correct diagnosis. Scores are
+            exploratory; evaluate on fresh cases before deployment.
+          </p>
+          <div class="section-title playground-heading">
+            <div>
+              <h3>Put it to work</h3>
+              <span
+                >Try an input, inspect the answer, and teach it something
+                new.</span
+              >
+            </div>
+            <div class="pill">LIVE INFERENCE</div>
+          </div>
+          <div class="playground">
+            <section class="panel input-panel">
+              <div class="panel-header">
+                <strong><span class="panel-number">01</span> Your input</strong
+                ><button id="load-example" class="text-button">
+                  Load practice example ↻
+                </button>
+              </div>
+              <label for="input" class="sr-only">Input to classify</label
+              ><textarea
+                id="input"
+                spellcheck="false"
+                placeholder="Paste a failed CI log here…"
+              ></textarea>
+              <div class="input-foot">
+                <span id="input-size">0 characters</span
+                ><span>Plain text · up to 16,000 characters</span>
+              </div>
+              <div class="inference-controls">
+                <label class="model-select-label" for="model-select"
+                  >Run with</label
+                ><select id="model-select">
+                  <option value="base">Base · Qwen 1.5B</option>
+                  <option value="specialist">Your specialist</option>
+                  <option value="reference">Reference provider</option></select
+                ><button id="infer" class="button primary">
+                  Run inference <span>↗</span>
+                </button>
+              </div>
+            </section>
+            <section class="panel output-panel">
+              <div class="panel-header">
+                <strong
+                  ><span class="panel-number">02</span> Model output</strong
+                ><span id="output-timing" class="tiny"></span>
+              </div>
+              <div id="output" class="output-body">
+                <div class="empty-output">
+                  <span class="empty-glyph">⤷</span>
+                  <h4>A little model. A specific answer.</h4>
+                  <p>
+                    Run an input to see its classification,<br />supporting
+                    quote, and validation.
+                  </p>
+                </div>
+              </div>
+              <div class="output-actions">
+                <span id="output-caption"
+                  >Responses come from the selected model.</span
+                ><button id="correct-toggle" class="text-button">
+                  Teach a correction ＋
+                </button>
+              </div>
+            </section>
+          </div>
+          <section id="correction-panel" class="panel correction-panel hidden">
+            <div class="panel-header">
+              <strong>Teach with a verified example</strong
+              ><button id="close-correction" class="text-button">
+                Close ×
+              </button>
+            </div>
+            <div class="correction-fields">
+              <label>Correct label<select id="correct-label"></select></label
+              ><label class="wide"
+                >Evidence copied from this input<textarea
+                  id="correct-evidence"
+                  rows="2"
+                  placeholder="Paste the decisive line exactly as it appears"
+                ></textarea></label
+              ><button id="save-correction" class="button primary">
+                Save practice example
+              </button>
+            </div>
+            <p>
+              The correction enters practice data. Train a new checkpoint to
+              change model behavior. Reserved evaluation inputs cannot be added.
+            </p>
+          </section>
+          <div class="bottom-grid">
+            <section class="panel training-panel">
+              <div class="section-title">
+                <div>
+                  <div class="eyebrow">THE LEARNING LOOP</div>
+                  <h3>Make experience count.</h3>
+                </div>
+                <span class="train-symbol">✳</span>
+              </div>
+              <p>
+                Train a fresh adapter on your examples. Every run preserves its
+                data, recipe, and weights so you can inspect the result.
+              </p>
+              <div class="training-config">
+                <div>
+                  <small>BASE MODEL</small><strong>Qwen 2.5 · 1.5B</strong>
+                </div>
+                <div>
+                  <small>METHOD</small><strong>QLoRA / supervised</strong>
+                </div>
+                <div><small>COMPUTE</small><strong>Apple Silicon</strong></div>
+              </div>
+              <div class="training-actions">
+                <label
+                  >Steps
+                  <input
+                    id="iterations"
+                    type="number"
+                    value="150"
+                    min="10"
+                    max="300"
+                    step="10" /></label
+                ><button id="train" class="button primary">
+                  Train a specialist <span>✳</span>
+                </button>
+              </div>
+              <div id="train-feedback" class="tiny"></div>
+            </section>
+            <section class="panel checkpoint-panel">
+              <div class="eyebrow">YOUR MODEL, READY TO CALL</div>
+              <h3>One endpoint. Your expertise.</h3>
+              <p>Use the same skill from your app, a script, or an agent.</p>
+              <pre class="code-snippet"><code id="mini-code"></code></pre>
+              <div class="checkpoint-select">
+                <label for="checkpoint">Active checkpoint</label
+                ><select id="checkpoint">
+                  <option value="">No trained checkpoint yet</option>
+                </select>
+              </div>
+              <button id="evaluate" class="button secondary">
+                Evaluate selected model →
+              </button>
+            </section>
+          </div>
+        </section>
+        <section id="page-experiments" class="page hidden">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">MEASURE, THEN DECIDE</div>
+              <h1>Every run leaves a record.</h1>
+              <p>
+                Data snapshots, training logs, exact checkpoints, and individual
+                test results.
+              </p>
+            </div>
+            <button id="refresh-runs" class="button secondary">
+              Refresh ↻
+            </button>
+          </div>
+          <div id="experiment-list"></div>
+          <section id="run-detail" class="panel hidden"></section>
+        </section>
+        <section id="page-library" class="page hidden">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">REUSABLE SKILL PACKAGES</div>
+              <h1>Bring the work you know.</h1>
+              <p>
+                Define labels, provide examples, and reserve a test set. The
+                platform handles the loop.
+              </p>
+            </div>
+            <button id="download-skill" class="button secondary">
+              Export active skill ↓
+            </button>
+          </div>
+          <div id="skill-list" class="skill-list"></div>
+          <div class="library-grid">
+            <section class="panel import-panel">
+              <h3>Add a skill</h3>
+              <p>
+                This POC supports text classification with an evidence quote.
+                Import a skill JSON containing instructions, labels, and
+                separate train, validation, and test examples.
+              </p>
+              <label class="upload-label"
+                >Choose skill JSON<input
+                  id="skill-file"
+                  type="file"
+                  accept=".json,application/json" /></label
+              ><textarea
+                id="skill-json"
+                spellcheck="false"
+                placeholder='{"id":"your-skill", "name":"Your skill", ...}'
+              ></textarea>
+              <div class="import-actions">
+                <button id="load-template" class="button secondary">
+                  Load starter template</button
+                ><button id="import-skill" class="button primary">
+                  Import skill →
+                </button>
+              </div>
+              <p id="import-feedback" class="tiny"></p>
+            </section>
+            <section class="panel provenance-panel">
+              <h3>Where the evidence comes from</h3>
+              <dl id="provenance"></dl>
+              <p>
+                Evaluation examples remain separate from corrections and
+                training. Exact normalized input overlap is rejected; semantic
+                duplicates still require human review.
+              </p>
+            </section>
+          </div>
+        </section>
+        <section id="page-api" class="page hidden">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">THE PLATFORM UNDERNEATH</div>
+              <h1>Your input. Your specialist.</h1>
+              <p>
+                A small HTTP API for skills, inference, corrections, and
+                training runs.
+              </p>
+            </div>
+            <a
+              class="button secondary"
+              href="/openapi.json"
+              target="_blank"
+              rel="noreferrer"
+              >OpenAPI schema ↗</a
+            >
+          </div>
+          <section class="panel api-panel">
+            <h3>Call a skill</h3>
+            <p>
+              Start the app locally, then send text to the inference endpoint.
+              Select a completed checkpoint to use the specialist.
+            </p>
+            <pre><code id="api-code"></code></pre>
+            <div class="api-endpoints">
+              <div>
+                <b>GET</b><code>/api/skills</code
+                ><span>Discover available skills</span>
+              </div>
+              <div>
+                <b>POST</b><code>/api/skills</code
+                ><span>Import your own task and datasets</span>
+              </div>
+              <div>
+                <b>POST</b><code>/api/infer</code
+                ><span>Run base, specialist, or reference inference</span>
+              </div>
+              <div>
+                <b>POST</b><code>/api/skills/{id}/corrections</code
+                ><span>Add or replace a practice example</span>
+              </div>
+              <div>
+                <b>POST</b><code>/api/runs</code
+                ><span>Start training or evaluation</span>
+              </div>
+              <div>
+                <b>GET</b><code>/api/runs/{id}</code
+                ><span>Read progress, metrics, and results</span>
+              </div>
+            </div>
+          </section>
+          <section class="panel api-panel">
+            <h3>Connect a reference model</h3>
+            <p>
+              Set an OpenAI-compatible chat-completions endpoint on the server.
+              Choosing “Reference provider” explicitly sends the selected input
+              to that provider. Credentials stay on the server.
+            </p>
+            <pre><code>WORKSHOP_REFERENCE_URL=https://your-provider.example/v1
+WORKSHOP_REFERENCE_MODEL=your-model-id
+WORKSHOP_REFERENCE_KEY=your-key</code></pre>
+            <p>
+              Reference results are labeled with the configured model. There are
+              no simulated frontier scores or automatic remote fallbacks. This
+              is a single-user localhost POC, not a hosted multi-tenant service.
+            </p>
+          </section>
+        </section>
+      </main>
+      <footer>
+        <span
+          >specialist<span class="brand-dot">.</span>
+          <span class="footer-note">Built for learning by doing.</span></span
+        ><span
+          >Local first <span class="footer-dot">·</span> Every result
+          inspectable</span
+        >
+      </footer>
+    </div>
+    <div id="toast" role="status" aria-live="polite" class="toast hidden"></div>
+    <script type="module" src="/static/app.js"></script>
+  </body>
+</html>

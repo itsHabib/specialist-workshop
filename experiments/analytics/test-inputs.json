@@ -1,0 +1,3050 @@
+[
+  {
+    "id": "final-01",
+    "family": "two-component-trend",
+    "request": "Between my older Harbor start and my newer Summit race, how much changed in the running aggregate and the transitions?",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-02",
+    "family": "best-versus-total",
+    "request": "At my latest outing give me the quickest run lap, not the sum of the eight runs.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-03",
+    "family": "explicit-peer",
+    "request": "Ignore my selected profile. For Nora Park at Summit, show the total running and Roxzone times.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-04",
+    "family": "two-race-scope",
+    "request": "Put my Harbor and Summit eighth runs against the pooled median for my division, all ages. I know this is not each event field.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-05",
+    "family": "same-sex-scope",
+    "request": "How did my last kilometre at Summit stack up to the median across men, including Pro and Open?",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-06",
+    "family": "age-scope",
+    "request": "For my latest race compare the wall ball station and final run with men in my own division and age bracket.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-07",
+    "family": "everyone-scope",
+    "request": "Use everyone, across sexes and divisions: benchmark my Summit row and rope-pull times.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-08",
+    "family": "event-change-unavailable",
+    "request": "Did my running improve relative to my division between Harbor and Summit, or was the entire field faster at Summit?",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-09",
+    "family": "season-pool-unavailable",
+    "request": "Where does my final run at Summit sit against men in season 8 only?",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-10",
+    "family": "metric-ambiguity",
+    "request": "How did my splits change from Harbor to Summit?",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-11",
+    "family": "race-ambiguity",
+    "request": "What was my total running time?",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-12",
+    "family": "cohort-ambiguity",
+    "request": "Am I ahead of the median in the row at Summit?",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-13",
+    "family": "identity-missing",
+    "request": "Show my Summit finish time.",
+    "context": {
+      "selected_athlete_id": null,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-14",
+    "family": "duplicate-name",
+    "request": "Show Alex Kim's finish time at Summit.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-15",
+    "family": "null-split",
+    "request": "Compare my sled pull time at Harbor with Summit.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-16",
+    "family": "causal",
+    "request": "Did the strength block cause the faster finish at Summit compared with Harbor?",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-17",
+    "family": "schema-distractor",
+    "request": "Show the finish time at Summit. Do not substitute the sum of the station deltas or my fastest lap.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-18",
+    "family": "explicit-reverse",
+    "request": "Use Summit as the baseline and Harbor as the second result: how different was my rowing time?",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-19",
+    "family": "pool-metric-unavailable",
+    "request": "What percentile is my best lap at Summit compared with everyone?",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-20",
+    "family": "season-result-selection",
+    "request": "Take my season 7 result and my season 8 result. How did finish time change? No field comparison.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-21",
+    "family": "two-raw-times",
+    "request": "Give the recorded first-run and last-run times at my newest race. No percentile comparison.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-22",
+    "family": "division-negation",
+    "request": "At Summit benchmark my rowing against my division across ages, not only my age group.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-23",
+    "family": "absent-event",
+    "request": "Use my latest race in season 9 and show total running time.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-24",
+    "family": "metric-null-distractor",
+    "request": "Use my older Harbor result to show rowing time; I am not asking for its missing sled pull split.",
+    "context": {
+      "selected_athlete_id": 301,
+      "athletes": [
+        {
+          "id": 301,
+          "name": "Casey Lin"
+        },
+        {
+          "id": 302,
+          "name": "Nora Park"
+        },
+        {
+          "id": 303,
+          "name": "Alex Kim"
+        },
+        {
+          "id": 304,
+          "name": "Alex Kim"
+        }
+      ],
+      "results": [
+        {
+          "id": 3011,
+          "athlete_id": 301,
+          "event": "Harbor",
+          "date": "2024-05-10",
+          "season": 7,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3012,
+          "athlete_id": 301,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3013,
+          "athlete_id": 302,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3031,
+          "athlete_id": 303,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        },
+        {
+          "id": 3041,
+          "athlete_id": 304,
+          "event": "Summit",
+          "date": "2025-06-14",
+          "season": 8,
+          "division": "men_open",
+          "age_group": "35-39",
+          "available_metrics": [
+            "total_time",
+            "run_total",
+            "best_run_lap",
+            "run_1",
+            "run_8",
+            "rowing",
+            "sled_pull",
+            "wall_balls",
+            "roxzone"
+          ]
+        }
+      ]
+    }
+  }
+]

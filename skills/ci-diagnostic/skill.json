@@ -1,0 +1,2126 @@
+{
+  "id": "ci-diagnostic",
+  "name": "CI evidence practice",
+  "description": "Learn a finite evidence-gathering procedure and write an advisory in a resettable local environment.",
+  "instructions": "Select the NEXT action in this CI evidence workflow. Read the log first. A clear compile, syntax, lint, assertion or coverage failure calls for advise-repo. Authentication, registry DNS, disk-full or runner shutdown calls for advise-infra. Ignore generic exit wrappers and every line after Post job cleanup. Otherwise read history. Only a success for the exact current commit supports advise-retry. A different commit's success proves nothing. With unresolved evidence after history, escalate. These are advisories only. Never repeat a read or decide before gathering required evidence.",
+  "labels": {
+    "read-log": "Read the failing step log.",
+    "read-history": "Read the supplied recent run history and commit identities.",
+    "advise-repo": "Write an advisory that repository changes need investigation.",
+    "advise-infra": "Write an advisory for the environment owner.",
+    "advise-retry": "Recommend retry only with a passing run of this exact commit.",
+    "escalate": "Write that the evidence is insufficient; request human diagnosis."
+  },
+  "evidence_mode": "line",
+  "train": [
+    {
+      "id": "ci-train-assertion-0-step-0",
+      "input": "Commit: 2834f6ef3f34\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-0-step-1",
+      "input": "Commit: 2834f6ef3f34\nLog: \nRun 1: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-1-step-0",
+      "input": "Commit: 324528737820\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-1-step-1",
+      "input": "Commit: 324528737820\nLog: \nRun 2: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-2-step-0",
+      "input": "Commit: 654c6b10a200\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-2-step-1",
+      "input": "Commit: 654c6b10a200\nLog: \nRun 3: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-3-step-0",
+      "input": "Commit: d80eceacdd8b\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-3-step-1",
+      "input": "Commit: d80eceacdd8b\nLog: \nRun 4: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-4-step-0",
+      "input": "Commit: 44257333a066\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-4-step-1",
+      "input": "Commit: 44257333a066\nLog: \nRun 5: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-5-step-0",
+      "input": "Commit: 745bd9881fb2\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-5-step-1",
+      "input": "Commit: 745bd9881fb2\nLog: \nRun 6: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-6-step-0",
+      "input": "Commit: 4966f030d4b0\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-6-step-1",
+      "input": "Commit: 4966f030d4b0\nLog: \nRun 7: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-7-step-0",
+      "input": "Commit: e51e262debcb\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-7-step-1",
+      "input": "Commit: e51e262debcb\nLog: \nRun 8: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-8-step-0",
+      "input": "Commit: a2c57021fd58\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-8-step-1",
+      "input": "Commit: a2c57021fd58\nLog: \nRun 9: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-9-step-0",
+      "input": "Commit: 7374c9a43f2d\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-9-step-1",
+      "input": "Commit: 7374c9a43f2d\nLog: \nRun 10: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-10-step-0",
+      "input": "Commit: c16e49c374d2\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-10-step-1",
+      "input": "Commit: c16e49c374d2\nLog: \nRun 11: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-11-step-0",
+      "input": "Commit: 5a648c2f4d5b\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-assertion-11-step-1",
+      "input": "Commit: 5a648c2f4d5b\nLog: \nRun 12: checking application\nAssertionError: expected 4 rows, received 7\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: assertion"
+    },
+    {
+      "id": "ci-train-typescript-0-step-0",
+      "input": "Commit: 1955052bf145\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-0-step-1",
+      "input": "Commit: 1955052bf145\nLog: \nRun 1: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-1-step-0",
+      "input": "Commit: 43af96916d5d\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-1-step-1",
+      "input": "Commit: 43af96916d5d\nLog: \nRun 2: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-2-step-0",
+      "input": "Commit: 2dd27df671c0\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-2-step-1",
+      "input": "Commit: 2dd27df671c0\nLog: \nRun 3: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-3-step-0",
+      "input": "Commit: eb77bcc60660\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-3-step-1",
+      "input": "Commit: eb77bcc60660\nLog: \nRun 4: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-4-step-0",
+      "input": "Commit: 5b71bfb5f78c\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-4-step-1",
+      "input": "Commit: 5b71bfb5f78c\nLog: \nRun 5: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-5-step-0",
+      "input": "Commit: 537595f53735\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-5-step-1",
+      "input": "Commit: 537595f53735\nLog: \nRun 6: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-6-step-0",
+      "input": "Commit: 0b56bd8b3df3\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-6-step-1",
+      "input": "Commit: 0b56bd8b3df3\nLog: \nRun 7: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-7-step-0",
+      "input": "Commit: a0ab7c10dc40\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-7-step-1",
+      "input": "Commit: a0ab7c10dc40\nLog: \nRun 8: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-8-step-0",
+      "input": "Commit: 1e5311e06ff4\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-8-step-1",
+      "input": "Commit: 1e5311e06ff4\nLog: \nRun 9: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-9-step-0",
+      "input": "Commit: 2555b16e3ada\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-9-step-1",
+      "input": "Commit: 2555b16e3ada\nLog: \nRun 10: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-10-step-0",
+      "input": "Commit: f15d869cf4a9\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-10-step-1",
+      "input": "Commit: f15d869cf4a9\nLog: \nRun 11: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-11-step-0",
+      "input": "Commit: b665a48667b2\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-typescript-11-step-1",
+      "input": "Commit: b665a48667b2\nLog: \nRun 12: checking application\nerror TS2322: Type string is not assignable to number\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: typescript"
+    },
+    {
+      "id": "ci-train-auth-0-step-0",
+      "input": "Commit: 79d99c542fc1\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-0-step-1",
+      "input": "Commit: 79d99c542fc1\nLog: \nRun 1: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-1-step-0",
+      "input": "Commit: 78c10eecad49\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-1-step-1",
+      "input": "Commit: 78c10eecad49\nLog: \nRun 2: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-2-step-0",
+      "input": "Commit: 60cafee7e8d0\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-2-step-1",
+      "input": "Commit: 60cafee7e8d0\nLog: \nRun 3: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-3-step-0",
+      "input": "Commit: 52fec6887300\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-3-step-1",
+      "input": "Commit: 52fec6887300\nLog: \nRun 4: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-4-step-0",
+      "input": "Commit: e40b1b2f9631\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-4-step-1",
+      "input": "Commit: e40b1b2f9631\nLog: \nRun 5: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-5-step-0",
+      "input": "Commit: a660fd310c70\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-5-step-1",
+      "input": "Commit: a660fd310c70\nLog: \nRun 6: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-6-step-0",
+      "input": "Commit: 1828edbeba33\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-6-step-1",
+      "input": "Commit: 1828edbeba33\nLog: \nRun 7: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-7-step-0",
+      "input": "Commit: 2e90f022bd24\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-7-step-1",
+      "input": "Commit: 2e90f022bd24\nLog: \nRun 8: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-8-step-0",
+      "input": "Commit: c91df553dcda\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-8-step-1",
+      "input": "Commit: c91df553dcda\nLog: \nRun 9: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-9-step-0",
+      "input": "Commit: 50bc12d53e2b\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-9-step-1",
+      "input": "Commit: 50bc12d53e2b\nLog: \nRun 10: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-10-step-0",
+      "input": "Commit: f7df63fb927d\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-10-step-1",
+      "input": "Commit: f7df63fb927d\nLog: \nRun 11: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-11-step-0",
+      "input": "Commit: b219b0a708f3\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-auth-11-step-1",
+      "input": "Commit: b219b0a708f3\nLog: \nRun 12: checking application\nfailed to authenticate to package registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: auth"
+    },
+    {
+      "id": "ci-train-dns-0-step-0",
+      "input": "Commit: 5983137a6ab7\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-0-step-1",
+      "input": "Commit: 5983137a6ab7\nLog: \nRun 1: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-1-step-0",
+      "input": "Commit: 934b0307ed95\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-1-step-1",
+      "input": "Commit: 934b0307ed95\nLog: \nRun 2: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-2-step-0",
+      "input": "Commit: e01fa94a98a8\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-2-step-1",
+      "input": "Commit: e01fa94a98a8\nLog: \nRun 3: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-3-step-0",
+      "input": "Commit: 53c46f53037e\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-3-step-1",
+      "input": "Commit: 53c46f53037e\nLog: \nRun 4: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-4-step-0",
+      "input": "Commit: 73f303c5356e\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-4-step-1",
+      "input": "Commit: 73f303c5356e\nLog: \nRun 5: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-5-step-0",
+      "input": "Commit: eccb3740aed5\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-5-step-1",
+      "input": "Commit: eccb3740aed5\nLog: \nRun 6: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-6-step-0",
+      "input": "Commit: 35262c7fda4f\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-6-step-1",
+      "input": "Commit: 35262c7fda4f\nLog: \nRun 7: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-7-step-0",
+      "input": "Commit: d0dae9372501\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-7-step-1",
+      "input": "Commit: d0dae9372501\nLog: \nRun 8: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-8-step-0",
+      "input": "Commit: bb30b621a4ba\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-8-step-1",
+      "input": "Commit: bb30b621a4ba\nLog: \nRun 9: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-9-step-0",
+      "input": "Commit: 0ec932c1f8c0\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-9-step-1",
+      "input": "Commit: 0ec932c1f8c0\nLog: \nRun 10: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-10-step-0",
+      "input": "Commit: f9b0d4d19c67\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-10-step-1",
+      "input": "Commit: f9b0d4d19c67\nLog: \nRun 11: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-11-step-0",
+      "input": "Commit: 04586b658fc7\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-dns-11-step-1",
+      "input": "Commit: 04586b658fc7\nLog: \nRun 12: checking application\nCould not resolve host: registry.example\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: dns"
+    },
+    {
+      "id": "ci-train-timeout-pass-0-step-0",
+      "input": "Commit: 0d9974d47346\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-0-step-1",
+      "input": "Commit: 0d9974d47346\nLog: \nRun 1: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-0-step-2",
+      "input": "Commit: 0d9974d47346\nLog: \nRun 1: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=0d9974d47346 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-1-step-0",
+      "input": "Commit: f5ca3bf308d2\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-1-step-1",
+      "input": "Commit: f5ca3bf308d2\nLog: \nRun 2: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-1-step-2",
+      "input": "Commit: f5ca3bf308d2\nLog: \nRun 2: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=f5ca3bf308d2 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-2-step-0",
+      "input": "Commit: 9141747982b3\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-2-step-1",
+      "input": "Commit: 9141747982b3\nLog: \nRun 3: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-2-step-2",
+      "input": "Commit: 9141747982b3\nLog: \nRun 3: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=9141747982b3 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-3-step-0",
+      "input": "Commit: 81e927c8372d\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-3-step-1",
+      "input": "Commit: 81e927c8372d\nLog: \nRun 4: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-3-step-2",
+      "input": "Commit: 81e927c8372d\nLog: \nRun 4: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=81e927c8372d conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-4-step-0",
+      "input": "Commit: 3258def11122\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-4-step-1",
+      "input": "Commit: 3258def11122\nLog: \nRun 5: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-4-step-2",
+      "input": "Commit: 3258def11122\nLog: \nRun 5: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=3258def11122 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-5-step-0",
+      "input": "Commit: 04acc72180e7\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-5-step-1",
+      "input": "Commit: 04acc72180e7\nLog: \nRun 6: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-5-step-2",
+      "input": "Commit: 04acc72180e7\nLog: \nRun 6: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=04acc72180e7 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-6-step-0",
+      "input": "Commit: 99990834eb3f\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-6-step-1",
+      "input": "Commit: 99990834eb3f\nLog: \nRun 7: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-6-step-2",
+      "input": "Commit: 99990834eb3f\nLog: \nRun 7: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=99990834eb3f conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-7-step-0",
+      "input": "Commit: 89ad4f95b063\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-7-step-1",
+      "input": "Commit: 89ad4f95b063\nLog: \nRun 8: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-7-step-2",
+      "input": "Commit: 89ad4f95b063\nLog: \nRun 8: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=89ad4f95b063 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-8-step-0",
+      "input": "Commit: a6237af33f31\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-8-step-1",
+      "input": "Commit: a6237af33f31\nLog: \nRun 9: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-8-step-2",
+      "input": "Commit: a6237af33f31\nLog: \nRun 9: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=a6237af33f31 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-9-step-0",
+      "input": "Commit: cf279344391d\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-9-step-1",
+      "input": "Commit: cf279344391d\nLog: \nRun 10: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-9-step-2",
+      "input": "Commit: cf279344391d\nLog: \nRun 10: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=cf279344391d conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-10-step-0",
+      "input": "Commit: fe5cba0e821a\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-10-step-1",
+      "input": "Commit: fe5cba0e821a\nLog: \nRun 11: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-10-step-2",
+      "input": "Commit: fe5cba0e821a\nLog: \nRun 11: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=fe5cba0e821a conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-11-step-0",
+      "input": "Commit: 06814679b9a1\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-11-step-1",
+      "input": "Commit: 06814679b9a1\nLog: \nRun 12: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-timeout-pass-11-step-2",
+      "input": "Commit: 06814679b9a1\nLog: \nRun 12: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=06814679b9a1 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-0-step-0",
+      "input": "Commit: 71d4ffcd34f6\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-0-step-1",
+      "input": "Commit: 71d4ffcd34f6\nLog: \nRun 1: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-0-step-2",
+      "input": "Commit: 71d4ffcd34f6\nLog: \nRun 1: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=71d4ffcd34f6 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-1-step-0",
+      "input": "Commit: e0daac28ba79\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-1-step-1",
+      "input": "Commit: e0daac28ba79\nLog: \nRun 2: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-1-step-2",
+      "input": "Commit: e0daac28ba79\nLog: \nRun 2: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=e0daac28ba79 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-2-step-0",
+      "input": "Commit: ff4575591752\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-2-step-1",
+      "input": "Commit: ff4575591752\nLog: \nRun 3: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-2-step-2",
+      "input": "Commit: ff4575591752\nLog: \nRun 3: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=ff4575591752 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-3-step-0",
+      "input": "Commit: 256510c77a1f\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-3-step-1",
+      "input": "Commit: 256510c77a1f\nLog: \nRun 4: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-3-step-2",
+      "input": "Commit: 256510c77a1f\nLog: \nRun 4: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=256510c77a1f conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-4-step-0",
+      "input": "Commit: 09b86d671145\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-4-step-1",
+      "input": "Commit: 09b86d671145\nLog: \nRun 5: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-4-step-2",
+      "input": "Commit: 09b86d671145\nLog: \nRun 5: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=09b86d671145 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-5-step-0",
+      "input": "Commit: df7c53fe126a\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-5-step-1",
+      "input": "Commit: df7c53fe126a\nLog: \nRun 6: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-5-step-2",
+      "input": "Commit: df7c53fe126a\nLog: \nRun 6: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=df7c53fe126a conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-6-step-0",
+      "input": "Commit: e4da0a3993e1\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-6-step-1",
+      "input": "Commit: e4da0a3993e1\nLog: \nRun 7: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-6-step-2",
+      "input": "Commit: e4da0a3993e1\nLog: \nRun 7: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=e4da0a3993e1 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-7-step-0",
+      "input": "Commit: 36ff75fb48c3\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-7-step-1",
+      "input": "Commit: 36ff75fb48c3\nLog: \nRun 8: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-7-step-2",
+      "input": "Commit: 36ff75fb48c3\nLog: \nRun 8: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=36ff75fb48c3 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-8-step-0",
+      "input": "Commit: 7b1f852a75da\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-8-step-1",
+      "input": "Commit: 7b1f852a75da\nLog: \nRun 9: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-8-step-2",
+      "input": "Commit: 7b1f852a75da\nLog: \nRun 9: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=7b1f852a75da conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-9-step-0",
+      "input": "Commit: 4e2f654a7740\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-9-step-1",
+      "input": "Commit: 4e2f654a7740\nLog: \nRun 10: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-9-step-2",
+      "input": "Commit: 4e2f654a7740\nLog: \nRun 10: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=4e2f654a7740 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-10-step-0",
+      "input": "Commit: 7615b0d62a1b\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-10-step-1",
+      "input": "Commit: 7615b0d62a1b\nLog: \nRun 11: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-10-step-2",
+      "input": "Commit: 7615b0d62a1b\nLog: \nRun 11: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=7615b0d62a1b conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-11-step-0",
+      "input": "Commit: 25f564c2dd2e\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-11-step-1",
+      "input": "Commit: 25f564c2dd2e\nLog: \nRun 12: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-socket-pass-11-step-2",
+      "input": "Commit: 25f564c2dd2e\nLog: \nRun 12: checking application\nECONNREFUSED 127.0.0.1:5432\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=25f564c2dd2e conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: socket-pass"
+    },
+    {
+      "id": "ci-train-timeout-stale-0-step-0",
+      "input": "Commit: dc8b247ecae9\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-0-step-1",
+      "input": "Commit: dc8b247ecae9\nLog: \nRun 1: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-0-step-2",
+      "input": "Commit: dc8b247ecae9\nLog: \nRun 1: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=dc8b247ecae9 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-1-step-0",
+      "input": "Commit: e4e918ded48a\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-1-step-1",
+      "input": "Commit: e4e918ded48a\nLog: \nRun 2: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-1-step-2",
+      "input": "Commit: e4e918ded48a\nLog: \nRun 2: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=e4e918ded48a conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-2-step-0",
+      "input": "Commit: aa7cf527e5bb\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-2-step-1",
+      "input": "Commit: aa7cf527e5bb\nLog: \nRun 3: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-2-step-2",
+      "input": "Commit: aa7cf527e5bb\nLog: \nRun 3: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=aa7cf527e5bb conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-3-step-0",
+      "input": "Commit: c33541572772\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-3-step-1",
+      "input": "Commit: c33541572772\nLog: \nRun 4: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-3-step-2",
+      "input": "Commit: c33541572772\nLog: \nRun 4: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=c33541572772 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-4-step-0",
+      "input": "Commit: d119ed34b3ca\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-4-step-1",
+      "input": "Commit: d119ed34b3ca\nLog: \nRun 5: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-4-step-2",
+      "input": "Commit: d119ed34b3ca\nLog: \nRun 5: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=d119ed34b3ca conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-5-step-0",
+      "input": "Commit: ab3e1758fae3\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-5-step-1",
+      "input": "Commit: ab3e1758fae3\nLog: \nRun 6: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-5-step-2",
+      "input": "Commit: ab3e1758fae3\nLog: \nRun 6: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=ab3e1758fae3 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-6-step-0",
+      "input": "Commit: e9e5b7abc6b7\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-6-step-1",
+      "input": "Commit: e9e5b7abc6b7\nLog: \nRun 7: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-6-step-2",
+      "input": "Commit: e9e5b7abc6b7\nLog: \nRun 7: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=e9e5b7abc6b7 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-7-step-0",
+      "input": "Commit: 85ed70a2d316\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-7-step-1",
+      "input": "Commit: 85ed70a2d316\nLog: \nRun 8: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-7-step-2",
+      "input": "Commit: 85ed70a2d316\nLog: \nRun 8: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=85ed70a2d316 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-8-step-0",
+      "input": "Commit: efe3091291cf\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-8-step-1",
+      "input": "Commit: efe3091291cf\nLog: \nRun 9: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-8-step-2",
+      "input": "Commit: efe3091291cf\nLog: \nRun 9: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=efe3091291cf conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-9-step-0",
+      "input": "Commit: b517845f7286\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-9-step-1",
+      "input": "Commit: b517845f7286\nLog: \nRun 10: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-9-step-2",
+      "input": "Commit: b517845f7286\nLog: \nRun 10: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=b517845f7286 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-10-step-0",
+      "input": "Commit: 0a7e6244c43a\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-10-step-1",
+      "input": "Commit: 0a7e6244c43a\nLog: \nRun 11: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-10-step-2",
+      "input": "Commit: 0a7e6244c43a\nLog: \nRun 11: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=0a7e6244c43a conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-11-step-0",
+      "input": "Commit: f24d17103c0c\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-11-step-1",
+      "input": "Commit: f24d17103c0c\nLog: \nRun 12: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-timeout-stale-11-step-2",
+      "input": "Commit: f24d17103c0c\nLog: \nRun 12: checking application\ntest timed out waiting for readiness\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=f24d17103c0c conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: timeout-stale"
+    },
+    {
+      "id": "ci-train-opaque-0-step-0",
+      "input": "Commit: c72f047c486a\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-0-step-1",
+      "input": "Commit: c72f047c486a\nLog: \nRun 1: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-0-step-2",
+      "input": "Commit: c72f047c486a\nLog: \nRun 1: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=c72f047c486a conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-1-step-0",
+      "input": "Commit: e3705ed547b8\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-1-step-1",
+      "input": "Commit: e3705ed547b8\nLog: \nRun 2: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-1-step-2",
+      "input": "Commit: e3705ed547b8\nLog: \nRun 2: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=e3705ed547b8 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-2-step-0",
+      "input": "Commit: f2f2f868f2b5\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-2-step-1",
+      "input": "Commit: f2f2f868f2b5\nLog: \nRun 3: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-2-step-2",
+      "input": "Commit: f2f2f868f2b5\nLog: \nRun 3: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=f2f2f868f2b5 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-3-step-0",
+      "input": "Commit: 62bbdcae4615\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-3-step-1",
+      "input": "Commit: 62bbdcae4615\nLog: \nRun 4: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-3-step-2",
+      "input": "Commit: 62bbdcae4615\nLog: \nRun 4: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=62bbdcae4615 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-4-step-0",
+      "input": "Commit: 05fb32b0cc40\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-4-step-1",
+      "input": "Commit: 05fb32b0cc40\nLog: \nRun 5: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-4-step-2",
+      "input": "Commit: 05fb32b0cc40\nLog: \nRun 5: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=05fb32b0cc40 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-5-step-0",
+      "input": "Commit: e532badee069\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-5-step-1",
+      "input": "Commit: e532badee069\nLog: \nRun 6: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-5-step-2",
+      "input": "Commit: e532badee069\nLog: \nRun 6: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=e532badee069 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-6-step-0",
+      "input": "Commit: dc04ccd3cdae\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-6-step-1",
+      "input": "Commit: dc04ccd3cdae\nLog: \nRun 7: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-6-step-2",
+      "input": "Commit: dc04ccd3cdae\nLog: \nRun 7: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=dc04ccd3cdae conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-7-step-0",
+      "input": "Commit: 65881495385f\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-7-step-1",
+      "input": "Commit: 65881495385f\nLog: \nRun 8: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-7-step-2",
+      "input": "Commit: 65881495385f\nLog: \nRun 8: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=65881495385f conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-8-step-0",
+      "input": "Commit: 37352f764400\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-8-step-1",
+      "input": "Commit: 37352f764400\nLog: \nRun 9: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-8-step-2",
+      "input": "Commit: 37352f764400\nLog: \nRun 9: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=37352f764400 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-9-step-0",
+      "input": "Commit: 4c4f406099c8\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-9-step-1",
+      "input": "Commit: 4c4f406099c8\nLog: \nRun 10: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-9-step-2",
+      "input": "Commit: 4c4f406099c8\nLog: \nRun 10: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=4c4f406099c8 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-10-step-0",
+      "input": "Commit: 677e577fa495\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-10-step-1",
+      "input": "Commit: 677e577fa495\nLog: \nRun 11: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-10-step-2",
+      "input": "Commit: 677e577fa495\nLog: \nRun 11: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=677e577fa495 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-11-step-0",
+      "input": "Commit: ea7c7f37a460\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-11-step-1",
+      "input": "Commit: ea7c7f37a460\nLog: \nRun 12: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    },
+    {
+      "id": "ci-train-opaque-11-step-2",
+      "input": "Commit: ea7c7f37a460\nLog: \nRun 12: checking application\nworker stopped without a diagnostic\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=ea7c7f37a460 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque"
+    }
+  ],
+  "validation": [
+    {
+      "id": "ci-validation-undefined-0-step-0",
+      "input": "Commit: 37e8db5b3524\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: undefined"
+    },
+    {
+      "id": "ci-validation-undefined-0-step-1",
+      "input": "Commit: 37e8db5b3524\nLog: \nRun 1: checking application\nundefined: BuildConfig\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: undefined"
+    },
+    {
+      "id": "ci-validation-undefined-1-step-0",
+      "input": "Commit: 09defe190f04\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: undefined"
+    },
+    {
+      "id": "ci-validation-undefined-1-step-1",
+      "input": "Commit: 09defe190f04\nLog: \nRun 2: checking application\nundefined: BuildConfig\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: undefined"
+    },
+    {
+      "id": "ci-validation-rate-limit-0-step-0",
+      "input": "Commit: a0b33189d720\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: rate-limit"
+    },
+    {
+      "id": "ci-validation-rate-limit-0-step-1",
+      "input": "Commit: a0b33189d720\nLog: \nRun 1: checking application\n429 Too Many Requests from registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: rate-limit"
+    },
+    {
+      "id": "ci-validation-rate-limit-1-step-0",
+      "input": "Commit: a01c356ac8a2\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: rate-limit"
+    },
+    {
+      "id": "ci-validation-rate-limit-1-step-1",
+      "input": "Commit: a01c356ac8a2\nLog: \nRun 2: checking application\n429 Too Many Requests from registry\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: rate-limit"
+    },
+    {
+      "id": "ci-validation-busy-pass-0-step-0",
+      "input": "Commit: 006170e9476f\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: busy-pass"
+    },
+    {
+      "id": "ci-validation-busy-pass-0-step-1",
+      "input": "Commit: 006170e9476f\nLog: \nRun 1: checking application\nEBUSY: resource busy or locked\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: busy-pass"
+    },
+    {
+      "id": "ci-validation-busy-pass-0-step-2",
+      "input": "Commit: 006170e9476f\nLog: \nRun 1: checking application\nEBUSY: resource busy or locked\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=006170e9476f conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: busy-pass"
+    },
+    {
+      "id": "ci-validation-busy-pass-1-step-0",
+      "input": "Commit: 985383fb71be\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: busy-pass"
+    },
+    {
+      "id": "ci-validation-busy-pass-1-step-1",
+      "input": "Commit: 985383fb71be\nLog: \nRun 2: checking application\nEBUSY: resource busy or locked\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: busy-pass"
+    },
+    {
+      "id": "ci-validation-busy-pass-1-step-2",
+      "input": "Commit: 985383fb71be\nLog: \nRun 2: checking application\nEBUSY: resource busy or locked\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=985383fb71be conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: busy-pass"
+    },
+    {
+      "id": "ci-validation-opaque-stale-0-step-0",
+      "input": "Commit: adc3029f1ce1\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque-stale"
+    },
+    {
+      "id": "ci-validation-opaque-stale-0-step-1",
+      "input": "Commit: adc3029f1ce1\nLog: \nRun 1: checking application\nstep killed unexpectedly\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque-stale"
+    },
+    {
+      "id": "ci-validation-opaque-stale-0-step-2",
+      "input": "Commit: adc3029f1ce1\nLog: \nRun 1: checking application\nstep killed unexpectedly\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=adc3029f1ce1 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque-stale"
+    },
+    {
+      "id": "ci-validation-opaque-stale-1-step-0",
+      "input": "Commit: 0bf870e51b7c\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque-stale"
+    },
+    {
+      "id": "ci-validation-opaque-stale-1-step-1",
+      "input": "Commit: 0bf870e51b7c\nLog: \nRun 2: checking application\nstep killed unexpectedly\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque-stale"
+    },
+    {
+      "id": "ci-validation-opaque-stale-1-step-2",
+      "input": "Commit: 0bf870e51b7c\nLog: \nRun 2: checking application\nstep killed unexpectedly\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=0bf870e51b7c conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: opaque-stale"
+    }
+  ],
+  "test": [
+    {
+      "id": "ci-test-coverage-0-step-0",
+      "input": "Commit: a2ab34926519\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: coverage"
+    },
+    {
+      "id": "ci-test-coverage-0-step-1",
+      "input": "Commit: a2ab34926519\nLog: \nRun 1: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: coverage"
+    },
+    {
+      "id": "ci-test-coverage-1-step-0",
+      "input": "Commit: c5c67ade5d52\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: coverage"
+    },
+    {
+      "id": "ci-test-coverage-1-step-1",
+      "input": "Commit: c5c67ade5d52\nLog: \nRun 2: checking application\ncoverage below threshold: 72% required 80%\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: coverage"
+    },
+    {
+      "id": "ci-test-syntax-0-step-0",
+      "input": "Commit: 6b2a688b0633\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: syntax"
+    },
+    {
+      "id": "ci-test-syntax-0-step-1",
+      "input": "Commit: 6b2a688b0633\nLog: \nRun 1: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: syntax"
+    },
+    {
+      "id": "ci-test-syntax-1-step-0",
+      "input": "Commit: 2f41aee8ad4a\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: syntax"
+    },
+    {
+      "id": "ci-test-syntax-1-step-1",
+      "input": "Commit: 2f41aee8ad4a\nLog: \nRun 2: checking application\nSyntaxError: unexpected token in src/config.js\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-repo",
+      "evidence": "Advisory: none",
+      "source": "authored family: syntax"
+    },
+    {
+      "id": "ci-test-disk-0-step-0",
+      "input": "Commit: 35015288c818\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: disk"
+    },
+    {
+      "id": "ci-test-disk-0-step-1",
+      "input": "Commit: 35015288c818\nLog: \nRun 1: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: disk"
+    },
+    {
+      "id": "ci-test-disk-1-step-0",
+      "input": "Commit: f9ca78c92f76\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: disk"
+    },
+    {
+      "id": "ci-test-disk-1-step-1",
+      "input": "Commit: f9ca78c92f76\nLog: \nRun 2: checking application\nwrite /tmp/build: no space left on device\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: disk"
+    },
+    {
+      "id": "ci-test-shutdown-0-step-0",
+      "input": "Commit: 2c0f0fec4b19\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: shutdown"
+    },
+    {
+      "id": "ci-test-shutdown-0-step-1",
+      "input": "Commit: 2c0f0fec4b19\nLog: \nRun 1: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: shutdown"
+    },
+    {
+      "id": "ci-test-shutdown-1-step-0",
+      "input": "Commit: 1ff108dc6d36\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: shutdown"
+    },
+    {
+      "id": "ci-test-shutdown-1-step-1",
+      "input": "Commit: 1ff108dc6d36\nLog: \nRun 2: checking application\nRunner received a shutdown signal and disconnected\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "advise-infra",
+      "evidence": "Advisory: none",
+      "source": "authored family: shutdown"
+    },
+    {
+      "id": "ci-test-port-pass-0-step-0",
+      "input": "Commit: 2b6d8e0f0e3d\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-pass"
+    },
+    {
+      "id": "ci-test-port-pass-0-step-1",
+      "input": "Commit: 2b6d8e0f0e3d\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-pass"
+    },
+    {
+      "id": "ci-test-port-pass-0-step-2",
+      "input": "Commit: 2b6d8e0f0e3d\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=2b6d8e0f0e3d conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-pass"
+    },
+    {
+      "id": "ci-test-port-pass-1-step-0",
+      "input": "Commit: 333d88f8ce49\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-pass"
+    },
+    {
+      "id": "ci-test-port-pass-1-step-1",
+      "input": "Commit: 333d88f8ce49\nLog: \nRun 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-pass"
+    },
+    {
+      "id": "ci-test-port-pass-1-step-2",
+      "input": "Commit: 333d88f8ce49\nLog: \nRun 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=333d88f8ce49 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-pass"
+    },
+    {
+      "id": "ci-test-database-pass-0-step-0",
+      "input": "Commit: 1e1e5ae2e86a\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: database-pass"
+    },
+    {
+      "id": "ci-test-database-pass-0-step-1",
+      "input": "Commit: 1e1e5ae2e86a\nLog: \nRun 1: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: database-pass"
+    },
+    {
+      "id": "ci-test-database-pass-0-step-2",
+      "input": "Commit: 1e1e5ae2e86a\nLog: \nRun 1: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=1e1e5ae2e86a conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: database-pass"
+    },
+    {
+      "id": "ci-test-database-pass-1-step-0",
+      "input": "Commit: b576bf89bb59\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: database-pass"
+    },
+    {
+      "id": "ci-test-database-pass-1-step-1",
+      "input": "Commit: b576bf89bb59\nLog: \nRun 2: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: database-pass"
+    },
+    {
+      "id": "ci-test-database-pass-1-step-2",
+      "input": "Commit: b576bf89bb59\nLog: \nRun 2: checking application\nthe database system is starting up\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=b576bf89bb59 conclusion=success\nAdvisory: none",
+      "expected": "advise-retry",
+      "evidence": "Advisory: none",
+      "source": "authored family: database-pass"
+    },
+    {
+      "id": "ci-test-port-stale-0-step-0",
+      "input": "Commit: b52117601748\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-stale"
+    },
+    {
+      "id": "ci-test-port-stale-0-step-1",
+      "input": "Commit: b52117601748\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-stale"
+    },
+    {
+      "id": "ci-test-port-stale-0-step-2",
+      "input": "Commit: b52117601748\nLog: \nRun 1: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=b52117601748 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-stale"
+    },
+    {
+      "id": "ci-test-port-stale-1-step-0",
+      "input": "Commit: 0937153487bc\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-stale"
+    },
+    {
+      "id": "ci-test-port-stale-1-step-1",
+      "input": "Commit: 0937153487bc\nLog: \nRun 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-stale"
+    },
+    {
+      "id": "ci-test-port-stale-1-step-2",
+      "input": "Commit: 0937153487bc\nLog: \nRun 2: checking application\nEADDRINUSE: address already in use :4000\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=0937153487bc conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: port-stale"
+    },
+    {
+      "id": "ci-test-cleanup-only-0-step-0",
+      "input": "Commit: 958c0e1a311c\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: cleanup-only"
+    },
+    {
+      "id": "ci-test-cleanup-only-0-step-1",
+      "input": "Commit: 958c0e1a311c\nLog: \nRun 1: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: cleanup-only"
+    },
+    {
+      "id": "ci-test-cleanup-only-0-step-2",
+      "input": "Commit: 958c0e1a311c\nLog: \nRun 1: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=958c0e1a311c conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: cleanup-only"
+    },
+    {
+      "id": "ci-test-cleanup-only-1-step-0",
+      "input": "Commit: d0305a5eb520\nLog: unread\nHistory: unread\nAdvisory: none",
+      "expected": "read-log",
+      "evidence": "Advisory: none",
+      "source": "authored family: cleanup-only"
+    },
+    {
+      "id": "ci-test-cleanup-only-1-step-1",
+      "input": "Commit: d0305a5eb520\nLog: \nRun 2: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: unread\nAdvisory: none",
+      "expected": "read-history",
+      "evidence": "Advisory: none",
+      "source": "authored family: cleanup-only"
+    },
+    {
+      "id": "ci-test-cleanup-only-1-step-2",
+      "input": "Commit: d0305a5eb520\nLog: \nRun 2: checking application\nProcess completed with exit code 1\nPost job cleanup\nfailed to authenticate during cleanup\nProcess completed with exit code 1\nPost job cleanup\nno space left on device\nHistory: \ncommit=000000000000 conclusion=success\ncommit=d0305a5eb520 conclusion=failure\nAdvisory: none",
+      "expected": "escalate",
+      "evidence": "Advisory: none",
+      "source": "authored family: cleanup-only"
+    }
+  ],
+  "provenance": {
+    "origin": "Authored state-machine fixtures grounded in Workbench ci-classify signatures and wrapper exclusions.",
+    "split": "Signature families fixed by split; current commit hashes varied. Port-pass and port-stale share one final-only signature.",
+    "scope": "Simulated log/history tools and real disposable advisory files. No real CI retries, code repairs, network or Gate actions."
+  }
+}

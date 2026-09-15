@@ -1,0 +1,146 @@
+{
+  "id": "pkg-83f69b96072c",
+  "package": "support-intake@dd72cbdfb154394c1a5aceefe8f808e4f82ba7356902f02e230c1f393b425a94",
+  "operation": "evaluate",
+  "policy": "base",
+  "checkpoint": null,
+  "input": null,
+  "steps": 120,
+  "source": null,
+  "status": "completed",
+  "created_at": 1789258583.780103,
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "contract_hash": "64bc8f4af0e865a79169f2ced782ad56bddb2246bb892cf25923168e35e4de45",
+  "final_hash": "f636b0e122fd894f468d46f2aff240a0cf3087dbee355372ac1d14223fc86683",
+  "grader": "json-exact-v1",
+  "grader_hash": "eafa9bf400dc26203d9fcd61341df2516ac00125379630e5013678d3172293ff",
+  "completion_protocol": "empty-think-v1",
+  "local_cost_usd": null,
+  "started_at": 1789258583.781307,
+  "rows": [
+    {
+      "id": "f1",
+      "family": "mfa",
+      "input": {
+        "message": "I lost my authenticator and cannot get into my profile."
+      },
+      "expected": {
+        "owner": "accounts",
+        "urgency": "normal",
+        "reason": "access"
+      },
+      "raw": "{\n  \"owner\": \"owner\",\n  \"urgency\": \"normal\",\n  \"reason\": \"access\"\n}",
+      "content": "{\n  \"owner\": \"owner\",\n  \"urgency\": \"normal\",\n  \"reason\": \"access\"\n}",
+      "transport": "empty-think-v1",
+      "empty_channel_removed": false,
+      "elapsed_ms": 1001,
+      "input_tokens": 122,
+      "output_tokens": 24,
+      "valid": false,
+      "correct": false,
+      "accepted": false,
+      "abstained": false,
+      "output": null,
+      "error": "'owner' is not one of ['accounts', 'payments', 'integrations', 'clarify']\n\nFailed validating 'enum' in schema['properties']['owner']:\n    {'enum': ['accounts', 'payments', 'integrations', 'clarify']}\n\nOn instance['owner']:\n    'owner'"
+    },
+    {
+      "id": "f2",
+      "family": "invoice-tax",
+      "input": {
+        "message": "The invoice has the wrong tax information."
+      },
+      "expected": {
+        "owner": "payments",
+        "urgency": "normal",
+        "reason": "charge"
+      },
+      "raw": "{\n  \"owner\": \"payments\",\n  \"urgency\": \"unknown\",\n  \"reason\": \"charge\"\n}",
+      "content": "{\n  \"owner\": \"payments\",\n  \"urgency\": \"unknown\",\n  \"reason\": \"charge\"\n}",
+      "transport": "empty-think-v1",
+      "empty_channel_removed": false,
+      "elapsed_ms": 688,
+      "input_tokens": 118,
+      "output_tokens": 24,
+      "valid": true,
+      "correct": false,
+      "accepted": false,
+      "abstained": false,
+      "output": {
+        "owner": "payments",
+        "urgency": "unknown",
+        "reason": "charge"
+      },
+      "error": null
+    },
+    {
+      "id": "f3",
+      "family": "webhook-outage",
+      "input": {
+        "message": "Webhooks to external systems stopped delivering for all customers five minutes ago and are still down."
+      },
+      "expected": {
+        "owner": "integrations",
+        "urgency": "urgent",
+        "reason": "connection"
+      },
+      "raw": "{\n  \"owner\": \"integrations\",\n  \"urgency\": \"urgent\",\n  \"reason\": \"connection\"\n}",
+      "content": "{\n  \"owner\": \"integrations\",\n  \"urgency\": \"urgent\",\n  \"reason\": \"connection\"\n}",
+      "transport": "empty-think-v1",
+      "empty_channel_removed": false,
+      "elapsed_ms": 706,
+      "input_tokens": 128,
+      "output_tokens": 25,
+      "valid": true,
+      "correct": true,
+      "accepted": true,
+      "abstained": false,
+      "output": {
+        "owner": "integrations",
+        "urgency": "urgent",
+        "reason": "connection"
+      },
+      "error": null
+    },
+    {
+      "id": "f4",
+      "family": "unspecified-emergency",
+      "input": {
+        "message": "Urgent! Something is wrong, call me."
+      },
+      "expected": {
+        "owner": "clarify",
+        "urgency": "unknown",
+        "reason": "missing-context"
+      },
+      "raw": "{\n  \"owner\": \"clarify\",\n  \"urgency\": \"urgent\",\n  \"reason\": \"missing-context\"\n}",
+      "content": "{\n  \"owner\": \"clarify\",\n  \"urgency\": \"urgent\",\n  \"reason\": \"missing-context\"\n}",
+      "transport": "empty-think-v1",
+      "empty_channel_removed": false,
+      "elapsed_ms": 722,
+      "input_tokens": 121,
+      "output_tokens": 26,
+      "valid": true,
+      "correct": false,
+      "accepted": false,
+      "abstained": true,
+      "output": {
+        "owner": "clarify",
+        "urgency": "urgent",
+        "reason": "missing-context"
+      },
+      "error": null
+    }
+  ],
+  "metrics": {
+    "count": 4,
+    "correct": 1,
+    "valid": 3,
+    "accepted": 1,
+    "abstained": 1,
+    "invalid": 1,
+    "raw_valid": 0,
+    "median_ms": 714.0
+  },
+  "finished_at": 1789258588.839108
+}

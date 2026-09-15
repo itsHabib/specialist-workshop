@@ -1,0 +1,834 @@
+{
+  "run": {
+    "skill_id": "ci-triage",
+    "kind": "evaluate",
+    "model": "specialist",
+    "checkpoint": "job-9c79af779700",
+    "iterations": 150,
+    "id": "job-c73c1f9d9e6b",
+    "status": "completed",
+    "created_at": 1789239637.8420339,
+    "progress": 51,
+    "total": 51,
+    "model_id": "mlx-community/Qwen2.5-0.5B-Instruct-4bit",
+    "model_revision": "53a32aee5e9447773fd2b85988395066aef3700a",
+    "skill_fingerprint": "c6e65e44f96acafff3592e62155b53e1cee376417fd8058967ebe9f47eac3b86",
+    "test_fingerprint": "1a0f19e8c4087c96c6e9b345fc77bd08802642e1ae7e736397bcf2999e1eb7ff",
+    "training_count": 240,
+    "validation_count": 9,
+    "started_at": 1789239637.9614751,
+    "metrics": {
+      "count": 51,
+      "accuracy": 0.19607843137254902,
+      "evidence_rate": 0.19607843137254902,
+      "accepted_rate": 0.0784313725490196,
+      "median_ms": 1491
+    },
+    "finished_at": 1789239721.618669,
+    "evidence_mode": "quote"
+  },
+  "rows": [
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"git change no change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change",
+      "id": "wb-00",
+      "source": "dossier-26001022393 cargo fmt --check diff",
+      "expected": "real-break",
+      "elapsed_ms": 1932,
+      "input_tokens": 1235
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Post action change in `git', No change in `current', No change in `evidence', No change in `evidence\", \"evidence\": \"Post action change in `git', No change in `current', No change in `evidence', No change in `evidence\",}",
+      "id": "wb-01",
+      "source": "dossier-26001158306 cargo fmt --check diff (different file)",
+      "expected": "real-break",
+      "elapsed_ms": 560,
+      "input_tokens": 1138
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"git change no change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change in the process of No change",
+      "id": "wb-02",
+      "source": "dossier-26001505045 cargo fmt --check diff",
+      "expected": "real-break",
+      "elapsed_ms": 1302,
+      "input_tokens": 1234
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"git checkout /hun///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////",
+      "id": "wb-03",
+      "source": "dossier-26001690858 clippy redundant_closure -D warnings",
+      "expected": "real-break",
+      "elapsed_ms": 1391,
+      "input_tokens": 1329
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"The current change in the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of",
+      "id": "wb-04",
+      "source": "dossier-26011017976 compile E0277 Default not implemented",
+      "expected": "real-break",
+      "elapsed_ms": 2766,
+      "input_tokens": 2844
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Error from `e9675776i5777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777",
+      "id": "wb-05",
+      "source": "dossier-26378673223 clippy too_long_first_doc_paragraph",
+      "expected": "real-break",
+      "elapsed_ms": 1940,
+      "input_tokens": 1739
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"The following errors in the process of running `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update', `git update',",
+      "id": "wb-06",
+      "source": "dossier-26799913495 compile E0063 missing field test_list_call_counter",
+      "expected": "real-break",
+      "elapsed_ms": 1805,
+      "input_tokens": 2842
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error: Error:",
+      "id": "wb-07",
+      "source": "dossier-27232064142 cargo-audit serde_yml unsound (security-gate edge)",
+      "expected": "real-break",
+      "elapsed_ms": 1491,
+      "input_tokens": 933
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"git config/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get repo; in the repository, the connection, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process, the process,",
+      "id": "wb-08",
+      "source": "gate-28762855981 setup-go go.mod does not exist",
+      "expected": "infra",
+      "elapsed_ms": 1501,
+      "input_tokens": 1505
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "No buffered inline comments"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"No buffered inline comments\"}",
+      "id": "wb-09",
+      "source": "gate-28762900323 claude-code installation token exchange (0 bytes)",
+      "expected": "infra",
+      "elapsed_ms": 408,
+      "input_tokens": 1594
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"The current change in the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of",
+      "id": "wb-10",
+      "source": "gate-28767609335 golangci-lint config schema invalid (version-drift edge)",
+      "expected": "real-break",
+      "elapsed_ms": 1462,
+      "input_tokens": 1050
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"evidence\": \"00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "id": "wb-11",
+      "source": "huddle-26007231213 claude-code missing ANTHROPIC_API_KEY / internal error",
+      "expected": "infra",
+      "elapsed_ms": 1742,
+      "input_tokens": 2522
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "error: Current error: Failed to authenticate. API Error: 401 Invalid bearer token"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"error: Current error: Failed to authenticate. API Error: 401 Invalid bearer token\"}",
+      "id": "wb-12",
+      "source": "huddle-26011328903 claude-code token exchange",
+      "expected": "infra",
+      "elapsed_ms": 511,
+      "input_tokens": 1614
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "No buffered inline comments"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"No buffered inline comments\"}",
+      "id": "wb-13",
+      "source": "huddle-26320041557 claude-code token exchange",
+      "expected": "infra",
+      "elapsed_ms": 418,
+      "input_tokens": 1653
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "The current set of initial users not currently in the current limit of NUS, no direct direct"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Gogun of NUS\", \"evidence\": \"The current set of initial users not currently in the current limit of NUS, no direct direct\"}",
+      "id": "wb-14",
+      "source": "roxiq-26729840206 go test FAIL internal/scraper",
+      "expected": "real-break",
+      "elapsed_ms": 600,
+      "input_tokens": 1890
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "ggithub.com/roxiq/current/1.742s"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"ggithub.com/roxiq/current/1.742s\"}",
+      "id": "wb-15",
+      "source": "roxiq-27112905851 go test overall FAIL (scraper ok, fail elsewhere)",
+      "expected": "real-break",
+      "elapsed_ms": 514,
+      "input_tokens": 1891
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "t.Run(na, func(t*testing.T){}"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"t.Run(na, func(t*testing.T){}\"}",
+      "id": "wb-16",
+      "source": "roxiq-27113387416 revive unused-parameter lint",
+      "expected": "real-break",
+      "elapsed_ms": 406,
+      "input_tokens": 1364
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"evidence\": \"The current run of runiq run of aci/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git/fix/git",
+      "id": "wb-17",
+      "source": "roxiq-27561620172 terraform registry 429 provider install",
+      "expected": "infra",
+      "elapsed_ms": 1554,
+      "input_tokens": 1668
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"f63c7a8df82b\")",
+      "id": "wb-18",
+      "source": "roxiq-28219476298 postgres \"database system is starting up\" race",
+      "expected": "flake",
+      "elapsed_ms": 510,
+      "input_tokens": 1743
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"f63c7a8df82b\")",
+      "id": "wb-19",
+      "source": "roxiq-28336714025 postgres socket not ready race",
+      "expected": "flake",
+      "elapsed_ms": 502,
+      "input_tokens": 1717
+    },
+    {
+      "output": {
+        "bucket": "infra",
+        "evidence": "Postgres No such file or directory"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"infra\", \"evidence\": \"Postgres No such file or directory\"}",
+      "id": "wb-20",
+      "source": "roxiq-28550369287 postgres socket not ready (after image pull)",
+      "expected": "flake",
+      "elapsed_ms": 447,
+      "input_tokens": 1654
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"D:\\a/ship/ship/package//curunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-caruners//currunr-carun",
+      "id": "wb-21",
+      "source": "ship-27113727014 coverage branches 84.68%<85% cursor-runner",
+      "expected": "real-break",
+      "elapsed_ms": 2176,
+      "input_tokens": 3736
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "The following actions are not safe: actions/checkout@v4. Actions will be forced to run with Node.js 24 by default starting June 16th, 2026. No buffered inline comments"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"The following actions are not safe: actions/checkout@v4. Actions will be forced to run with Node.js 24 by default starting June 16th, 2026. No buffered inline comments\"}",
+      "id": "wb-22",
+      "source": "ship-27285635802 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 816,
+      "input_tokens": 1649
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Error: Safe noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noable noasteffective noable noable noable noable noable noable noable noable noable noable noable noasteffective noable noable noable noable noable noable noable noable noable noable noable noasteffective noable noable noable noable noable noable noable noable noable noable noasteffective noable noable noable noable no",
+      "id": "wb-23",
+      "source": "ship-27323698168 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 1623,
+      "input_tokens": 1600
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "typecheck D:\\a\\ship\\ship"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"typecheck D:\\\\a\\\\ship\\\\ship\"}",
+      "id": "wb-24",
+      "source": "ship-27396066529 prettier format-check e2e",
+      "expected": "real-break",
+      "elapsed_ms": 314,
+      "input_tokens": 718
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"git change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no change in the process of running unchanged, no",
+      "id": "wb-25",
+      "source": "ship-27407769875 windows vitest run failed, tests passed",
+      "expected": "flake",
+      "elapsed_ms": 1635,
+      "input_tokens": 1885
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"The process of a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a",
+      "id": "wb-26",
+      "source": "ship-27809984223 prettier format-check 3 files",
+      "expected": "real-break",
+      "elapsed_ms": 2288,
+      "input_tokens": 2357
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "pin: Run typecheck D:\\a\\ship\\ship"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"pin: Run typecheck D:\\\\a\\\\ship\\\\ship\"}",
+      "id": "wb-27",
+      "source": "ship-27810529820 prettier format-check",
+      "expected": "real-break",
+      "elapsed_ms": 330,
+      "input_tokens": 704
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Error 1. Run process with state 100% for 100% for 100 in 100 in 100 in 100 in 100 Run process with state 100% for 100 in 100 in 100 in 100 RTime 100 in 100 in 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 100 RTime 1",
+      "id": "wb-28",
+      "source": "ship-27811062325 coverage lines 89.98%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2226,
+      "input_tokens": 3411
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"The current changes in the current process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process",
+      "id": "wb-29",
+      "source": "ship-27831159382 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2895,
+      "input_tokens": 2975
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"The current changes in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in the current project in",
+      "id": "wb-30",
+      "source": "ship-27832268156 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 3508,
+      "input_tokens": 3012
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"The current change in the current process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process",
+      "id": "wb-31",
+      "source": "ship-27856703101 coverage 89.65%<90% driver",
+      "expected": "real-break",
+      "elapsed_ms": 2699,
+      "input_tokens": 3013
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"pun: The process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the",
+      "id": "wb-32",
+      "source": "ship-28466478958 eslint 6 problems max-params/type-imports",
+      "expected": "real-break",
+      "elapsed_ms": 2682,
+      "input_tokens": 1175
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"The current change not in the current process not in the current process not in the current process not in the current process not in the current process not in the current process not in the current process not in the current process not in the current process not in the current process not in the current process not in the current process not in the current process not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase not in the current phase",
+      "id": "wb-33",
+      "source": "ship-28494955622 coverage test-harness",
+      "expected": "real-break",
+      "elapsed_ms": 3903,
+      "input_tokens": 3146
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Timeout 11.96s for run of `eveling/100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "id": "wb-34",
+      "source": "ship-28561988262 coverage core (sdk-throw fixture noise present)",
+      "expected": "real-break",
+      "elapsed_ms": 3743,
+      "input_tokens": 1990
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"D:\\\\a\\\\ship\\\\ship\\\\packages\\\\core: 30: 300: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: 3000: ",
+      "id": "wb-35",
+      "source": "ship-28566379823 AssertionError expected 'failed' to be 'succeeded' service.test.ts",
+      "expected": "real-break",
+      "elapsed_ms": 3893,
+      "input_tokens": 4174
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Runers of the process of the process of the process of the process of the process of the real-time of the process of the real-time of the process of the real-time of the process of the process of the process of the process of the process of the real-time of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of the process of",
+      "id": "wb-36",
+      "source": "ship-28566698485 coverage branches 84.91%<85% core",
+      "expected": "real-break",
+      "elapsed_ms": 4059,
+      "input_tokens": 3896
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"App token exchange for app token in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in a change in",
+      "id": "wb-37",
+      "source": "ship-28595211551 claude post-buffered-inline-comments empty key",
+      "expected": "infra",
+      "elapsed_ms": 4089,
+      "input_tokens": 1554
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "No buffered inline comments"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"No buffered inline comments\"}",
+      "id": "wb-38",
+      "source": "triage-28807014654 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 727,
+      "input_tokens": 1590
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Post process of No change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in change in",
+      "id": "wb-39",
+      "source": "wellness-ai-27560353270 postgres db-test shutting down / not ready",
+      "expected": "flake",
+      "elapsed_ms": 3082,
+      "input_tokens": 1842
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"App token successfully obtained\", \"evidence\": \"Using GITHUB_TOKEN from OIDC\", \"echange\": \"App change in the process of running `Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request API Request",
+      "id": "wb-40",
+      "source": "wellness-ai-27561505809 claude token exchange",
+      "expected": "infra",
+      "elapsed_ms": 2751,
+      "input_tokens": 1400
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Error: connect ETIMEDOUT registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:443 error: error in registry.npmjs.org:",
+      "id": "wb-41",
+      "source": "isolated npm ETIMEDOUT",
+      "expected": "infra",
+      "elapsed_ms": 2444,
+      "input_tokens": 173
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "FAIL src/auth.test.ts: expected 200 but got 401 in 'rejects expired token'"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"FAIL src/auth.test.ts: expected 200 but got 401 in 'rejects expired token'\"}",
+      "id": "wb-42",
+      "source": "isolated test assertion",
+      "expected": "real-break",
+      "elapsed_ms": 779,
+      "input_tokens": 181
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "npm ERR! 429 Too Many Requests - GET https://registry.npmjs.org/lodash"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"npm ERR! 429 Too Many Requests - GET https://registry.npmjs.org/lodash\"}",
+      "id": "wb-43",
+      "source": "isolated npm 429",
+      "expected": "infra",
+      "elapsed_ms": 542,
+      "input_tokens": 178
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "Test timeout of 30000ms exceeded on attempt 1; passed on retry"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"evidence\": \"Test timeout of 30000ms exceeded on attempt 1; passed on retry\"}",
+      "id": "wb-44",
+      "source": "isolated timeout-passed-on-retry",
+      "expected": "flake",
+      "elapsed_ms": 434,
+      "input_tokens": 176
+    },
+    {
+      "output": null,
+      "valid": false,
+      "evidence_valid": false,
+      "correct": false,
+      "errors": [
+        "Model output is not valid JSON."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Error from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code, no data from the code",
+      "id": "wb-45",
+      "source": "isolated type error",
+      "expected": "real-break",
+      "elapsed_ms": 2044,
+      "input_tokens": 175
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "The self-hosted runner received a shutdown signal and disconnected"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"flake\", \"evidence\": \"The self-hosted runner received a shutdown signal and disconnected\"}",
+      "id": "wb-46",
+      "source": "isolated runner shutdown",
+      "expected": "infra",
+      "elapsed_ms": 549,
+      "input_tokens": 168
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "Assertion score 84.9% under the required 85% threshold"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"Assertion score 84.9% under the required 85% threshold\"}",
+      "id": "wb-47",
+      "source": "isolated coverage threshold",
+      "expected": "real-break",
+      "elapsed_ms": 508,
+      "input_tokens": 174
+    },
+    {
+      "output": {
+        "bucket": "flake",
+        "evidence": "Playwright: element not visible after 5s, retry and passed on rerun"
+      },
+      "valid": true,
+      "evidence_valid": false,
+      "correct": true,
+      "errors": [
+        "Evidence is missing or is not a verbatim quote from the input."
+      ],
+      "raw": "{\"bucket\": \"flake\", \"evidence\": \"Playwright: element not visible after 5s, retry and passed on rerun\"}",
+      "id": "wb-48",
+      "source": "isolated playwright retry",
+      "expected": "flake",
+      "elapsed_ms": 452,
+      "input_tokens": 175
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "fatal: unable to access 'https://github.com/itsHabib/ship': Could not resolve host"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": false,
+      "errors": [],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"fatal: unable to access 'https://github.com/itsHabib/ship': Could not resolve host\"}",
+      "id": "wb-49",
+      "source": "isolated git resolve host",
+      "expected": "infra",
+      "elapsed_ms": 490,
+      "input_tokens": 179
+    },
+    {
+      "output": {
+        "bucket": "real-break",
+        "evidence": "AssertionError: expected array to have length 3 but got 2"
+      },
+      "valid": true,
+      "evidence_valid": true,
+      "correct": true,
+      "errors": [],
+      "raw": "{\"bucket\": \"real-break\", \"evidence\": \"AssertionError: expected array to have length 3 but got 2\"}",
+      "id": "wb-50",
+      "source": "isolated assertion length",
+      "expected": "real-break",
+      "elapsed_ms": 501,
+      "input_tokens": 171
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "job-218412b484d0",
+  "kind": "train",
+  "model": "base",
+  "skill_id": "blox-arithmetic",
+  "iterations": 200,
+  "status": "completed",
+  "created_at": 1789255661.421731,
+  "started_at": 1789255661.421731,
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "model_revision": "8b403126fc14f14cfc99bb4cfa72ecbc129ea677",
+  "skill_fingerprint": "d03e484f8f895b4b410cfa3eb6bad4015aabe3741dcc7e10148a692094a359f1",
+  "test_fingerprint": "f8abe7e29ddb0e69797b9e962fa1cddb0b85f86d24ba4eefdddf3d7d66fab1e5",
+  "prompt_fingerprint": "9ca188be79c32b3419b17defe854d595a735b6cf04ad4f98a03890f85458da81",
+  "training_count": 160,
+  "validation_count": 32,
+  "adapter_sha256": "1242b9a04e491c0bee9dbd42c926a539b8d7b161480f59149d63ca29194c4eda",
+  "progress": 200,
+  "total": 200,
+  "finished_at": 1789255813.151538
+}

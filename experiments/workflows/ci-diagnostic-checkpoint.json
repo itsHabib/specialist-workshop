@@ -1,0 +1,21 @@
+{
+  "id": "job-eb7578d38146",
+  "kind": "train",
+  "model": "base",
+  "skill_id": "ci-diagnostic",
+  "iterations": 200,
+  "status": "completed",
+  "created_at": 1789255838.167792,
+  "started_at": 1789255838.167792,
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "model_revision": "8b403126fc14f14cfc99bb4cfa72ecbc129ea677",
+  "skill_fingerprint": "1a5250e066f1a0f7a4f2369fc69a9b23e7ce6e81c9bff85d053ab2df4b5865a4",
+  "test_fingerprint": "0d0131493c0b75cb38fca01588f2dcf32852f573119d128d5b973ed22ca8079a",
+  "prompt_fingerprint": "c64856d48a0540178caea83593f9e0c37d718bd39e403c513f8f1865759e0fc0",
+  "training_count": 240,
+  "validation_count": 20,
+  "adapter_sha256": "331328026ff3d2226e0297da02d4cd234f445f778439859c6a4e7d876fc39a97",
+  "progress": 200,
+  "total": 200,
+  "finished_at": 1789256181.203445
+}

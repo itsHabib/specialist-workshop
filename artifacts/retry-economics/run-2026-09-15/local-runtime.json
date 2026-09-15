@@ -1,0 +1,18 @@
+{
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "adapter_manifest": {
+    "0000120_adapters.safetensors": "4f99886a2753fa97b330dd15b89dc693cfc9c047dce295ece2ee3281cf6c8ce8",
+    "adapter_config.json": "f148fff311a15ebf8bb6ae4043cbe0f1f5cc450ef1efb1b1c264fd882580afda",
+    "adapters.safetensors": "4f99886a2753fa97b330dd15b89dc693cfc9c047dce295ece2ee3281cf6c8ce8"
+  },
+  "package": "roxiq-planning@1a335d7790cc057e62d38879704920af88a7d78e96cc350fa97f73e39f144b2d",
+  "python": "3.14.6",
+  "machine": "arm64",
+  "dependencies": {
+    "mlx": "0.32.2",
+    "mlx-lm": "0.31.3",
+    "transformers": "5.17.0",
+    "httpx": "0.28.1"
+  }
+}

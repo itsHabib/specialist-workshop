@@ -1,0 +1,109 @@
+{
+  "source_sha256": "998135a92ca01ba8ca9410e4429a730535aa9f173327b2951f5c19e573134fe2",
+  "policies": {
+    "gpt-6-astra": {
+      "startup_seconds": 1.166015863418579e-06,
+      "one_shot": {
+        "tasks": 12,
+        "successful": 12,
+        "attempts": 12,
+        "total_cost_usd": 0.13805,
+        "cost_per_success_usd": 0.011504166666666668,
+        "median_seconds": 2.146515229018405,
+        "p95_seconds": 4.058613874949515,
+        "valid_but_wrong": 0,
+        "inference_seconds": 29.08104721014388
+      },
+      "retry": {
+        "tasks": 12,
+        "successful": 12,
+        "attempts": 12,
+        "total_cost_usd": 0.13805,
+        "cost_per_success_usd": 0.011504166666666668,
+        "median_seconds": 2.1469233750831336,
+        "p95_seconds": 4.111845333012752,
+        "valid_but_wrong": 0,
+        "inference_seconds": 29.08104721014388
+      }
+    },
+    "gpt-5.6-luna": {
+      "startup_seconds": 6.083049811422825e-06,
+      "one_shot": {
+        "tasks": 12,
+        "successful": 11,
+        "attempts": 12,
+        "total_cost_usd": 0.0032602,
+        "cost_per_success_usd": 0.00029638181818181816,
+        "median_seconds": 1.7492838330217637,
+        "p95_seconds": 2.593445375096053,
+        "valid_but_wrong": 0,
+        "inference_seconds": 21.587078042211942
+      },
+      "retry": {
+        "tasks": 12,
+        "successful": 12,
+        "attempts": 13,
+        "total_cost_usd": 0.0035842,
+        "cost_per_success_usd": 0.0002986833333333333,
+        "median_seconds": 1.749610645987559,
+        "p95_seconds": 4.161375125055201,
+        "valid_but_wrong": 0,
+        "inference_seconds": 23.307254042243585
+      }
+    },
+    "local-base": {
+      "startup_seconds": 2.35458570800256,
+      "one_shot": {
+        "tasks": 12,
+        "successful": 3,
+        "attempts": 12,
+        "total_cost_usd": null,
+        "cost_per_success_usd": null,
+        "median_seconds": 2.268742020940408,
+        "p95_seconds": 2.8070749170146883,
+        "valid_but_wrong": 5,
+        "inference_seconds": 26.79521987598855
+      },
+      "retry": {
+        "tasks": 12,
+        "successful": 5,
+        "attempts": 17,
+        "total_cost_usd": null,
+        "cost_per_success_usd": null,
+        "median_seconds": 2.317643937538378,
+        "p95_seconds": 6.947801833041012,
+        "valid_but_wrong": 6,
+        "inference_seconds": 38.08240141789429
+      }
+    },
+    "local-specialist": {
+      "startup_seconds": 0.7979958329815418,
+      "one_shot": {
+        "tasks": 12,
+        "successful": 7,
+        "attempts": 12,
+        "total_cost_usd": null,
+        "cost_per_success_usd": null,
+        "median_seconds": 1.7299499999498948,
+        "p95_seconds": 2.0910942920017987,
+        "valid_but_wrong": 3,
+        "inference_seconds": 21.067179583129473
+      },
+      "retry": {
+        "tasks": 12,
+        "successful": 7,
+        "attempts": 16,
+        "total_cost_usd": null,
+        "cost_per_success_usd": null,
+        "median_seconds": 1.7449866455281153,
+        "p95_seconds": 5.6530565419234335,
+        "valid_but_wrong": 3,
+        "inference_seconds": 28.265797456959262
+      }
+    }
+  },
+  "accounting": "Raw run estimates omit the cache-write premium. These totals reprice the original usage at the documented 1.25x input write rate; raw records are unchanged.",
+  "local_cost_usd": null,
+  "api_total_usd": 0.14163420000000002,
+  "api_cost_ratio": 38.51626583337983
+}

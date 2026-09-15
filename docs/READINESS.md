@@ -5,6 +5,12 @@ bounded JSON-output task through import, baseline, supervised training, checkpoi
 inference, evaluation, comparison and correction. This is a local experiment
 substrate. None of the measured specialist models earned production rollout.
 
+Economic qualification under a retry budget is **unmeasured**. A specialist may
+be worthwhile with multiple attempts if complete task cost is lower at comparable
+quality and acceptable latency. Existing one-attempt scores do not answer that
+question. The [economics protocol](ECONOMICS.md) defines the comparison and the
+current runner's limits; historical outputs and scores remain unchanged.
+
 ## Execution evidence
 
 The compact [validation packet](../artifacts/package-validation/summary.json)

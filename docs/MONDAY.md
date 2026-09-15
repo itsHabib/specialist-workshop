@@ -174,6 +174,13 @@ needless abstention and correction burden. A higher aggregate score can conceal
 worse mistakes. Local generation timing excludes model loading; provider timing
 may have a different scope. Preserve that distinction before claiming savings.
 
+Before deciding whether a specialist is worthwhile, compare the **complete cost
+of finishing tasks**, including retries, failed tasks, verification and fallback,
+at agreed quality and latency. Three cheap attempts can beat one expensive call.
+The current package evaluator is single-attempt; it does not yet run or price
+these policies. Follow the [economics protocol](ECONOMICS.md) for the next bounded
+experiment, and never use final-set answers to choose a retry's winning output.
+
 ## 6. Correct practice data without rewriting history
 
 In the page, enter a corrected output, practice family and provenance, then save.

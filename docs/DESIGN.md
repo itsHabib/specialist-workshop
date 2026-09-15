@@ -56,6 +56,12 @@ Single-process app coordination avoids overlapping submissions; an OS file lock 
 
 ## Next experiments that would earn more platform
 
+Qualification compares complete policies by total cost per successful task at
+agreed quality, latency and human effort. Allow bounded retries and account for
+verification and fallback rather than requiring equal one-shot accuracy. The
+[economics protocol](ECONOMICS.md) specifies the next comparison; budgeted retry
+execution and full cost accounting are not implemented yet.
+
 1. Correct the task's uncertain labels with a domain expert and reserve genuinely new incidents for final qualification.
 2. Compare against a well-configured contemporary frontier model and Workbench's existing deterministic or local baseline, using the same input and prompt conventions.
 3. Ask a second developer to import a real task with minimal assistance. Measure integration effort, useful corrections, and improvement at fixed quality.

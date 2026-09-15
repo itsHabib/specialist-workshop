@@ -4,16 +4,16 @@
 
 Bring examples, compare a baseline, train real LoRA weights, and inspect where the result fails. Keep useful corrections as a new version and repeat. The outcome can be a trained specialist, better task data, or evidence that ordinary code or an existing model is enough.
 
+**Measure the cost of finishing the task.** A specialist that needs three attempts can still win if it delivers comparable quality at lower total cost and acceptable latency. Count retries, verification, failures and fallbacks. [The economics protocol](docs/ECONOMICS.md) defines that comparison; the current package evaluator measures one attempt per case.
+
 ![Task packages in Specialist Workshop](artifacts/public-packages-desktop.png)
 
 ## Start locally
 
-The runnable preview is on [`feat/workshop-poc`](https://github.com/itsHabib/specialist-workshop/tree/feat/workshop-poc); the initial implementation is tracked in [PR #1](https://github.com/itsHabib/specialist-workshop/pull/1).
-
 Python 3.12+ is enough to explore packages and deterministic controls. **Apple Silicon is required for local model inference and training.** No API key is needed for the local path. First model use downloads pinned weights from Hugging Face: about 2.5 GB for task packages.
 
 ```sh
-git clone --branch feat/workshop-poc https://github.com/itsHabib/specialist-workshop.git
+git clone https://github.com/itsHabib/specialist-workshop.git
 cd specialist-workshop
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
@@ -49,7 +49,7 @@ Reload the packages page and open the recorded run. This is a real deterministic
 
 ## What the experiments found
 
-The loop trains and loads real adapters. **None of the measured specialists qualified for production.** The tiny support adapter scored 0/4; the analytics adapter scored 0/24 under its original strict JSON evaluation. Failed outputs remain inspectable. [Evidence and review](docs/READINESS.md) · [Analytics results](docs/ANALYTICS-EXPERIMENT.md).
+The loop trains and loads real adapters. **None of the measured specialists qualified for production in the tested configurations.** The tiny support adapter scored 0/4; the analytics adapter scored 0/24 under its original strict JSON evaluation. Failed outputs remain inspectable. We have not measured whether a bounded retry policy could deliver comparable quality more cheaply. [Evidence and review](docs/READINESS.md) · [Analytics results](docs/ANALYTICS-EXPERIMENT.md).
 
 That is the point of the workshop: make the decision from evidence. Valid JSON, a matching quote, and a useful answer are different outcomes. New unlabeled inputs report correctness as unknown.
 

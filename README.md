@@ -8,10 +8,12 @@ Bring examples, compare a baseline, train real LoRA weights, and inspect where t
 
 ## Start locally
 
+The runnable preview is on [`feat/workshop-poc`](https://github.com/itsHabib/specialist-workshop/tree/feat/workshop-poc); the initial implementation is tracked in [PR #1](https://github.com/itsHabib/specialist-workshop/pull/1).
+
 Python 3.12+ is enough to explore packages and deterministic controls. **Apple Silicon is required for local model inference and training.** No API key is needed for the local path. First model use downloads pinned weights from Hugging Face: about 2.5 GB for task packages.
 
 ```sh
-git clone https://github.com/itsHabib/specialist-workshop.git
+git clone --branch feat/workshop-poc https://github.com/itsHabib/specialist-workshop.git
 cd specialist-workshop
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt

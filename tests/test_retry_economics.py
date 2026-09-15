@@ -76,12 +76,16 @@ def test_api_only_comparison_uses_imported_development_cases(tmp_path,monkeypatc
     monkeypatch.setattr(httpx,'post',post)
     monkeypatch.setattr(experiment,'Local',lambda *a: (_ for _ in ()).throw(AssertionError('MLX should not load')))
     output=tmp_path/'results'
-    experiment.main(['--package',ref,'--policies','gpt-5.6-luna','--output',str(output)])
+    experiment.main(['--package',ref,'--policies','gpt-5.6-luna','--output',str(output),'--attempts','1'])
     run=json.loads((output/'run.json').read_text())
     assert inputs==[c.input for c in package.development]
     assert run['evaluation_split']=='development' and run['status']=='completed'
     assert list(run['policies'])==['gpt-5.6-luna']
     assert run['source_checkpoint'] is None
+    import subprocess,sys
+    subprocess.run([sys.executable,str(store.ROOT/'scripts/summarize_retry.py'),str(output)],check=True,capture_output=True)
+    analysis=json.loads((output/'analysis.json').read_text())
+    assert analysis['policies']['gpt-5.6-luna']['retry']==run['policies']['gpt-5.6-luna']['retry']
     import pytest
     failed=tmp_path/'budget-failed'
     with pytest.raises(SystemExit):

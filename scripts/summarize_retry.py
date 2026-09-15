@@ -24,7 +24,7 @@ def main():
         for row in rows:
             for attempt in row['attempts']:
                 if attempt.get('usage'):attempt['cost_usd']=cost(name,attempt['usage'])
-        result['policies'][name]=dict(startup_seconds=policy['startup_seconds'],one_shot=summarize(rows,1),retry=summarize(rows,3))
+        result['policies'][name]=dict(startup_seconds=policy['startup_seconds'],one_shot=summarize(rows,1),retry=summarize(rows,run.get('max_attempts',3)))
     api_costs=[p['retry']['total_cost_usd'] for name,p in result['policies'].items() if not name.startswith('local-')]
     result['api_total_usd']=sum(api_costs) if all(c is not None for c in api_costs) else None
     if {'gpt-6-astra','gpt-5.6-luna'}<=result['policies'].keys():

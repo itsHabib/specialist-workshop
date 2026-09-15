@@ -2,9 +2,11 @@
 
 **Find out whether a small specialist is worth training for your task.**
 
-Bring examples, compare a baseline, train real LoRA weights, and inspect where the result fails. Keep useful corrections as a new version and repeat. The outcome can be a trained specialist, better task data, or evidence that ordinary code or an existing model is enough.
+Bring a narrow task, train real LoRA weights, and compare the results with a base model or an API model. Inspect the answers, add useful corrections, and try again. Task packages keep your examples, output contract and evaluation cases together so you can build on each experiment.
 
-**Measure the cost of finishing the task.** A specialist that needs three attempts can still win if it delivers comparable quality at lower total cost and acceptable latency. Count retries, verification, failures and fallbacks. [The economics protocol](docs/ECONOMICS.md) defines that comparison; the current package evaluator measures one attempt per case.
+The interesting question is **what does it cost to finish the task well?** A smaller model that needs a few attempts can still be worthwhile. Compare quality, total cost and latency—including retries, verification and fallbacks. [Our first experiment](docs/RETRY-EXPERIMENT.md) puts that idea to the test.
+
+This is an open experiment to try, fork or take ideas from. Start with the included tasks, bring your own examples, or borrow the training and evaluation loop.
 
 ![Task packages in Specialist Workshop](artifacts/public-packages-desktop.png)
 
@@ -35,7 +37,7 @@ TASK_REF=$(.venv/bin/python -m workshop.experiment import examples/support-intak
 .venv/bin/python -m workshop.experiment run "$TASK_REF" evaluate --policy majority
 ```
 
-Reload the packages page and open the recorded run. This is a real deterministic control that always emits the most common training output; it is explicitly labeled `majority` and does not pretend to be model inference.
+Reload the packages page and open the recorded run. The `majority` control always emits the most common training output, giving you a simple baseline before running a model.
 
 ## Three examples to build on
 
@@ -47,11 +49,28 @@ Reload the packages page and open the recorded run. This is a real deterministic
 
 [Bring your own task](docs/MONDAY.md) explains data design, baselines, training, comparison, and the limits of the current backend. The [original classifier and API](docs/CLASSIFIER.md) are also available.
 
-## What the experiments found
+## Experiments so far
 
-The loop trains and loads real adapters. **None of the measured specialists qualified for production in the tested configurations.** The tiny support adapter scored 0/4; the analytics adapter scored 0/24 under its original strict JSON evaluation. Failed outputs remain inspectable. A [first retry experiment](docs/RETRY-EXPERIMENT.md) found Luna reached 12/12 after one repair at 38.5× lower API cost than Astra; the local adapter stayed at 7/12. This used exposed diagnostic cases, not fresh qualification data. [Evidence and review](docs/READINESS.md) · [Analytics results](docs/ANALYTICS-EXPERIMENT.md).
+### Can a cheaper model catch up with a retry?
 
-That is the point of the workshop: make the decision from evidence. Valid JSON, a matching quote, and a useful answer are different outcomes. New unlabeled inputs report correctness as unknown.
+On 12 analytics tasks, **Luna reached the same 12/12 score as Astra after one validator-guided repair, at 38.5× lower estimated API cost**. Median task latency was 1.75 seconds for Luna and 2.15 seconds for Astra.
+
+| Model | Correct on first attempt | Correct with up to 3 attempts | Total estimated API cost |
+| --- | ---: | ---: | ---: |
+| GPT-6 Astra | 12/12 | One-shot control | $0.13805 |
+| GPT-5.6 Luna | 11/12 | 12/12 | $0.00358 |
+| Local Qwen3-4B base | 3/12 | 5/12 | Local cost unpriced |
+| Trained Qwen3-4B adapter | 7/12 | 7/12 | Local cost unpriced |
+
+Retries received schema/context validation errors, never the expected answer. The local adapter outscored the base on this sample; retries helped the base recover two tasks but left the adapter's score unchanged. This was a small replay of previously exposed cases, with different API/local token caps, so it is an encouraging example of the cost tradeoff rather than a general benchmark. [Full experiment, costs and raw outputs](docs/RETRY-EXPERIMENT.md).
+
+### What else can you explore?
+
+- **Real local fine-tuning:** the support and analytics experiments train and load actual adapters. The tiny support run exercises the full loop; the analytics study explores output formatting and task accuracy. [Training and evaluation notes](docs/READINESS.md) · [Analytics study](docs/ANALYTICS-EXPERIMENT.md).
+- **Tasks with observable outcomes:** the CI evidence example lets a policy inspect fixture evidence and write an advisory in a resettable environment. [Workflow experiments](docs/WORKFLOW-EXPERIMENTS.md).
+- **Your own comparison:** import a package, establish a baseline, train, inspect responses and save corrections as a new version. The package evaluator scores one attempt per case; the bounded retry study has a separate script. [Walkthrough](docs/MONDAY.md) · [Cost comparison protocol](docs/ECONOMICS.md).
+
+These are early experiments, and the trained adapters still need work before practical deployment. The reports retain the original scores and failures so you can see what changed and choose where to take the next experiment.
 
 ## Development and scope
 

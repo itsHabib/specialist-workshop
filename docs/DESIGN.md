@@ -59,8 +59,21 @@ Single-process app coordination avoids overlapping submissions; an OS file lock 
 Qualification compares complete policies by total cost per successful task at
 agreed quality, latency and human effort. Allow bounded retries and account for
 verification and fallback rather than requiring equal one-shot accuracy. The
-[economics protocol](ECONOMICS.md) specifies the next comparison; budgeted retry
-execution and full cost accounting are not implemented yet.
+[economics protocol](ECONOMICS.md) specifies the comparison. A portable script
+provides bounded retries; local hardware, training and human effort costs remain
+unpriced. Development evaluation is the default; final evaluation is explicit.
+
+The September 15 review informed these next steps: establish one representative
+task with trusted labels, compare against the cheapest adequate alternative, and
+use reviewed failures to improve practice data. An informative result can favor
+code or an existing model; a trained-specialist win is not required.
+
+Keep the review loop manual initially: retain input, actual output, failure category,
+proposed correction, provenance and reviewer decision in a local review record;
+only verified corrections enter a new package version. Retrain, compare on
+development, and record an accept/reject decision before final evaluation.
+A review-queue UI, versioned training configuration, more backends and GRPO are
+follow-ups when a concrete task requires them. This change adds none of those.
 
 1. Correct the task's uncertain labels with a domain expert and reserve genuinely new incidents for final qualification.
 2. Compare against a well-configured contemporary frontier model and Workbench's existing deterministic or local baseline, using the same input and prompt conventions.

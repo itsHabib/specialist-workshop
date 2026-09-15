@@ -26,7 +26,7 @@ Open **http://127.0.0.1:8787/packages**. Download the starter package from the p
 
 1. **Inspect the contract.** Inputs, output schema, provenance, and separate practice/development/final cases travel together.
 2. **Establish a baseline.** Try the base model before deciding training is worthwhile.
-3. **Train and compare.** Load an actual checkpoint and evaluate it against the same reserved cases.
+3. **Train and compare.** Load an actual checkpoint and compare on development cases. Run final evaluation explicitly once the approach is frozen.
 4. **Inspect mistakes.** See raw responses alongside format validity and semantic scores.
 5. **Correct the next version.** Add reviewed practice examples without changing past runs or evaluation data.
 
@@ -68,7 +68,7 @@ Retries received schema/context validation errors, never the expected answer. Th
 
 - **Real local fine-tuning:** the support and analytics experiments train and load actual adapters. The tiny support run exercises the full loop; the analytics study explores output formatting and task accuracy. [Training and evaluation notes](docs/READINESS.md) · [Analytics study](docs/ANALYTICS-EXPERIMENT.md).
 - **Tasks with observable outcomes:** the CI evidence example lets a policy inspect fixture evidence and write an advisory in a resettable environment. [Workflow experiments](docs/WORKFLOW-EXPERIMENTS.md).
-- **Your own comparison:** import a package, establish a baseline, train, inspect responses and save corrections as a new version. The package evaluator scores one attempt per case; the bounded retry study has a separate script. [Walkthrough](docs/MONDAY.md) · [Cost comparison protocol](docs/ECONOMICS.md).
+- **Your own comparison:** import a package, establish a baseline, train, inspect responses and save corrections as a new version. Evaluation defaults to development cases, with an explicit final step. A portable script compares bounded retries using your package and checkpoint. [Walkthrough](docs/MONDAY.md) · [Cost comparison protocol](docs/ECONOMICS.md).
 
 These are early experiments, and the trained adapters still need work before practical deployment. The reports retain the original scores and failures so you can see what changed and choose where to take the next experiment.
 

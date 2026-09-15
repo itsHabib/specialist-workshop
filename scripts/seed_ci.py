@@ -4,10 +4,9 @@ import hashlib
 import json
 from pathlib import Path
 import random
-import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = Path("/Users/mh/dev/workbench/cmd/gate/docs/features/ci-classify/eval/ci-lines-v2.jsonl")
+SOURCE = ROOT / "skills/ci-triage/workbench-evaluation.jsonl"
 
 TRAIN = {
     "real-break": [
@@ -120,7 +119,6 @@ def main():
     raw = SOURCE.read_bytes()
     # Preserve exact bytes and labels. Neither external test labels nor logs enter training.
     (directory / "workbench-evaluation.jsonl").write_bytes(raw)
-    shutil.copyfile("/Users/mh/dev/workbench/LICENSE", directory / "SOURCE-LICENSE")
     test = [dict(id=f"wb-{i:02d}", input=row["input"], expected=row["expected"],
                  source=row["meta"]) for i, row in enumerate(json.loads(s) for s in raw.splitlines())]
     skill = dict(id="ci-triage", name="CI failure triage", evidence_mode="line",

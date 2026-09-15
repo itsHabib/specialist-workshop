@@ -1,4 +1,5 @@
 """Exploratory replay of already exposed Blox defects; never a holdout."""
+import argparse
 import fcntl
 import hashlib
 import json
@@ -11,14 +12,16 @@ from workshop.domain import Skill, grade, summarize
 from workshop.runtime import LocalModel
 from workshop import store
 
-SOURCE = Path('/Users/mh/dev/workout-lab/2026-09-07/experiment/failure-cases.json')
 DEST = store.ROOT / 'experiments/workflows/blox-retained-diagnostics.json'
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('source', type=Path, help='Path to your original failure-cases.json evidence')
+    source = parser.parse_args().source
     if DEST.exists():
         raise ValueError('Retain previous evidence; do not overwrite')
-    cases = json.loads(SOURCE.read_text())['cases']
+    cases = json.loads(source.read_text())['cases']
     selections = [
         (0, 'baseline', 'distance-conflict', '8 down-and-back trips on a 10 metre lane; claimed distance 80 metres.'),
         (2, 'benchmark', 'time-overrun', 'Benchmark completion 598 seconds; block budget 480 seconds.'),
@@ -34,7 +37,7 @@ def main():
         rows.append(dict(id=f'retained-{index}', source_candidate=case['candidate'], input=text, expected=expected, normalized=normalized))
     skill=Skill.model_validate(store.read_json(store.ROOT/'skills/blox-arithmetic/skill.json'))
     report=dict(note='Exposed diagnostic defects selected after synthetic base results; not final holdout. Four cases within the label contract. The separate audit-overcount defect is outside this contract. Normalization is human-authored, not model extraction.',
-                source_sha256=hashlib.sha256(SOURCE.read_bytes()).hexdigest(), cases=rows, policies={})
+                source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(), cases=rows, policies={})
     with (store.STATE/'accelerator.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         for policy in ('rules-raw','rules-human-normalized','base','specialist'):

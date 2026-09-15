@@ -7,7 +7,7 @@ family-separated splits, real supervised LoRA, checkpoint inference, comparisons
 corrections as new versions, and a resettable environment interface.
 
 Use actual company data only in a separately approved work environment with an
-approved state directory and provider. This private personal repository contains
+approved state directory and provider. This repository contains
 synthetic examples and existing personal research fixtures. This workflow does
 not connect employer systems or authorize moving company data here.
 

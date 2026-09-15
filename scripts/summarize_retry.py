@@ -17,7 +17,7 @@ def main():
     if hashlib.sha256((args.directory/'executed_script.py').read_bytes()).hexdigest()!=run['script_sha256']:
         raise ValueError('Executed source does not match recorded hash')
     result=dict(source_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),policies={},
-                accounting='Raw run estimates omit the cache-write premium. These totals reprice the original usage at the documented 1.25x input write rate; raw records are unchanged.',
+                accounting='These totals reprice original usage at the documented 1.25x input write rate. The first 2026-09-15 run omitted that premium from inline estimates; raw records are unchanged.',
                 local_cost_usd=None)
     for name,policy in run['policies'].items():
         rows=copy.deepcopy(policy['rows'])

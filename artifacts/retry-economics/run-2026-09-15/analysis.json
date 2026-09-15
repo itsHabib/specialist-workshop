@@ -102,7 +102,7 @@
       }
     }
   },
-  "accounting": "Raw run estimates omit the cache-write premium. These totals reprice the original usage at the documented 1.25x input write rate; raw records are unchanged.",
+  "accounting": "These totals reprice original usage at the documented 1.25x input write rate. The first 2026-09-15 run omitted that premium from inline estimates; raw records are unchanged.",
   "local_cost_usd": null,
   "api_total_usd": 0.14163420000000002,
   "api_cost_ratio": 38.51626583337983

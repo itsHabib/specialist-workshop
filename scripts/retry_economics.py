@@ -71,6 +71,7 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     args=parser.parse_args()
     args.output.mkdir(parents=True,exist_ok=False)
+    (args.output/'executed_script.py').write_bytes(Path(__file__).read_bytes())
     source='pkg-f0a24974e753'
     package=packages.load(read_run(source)['package'])
     cases=package.final[::2]

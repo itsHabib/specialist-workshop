@@ -49,7 +49,7 @@ Reload the packages page and open the recorded run. This is a real deterministic
 
 ## What the experiments found
 
-The loop trains and loads real adapters. **None of the measured specialists qualified for production in the tested configurations.** The tiny support adapter scored 0/4; the analytics adapter scored 0/24 under its original strict JSON evaluation. Failed outputs remain inspectable. We have not measured whether a bounded retry policy could deliver comparable quality more cheaply. [Evidence and review](docs/READINESS.md) · [Analytics results](docs/ANALYTICS-EXPERIMENT.md).
+The loop trains and loads real adapters. **None of the measured specialists qualified for production in the tested configurations.** The tiny support adapter scored 0/4; the analytics adapter scored 0/24 under its original strict JSON evaluation. Failed outputs remain inspectable. A [first retry experiment](docs/RETRY-EXPERIMENT.md) found Luna reached 12/12 after one repair at 38.5× lower API cost than Astra; the local adapter stayed at 7/12. This used exposed diagnostic cases, not fresh qualification data. [Evidence and review](docs/READINESS.md) · [Analytics results](docs/ANALYTICS-EXPERIMENT.md).
 
 That is the point of the workshop: make the decision from evidence. Valid JSON, a matching quote, and a useful answer are different outcomes. New unlabeled inputs report correctness as unknown.
 

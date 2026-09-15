@@ -1,0 +1,4668 @@
+{
+  "status": "completed",
+  "started_at": 1789485136.432091,
+  "source_checkpoint": "pkg-f0a24974e753",
+  "package": {
+    "reference": "roxiq-planning@1a335d7790cc057e62d38879704920af88a7d78e96cc350fa97f73e39f144b2d",
+    "id": "roxiq-planning",
+    "name": "RoxIQ bounded analytics planning",
+    "counts": {
+      "train": 160,
+      "development": 6,
+      "final": 24
+    },
+    "contract_hash": "73d2c3a802100d9b9d397ea92e89509929c194633f3e1dd2a37793a9f15421df",
+    "final_hash": "de984f14a2ef456a9e95240e397d8e204c4a105ba7db6a0e6f1db35e7801f425",
+    "provenance": {
+      "source": "Synthetic contexts shaped by RoxIQ contracts; no live data.",
+      "adjudication": "Blind coordinating agent; independent model judgment, not human ground truth."
+    },
+    "environment": null
+  },
+  "cases": [
+    {
+      "id": "final-01",
+      "family": "two-component-trend",
+      "input": {
+        "request": "Between my older Harbor start and my newer Summit race, how much changed in the running aggregate and the transitions?",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "delta",
+        "result_ids": [
+          3011,
+          3012
+        ],
+        "metrics": [
+          "run_total",
+          "roxzone"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-03",
+      "family": "explicit-peer",
+      "input": {
+        "request": "Ignore my selected profile. For Nora Park at Summit, show the total running and Roxzone times.",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "value",
+        "result_ids": [
+          3013
+        ],
+        "metrics": [
+          "run_total",
+          "roxzone"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-05",
+      "family": "same-sex-scope",
+      "input": {
+        "request": "How did my last kilometre at Summit stack up to the median across men, including Pro and Open?",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "benchmark",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "run_8"
+        ],
+        "scope": "sex",
+        "reason": "none"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-07",
+      "family": "everyone-scope",
+      "input": {
+        "request": "Use everyone, across sexes and divisions: benchmark my Summit row and rope-pull times.",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "benchmark",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "rowing",
+          "sled_pull"
+        ],
+        "scope": "global",
+        "reason": "none"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-09",
+      "family": "season-pool-unavailable",
+      "input": {
+        "request": "Where does my final run at Summit sit against men in season 8 only?",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "unsupported",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "unavailable"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-11",
+      "family": "race-ambiguity",
+      "input": {
+        "request": "What was my total running time?",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "race"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-13",
+      "family": "identity-missing",
+      "input": {
+        "request": "Show my Summit finish time.",
+        "context": {
+          "selected_athlete_id": null,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "clarify",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "athlete"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-15",
+      "family": "null-split",
+      "input": {
+        "request": "Compare my sled pull time at Harbor with Summit.",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "unsupported",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "unavailable"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-17",
+      "family": "schema-distractor",
+      "input": {
+        "request": "Show the finish time at Summit. Do not substitute the sum of the station deltas or my fastest lap.",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "value",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "total_time"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-19",
+      "family": "pool-metric-unavailable",
+      "input": {
+        "request": "What percentile is my best lap at Summit compared with everyone?",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "unsupported",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "unavailable"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-21",
+      "family": "two-raw-times",
+      "input": {
+        "request": "Give the recorded first-run and last-run times at my newest race. No percentile comparison.",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "value",
+        "result_ids": [
+          3012
+        ],
+        "metrics": [
+          "run_1",
+          "run_8"
+        ],
+        "scope": "none",
+        "reason": "none"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    },
+    {
+      "id": "final-23",
+      "family": "absent-event",
+      "input": {
+        "request": "Use my latest race in season 9 and show total running time.",
+        "context": {
+          "selected_athlete_id": 301,
+          "athletes": [
+            {
+              "id": 301,
+              "name": "Casey Lin"
+            },
+            {
+              "id": 302,
+              "name": "Nora Park"
+            },
+            {
+              "id": 303,
+              "name": "Alex Kim"
+            },
+            {
+              "id": 304,
+              "name": "Alex Kim"
+            }
+          ],
+          "results": [
+            {
+              "id": 3011,
+              "athlete_id": 301,
+              "event": "Harbor",
+              "date": "2024-05-10",
+              "season": 7,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3012,
+              "athlete_id": 301,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3013,
+              "athlete_id": 302,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3031,
+              "athlete_id": 303,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            },
+            {
+              "id": 3041,
+              "athlete_id": 304,
+              "event": "Summit",
+              "date": "2025-06-14",
+              "season": 8,
+              "division": "men_open",
+              "age_group": "35-39",
+              "available_metrics": [
+                "total_time",
+                "run_total",
+                "best_run_lap",
+                "run_1",
+                "run_8",
+                "rowing",
+                "sled_pull",
+                "wall_balls",
+                "roxzone"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": {
+        "action": "unsupported",
+        "result_ids": [],
+        "metrics": [],
+        "scope": "none",
+        "reason": "unavailable"
+      },
+      "provenance": "Authored fixture; final targets independently model-adjudicated. See experiments/analytics/adjudication.json."
+    }
+  ],
+  "scope": "Previously exposed final subset at even indices; diagnostic only",
+  "feedback": "schema and context validation only; stop at first valid output",
+  "max_attempts": 3,
+  "local_max_tokens": 260,
+  "api_max_output_tokens": 2048,
+  "api_reasoning": "low",
+  "api_budget_usd": 3,
+  "prices_checked": "2026-09-15",
+  "rates_per_million": {
+    "gpt-6-astra": [
+      10,
+      1,
+      50
+    ],
+    "gpt-5.6-luna": [
+      0.2,
+      0.02,
+      1.2
+    ]
+  },
+  "price_sources": [
+    "https://developers.openai.com/api/docs/models/gpt-6-astra",
+    "https://developers.openai.com/api/docs/models/gpt-5.6-luna"
+  ],
+  "script_sha256": "749eca1a43afc15cd959cb00676ec951dcac642ba9d83bd5d2238d06333606b6",
+  "policies": {
+    "gpt-6-astra": {
+      "startup_seconds": 1.166015863418579e-06,
+      "rows": [
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1015,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 35,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1050
+              },
+              "cost_usd": 0.0119,
+              "elapsed_seconds": 4.058613874949515,
+              "model": "gpt-6-astra",
+              "response_id": "resp_07809038081e2d76016aa960519f3487d0ae6ae068fbef61d2",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "delta",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "delta",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 4.111845333012752,
+          "stop_reason": "valid",
+          "id": "final-01"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1012,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 32,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1044
+              },
+              "cost_usd": 0.01172,
+              "elapsed_seconds": 2.280202083988115,
+              "model": "gpt-6-astra",
+              "response_id": "resp_0142a6849fe99117016aa96054bc9c87d0b94619c5f09f51d7",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.280635125003755,
+          "stop_reason": "valid",
+          "id": "final-03"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1014,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 30,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1044
+              },
+              "cost_usd": 0.01164,
+              "elapsed_seconds": 3.120382084045559,
+              "model": "gpt-6-astra",
+              "response_id": "resp_07c05673fc600c00016aa96057121c87d09e58fad4338ae423",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 3.120838165981695,
+          "stop_reason": "valid",
+          "id": "final-05"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"rowing\",\"sled_pull\"],\"scope\":\"global\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1010,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 31,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1041
+              },
+              "cost_usd": 0.01165,
+              "elapsed_seconds": 1.8902944170404226,
+              "model": "gpt-6-astra",
+              "response_id": "resp_0b075e8a37600a37016aa9605a1f8887d091bc6fce92b42841",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "rowing",
+                    "sled_pull"
+                  ],
+                  "scope": "global",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "rowing",
+                    "sled_pull"
+                  ],
+                  "scope": "global",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.890647332998924,
+          "stop_reason": "valid",
+          "id": "final-07"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "usage": {
+                "input_tokens": 1009,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 25,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1034
+              },
+              "cost_usd": 0.01134,
+              "elapsed_seconds": 2.0506275419611484,
+              "model": "gpt-6-astra",
+              "response_id": "resp_07845c00a501eb16016aa9605c273887d0b658f61a9c15894d",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.050954250036739,
+          "stop_reason": "valid",
+          "id": "final-09"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"race\"}",
+              "usage": {
+                "input_tokens": 1000,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 25,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1025
+              },
+              "cost_usd": 0.01125,
+              "elapsed_seconds": 2.0780520000262186,
+              "model": "gpt-6-astra",
+              "response_id": "resp_0ce14da39c20b2d4016aa9605e10dc87d0ac063a97dff46763",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "clarify",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "race"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "clarify",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "race"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.078387250076048,
+          "stop_reason": "valid",
+          "id": "final-11"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"athlete\"}",
+              "usage": {
+                "input_tokens": 998,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 26,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1024
+              },
+              "cost_usd": 0.01128,
+              "elapsed_seconds": 3.2419435830088332,
+              "model": "gpt-6-astra",
+              "response_id": "resp_06c1ce185e17ebb6016aa96060536887d0912d127cbaaae404",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "clarify",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "athlete"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "clarify",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "athlete"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 3.2421507498947904,
+          "stop_reason": "valid",
+          "id": "final-13"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "usage": {
+                "input_tokens": 1002,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 25,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1027
+              },
+              "cost_usd": 0.01127,
+              "elapsed_seconds": 1.443784166011028,
+              "model": "gpt-6-astra",
+              "response_id": "resp_012154d21ca57bfb016aa96063622c87d0bac1964d6d9a25c8",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.4442259169882163,
+          "stop_reason": "valid",
+          "id": "final-15"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1014,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 29,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1043
+              },
+              "cost_usd": 0.01159,
+              "elapsed_seconds": 2.2149784580105916,
+              "model": "gpt-6-astra",
+              "response_id": "resp_0ad905173b3a35c3016aa96064f06487d09e64a5de56a59c4b",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "total_time"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "total_time"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.215459500090219,
+          "stop_reason": "valid",
+          "id": "final-17"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "usage": {
+                "input_tokens": 1005,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 25,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1030
+              },
+              "cost_usd": 0.0113,
+              "elapsed_seconds": 1.614188625011593,
+              "model": "gpt-6-astra",
+              "response_id": "resp_045f58540d4cb6d4016aa96067117087d0b9928982101c90f8",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.614620834006928,
+          "stop_reason": "valid",
+          "id": "final-19"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1010,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 34,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1044
+              },
+              "cost_usd": 0.0118,
+              "elapsed_seconds": 1.9861046670703217,
+              "model": "gpt-6-astra",
+              "response_id": "resp_06a76d5fc27a24d4016aa96068b7a487d09c51f950dbc7ed22",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_1",
+                    "run_8"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_1",
+                    "run_8"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.9864723330829293,
+          "stop_reason": "valid",
+          "id": "final-21"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "usage": {
+                "input_tokens": 1006,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 25,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1031
+              },
+              "cost_usd": 0.01131,
+              "elapsed_seconds": 3.1018757090205327,
+              "model": "gpt-6-astra",
+              "response_id": "resp_0b9eafb04f436d34016aa9606ab3c487d096a8e714aa414177",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 3.1023436250397936,
+          "stop_reason": "valid",
+          "id": "final-23"
+        }
+      ],
+      "one_shot": {
+        "tasks": 12,
+        "successful": 12,
+        "attempts": 12,
+        "total_cost_usd": 0.13805,
+        "cost_per_success_usd": 0.011504166666666668,
+        "median_seconds": 2.146515229018405,
+        "p95_seconds": 4.058613874949515,
+        "valid_but_wrong": 0,
+        "inference_seconds": 29.08104721014388
+      },
+      "retry": {
+        "tasks": 12,
+        "successful": 12,
+        "attempts": 12,
+        "total_cost_usd": 0.13805,
+        "cost_per_success_usd": 0.011504166666666668,
+        "median_seconds": 2.1469233750831336,
+        "p95_seconds": 4.111845333012752,
+        "valid_but_wrong": 0,
+        "inference_seconds": 29.08104721014388
+      }
+    },
+    "gpt-5.6-luna": {
+      "startup_seconds": 6.083049811422825e-06,
+      "rows": [
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1015,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 83,
+                "output_tokens_details": {
+                  "reasoning_tokens": 46
+                },
+                "total_tokens": 1098
+              },
+              "cost_usd": 0.00030260000000000004,
+              "elapsed_seconds": 2.5182747920043766,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_0520d9fc00c21b30016aa9606dd4a887d0b4ab981131f8a7ef",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "delta",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "delta",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.518845208105631,
+          "stop_reason": "valid",
+          "id": "final-01"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1012,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 68,
+                "output_tokens_details": {
+                  "reasoning_tokens": 34
+                },
+                "total_tokens": 1080
+              },
+              "cost_usd": 0.000284,
+              "elapsed_seconds": 1.7205988330533728,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_0c84f524face3039016aa96070561c87d0ba6885926d68480e",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.7209688749862835,
+          "stop_reason": "valid",
+          "id": "final-03"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1014,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 94,
+                "output_tokens_details": {
+                  "reasoning_tokens": 62
+                },
+                "total_tokens": 1108
+              },
+              "cost_usd": 0.00031560000000000003,
+              "elapsed_seconds": 2.593445375096053,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_0fcfa5bcc46761b2016aa9607209ec87d097cfed99700b6655",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.593844791990705,
+          "stop_reason": "valid",
+          "id": "final-05"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"rowing\",\"sled_pull\"],\"scope\":\"global\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1010,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 79,
+                "output_tokens_details": {
+                  "reasoning_tokens": 46
+                },
+                "total_tokens": 1089
+              },
+              "cost_usd": 0.0002968,
+              "elapsed_seconds": 2.210523916990496,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_002b8c48ce804efd016aa96074c10487d0bf32aa50927044a7",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "rowing",
+                    "sled_pull"
+                  ],
+                  "scope": "global",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "rowing",
+                    "sled_pull"
+                  ],
+                  "scope": "global",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.2107244579819962,
+          "stop_reason": "valid",
+          "id": "final-07"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "usage": {
+                "input_tokens": 1009,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 87,
+                "output_tokens_details": {
+                  "reasoning_tokens": 60
+                },
+                "total_tokens": 1096
+              },
+              "cost_usd": 0.00030619999999999996,
+              "elapsed_seconds": 1.8805404170416296,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_0198dd9a68a02d70016aa96076df1487d0994450fc4cbce292",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.880818207981065,
+          "stop_reason": "valid",
+          "id": "final-09"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"race\"}",
+              "usage": {
+                "input_tokens": 1000,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 25,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1025
+              },
+              "cost_usd": 0.00023,
+              "elapsed_seconds": 1.4148443329613656,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_0fa81bdf43dfc87b016aa96078e7f887d08555f1368ef94ae7",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "clarify",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "race"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "clarify",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "race"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.4153611669316888,
+          "stop_reason": "valid",
+          "id": "final-11"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"athlete\"}",
+              "usage": {
+                "input_tokens": 998,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 26,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1024
+              },
+              "cost_usd": 0.0002308,
+              "elapsed_seconds": 1.5523054170189425,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_02de40af0e1ef7e3016aa9607a315087d08cda0d06584539a3",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "clarify",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "athlete"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "clarify",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "athlete"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.5524397919652984,
+          "stop_reason": "valid",
+          "id": "final-13"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "usage": {
+                "input_tokens": 1002,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 30
+                },
+                "total_tokens": 1059
+              },
+              "cost_usd": 0.00026880000000000003,
+              "elapsed_seconds": 1.7779688329901546,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_0ad0a1f34c4fef7c016aa9607bb96887d0a1d84f91acaad14b",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.7782524169888347,
+          "stop_reason": "valid",
+          "id": "final-15"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1014,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 29,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1043
+              },
+              "cost_usd": 0.00023760000000000003,
+              "elapsed_seconds": 1.0102714999811724,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_0ebee6337fda69e4016aa9607d7f6487d0be3e3df154ebbda0",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "total_time"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "total_time"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.0105839170282707,
+          "stop_reason": "valid",
+          "id": "final-17"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"global\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1005,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 94,
+                "output_tokens_details": {
+                  "reasoning_tokens": 61
+                },
+                "total_tokens": 1099
+              },
+              "cost_usd": 0.00031380000000000004,
+              "elapsed_seconds": 2.4404673340031877,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_0c999e579e37eda6016aa9607ea18487d0907bcf52f09e6a2e",
+              "status": "completed",
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "No supported pooled reference for metric"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "No supported pooled reference for metric"
+              }
+            },
+            {
+              "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "usage": {
+                "input_tokens": 1071,
+                "input_tokens_details": {
+                  "cache_write_tokens": 1068,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 47,
+                "output_tokens_details": {
+                  "reasoning_tokens": 20
+                },
+                "total_tokens": 1118
+              },
+              "cost_usd": 0.0002706,
+              "elapsed_seconds": 1.7201760000316426,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_032b231dc28ffda6016aa96080f88887d08675b4d0209c5fe1",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 4.161375125055201,
+          "stop_reason": "valid",
+          "id": "final-19"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "usage": {
+                "input_tokens": 1010,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 34,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1044
+              },
+              "cost_usd": 0.00024280000000000002,
+              "elapsed_seconds": 1.3319800830213353,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_0f0c153f37868eb7016aa96082b3a887d0a30fd3c2989812d5",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_1",
+                    "run_8"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_1",
+                    "run_8"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.3323598329443485,
+          "stop_reason": "valid",
+          "id": "final-21"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "usage": {
+                "input_tokens": 1006,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 25,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 1031
+              },
+              "cost_usd": 0.0002312,
+              "elapsed_seconds": 1.1358572080498561,
+              "model": "gpt-5.6-luna",
+              "response_id": "resp_04c613f6c7bad424016aa9608403e887d0ac0415beaa1fd201",
+              "status": "completed",
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.1362011670134962,
+          "stop_reason": "valid",
+          "id": "final-23"
+        }
+      ],
+      "one_shot": {
+        "tasks": 12,
+        "successful": 11,
+        "attempts": 12,
+        "total_cost_usd": 0.0032602,
+        "cost_per_success_usd": 0.00029638181818181816,
+        "median_seconds": 1.7492838330217637,
+        "p95_seconds": 2.593445375096053,
+        "valid_but_wrong": 0,
+        "inference_seconds": 21.587078042211942
+      },
+      "retry": {
+        "tasks": 12,
+        "successful": 12,
+        "attempts": 13,
+        "total_cost_usd": 0.0035308,
+        "cost_per_success_usd": 0.00029423333333333335,
+        "median_seconds": 1.749610645987559,
+        "p95_seconds": 4.161375125055201,
+        "valid_but_wrong": 0,
+        "inference_seconds": 23.307254042243585
+      }
+    },
+    "local-base": {
+      "startup_seconds": 2.35458570800256,
+      "rows": [
+        {
+          "attempts": [
+            {
+              "raw": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"run_total\", \"roxzone\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1074,
+              "output_tokens": 52,
+              "cost_usd": null,
+              "elapsed_seconds": 2.8070749170146883,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "delta",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "delta",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.817399499937892,
+          "stop_reason": "valid",
+          "id": "final-01"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3013],\n  \"metrics\": [\"run_total\", \"roxzone\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1071,
+              "output_tokens": 46,
+              "cost_usd": null,
+              "elapsed_seconds": 2.3721273749833927,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.3748469169950113,
+          "stop_reason": "valid",
+          "id": "final-03"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3012],\n  \"metrics\": [\"run_8\"],\n  \"scope\": \"sex\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1073,
+              "output_tokens": 43,
+              "cost_usd": null,
+              "elapsed_seconds": 2.278209124924615,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "1 validation error for Plan\n  Value error, Only benchmark uses a comparison scope [type=value_error, input_value={'action': 'value', 'resu...'sex', 'reason': 'none'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "1 validation error for Plan\n  Value error, Only benchmark uses a comparison scope [type=value_error, input_value={'action': 'value', 'resu...'sex', 'reason': 'none'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+              }
+            },
+            {
+              "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3012],\n  \"metrics\": [\"run_8\"],\n  \"scope\": \"sex\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1215,
+              "output_tokens": 43,
+              "cost_usd": null,
+              "elapsed_seconds": 2.3863474170211703,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 4.668778416002169,
+          "stop_reason": "valid",
+          "id": "final-05"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"rowing\", \"sled_pull\"],\n  \"scope\": \"global\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1069,
+              "output_tokens": 52,
+              "cost_usd": null,
+              "elapsed_seconds": 2.496416667010635,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Requested value is absent or null"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Requested value is absent or null"
+              }
+            },
+            {
+              "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3012, 3013],\n  \"metrics\": [\"rowing\", \"sled_pull\"],\n  \"scope\": \"global\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1161,
+              "output_tokens": 52,
+              "cost_usd": null,
+              "elapsed_seconds": 2.6205068751005456,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012,
+                    3013
+                  ],
+                  "metrics": [
+                    "rowing",
+                    "sled_pull"
+                  ],
+                  "scope": "global",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012,
+                    3013
+                  ],
+                  "metrics": [
+                    "rowing",
+                    "sled_pull"
+                  ],
+                  "scope": "global",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 5.119201665977016,
+          "stop_reason": "valid",
+          "id": "final-07"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3012],\n  \"metrics\": [\"run_8\"],\n  \"scope\": \"sex\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1068,
+              "output_tokens": 43,
+              "cost_usd": null,
+              "elapsed_seconds": 2.256079542101361,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.257328583044,
+          "stop_reason": "valid",
+          "id": "final-09"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1059,
+              "output_tokens": 31,
+              "cost_usd": null,
+              "elapsed_seconds": 1.9424903329927474,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_total"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_total"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.9435384590178728,
+          "stop_reason": "valid",
+          "id": "final-11"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3012],\n  \"metrics\": [\"total_time\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1055,
+              "output_tokens": 42,
+              "cost_usd": null,
+              "elapsed_seconds": 2.259274916956201,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "total_time"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "total_time"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.2604409580817446,
+          "stop_reason": "valid",
+          "id": "final-13"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\n  \"action\": \"delta\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"sled_pull\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1061,
+              "output_tokens": 49,
+              "cost_usd": null,
+              "elapsed_seconds": 2.494503000052646,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Requested value is absent or null"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Requested value is absent or null"
+              }
+            },
+            {
+              "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"sled_pull\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1150,
+              "output_tokens": 49,
+              "cost_usd": null,
+              "elapsed_seconds": 2.519345499924384,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Requested value is absent or null"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Requested value is absent or null"
+              }
+            },
+            {
+              "raw": "{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "input_tokens": 1239,
+              "output_tokens": 22,
+              "cost_usd": null,
+              "elapsed_seconds": 1.927052874932997,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "1 validation error for Plan\n  Value error, Non-executable plans need empty selections and a matching reason [type=value_error, input_value={'action': 'clarify', 're...'reason': 'unavailable'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "1 validation error for Plan\n  Value error, Non-executable plans need empty selections and a matching reason [type=value_error, input_value={'action': 'clarify', 're...'reason': 'unavailable'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+              }
+            }
+          ],
+          "elapsed_seconds": 6.947801833041012,
+          "stop_reason": "budget_or_error",
+          "id": "final-15"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1072,
+              "output_tokens": 26,
+              "cost_usd": null,
+              "elapsed_seconds": 1.8425689580617473,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "total_time"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "total_time"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.8453458750154823,
+          "stop_reason": "valid",
+          "id": "final-17"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\n  \"action\": \"benchmark\",\n  \"result_ids\": [3011, 3012],\n  \"metrics\": [\"best_run_lap\"],\n  \"scope\": \"global\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1064,
+              "output_tokens": 50,
+              "cost_usd": null,
+              "elapsed_seconds": 2.447839916916564,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "No supported pooled reference for metric"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "No supported pooled reference for metric"
+              }
+            },
+            {
+              "raw": "{\n  \"action\": \"unsupported\",\n  \"result_ids\": [],\n  \"metrics\": [],\n  \"scope\": \"none\",\n  \"reason\": \"unavailable\"\n}",
+              "input_tokens": 1153,
+              "output_tokens": 35,
+              "cost_usd": null,
+              "elapsed_seconds": 1.8339288749266416,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "unsupported",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "unavailable"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 4.2840211250586435,
+          "stop_reason": "valid",
+          "id": "final-19"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\"action\":\"value\",\"result_ids\":[3011,3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1069,
+              "output_tokens": 36,
+              "cost_usd": null,
+              "elapsed_seconds": 1.7709669170435518,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_1",
+                    "run_8"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_1",
+                    "run_8"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.7748893330572173,
+          "stop_reason": "valid",
+          "id": "final-21"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "{\n  \"action\": \"value\",\n  \"result_ids\": [3013],\n  \"metrics\": [\"run_total\"],\n  \"scope\": \"none\",\n  \"reason\": \"none\"\n}",
+              "input_tokens": 1065,
+              "output_tokens": 42,
+              "cost_usd": null,
+              "elapsed_seconds": 1.827668207930401,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.8301895000040531,
+          "stop_reason": "valid",
+          "id": "final-23"
+        }
+      ],
+      "one_shot": {
+        "tasks": 12,
+        "successful": 3,
+        "attempts": 12,
+        "total_cost_usd": null,
+        "cost_per_success_usd": null,
+        "median_seconds": 2.268742020940408,
+        "p95_seconds": 2.8070749170146883,
+        "valid_but_wrong": 5,
+        "inference_seconds": 26.79521987598855
+      },
+      "retry": {
+        "tasks": 12,
+        "successful": 5,
+        "attempts": 17,
+        "total_cost_usd": null,
+        "cost_per_success_usd": null,
+        "median_seconds": 2.317643937538378,
+        "p95_seconds": 6.947801833041012,
+        "valid_but_wrong": 6,
+        "inference_seconds": 38.08240141789429
+      }
+    },
+    "local-specialist": {
+      "startup_seconds": 0.7979958329815418,
+      "rows": [
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1074,
+              "output_tokens": 38,
+              "cost_usd": null,
+              "elapsed_seconds": 2.0910942920017987,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "delta",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "delta",
+                  "result_ids": [
+                    3011,
+                    3012
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 2.0985444590914994,
+          "stop_reason": "valid",
+          "id": "final-01"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\",\"roxzone\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1071,
+              "output_tokens": 33,
+              "cost_usd": null,
+              "elapsed_seconds": 1.7618857499910519,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total",
+                    "roxzone"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.7661219580331817,
+          "stop_reason": "valid",
+          "id": "final-03"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+              "input_tokens": 1073,
+              "output_tokens": 31,
+              "cost_usd": null,
+              "elapsed_seconds": 1.7006005831062794,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.7019131249981,
+          "stop_reason": "valid",
+          "id": "final-05"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"rowing\",\"sled_pull\"],\"scope\":\"global\",\"reason\":\"none\"}",
+              "input_tokens": 1069,
+              "output_tokens": 33,
+              "cost_usd": null,
+              "elapsed_seconds": 1.8249543330166489,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "rowing",
+                    "sled_pull"
+                  ],
+                  "scope": "global",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "rowing",
+                    "sled_pull"
+                  ],
+                  "scope": "global",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.8281137919984758,
+          "stop_reason": "valid",
+          "id": "final-07"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"run_8\"],\"scope\":\"sex\",\"reason\":\"none\"}",
+              "input_tokens": 1068,
+              "output_tokens": 31,
+              "cost_usd": null,
+              "elapsed_seconds": 1.7213974168989807,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "benchmark",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_8"
+                  ],
+                  "scope": "sex",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.723851333023049,
+          "stop_reason": "valid",
+          "id": "final-09"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3011],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1059,
+              "output_tokens": 30,
+              "cost_usd": null,
+              "elapsed_seconds": 1.6947977090021595,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3011
+                  ],
+                  "metrics": [
+                    "run_total"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3011
+                  ],
+                  "metrics": [
+                    "run_total"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.697076499927789,
+          "stop_reason": "valid",
+          "id": "final-11"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"clarify\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"athlete\"}",
+              "input_tokens": 1055,
+              "output_tokens": 25,
+              "cost_usd": null,
+              "elapsed_seconds": 1.5757958330214024,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": true,
+                "output": {
+                  "action": "clarify",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "athlete"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": true,
+                "output": {
+                  "action": "clarify",
+                  "result_ids": [],
+                  "metrics": [],
+                  "scope": "none",
+                  "reason": "athlete"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.578243791940622,
+          "stop_reason": "valid",
+          "id": "final-13"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"sled_pull\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1061,
+              "output_tokens": 36,
+              "cost_usd": null,
+              "elapsed_seconds": 1.8109036250971258,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Requested value is absent or null"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Requested value is absent or null"
+              }
+            },
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"sled_pull\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1133,
+              "output_tokens": 36,
+              "cost_usd": null,
+              "elapsed_seconds": 1.894486541976221,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Requested value is absent or null"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Requested value is absent or null"
+              }
+            },
+            {
+              "raw": "<think>\n\n<tool_call>\n\n{\"action\":\"delta\",\"result_ids\":[3011,3012],\"metrics\":[\"sled_pull\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1205,
+              "output_tokens": 36,
+              "cost_usd": null,
+              "elapsed_seconds": 1.9403760409913957,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Expecting value: line 1 column 1 (char 0)"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Expecting value: line 1 column 1 (char 0)"
+              }
+            }
+          ],
+          "elapsed_seconds": 5.6530565419234335,
+          "stop_reason": "budget_or_error",
+          "id": "final-15"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"total_time\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1072,
+              "output_tokens": 30,
+              "cost_usd": null,
+              "elapsed_seconds": 1.6827987079741433,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "total_time"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "total_time"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.6841489169746637,
+          "stop_reason": "valid",
+          "id": "final-17"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"benchmark\",\"result_ids\":[3012],\"metrics\":[\"best_run_lap\"],\"scope\":\"global\",\"reason\":\"none\"}",
+              "input_tokens": 1064,
+              "output_tokens": 32,
+              "cost_usd": null,
+              "elapsed_seconds": 1.738502583000809,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "No supported pooled reference for metric"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "No supported pooled reference for metric"
+              }
+            },
+            {
+              "raw": "<think>\n\n<tool_call>\n\n{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "input_tokens": 1131,
+              "output_tokens": 25,
+              "cost_usd": null,
+              "elapsed_seconds": 1.635803582961671,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Expecting value: line 1 column 1 (char 0)"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Expecting value: line 1 column 1 (char 0)"
+              }
+            },
+            {
+              "raw": "<think>\n\n<tool_call>\n\n</tool_call>\n\n{\"action\":\"unsupported\",\"result_ids\":[],\"metrics\":[],\"scope\":\"none\",\"reason\":\"unavailable\"}",
+              "input_tokens": 1203,
+              "output_tokens": 27,
+              "cost_usd": null,
+              "elapsed_seconds": 1.7279517079005018,
+              "validation": {
+                "valid": false,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Expecting value: line 1 column 1 (char 0)"
+              },
+              "score": {
+                "valid": false,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": null,
+                "error": "Expecting value: line 1 column 1 (char 0)"
+              }
+            }
+          ],
+          "elapsed_seconds": 5.108429791056551,
+          "stop_reason": "budget_or_error",
+          "id": "final-19"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3012],\"metrics\":[\"run_1\",\"run_8\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1069,
+              "output_tokens": 35,
+              "cost_usd": null,
+              "elapsed_seconds": 1.799971416941844,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_1",
+                    "run_8"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": true,
+                "accepted": true,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3012
+                  ],
+                  "metrics": [
+                    "run_1",
+                    "run_8"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.8025344590423629,
+          "stop_reason": "valid",
+          "id": "final-21"
+        },
+        {
+          "attempts": [
+            {
+              "raw": "<think>\n\n</think>\n\n{\"action\":\"value\",\"result_ids\":[3013],\"metrics\":[\"run_total\"],\"scope\":\"none\",\"reason\":\"none\"}",
+              "input_tokens": 1065,
+              "output_tokens": 30,
+              "cost_usd": null,
+              "elapsed_seconds": 1.6644773330772296,
+              "validation": {
+                "valid": true,
+                "correct": null,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              },
+              "score": {
+                "valid": true,
+                "correct": false,
+                "accepted": false,
+                "abstained": false,
+                "output": {
+                  "action": "value",
+                  "result_ids": [
+                    3013
+                  ],
+                  "metrics": [
+                    "run_total"
+                  ],
+                  "scope": "none",
+                  "reason": "none"
+                },
+                "error": null
+              }
+            }
+          ],
+          "elapsed_seconds": 1.6655381669988856,
+          "stop_reason": "valid",
+          "id": "final-23"
+        }
+      ],
+      "adapter_manifest": {
+        "0000120_adapters.safetensors": "4f99886a2753fa97b330dd15b89dc693cfc9c047dce295ece2ee3281cf6c8ce8",
+        "adapter_config.json": "f148fff311a15ebf8bb6ae4043cbe0f1f5cc450ef1efb1b1c264fd882580afda",
+        "adapters.safetensors": "4f99886a2753fa97b330dd15b89dc693cfc9c047dce295ece2ee3281cf6c8ce8"
+      },
+      "one_shot": {
+        "tasks": 12,
+        "successful": 7,
+        "attempts": 12,
+        "total_cost_usd": null,
+        "cost_per_success_usd": null,
+        "median_seconds": 1.7299499999498948,
+        "p95_seconds": 2.0910942920017987,
+        "valid_but_wrong": 3,
+        "inference_seconds": 21.067179583129473
+      },
+      "retry": {
+        "tasks": 12,
+        "successful": 7,
+        "attempts": 16,
+        "total_cost_usd": null,
+        "cost_per_success_usd": null,
+        "median_seconds": 1.7449866455281153,
+        "p95_seconds": 5.6530565419234335,
+        "valid_but_wrong": 3,
+        "inference_seconds": 28.265797456959262
+      }
+    }
+  },
+  "finished_at": 1789485258.785276,
+  "api_reserved_usd": 2.1011297999999994
+}

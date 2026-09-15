@@ -62,10 +62,11 @@ which are not independent retries. Existing run timing and provider usage do not
 constitute a complete cost ledger; local dollar cost remains unknown.
 
 The recorded support and analytics failures remain valid observations of those
-tested configurations. **No budgeted retry comparison or economic qualification
-has been run.** They establish neither a cost-effective specialist nor that a
-specialist cannot be cost-effective. This document defines the next evaluation;
-it does not add a retry runner or change historical scores.
+tested configurations. A [first diagnostic retry comparison](RETRY-EXPERIMENT.md) now records Luna
+recovering one failure and matching Astra on 12 exposed cases at lower API cost.
+The local adapter did not recover a task. Fresh economic qualification remains
+unmeasured. The standalone experiment script does not change the package evaluator
+or historical scores.
 
 The next experiment should use one task with a credible deployable verifier,
 freeze a bounded repair policy on development data, and record the complete

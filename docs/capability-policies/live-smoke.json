@@ -1,0 +1,35 @@
+{
+  "status": "interrupted_or_failed",
+  "split": "development",
+  "config_hash": "7cd4a1155115e5627577dc1bc75988a8a213f13e134b2ee625e4a9493a4bf3db",
+  "implementation_hash": "61b5ed06e963029cad4959cce2d4689b0d2d19f0b799e8280f7e69dc7ee0bfeb",
+  "created_at": 1789922382.643462,
+  "finished_at": 1789922383.222656,
+  "started_calls": 1,
+  "reserved_usd": 0.0832875,
+  "call_accounting": {
+    "finished": 1,
+    "known_cost_usd": 0.0,
+    "unknown_cost_calls": 1,
+    "total_cost_usd": null
+  },
+  "summary": [
+    {
+      "policy": "reference-solo",
+      "tasks": 1,
+      "successful": 0,
+      "calls": 1,
+      "total_cost_usd": null,
+      "cost_per_success_usd": null,
+      "elapsed_seconds": 0.5571762907784432
+    }
+  ],
+  "errors": [
+    {
+      "policy": "reference-solo",
+      "stop_reason": "transport_error",
+      "error": "HTTP_401"
+    }
+  ],
+  "scope": "One real request rejected HTTP401; no model-quality comparison. Raw private local run under .state/capability-smoke."
+}

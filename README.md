@@ -10,6 +10,14 @@ This is an open experiment to try, fork or take ideas from. Start with the inclu
 
 ![Task packages in Specialist Workshop](artifacts/public-packages-desktop.png)
 
+## Improve a model with a better solving policy
+
+Compare iterative solo solving, builder–critic feedback, retrieved practice examples,
+and selective stronger-model critique on the same task package. The new
+[policy comparison runner](docs/capability-policies/README.md) records every role's
+calls, candidate identities, final correctness and total cost, including failed attempts.
+It supports OpenAI and Anthropic text models; start with a no-cost dry run.
+
 ## Start locally
 
 Python 3.12+ is enough to explore packages and deterministic controls. **Apple Silicon is required for local model inference and training.** No API key is needed for the local path. First model use downloads pinned weights from Hugging Face: about 2.5 GB for task packages.

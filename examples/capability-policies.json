@@ -1,0 +1,64 @@
+{
+  "models": {
+    "cheaper": {
+      "provider": "openai",
+      "model": "gpt-5.6-luna",
+      "effort": "low",
+      "rates": {
+        "input": 0.2,
+        "output": 1.2,
+        "cached": 0.02,
+        "cache_write": 0.25
+      }
+    },
+    "reference": {
+      "provider": "openai",
+      "model": "gpt-6-astra",
+      "effort": "low",
+      "rates": {
+        "input": 10,
+        "output": 50,
+        "cached": 1,
+        "cache_write": 12.5
+      }
+    }
+  },
+  "policies": [
+    {
+      "name": "cheaper-solo",
+      "solver": "cheaper",
+      "rounds": 3
+    },
+    {
+      "name": "cheaper-pair",
+      "solver": "cheaper",
+      "critic": "cheaper",
+      "rounds": 2
+    },
+    {
+      "name": "cheaper-with-practice",
+      "solver": "cheaper",
+      "rounds": 3,
+      "examples": 2
+    },
+    {
+      "name": "cheaper-stronger-critique",
+      "solver": "cheaper",
+      "critic": "reference",
+      "rounds": 2
+    },
+    {
+      "name": "reference-solo",
+      "solver": "reference",
+      "rounds": 3
+    }
+  ],
+  "limits": {
+    "max_calls": 3,
+    "max_output_tokens": 1024,
+    "max_total_tokens": 24000
+  },
+  "max_run_calls": 30,
+  "seed": 19,
+  "max_run_cost_usd": 2
+}

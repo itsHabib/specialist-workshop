@@ -90,3 +90,12 @@ Useful implementation references: [MLX-LM LoRA guide](https://github.com/ml-expl
 ## Reusable task packages
 
 `packages.py` owns versioned contracts, examples, split boundaries and correction versions. `experiment.py` owns finite supervised jobs and artifact/checkpoint binding. `completion.py` separates a pinned model transport envelope from task JSON. `environments.py` exposes reviewed observe/step/outcome implementations. Generic package APIs and the `/packages` page call these same boundaries; they do not execute uploaded code. [Monday walkthrough and explicit extension limits](MONDAY.md).
+
+
+## Complete model policies
+
+`policies.py` coordinates bounded solo/pair refinement and train-only retrieval over
+existing task packages. `policy_providers.py` owns text-only model transport; no shell or
+arbitrary tools. `compare_policies.py` freezes a comparison plan, checkpoints every call,
+scores only after selection, and renders a report. This is inference-time scaffolding,
+not training, general agent execution or proof that a weaker model matches a stronger one.

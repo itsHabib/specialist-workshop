@@ -194,7 +194,7 @@ def build_task(variant: int) -> dict:
             "a compact object whose area value is the same canonical string."
         )
         extra = _V1_TEST
-    tests = _PUBLIC_TESTS.replace("\n\nif __name__", "\n" + extra + "\nif __name__")
+    tests = _PUBLIC_TESTS + extra
     readme = f"""# Rectangle union repair\n\n{goal}\n\nBug report: overlapping imports sometimes undercount, reversed boxes produce negative\narea, and surveyed fractional coordinates drift on large maps. Keep the public API\n`read_rectangles(lines)` and `union_area(rectangles)` plus the CLI in `rectarea.py`.\n"""
     return {
         "name": f"rectarea-union-v{variant}",
@@ -300,15 +300,17 @@ def _evaluate(files: dict, execute: callable, requests: list[dict]) -> dict:
     return {"passed": not failures, "checks": checks, "failures": failures[:8]}
 
 
-def verify(files: dict, execute: callable, seed: int) -> dict:
+def verify(files: dict, execute: callable, seed: int, variant: int = 0) -> dict:
     """Evaluate withheld cases with execute(files, command, stdin='')."""
-    variant = 1 if "comments" in files.get("README.md", "") else 0
+    if variant not in (0, 1):
+        raise ValueError("variant must be 0 or 1")
     return _evaluate(files, execute, final_requests(variant, seed))
 
 
-def development_probe(files: dict, execute: callable, seed: int) -> dict:
+def development_probe(files: dict, execute: callable, seed: int, variant: int = 0) -> dict:
     """Expose reproducible repair feedback from a distribution separate from final."""
-    variant = 1 if "comments" in files.get("README.md", "") else 0
+    if variant not in (0, 1):
+        raise ValueError("variant must be 0 or 1")
     rng = random.Random(seed ^ 0x5EED)
     batches = [[
         [str(x), str(y), str(x + rng.randint(1, 5)), str(y + rng.randint(1, 5))]

@@ -33,14 +33,15 @@ def test_manifest_is_worker_visible_and_self_contained(variant):
     assert set(manifest) == {"name", "goal", "files", "test_command", "entrypoint"}
     assert manifest["test_command"] == "python -m unittest discover -s tests -v"
     assert "final_requests" not in "".join(manifest["files"].values())
+    assert ("test_comments_are_ignored" in manifest["files"]["tests/test_rectarea.py"]) == (variant == 1)
 
 
 @pytest.mark.parametrize("variant", [0, 1])
 def test_broken_starter_fails_and_reference_passes(variant):
-    broken = taskpack.verify(taskpack.build_task(variant)["files"], execute, 20260920)
+    broken = taskpack.verify(taskpack.build_task(variant)["files"], execute, 20260920, variant)
     assert not broken["passed"]
     good_files = taskpack.reference_files(variant)
-    assert taskpack.verify(good_files, execute, 20260920)["passed"]
+    assert taskpack.verify(good_files, execute, 20260920, variant)["passed"]
 
     with tempfile.TemporaryDirectory() as directory:
         root = Path(directory)
@@ -71,3 +72,10 @@ def test_development_probe_is_useful_but_separate_from_final_seed():
     final = taskpack.verify(files, execute, 19)
     assert not probe["passed"] and not final["passed"]
     assert probe["checks"] == 5
+
+
+def test_explicit_variant_cannot_be_downgraded_by_readme_tampering():
+    files = taskpack.reference_files(1)
+    files["README.md"] = taskpack.build_task(0)["files"]["README.md"]
+    assert taskpack.verify(files, execute, 31, variant=1)["passed"]
+    assert taskpack.development_probe(files, execute, 31, variant=1)["passed"]

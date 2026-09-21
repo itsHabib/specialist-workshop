@@ -1,0 +1,13 @@
+{
+  "reason": "Stop hosted comparison after repeated deadlines; complete the local policy in a separate labeled root. No retries of uncertain calls.",
+  "sonnet": "All five calls attempted; initial and boost repair timeout. Raw final scores are execution failures, not a reasoning comparison.",
+  "haiku": "Initial geometry call timed out; solo-2 stopped once the stop decision was made; remaining three calls not attempted.",
+  "extra_availability_probe": {
+    "model": "haiku",
+    "seconds": 2.4772218340076506,
+    "estimated_cost_usd": 0.010775,
+    "outcome": "success",
+    "purpose": "Distinguish task timeout from basic provider unavailability"
+  },
+  "local_root": "cheap-geometry-local-01"
+}

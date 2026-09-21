@@ -1,0 +1,31 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 930,
+      "outputTokens": 213,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 4390,
+      "webSearchRequests": 0,
+      "costUSD": 0.010775,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 76,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.010775,
+  "error": null,
+  "response": {
+    "action": "finish",
+    "hypothesis": "ready",
+    "prediction": "",
+    "source": "",
+    "probes_json": "[]"
+  },
+  "seconds": 2.4772218340076506,
+  "exit_code": 0
+}

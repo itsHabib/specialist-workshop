@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "total": 4,
+  "failed": 4,
+  "failures": [],
+  "execution": {
+    "backend": "docker",
+    "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+    "returncode": 1,
+    "seconds": 0.24591429182328284,
+    "error": "candidate_or_runtime_exit",
+    "outputs": null,
+    "cleanup_confirmed": true
+  }
+}

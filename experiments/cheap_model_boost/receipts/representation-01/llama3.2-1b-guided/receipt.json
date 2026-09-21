@@ -1,0 +1,16 @@
+{
+  "provider": "llama3.2:1b",
+  "requested_model": "llama3.2:1b",
+  "usage": {
+    "model": "llama3.2:1b",
+    "prompt_eval_count": 686,
+    "eval_count": 6000,
+    "total_duration": 75625994834,
+    "done_reason": "length"
+  },
+  "estimated_cost_usd": null,
+  "error": "local_incomplete_response",
+  "response": null,
+  "seconds": 75.68595020915382,
+  "exit_code": 0
+}

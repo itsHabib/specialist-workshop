@@ -1,0 +1,99 @@
+[
+  {
+    "model": "llama3.2:1b",
+    "policy": "initial",
+    "passed": false,
+    "cases_passed": 0,
+    "total": 18,
+    "protocol_faults": [
+      "initial:invalid_python"
+    ],
+    "model_seconds": 2.978312416933477,
+    "known_cost_usd": 0,
+    "cost_complete": false,
+    "usage": {
+      "initial": {
+        "model": "llama3.2:1b",
+        "prompt_eval_count": 521,
+        "eval_count": 66,
+        "total_duration": 2902013750,
+        "done_reason": "stop"
+      }
+    }
+  },
+  {
+    "model": "llama3.2:1b",
+    "policy": "solo",
+    "passed": false,
+    "cases_passed": 0,
+    "total": 18,
+    "protocol_faults": [
+      "initial:invalid_python",
+      "solo-2:invalid_python",
+      "solo-3:invalid_python"
+    ],
+    "model_seconds": 10.24012479186058,
+    "known_cost_usd": 0,
+    "cost_complete": false,
+    "usage": {
+      "initial": {
+        "model": "llama3.2:1b",
+        "prompt_eval_count": 521,
+        "eval_count": 66,
+        "total_duration": 2902013750,
+        "done_reason": "stop"
+      },
+      "solo-2": {
+        "model": "llama3.2:1b",
+        "prompt_eval_count": 768,
+        "eval_count": 278,
+        "total_duration": 3546402375,
+        "done_reason": "stop"
+      },
+      "solo-3": {
+        "model": "llama3.2:1b",
+        "prompt_eval_count": 938,
+        "eval_count": 278,
+        "total_duration": 3544136917,
+        "done_reason": "stop"
+      }
+    }
+  },
+  {
+    "model": "llama3.2:1b",
+    "policy": "boost",
+    "passed": false,
+    "cases_passed": 0,
+    "total": 18,
+    "protocol_faults": [
+      "initial:invalid_python",
+      "boost-repair:empty_source"
+    ],
+    "model_seconds": 5.0232314160093665,
+    "known_cost_usd": 0,
+    "cost_complete": false,
+    "usage": {
+      "initial": {
+        "model": "llama3.2:1b",
+        "prompt_eval_count": 521,
+        "eval_count": 66,
+        "total_duration": 2902013750,
+        "done_reason": "stop"
+      },
+      "critic": {
+        "model": "llama3.2:1b",
+        "prompt_eval_count": 482,
+        "eval_count": 49,
+        "total_duration": 922159583,
+        "done_reason": "stop"
+      },
+      "boost-repair": {
+        "model": "llama3.2:1b",
+        "prompt_eval_count": 828,
+        "eval_count": 54,
+        "total_duration": 980208125,
+        "done_reason": "stop"
+      }
+    }
+  }
+]

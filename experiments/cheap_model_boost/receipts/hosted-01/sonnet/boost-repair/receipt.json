@@ -1,0 +1,10 @@
+{
+  "provider": "sonnet",
+  "requested_model": "sonnet",
+  "usage": null,
+  "estimated_cost_usd": null,
+  "error": "timeout_usage_unknown",
+  "response": null,
+  "seconds": 240.42790354182944,
+  "exit_code": 143
+}

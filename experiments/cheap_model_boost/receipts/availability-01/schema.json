@@ -1,0 +1,1 @@
+{"type": "object", "additionalProperties": false, "properties": {"action": {"type": "string", "enum": ["hypothesis", "probe", "edit", "finish"]}, "hypothesis": {"type": "string"}, "prediction": {"type": "string"}, "source": {"type": "string"}, "probes_json": {"type": "string"}}, "required": ["action", "hypothesis", "prediction", "source", "probes_json"]}

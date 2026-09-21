@@ -87,3 +87,9 @@ node --check static/analytics.js
 This is a single-user localhost application. Keep `.state/`, credentials, model weights, and your imported data out of Git. Run one app worker. Hosted access, arbitrary uploaded tools, automatic promotion, and RL training are outside the current scope.
 
 [Design](docs/DESIGN.md) · [Publication notes](docs/PUBLICATION.md) · [MIT license](LICENSE)
+
+### Cheap-model assistance experiments
+
+[Geometry pilot and lessons](experiments/cheap_model_boost/RESULTS.md): Sonnet,
+Haiku, local 1B and 7B runs, exact checks, negative results and one useful format
+repair. Includes receipts and [next experiments](experiments/cheap_model_boost/NEXT.md).

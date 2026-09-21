@@ -14,7 +14,7 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
 
 
 def complete(prompt, provider, out, timeout=150, stop=None):
-    if provider not in ("opus", "astra", "sonnet", "haiku", "llama3.2:1b"):
+    if provider not in ("opus", "astra", "sonnet", "haiku", "llama3.2:1b", "qwen2.5:7b"):
         raise ValueError("unknown model provider")
     out = Path(out).resolve(); out.mkdir(parents=True, exist_ok=False)
     os.chmod(out, 0o700)
@@ -27,7 +27,7 @@ def complete(prompt, provider, out, timeout=150, stop=None):
     if provider in ("sonnet", "haiku"):
         command[3] = provider
         del command[4:6]  # Use provider default effort consistently across treatments.
-    if provider == "llama3.2:1b":
+    if provider in ("llama3.2:1b", "qwen2.5:7b"):
         payload = {"model": provider, "messages": [{"role": "user", "content": prompt}],
                    "stream": False, "format": SCHEMA, "keep_alive": "5m",
                    "options": {"temperature": 0, "num_ctx": 16384, "num_predict": 6000}}
@@ -43,7 +43,7 @@ def complete(prompt, provider, out, timeout=150, stop=None):
                    "--disable", "skill_search", "-c", "project_doc_max_bytes=0", "-c", 'web_search="disabled"',
                    "-c", 'model_reasoning_effort="high"', "--model", "gpt-6-astra", "--json",
                    "--output-schema", str(out / "schema.json"), "-o", str(out / "answer.json"), "-"]
-    request = {"provider": provider, "requested_model": provider if provider != "opus" else "claude-opus-5", "command": command, "owner_pid": os.getpid(),
+    request = {"provider": provider, "requested_model": {"opus": "claude-opus-5", "astra": "gpt-6-astra"}.get(provider, provider), "command": command, "owner_pid": os.getpid(),
                "started": time.monotonic(), "timeout": timeout,
                "stop": str(Path(stop).resolve()) if stop is not None else None}
     (out / "request.json").write_text(json.dumps(request))
@@ -65,7 +65,7 @@ def complete(prompt, provider, out, timeout=150, stop=None):
 
 
 def decode(receipt, out):
-    if receipt["provider"] == "llama3.2:1b":
+    if receipt["provider"] in ("llama3.2:1b", "qwen2.5:7b"):
         raw = json.loads((out / "stdout.log").read_text())
         receipt["usage"] = {k: raw.get(k) for k in ("model", "prompt_eval_count", "eval_count", "total_duration", "done_reason")}
         if receipt["exit_code"] or not raw.get("done") or raw.get("done_reason") == "length":

@@ -1,0 +1,14 @@
+{
+  "receipt.json": {
+    "raw_sha256": "42a654feebd0dad6f99e5ea4ce4ed8596edde891bdf981e5318b68316fa3c366",
+    "published_sha256": "42a654feebd0dad6f99e5ea4ce4ed8596edde891bdf981e5318b68316fa3c366"
+  },
+  "prompt.txt": {
+    "raw_sha256": "4720831e7937f054374d383e6089ef5ba70a72b2750ccd1ea1e836024a441581",
+    "published_sha256": "4720831e7937f054374d383e6089ef5ba70a72b2750ccd1ea1e836024a441581"
+  },
+  "schema.json": {
+    "raw_sha256": "ee4de0fd7d7af513419234167d08c854429691eb43c13036680a2f54e80d63e8",
+    "published_sha256": "ee4de0fd7d7af513419234167d08c854429691eb43c13036680a2f54e80d63e8"
+  }
+}

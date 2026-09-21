@@ -1,0 +1,45 @@
+{
+  "provider": "sonnet",
+  "requested_model": "sonnet",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1672,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001747,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 2,
+      "outputTokens": 332,
+      "cacheReadInputTokens": 4945,
+      "cacheCreationInputTokens": 1631,
+      "webSearchRequests": 0,
+      "costUSD": 0.010837,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.012584,
+  "error": null,
+  "response": {
+    "action": "hypothesis",
+    "hypothesis": "The candidate fails on all 4 test cases with a KeyError exception, meaning it crashes before producing any output. This is a hard implementation bug (likely a dict lookup on some key that doesn't exist, such as indexing into a coordinate map or an edge-tracking structure) rather than a subtle mathematical correctness issue. Since it fails on even the simplest single-ring case, the implementation is fundamentally broken/non-functional, not just edge-case incorrect.",
+    "prediction": "Candidate should be rejected/fixed; it does not pass any tests due to an unhandled KeyError.",
+    "source": "",
+    "probes_json": "[]"
+  },
+  "seconds": 4.225798832951114,
+  "exit_code": 0
+}

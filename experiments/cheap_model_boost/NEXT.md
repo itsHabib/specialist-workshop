@@ -33,7 +33,12 @@ proof of a hang. Check transport/liveness separately from task difficulty.
 
 Save work and receipts on interruption. Budget exhaustion or a transport failure
 is an incomplete run, not proof of mathematical inability. Keep slow completions
-in the results. Compare success versus cumulative time/tokens/spend, including
+in the results. Speed is itself an outcome: assistance can win by reaching the
+same accepted quality sooner, even if solo eventually succeeds. Record time to
+first valid solution and quality-versus-time checkpoints; report parallel wall
+time separately from summed worker time and total spend. Preselect those
+checkpoints rather than choosing the one where a treatment looks best. A slow
+success demonstrates eventual capability, not necessarily practical usefulness. Compare success versus cumulative time/tokens/spend, including
 an equal-spend solo continuation; equal call count alone is not a fair budget.
 Candidate-program CPU/memory limits still protect the host and should be sized
 to the workload. They are separate from time allowed to think and repair.

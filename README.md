@@ -51,6 +51,8 @@ Reload the packages page and open the recorded run. The `majority` control alway
 
 ## Experiments so far
 
+[Lessons from boost, Fleet and durable jobs](docs/AGENT-LESSONS.md): what helped, what remains unproven, and the next local-to-Rooms experiment.
+
 ### Can a cheaper model catch up with a retry?
 
 On 12 analytics tasks, **Luna reached the same 12/12 score as Astra after one validator-guided repair, at 38.5× lower estimated API cost**. Median task latency was 1.75 seconds for Luna and 2.15 seconds for Astra.

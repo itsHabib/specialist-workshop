@@ -26,6 +26,8 @@ def freeze(root,model,variant,lessons=None):
 def grade_run(run,task,variant,seed):
     """Final evaluation. Never return this output as worker feedback."""
     run_plan=json.loads((run/'plan.json').read_text());state=json.loads((run/'state.json').read_text())
+    if task!=run_plan['task']:
+        raise ValueError('evaluation task must match the exact run task')
     # Restore original visible tests during acceptance; do not trust edited tests.
     seen={};scores=[]
     for snapshot in state['snapshots']:

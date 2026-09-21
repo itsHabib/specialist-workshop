@@ -1,0 +1,20 @@
+{
+  "provider": "qwen2.5:7b",
+  "requested_model": "qwen2.5:7b",
+  "usage": {
+    "model": "qwen2.5:7b",
+    "prompt_eval_count": 1336,
+    "eval_count": 31,
+    "total_duration": 1949821875,
+    "done_reason": "stop"
+  },
+  "estimated_cost_usd": null,
+  "error": null,
+  "response": {
+    "action": "run",
+    "path": "",
+    "text": "python -m unittest discover -s tests -v"
+  },
+  "seconds": 2.0801087918225676,
+  "exit_code": 0
+}

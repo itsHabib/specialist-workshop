@@ -1,0 +1,20 @@
+{
+  "provider": "qwen2.5:7b",
+  "requested_model": "qwen2.5:7b",
+  "usage": {
+    "model": "qwen2.5:7b",
+    "prompt_eval_count": 1947,
+    "eval_count": 504,
+    "total_duration": 27470909458,
+    "done_reason": "stop"
+  },
+  "estimated_cost_usd": null,
+  "error": null,
+  "response": {
+    "action": "write",
+    "path": "rectarea.py",
+    "text": "\"\"\"Compute the union area of axis-aligned rectangles.\"\"\"\nimport argparse\nimport json\nimport sys\nfrom fractions import Fraction\n\n\ndef read_rectangles(lines):\n    rectangles = []\n    for number, raw in enumerate(lines, 1):\n        line = raw.strip()\n        if not line:\n            continue\n        values = [Fraction(value) for value in line.split()]\n        if len(values) != 4:\n            raise ValueError(f\"line {number}: expected four coordinates\")\n        rectangles.append(tuple(values))\n    return rectangles\n\n\ndef union_area(rectangles):\n    # Add each rectangle and subtract overlap with rectangles already seen.\n    total = 0.0\n    seen = []\n    for x1, y1, x2, y2 in rectangles:\n        width = (x2 - x1).limit_denominator()\n        height = (y2 - y1).limit_denominator()\n        total += width * height\n        for a1, b1, a2, b2 in seen:\n            overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n            overlap_height = max(0.0, min(y2, b2) - max(y1, b1)).limit_denominator()\n            total -= overlap_width * overlap_height\n        seen.append((x1, y1, x2, y2))\n    return total\n\n\ndef main(argv=None):\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--input\")\n    parser.add_argument(\"--json\", action=\"store_true\")\n    args = parser.parse_args(argv)\n    stream = open(args.input) if args.input else sys.stdin\n    try:\n        area = union_area(read_rectangles(stream))\n    finally:\n        if args.input:\n            stream.close()\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n\"\n    print(json.dumps({\"area\": text}) if args.json else text)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  },
+  "seconds": 27.560875208117068,
+  "exit_code": 0
+}

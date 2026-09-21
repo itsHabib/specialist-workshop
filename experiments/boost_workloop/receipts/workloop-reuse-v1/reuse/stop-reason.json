@@ -1,0 +1,4 @@
+{
+  "reason": "Repeated identical inline-comment failure after verified core reuse; escalate the narrow remaining repair to Haiku rather than keep rewriting.",
+  "calls_completed": 6
+}

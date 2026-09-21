@@ -1,6 +1,7 @@
 """Core execution/feedback checks; no live inference."""
 import importlib.util
 import json
+import os
 from pathlib import Path
 import sys
 
@@ -44,6 +45,7 @@ def test_helper_spend_is_in_shared_budget_and_cannot_finish_task(monkeypatch,tmp
     assert result['finished'] and len(result['snapshots'])==2
 
 
+@pytest.mark.skipif(os.environ.get("BRIDGE_DOCKER_TESTS") != "1", reason="opt-in Docker integration")
 def test_runtime_uses_actual_files_and_cleans_container():
     result=execute({'thing.py':'print(7)'},'python thing.py')
     assert result['error'] is None and result['returncode']==0
@@ -100,12 +102,22 @@ def test_learning_requires_acceptance_of_exact_current_snapshot(tmp_path):
     agent.write(grading,{'final_passed':True,'snapshots':[{'digest':'stale'}]})
     with pytest.raises(ValueError):learn.practice_packet(tmp_path,grading)
     valid={'schema':'boost-grading.v1','run_plan_sha256':agent.digest(plan),'task_sha256':agent.digest(plan['task']),
-           'evaluator':{'name':'independent'},'final_passed':True,'snapshots':[{'digest':agent.digest({'app.py':'pass'})}]}
+           'evaluator':{'task_sha256':agent.digest(plan['task']),'seed':1,'variant':0,'source_sha256':{name:'test-source' for name in ('pilot.py','taskpack/taskpack.py','runtime.py')}},'final_passed':True,'snapshots':[{'digest':agent.digest({'app.py':'pass'})}]}
     agent.write(grading,valid)
     packet,_=learn.practice_packet(tmp_path,grading)
     assert set(packet)=={'goal','files'}
+    valid['evaluator']['task_sha256']='different contract'
+    agent.write(grading,valid)
+    with pytest.raises(ValueError):learn.practice_packet(tmp_path,grading)
     agent.write(tmp_path/'plan.json',{'task':{'goal':'different acceptance contract'}})
     with pytest.raises(ValueError):learn.practice_packet(tmp_path,grading)
+
+
+def test_final_grader_rejects_a_different_task_before_execution(tmp_path):
+    import pilot
+    agent.write(tmp_path/'plan.json',{'task':{'goal':'original'}})
+    agent.write(tmp_path/'state.json',{})
+    with pytest.raises(ValueError):pilot.grade_run(tmp_path,{'goal':'different'},0,1)
 
 
 def test_component_reuse_checks_integrity_and_never_overwrites_task():

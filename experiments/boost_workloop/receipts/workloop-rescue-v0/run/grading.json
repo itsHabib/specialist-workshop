@@ -1,0 +1,117 @@
+{
+  "schema": "boost-grading.v1",
+  "run_plan_sha256": "bf437dbe23f5495057805adf9cff424786221d29272b371c21ad367935b537f5",
+  "task_sha256": "aeaa050e1fdb2aa7e487565653ebab749e721dbd16afa966d1f044d97d596ed6",
+  "evaluator": {
+    "seed": 771241,
+    "variant": 0,
+    "task_sha256": "aeaa050e1fdb2aa7e487565653ebab749e721dbd16afa966d1f044d97d596ed6",
+    "source_sha256": {
+      "pilot.py": "be773e435761fb0afe4e88a68ffed74588afb0279a36e70e6c1b2f9705ba4929",
+      "taskpack/taskpack.py": "3207f223f149eeebc0f6c4d872671aac65a351722cf13b17d66103c83029f0bb",
+      "runtime.py": "4ac4478b073c5ccc19f6f3df857c64455c7a3c9c7386e19402a0eed2c03860a4"
+    }
+  },
+  "policy": "run",
+  "status": "call_budget",
+  "finished": false,
+  "elapsed": 89.03601854201406,
+  "first_valid_seconds": 34.98230079188943,
+  "final_passed": true,
+  "calls": 8,
+  "snapshots": [
+    {
+      "label": "initial",
+      "elapsed": 3.5420525819063187e-06,
+      "calls": 0,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.064s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.403897708049044,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 34.98230079188943,
+      "calls": 1,
+      "digest": "857f0b6331806e7f02fa8b0c2a08c5ee58423b92e906f3f61271ed8adc0e3248",
+      "passed": true,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.061s\n\nOK\n",
+        "seconds": 0.4067257910501212,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": true,
+        "checks": 14,
+        "failures": []
+      }
+    },
+    {
+      "label": "final",
+      "elapsed": 89.03592958301306,
+      "calls": 8,
+      "digest": "857f0b6331806e7f02fa8b0c2a08c5ee58423b92e906f3f61271ed8adc0e3248",
+      "passed": true,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.061s\n\nOK\n",
+        "seconds": 0.4067257910501212,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": true,
+        "checks": 14,
+        "failures": []
+      }
+    }
+  ]
+}

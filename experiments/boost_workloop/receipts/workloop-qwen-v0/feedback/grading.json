@@ -1,0 +1,757 @@
+{
+  "policy": "feedback",
+  "status": "call_budget",
+  "finished": false,
+  "elapsed": 458.3369277920574,
+  "first_valid_seconds": null,
+  "final_passed": false,
+  "calls": 12,
+  "snapshots": [
+    {
+      "label": "initial",
+      "elapsed": 6.542075425386429e-06,
+      "calls": 0,
+      "digest": "f4052ab0e94a18c96e5fece42701d68cf90008c9190e0a99755bb2d8babe3115",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 50, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '3/2'\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '12.0' != '12'\n- 12.0\n?   --\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '6.0' != '6'\n- 6.0\n+ 6\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22.0' != '23'\n- 22.0\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.070s\n\nFAILED (failures=4)\n",
+        "seconds": 0.4510339591652155,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "area",
+            "expected": "1",
+            "actual": "0"
+          },
+          {
+            "kind": "area",
+            "expected": "23",
+            "actual": "22"
+          },
+          {
+            "kind": "exit",
+            "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '7/3'\n"
+          },
+          {
+            "kind": "area",
+            "expected": "87",
+            "actual": "21"
+          },
+          {
+            "kind": "exit",
+            "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '1/2'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '7/5'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '-7/5'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '-3/2'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 26.274106666911393,
+      "calls": 1,
+      "digest": "fc5de149e85a36533c088548c5f6c4df3839307cd0a53dd27eb15b278873332c",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 30, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 30, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22.0' != '23'\n- 22.0\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.055s\n\nFAILED (failures=1, errors=2)\n",
+        "seconds": 0.3783812499605119,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "area",
+            "expected": "23",
+            "actual": "22"
+          },
+          {
+            "kind": "exit",
+            "stderr": "^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 30, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 30, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 30, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 30, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 30, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 31, in union_area\n    overlap_height = max(0.0, min(y2, b2) - max(y1, b1)).limit_denominator()\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 31, in union_area\n    overlap_height = max(0.0, min(y2, b2) - max(y1, b1)).limit_denominator()\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 74.85898816701956,
+      "calls": 2,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 136.88759704190306,
+      "calls": 3,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 173.16637800005265,
+      "calls": 4,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 207.8777221669443,
+      "calls": 5,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 242.57006937498227,
+      "calls": 6,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 276.1674458750058,
+      "calls": 7,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 312.374401625013,
+      "calls": 8,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 346.24918708298355,
+      "calls": 9,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 383.0948238330893,
+      "calls": 10,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 418.71357833291404,
+      "calls": 11,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 457.6951767918654,
+      "calls": 12,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "final",
+      "elapsed": 458.33687958307564,
+      "calls": 12,
+      "digest": "f90224c902a7eac8b7483baf8d1a70d295fbfd790bc3eb1eac161bc0687c8e0d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ERROR\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ERROR\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nERROR: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 28, in union_area\n    overlap_width = max(0.0, min(x2, a2) - max(x1, a1)).limit_denominator()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'float' object has no attribute 'limit_denominator'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22' != '23'\n- 22\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.063s\n\nFAILED (failures=2, errors=2)\n",
+        "seconds": 0.46551766712218523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 51, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 40, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    }
+  ]
+}

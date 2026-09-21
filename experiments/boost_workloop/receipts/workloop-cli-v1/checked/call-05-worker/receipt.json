@@ -1,0 +1,30 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 6277,
+      "outputTokens": 2340,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 9719,
+      "webSearchRequests": 0,
+      "costUSD": 0.037415000000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 1928,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.037415000000000004,
+  "error": null,
+  "response": {
+    "action": "edit",
+    "path": "rectarea.py",
+    "old_text": "    # Format area as reduced integer or n/d\n    if area.denominator == 1:\n        text = str(area.numerator)\n    else:\n        text = f\"{area.numerator}/{area.denominator}\"\n    \n    print(json.dumps({\"area\": text}) if args.json else text)",
+    "text": "    # Format area as reduced integer or n/d\n    if area.denominator == 1:\n        text = str(area.numerator)\n    else:\n        text = f\"{area.numerator}/{area.denominator}\"\n    \n    if args.json:\n        print(json.dumps({\"area\": text}, separators=(',', ':')), end='')\n    else:\n        print(text)"
+  },
+  "seconds": 19.086835500085726,
+  "exit_code": 0
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "trigger": "Computing union/intersection area of axis-aligned rectangles with exact coordinates (integers, rationals, arbitrary precision)",
+    "guidance": "Use coordinate compression: extract all unique x and y boundaries, sort them to form a regular grid, then iterate each cell and check if any rectangle covers it. Normalize reversed coordinates with min/max before processing. This sidesteps fragile overlap logic and handles reversals, fractional, and large numbers uniformly with the same enumeration.",
+    "check": "Does your solution iterate grid cells to check coverage rather than compute overlaps explicitly? Do reversed input and fractional coordinates work without extra conditional branches?"
+  }
+]

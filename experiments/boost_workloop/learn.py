@@ -15,6 +15,9 @@ def practice_packet(run,grading):
     grade=json.loads(grading.read_text())
     if grade.get('schema')!='boost-grading.v1' or grade.get('run_plan_sha256')!=agent.digest(plan) or grade.get('task_sha256')!=agent.digest(plan['task']) or not grade.get('evaluator'):
         raise ValueError('grading must bind this exact run plan, task and evaluator')
+    evaluator=grade['evaluator']
+    if evaluator.get('task_sha256')!=grade['task_sha256'] or not isinstance(evaluator.get('seed'),int) or evaluator.get('variant') not in (0,1) or set(evaluator.get('source_sha256',{}))!={'pilot.py','taskpack/taskpack.py','runtime.py'}:
+        raise ValueError('grading evaluator identity or evaluated task is incomplete')
     if not grade.get('final_passed') or grade['snapshots'][-1]['digest']!=agent.digest(state['files']):
         raise ValueError('independent acceptance must name the current source snapshot')
     return {'goal':plan['task']['goal'],'files':state['files']},grade['snapshots'][-1]['digest']

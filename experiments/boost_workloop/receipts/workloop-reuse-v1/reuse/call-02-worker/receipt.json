@@ -1,0 +1,20 @@
+{
+  "provider": "qwen2.5:7b",
+  "requested_model": "qwen2.5:7b",
+  "usage": {
+    "model": "qwen2.5:7b",
+    "prompt_eval_count": 3580,
+    "eval_count": 626,
+    "total_duration": 44472970417,
+    "done_reason": "stop"
+  },
+  "estimated_cost_usd": null,
+  "error": null,
+  "response": {
+    "action": "write",
+    "path": "rectarea.py",
+    "text": "import argparse\nimport json\nimport sys\nfrom fractions import Fraction\n\ndef read_rectangles(lines):\n    rectangles = []\n    for number, raw in enumerate(lines, 1):\n        line = raw.strip()\n        if not line or line.startswith('#'):\n            continue\n        values = [Fraction(value) for value in line.split()]\n        if len(values) != 4:\n            raise ValueError(f'line {number}: expected four coordinates')\n        x1, y1, x2, y2 = values\n        x1, x2 = min(x1, x2), max(x1, x2)\n        y1, y2 = min(y1, y2), max(y1, y2)\n        rectangles.append((x1, y1, x2, y2))\n    return rectangles\n\ndef union_area(rectangles):\n    if not rectangles:\n        return Fraction(0)\n    \n    x_coords = set()\n    y_coords = set()\n    for x1, y1, x2, y2 in rectangles:\n        x_coords.add(x1)\n        x_coords.add(x2)\n        y_coords.add(y1)\n        y_coords.add(y2)\n    \n    x_coords = sorted(x_coords)\n    y_coords = sorted(y_coords)\n    \n    total = Fraction(0)\n    for i in range(len(x_coords) - 1):\n        for j in range(len(y_coords) - 1):\n            x_left = x_coords[i]\n            x_right = x_coords[i + 1]\n            y_bottom = y_coords[j]\n            y_top = y_coords[j + 1]\n            \n            for x1, y1, x2, y2 in rectangles:\n                if x1 <= x_left and x_right <= x2 and y1 <= y_bottom and y_top <= y2:\n                    total += (x_right - x_left) * (y_top - y_bottom)\n                    break\n    \n    return total\n\ndef main(argv=None):\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--input')\n    parser.add_argument('--json', action='store_true')\n    args = parser.parse_args(argv)\n    stream = open(args.input) if args.input else sys.stdin\n    try:\n        area = union_area(read_rectangles(stream))\n    finally:\n        if args.input:\n            stream.close()\n    \n    text = str(area.numerator // area.denominator) if area.denominator == 1 else f'{area.numerator}/{area.denominator}'\n    print(json.dumps({'area': text}) if args.json else text)\n\nif __name__ == '__main__':\n    main()\n"
+  },
+  "seconds": 44.538186290999874,
+  "exit_code": 0
+}

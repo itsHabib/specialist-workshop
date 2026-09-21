@@ -1,0 +1,41 @@
+{
+  "passed": false,
+  "checks": 14,
+  "failures": [
+    {
+      "kind": "area",
+      "expected": "1",
+      "actual": "0"
+    },
+    {
+      "kind": "area",
+      "expected": "23",
+      "actual": "22"
+    },
+    {
+      "kind": "exit",
+      "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '7/3'\n"
+    },
+    {
+      "kind": "area",
+      "expected": "87",
+      "actual": "21"
+    },
+    {
+      "kind": "exit",
+      "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '1/2'\n"
+    },
+    {
+      "kind": "exit",
+      "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '7/5'\n"
+    },
+    {
+      "kind": "exit",
+      "stderr": "41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '-7/5'\n"
+    },
+    {
+      "kind": "exit",
+      "stderr": "41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '-3/2'\n"
+    }
+  ]
+}

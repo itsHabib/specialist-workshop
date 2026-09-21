@@ -1,0 +1,106 @@
+{
+  "initial-control.json": {
+    "raw_sha256": "191b86e9d91919e66b59e5c6532a934e9484889afe8940e7496efcbd65c00828",
+    "published_sha256": "191b86e9d91919e66b59e5c6532a934e9484889afe8940e7496efcbd65c00828"
+  },
+  "learned/call-01-worker/prompt.txt": {
+    "raw_sha256": "14946ae7344cad20505572dfa3018079c879ab4def4d1659ac9d597cd8efec02",
+    "published_sha256": "14946ae7344cad20505572dfa3018079c879ab4def4d1659ac9d597cd8efec02"
+  },
+  "learned/call-01-worker/receipt.json": {
+    "raw_sha256": "510be6cda6a7641d5e616d4f32e818e14c44e9e33bb6206f87c6d91615b8417d",
+    "published_sha256": "510be6cda6a7641d5e616d4f32e818e14c44e9e33bb6206f87c6d91615b8417d"
+  },
+  "learned/call-01-worker/schema.json": {
+    "raw_sha256": "03ea4a585517987073c0edcb9cce5fad2247048def848aa2786f8da7af6d9606",
+    "published_sha256": "fbdb7957a54f9388b3851b76eb6a1d503061a95d48aec7dff39afe5d78b78196"
+  },
+  "learned/call-02-worker/prompt.txt": {
+    "raw_sha256": "07871fba3e7842dd691b2450a6e736d92bad23d5a35258af1b3edc037f91505b",
+    "published_sha256": "07871fba3e7842dd691b2450a6e736d92bad23d5a35258af1b3edc037f91505b"
+  },
+  "learned/call-02-worker/receipt.json": {
+    "raw_sha256": "a943e0cd68ad276010e7bcd731a54e4cb0142b1c288056081959284aeff9d1e4",
+    "published_sha256": "a943e0cd68ad276010e7bcd731a54e4cb0142b1c288056081959284aeff9d1e4"
+  },
+  "learned/call-02-worker/schema.json": {
+    "raw_sha256": "03ea4a585517987073c0edcb9cce5fad2247048def848aa2786f8da7af6d9606",
+    "published_sha256": "fbdb7957a54f9388b3851b76eb6a1d503061a95d48aec7dff39afe5d78b78196"
+  },
+  "learned/call-03-worker/prompt.txt": {
+    "raw_sha256": "c9199dd37e143df2dfa28075119aac98513b2bf431e6660b73e8214040f31d6f",
+    "published_sha256": "c9199dd37e143df2dfa28075119aac98513b2bf431e6660b73e8214040f31d6f"
+  },
+  "learned/call-03-worker/receipt.json": {
+    "raw_sha256": "10e2a155a6be0e9d908ae2de0ef40aea2cd2f6bf86aa88a9b95871b3953151e9",
+    "published_sha256": "10e2a155a6be0e9d908ae2de0ef40aea2cd2f6bf86aa88a9b95871b3953151e9"
+  },
+  "learned/call-03-worker/schema.json": {
+    "raw_sha256": "03ea4a585517987073c0edcb9cce5fad2247048def848aa2786f8da7af6d9606",
+    "published_sha256": "fbdb7957a54f9388b3851b76eb6a1d503061a95d48aec7dff39afe5d78b78196"
+  },
+  "learned/call-04-worker/prompt.txt": {
+    "raw_sha256": "1f0e5a9df6078a92fe371f4274944f7a0f7ec78107322458706808281464f5f4",
+    "published_sha256": "1f0e5a9df6078a92fe371f4274944f7a0f7ec78107322458706808281464f5f4"
+  },
+  "learned/call-04-worker/receipt.json": {
+    "raw_sha256": "e0ae521b3d5245457835639f92aa7106666f9252500b65b4ed26847458b82bbb",
+    "published_sha256": "e0ae521b3d5245457835639f92aa7106666f9252500b65b4ed26847458b82bbb"
+  },
+  "learned/call-04-worker/schema.json": {
+    "raw_sha256": "03ea4a585517987073c0edcb9cce5fad2247048def848aa2786f8da7af6d9606",
+    "published_sha256": "fbdb7957a54f9388b3851b76eb6a1d503061a95d48aec7dff39afe5d78b78196"
+  },
+  "learned/call-05-worker/prompt.txt": {
+    "raw_sha256": "c610914bfd0ddc4be999a42cf9e18ead61bd24591718bf520765a80132dc827a",
+    "published_sha256": "c610914bfd0ddc4be999a42cf9e18ead61bd24591718bf520765a80132dc827a"
+  },
+  "learned/call-05-worker/receipt.json": {
+    "raw_sha256": "d9c47a076ea15e4e3ca918bdad95c9ee96bd9f0f09e9393e602cfb00ebab6ca1",
+    "published_sha256": "d9c47a076ea15e4e3ca918bdad95c9ee96bd9f0f09e9393e602cfb00ebab6ca1"
+  },
+  "learned/call-05-worker/schema.json": {
+    "raw_sha256": "03ea4a585517987073c0edcb9cce5fad2247048def848aa2786f8da7af6d9606",
+    "published_sha256": "fbdb7957a54f9388b3851b76eb6a1d503061a95d48aec7dff39afe5d78b78196"
+  },
+  "learned/call-06-worker/prompt.txt": {
+    "raw_sha256": "c75b4c8fdc9448b4f8b8972f17010b281eb9ce33fbca303d750c70cc15e0e80c",
+    "published_sha256": "c75b4c8fdc9448b4f8b8972f17010b281eb9ce33fbca303d750c70cc15e0e80c"
+  },
+  "learned/call-06-worker/receipt.json": {
+    "raw_sha256": "8c91105f521875472dcefb098cef236dae0574d793c4bffff2ded98b640ac07e",
+    "published_sha256": "8c91105f521875472dcefb098cef236dae0574d793c4bffff2ded98b640ac07e"
+  },
+  "learned/call-06-worker/schema.json": {
+    "raw_sha256": "03ea4a585517987073c0edcb9cce5fad2247048def848aa2786f8da7af6d9606",
+    "published_sha256": "fbdb7957a54f9388b3851b76eb6a1d503061a95d48aec7dff39afe5d78b78196"
+  },
+  "learned/grading.json": {
+    "raw_sha256": "3e4b112e1efe3436eb17698e063e198eae7bf100b5519682618ca0b3d851ad56",
+    "published_sha256": "3e4b112e1efe3436eb17698e063e198eae7bf100b5519682618ca0b3d851ad56"
+  },
+  "learned/plan.json": {
+    "raw_sha256": "f7e9518a5114c3ebc7dcf22cf957fad49bc2ac56a0f8e15896287237e2ed5cb6",
+    "published_sha256": "f7e9518a5114c3ebc7dcf22cf957fad49bc2ac56a0f8e15896287237e2ed5cb6"
+  },
+  "learned/snapshots.json": {
+    "raw_sha256": "a0439995648ed7e03324799ebee2617c041290868bef2eaa1cf6cb067c11cbe2",
+    "published_sha256": "a0439995648ed7e03324799ebee2617c041290868bef2eaa1cf6cb067c11cbe2"
+  },
+  "learned/state.json": {
+    "raw_sha256": "fc93ba7968f164ac2d04727da16399f0c14249191e4b2d606dd607fee4819c6b",
+    "published_sha256": "fc93ba7968f164ac2d04727da16399f0c14249191e4b2d606dd607fee4819c6b"
+  },
+  "learned/stop-reason.json": {
+    "raw_sha256": "aa284d419fd62f0b3518d728fd7e650b7369894e826ce2c083a238b1be1eeb21",
+    "published_sha256": "20ef22fd126dd39d681427aa6aefb6135d1a48636c63d98780ac6859b96c75a7"
+  },
+  "plan.json": {
+    "raw_sha256": "ce1f085d8954c7401cf6f3f8ff33e3b848538093a4f01e18858114ad9e9ecbd2",
+    "published_sha256": "ce1f085d8954c7401cf6f3f8ff33e3b848538093a4f01e18858114ad9e9ecbd2"
+  },
+  "reference-control.json": {
+    "raw_sha256": "c6d561d401b8bc7dcc03746e18937a678cd4d87000b6953a6ff28cc4ce188da2",
+    "published_sha256": "c6d561d401b8bc7dcc03746e18937a678cd4d87000b6953a6ff28cc4ce188da2"
+  }
+}

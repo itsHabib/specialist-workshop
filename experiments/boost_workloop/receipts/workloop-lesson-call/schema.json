@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "trigger": {
+      "type": "string"
+    },
+    "guidance": {
+      "type": "string"
+    },
+    "check": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "trigger",
+    "guidance",
+    "check"
+  ],
+  "additionalProperties": false
+}

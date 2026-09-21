@@ -40,3 +40,29 @@ Stop a matrix if its setup is invalid; repair the harness, label a new run, and
 retain affected receipts. STOP files request cancellation. Resume reconciles a
 reserved call's receipt; missing receipts require inspection rather than a
 silent duplicate. Unknown usage remains unknown. No cloud resources required.
+
+## Adaptation before assisted results
+
+The first solo run repeatedly wrote files without running tests. Preserve it;
+the tools were available, so this is an observed tool-selection failure. Add an
+explicit **feedback** policy: same solo model and tools, automatically execute
+visible tests after edits. **assist** now adds a same-model investigator to that
+feedback loop. Thus comparisons distinguish automatic feedback from another
+agent. Both use the same tests, never the hidden oracle. Tests/latency and all
+calls count toward cost. This amendment follows observed solo behavior and
+precedes any assisted results; repeat any gain with the new policy fixed.
+
+## What actually ran
+
+The original solo/assist and lesson/no-lesson matrix was not completed. This
+became an adaptive build session: solo, automatic feedback, Haiku control,
+frozen prose lesson, verified source reuse, fresh-worker continuations and
+external development feedback. Negative trials remain in the receipts. No
+statistical, same-model helper, or general learning advantage is claimed.
+
+The v1 rescue missed compact JSON in final seed90149. That evaluation was spent.
+A subsequent repair received a separate development probe (seed73021), then was
+checked with final seed771239. A later full CLI run started from the original
+v1 source with public development checks and final seed771251. These are
+adaptive engineering trials; new seeds do not turn the discovery into a
+preregistered comparison or remove shared canonical cases. See RESULTS.md.

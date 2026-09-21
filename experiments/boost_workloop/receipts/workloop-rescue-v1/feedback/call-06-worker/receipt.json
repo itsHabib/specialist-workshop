@@ -1,0 +1,29 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 5851,
+      "outputTokens": 808,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 9278,
+      "webSearchRequests": 0,
+      "costUSD": 0.028447,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 413,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.028447,
+  "error": null,
+  "response": {
+    "action": "finish",
+    "path": "rectarea.py",
+    "text": "Rectangle union library repaired. All 5 tests passing. Fixed comment handling by splitting lines on '#' before parsing Fraction coordinates, which prevents trailing comments like \"# west\" from being incorrectly parsed as coordinate values. The CLI correctly handles stdin, --input PATH, and --json output with canonical area strings."
+  },
+  "seconds": 9.6850077919662,
+  "exit_code": 0
+}

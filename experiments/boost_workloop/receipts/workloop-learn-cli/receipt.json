@@ -1,0 +1,29 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2743,
+      "outputTokens": 835,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 6155,
+      "webSearchRequests": 0,
+      "costUSD": 0.019228,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 615,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.019228,
+  "error": null,
+  "response": {
+    "trigger": "Computing union/intersection area of axis-aligned rectangles with exact coordinates (integers, rationals, arbitrary precision)",
+    "guidance": "Use coordinate compression: extract all unique x and y boundaries, sort them to form a regular grid, then iterate each cell and check if any rectangle covers it. Normalize reversed coordinates with min/max before processing. This sidesteps fragile overlap logic and handles reversals, fractional, and large numbers uniformly with the same enumeration.",
+    "check": "Does your solution iterate grid cells to check coverage rather than compute overlaps explicitly? Do reversed input and fractional coordinates work without extra conditional branches?"
+  },
+  "seconds": 11.402326416922733,
+  "exit_code": 0
+}

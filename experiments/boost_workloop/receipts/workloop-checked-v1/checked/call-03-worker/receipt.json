@@ -1,0 +1,30 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4722,
+      "outputTokens": 606,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 8165,
+      "webSearchRequests": 0,
+      "costUSD": 0.024082000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 319,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.024082000000000003,
+  "error": null,
+  "response": {
+    "action": "edit",
+    "path": "rectarea.py",
+    "old_text": "    text = str(area.numerator) if area.denominator == 1 else f'{area.numerator}/{area.denominator}'\n    print(json.dumps({'area': text}) if args.json else text)",
+    "text": "    text = str(area.numerator) if area.denominator == 1 else f'{area.numerator}/{area.denominator}'\n    print(json.dumps({'area': text}, separators=(',', ':')) if args.json else text)"
+  },
+  "seconds": 6.420092499814928,
+  "exit_code": 0
+}

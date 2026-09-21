@@ -13,23 +13,24 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
     "required": ["action", "hypothesis", "prediction", "source", "probes_json"]}
 
 
-def complete(prompt, provider, out, timeout=150, stop=None):
+def complete(prompt, provider, out, timeout=150, stop=None, schema=None, max_budget_usd=0.8):
+    schema = SCHEMA if schema is None else schema
     if provider not in ("opus", "astra", "sonnet", "haiku", "llama3.2:1b", "qwen2.5:7b"):
         raise ValueError("unknown model provider")
     out = Path(out).resolve(); out.mkdir(parents=True, exist_ok=False)
     os.chmod(out, 0o700)
     (out / "prompt.txt").write_text(prompt)
-    (out / "schema.json").write_text(json.dumps(SCHEMA))
+    (out / "schema.json").write_text(json.dumps(schema))
     command = ["claude", "-p", "--model", "claude-opus-5", "--effort", "high",
                "--safe-mode", "--tools", "", "--strict-mcp-config", "--mcp-config",
                '{"mcpServers":{}}', "--no-session-persistence", "--output-format", "json",
-               "--max-budget-usd", "0.80", "--json-schema", json.dumps(SCHEMA)]
+               "--max-budget-usd", str(max_budget_usd), "--json-schema", json.dumps(schema)]
     if provider in ("sonnet", "haiku"):
         command[3] = provider
         del command[4:6]  # Use provider default effort consistently across treatments.
     if provider in ("llama3.2:1b", "qwen2.5:7b"):
         payload = {"model": provider, "messages": [{"role": "user", "content": prompt}],
-                   "stream": False, "format": SCHEMA, "keep_alive": "5m",
+                   "stream": False, "format": schema, "keep_alive": "5m",
                    "options": {"temperature": 0, "num_ctx": 16384, "num_predict": 6000}}
         (out / "prompt.txt").write_text(json.dumps(payload))
         command = ["curl", "--silent", "--show-error", "--fail", "--max-time", str(timeout),

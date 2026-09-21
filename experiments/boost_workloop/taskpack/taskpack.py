@@ -276,7 +276,7 @@ def _evaluate(files: dict, execute: callable, requests: list[dict]) -> dict:
             stdin = ""
         result = execute(run_files, command.strip(), stdin)
         checks += 1
-        if result.get("error") is not None or not result.get("cleanup_confirmed", True):
+        if result.get("error") is not None or not result.get("cleanup_confirmed", False):
             failures.append({"kind": "infrastructure", "error": result.get("error")})
             continue
         if result.get("returncode") != 0:

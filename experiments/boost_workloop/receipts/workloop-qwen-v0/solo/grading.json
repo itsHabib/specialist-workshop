@@ -1,0 +1,703 @@
+{
+  "policy": "solo",
+  "status": "call_budget",
+  "finished": false,
+  "elapsed": 291.0143942499999,
+  "first_valid_seconds": null,
+  "final_passed": false,
+  "calls": 12,
+  "snapshots": [
+    {
+      "label": "initial",
+      "elapsed": 5.792127922177315e-06,
+      "calls": 0,
+      "digest": "f4052ab0e94a18c96e5fece42701d68cf90008c9190e0a99755bb2d8babe3115",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 50, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '3/2'\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '12.0' != '12'\n- 12.0\n?   --\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '6.0' != '6'\n- 6.0\n+ 6\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22.0' != '23'\n- 22.0\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.059s\n\nFAILED (failures=4)\n",
+        "seconds": 0.6502194579225034,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "area",
+            "expected": "1",
+            "actual": "0"
+          },
+          {
+            "kind": "area",
+            "expected": "23",
+            "actual": "22"
+          },
+          {
+            "kind": "exit",
+            "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '7/3'\n"
+          },
+          {
+            "kind": "area",
+            "expected": "87",
+            "actual": "21"
+          },
+          {
+            "kind": "exit",
+            "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '1/2'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '7/5'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '-7/5'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '-3/2'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 28.104470167076215,
+      "calls": 1,
+      "digest": "4e4324e5699eb7fe8306bae65da374d80e81fcfadf427c57faadae3513047249",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 48\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 48)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.35171195887960494,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 48\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 48)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 48\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 48)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 48\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 48)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 48\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 48)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 48\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 48)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 48\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 48)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 48\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 48)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 48\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 48)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 51.284835499944165,
+      "calls": 2,
+      "digest": "f042a2f260a94aa5dc5124bdb80f00e24530c22acb7b0103839c13bbf0f9b8ea",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.41075766598805785,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 74.32452458306216,
+      "calls": 3,
+      "digest": "f042a2f260a94aa5dc5124bdb80f00e24530c22acb7b0103839c13bbf0f9b8ea",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.41075766598805785,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 47\n    text = str(int(area)) if area.is_integer() else f\"{area.numerator}/{area.denominator}\n                                                    ^\nSyntaxError: unterminated f-string literal (detected at line 47)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 93.41665554209612,
+      "calls": 4,
+      "digest": "42e28ec1cd9138d3787e01b722441455fda147900c70af4224f2aa76ee650e7f",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.302315458888188,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 116.48835270805284,
+      "calls": 5,
+      "digest": "42e28ec1cd9138d3787e01b722441455fda147900c70af4224f2aa76ee650e7f",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.302315458888188,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 136.16399029199965,
+      "calls": 6,
+      "digest": "42e28ec1cd9138d3787e01b722441455fda147900c70af4224f2aa76ee650e7f",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.302315458888188,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  File \"/tmp/repo/rectarea.py\", line 31\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n                                                     ^\nSyntaxError: unterminated f-string literal (detected at line 31)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 158.22898775013164,
+      "calls": 8,
+      "digest": "03af771bc258d9b3c1d51fcc41dd60113dfae5f3d404e8b37e0f945d6985fa3d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.4254821250215173,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 179.75632295804098,
+      "calls": 9,
+      "digest": "03af771bc258d9b3c1d51fcc41dd60113dfae5f3d404e8b37e0f945d6985fa3d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.4254821250215173,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 200.00898291706108,
+      "calls": 10,
+      "digest": "03af771bc258d9b3c1d51fcc41dd60113dfae5f3d404e8b37e0f945d6985fa3d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.4254821250215173,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 240.76653779204935,
+      "calls": 11,
+      "digest": "03af771bc258d9b3c1d51fcc41dd60113dfae5f3d404e8b37e0f945d6985fa3d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.4254821250215173,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 291.0111015001312,
+      "calls": 12,
+      "digest": "03af771bc258d9b3c1d51fcc41dd60113dfae5f3d404e8b37e0f945d6985fa3d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.4254821250215173,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "final",
+      "elapsed": 291.0143513751682,
+      "calls": 12,
+      "digest": "03af771bc258d9b3c1d51fcc41dd60113dfae5f3d404e8b37e0f945d6985fa3d",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_rectarea (unittest.loader._FailedTest.test_rectarea) ... ERROR\n\n======================================================================\nERROR: test_rectarea (unittest.loader._FailedTest.test_rectarea)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_rectarea\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"/tmp/repo/tests/test_rectarea.py\", line 5, in <module>\n    import rectarea\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "seconds": 0.4254821250215173,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 3, in <module>\n    from fractions import Fraction, gcd\nImportError: cannot import name 'gcd' from 'fractions' (/usr/local/lib/python3.12/fractions.py)\n"
+          }
+        ]
+      }
+    }
+  ]
+}

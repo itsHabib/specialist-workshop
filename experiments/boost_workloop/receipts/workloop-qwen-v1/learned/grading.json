@@ -1,0 +1,446 @@
+{
+  "policy": "learned",
+  "status": "stopped",
+  "finished": false,
+  "elapsed": 269.71387479198165,
+  "first_valid_seconds": null,
+  "final_passed": false,
+  "calls": 6,
+  "snapshots": [
+    {
+      "label": "initial",
+      "elapsed": 5.166977643966675e-06,
+      "calls": 0,
+      "digest": "732862790d846dc0b612aa380a75cfe01e331573f456ca12723a11477715eb5c",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 50, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '3/2'\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '12.0' != '12'\n- 12.0\n?   --\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '6.0' != '6'\n- 6.0\n+ 6\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22.0' != '23'\n- 22.0\n+ 23\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.083s\n\nFAILED (failures=4, errors=1)\n",
+        "seconds": 0.553706250153482,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 36.32308308291249,
+      "calls": 1,
+      "digest": "13844f52002b63557210138df7d1de07df93ebbf49599355f3f777a63517b9f1",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ERROR\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n======================================================================\nERROR: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 44, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 46, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 46, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 67, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 56, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '35' != '12'\n- 35\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '13' != '6'\n- 13\n+ 6\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.068s\n\nFAILED (failures=3, errors=2)\n",
+        "seconds": 0.4628636250272393,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 67, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 56, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 67, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 56, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 67, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 56, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 67, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 56, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 67, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 56, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 67, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 56, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "st):\n  File \"/tmp/repo/rectarea.py\", line 67, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 56, in main\n    stream = open(args.input) if args.input else sys.stdin\n                                                 ^^^\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 79.28881062497385,
+      "calls": 2,
+      "digest": "cf5e10d9c5fc5b93c91d1985e58253eca494abbb2f56163df6b4fe1d3134b2b8",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ERROR\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n======================================================================\nERROR: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 68, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 59, in main\n    area = union_area(read_rectangles(stream))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '35' != '12'\n- 35\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '13' != '6'\n- 13\n+ 6\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.071s\n\nFAILED (failures=3, errors=2)\n",
+        "seconds": 0.45921633299440145,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 128.85086195799522,
+      "calls": 3,
+      "digest": "d3b5325735b162e3f909f11a75f8f12f77cf0ae63814249f08e4394992c9889b",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ERROR\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n======================================================================\nERROR: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 68, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 59, in main\n    area = union_area(read_rectangles(stream))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '35' != '12'\n- 35\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '13' != '6'\n- 13\n+ 6\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.072s\n\nFAILED (failures=3, errors=2)\n",
+        "seconds": 0.5320880829822272,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "area",
+            "expected": "12",
+            "actual": "-104/9"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 179.16257329192013,
+      "calls": 4,
+      "digest": "d3b5325735b162e3f909f11a75f8f12f77cf0ae63814249f08e4394992c9889b",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ERROR\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n======================================================================\nERROR: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 68, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 59, in main\n    area = union_area(read_rectangles(stream))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '35' != '12'\n- 35\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '13' != '6'\n- 13\n+ 6\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.072s\n\nFAILED (failures=3, errors=2)\n",
+        "seconds": 0.5320880829822272,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "area",
+            "expected": "12",
+            "actual": "-104/9"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 222.7898194999434,
+      "calls": 5,
+      "digest": "d3b5325735b162e3f909f11a75f8f12f77cf0ae63814249f08e4394992c9889b",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ERROR\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n======================================================================\nERROR: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 68, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 59, in main\n    area = union_area(read_rectangles(stream))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '35' != '12'\n- 35\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '13' != '6'\n- 13\n+ 6\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.072s\n\nFAILED (failures=3, errors=2)\n",
+        "seconds": 0.5320880829822272,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "area",
+            "expected": "12",
+            "actual": "-104/9"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 269.6259532920085,
+      "calls": 6,
+      "digest": "d3b5325735b162e3f909f11a75f8f12f77cf0ae63814249f08e4394992c9889b",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ERROR\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n======================================================================\nERROR: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 68, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 59, in main\n    area = union_area(read_rectangles(stream))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '35' != '12'\n- 35\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '13' != '6'\n- 13\n+ 6\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.072s\n\nFAILED (failures=3, errors=2)\n",
+        "seconds": 0.5320880829822272,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "area",
+            "expected": "12",
+            "actual": "-104/9"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "final",
+      "elapsed": 269.71382079203613,
+      "calls": 6,
+      "digest": "d3b5325735b162e3f909f11a75f8f12f77cf0ae63814249f08e4394992c9889b",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ERROR\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n======================================================================\nERROR: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 68, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 59, in main\n    area = union_area(read_rectangles(stream))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 45, in union_area\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 47, in <genexpr>\n    if any(p == (i, j) for p in covered_cells))\n                    ^\nNameError: name 'j' is not defined\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '35' != '12'\n- 35\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '13' != '6'\n- 13\n+ 6\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.072s\n\nFAILED (failures=3, errors=2)\n",
+        "seconds": 0.5320880829822272,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "area",
+            "expected": "12",
+            "actual": "-104/9"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 13, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    }
+  ]
+}

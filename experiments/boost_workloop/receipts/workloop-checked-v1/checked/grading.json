@@ -1,0 +1,120 @@
+{
+  "schema": "boost-grading.v1",
+  "run_plan_sha256": "b09f366f41335eaf26c84feb212b9448352a0bc6f28b371025238fa7e466c9ec",
+  "task_sha256": "9df68a5cfd7e10e2804ec7201fadc6b9c5759b29fd2c98a83c5a6a9419e22cfc",
+  "evaluator": {
+    "seed": 771239,
+    "variant": 1,
+    "task_sha256": "9df68a5cfd7e10e2804ec7201fadc6b9c5759b29fd2c98a83c5a6a9419e22cfc",
+    "source_sha256": {
+      "pilot.py": "be773e435761fb0afe4e88a68ffed74588afb0279a36e70e6c1b2f9705ba4929",
+      "taskpack/taskpack.py": "3207f223f149eeebc0f6c4d872671aac65a351722cf13b17d66103c83029f0bb",
+      "runtime.py": "4ac4478b073c5ccc19f6f3df857c64455c7a3c9c7386e19402a0eed2c03860a4"
+    }
+  },
+  "policy": "checked",
+  "status": "self_reported_complete",
+  "finished": true,
+  "elapsed": 44.924128875136375,
+  "first_valid_seconds": 23.33326279115863,
+  "final_passed": true,
+  "calls": 5,
+  "snapshots": [
+    {
+      "label": "initial",
+      "elapsed": 5.00003807246685e-06,
+      "calls": 0,
+      "digest": "485060b7b731e2c4a402ac8099b471b1529248fb97cd8969fa24d6156f660cf4",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.051s\n\nOK\n",
+        "seconds": 0.36231333296746016,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"23\"}",
+            "actual": "{\"area\": \"23\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"9409/450\"}",
+            "actual": "{\"area\": \"9409/450\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"64\"}",
+            "actual": "{\"area\": \"64\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"3/2\"}",
+            "actual": "{\"area\": \"3/2\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"310/9\"}",
+            "actual": "{\"area\": \"310/9\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"543/2\"}",
+            "actual": "{\"area\": \"543/2\"}"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 23.33326279115863,
+      "calls": 3,
+      "digest": "ae6439083aea1acace9e18aedbeb2899406d24bfda578316dce5043bea24d42e",
+      "passed": true,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.052s\n\nOK\n",
+        "seconds": 0.3543450420256704,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": true,
+        "checks": 14,
+        "failures": []
+      }
+    },
+    {
+      "label": "final",
+      "elapsed": 44.92407141602598,
+      "calls": 5,
+      "digest": "ae6439083aea1acace9e18aedbeb2899406d24bfda578316dce5043bea24d42e",
+      "passed": true,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.052s\n\nOK\n",
+        "seconds": 0.3543450420256704,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": true,
+        "checks": 14,
+        "failures": []
+      }
+    }
+  ]
+}

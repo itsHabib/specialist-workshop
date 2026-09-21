@@ -1,0 +1,29 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 8549,
+      "outputTokens": 629,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 11991,
+      "webSearchRequests": 0,
+      "costUSD": 0.035676,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 489,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.035676,
+  "error": null,
+  "response": {
+    "action": "run",
+    "path": "",
+    "text": "python -m unittest discover -s tests -v"
+  },
+  "seconds": 8.072517749853432,
+  "exit_code": 0
+}

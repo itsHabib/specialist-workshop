@@ -88,6 +88,10 @@ This is a single-user localhost application. Keep `.state/`, credentials, model 
 
 [Design](docs/DESIGN.md) · [Publication notes](docs/PUBLICATION.md) · [MIT license](LICENSE)
 
+### Repair loops that do useful work
+
+[Boost workloop](experiments/boost_workloop/README.md) lets a cheap model inspect, edit, test and retry a Python repository in Docker. Add a caller-owned check, continue a stalled attempt, or reuse previously verified code. [Results and lessons](experiments/boost_workloop/RESULTS.md) distinguish accepted repairs from failed local-model and lesson-transfer trials.
+
 ### Cheap-model assistance experiments
 
 [Geometry pilot and lessons](experiments/cheap_model_boost/RESULTS.md): Sonnet,

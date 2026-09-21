@@ -1,0 +1,22 @@
+{
+  "lessons.json": {
+    "raw_sha256": "3d57a642102150b74e29d93229a0016416beca120fe7d86e9e24983520c114e5",
+    "published_sha256": "3d57a642102150b74e29d93229a0016416beca120fe7d86e9e24983520c114e5"
+  },
+  "prompt.txt": {
+    "raw_sha256": "c960f0857e7fb7deb9a9b277e4ff144b1dd2ad851e93c7f4da6d88652e8ad280",
+    "published_sha256": "c960f0857e7fb7deb9a9b277e4ff144b1dd2ad851e93c7f4da6d88652e8ad280"
+  },
+  "provenance.json": {
+    "raw_sha256": "ca440f0194df43562afc0e7397c395e10107e268448c8ed1a154e2268f0b53b0",
+    "published_sha256": "ca440f0194df43562afc0e7397c395e10107e268448c8ed1a154e2268f0b53b0"
+  },
+  "receipt.json": {
+    "raw_sha256": "cc9879a86d8403b0ced177bd64caf020f8dccc83f211743f65abae57049d16e0",
+    "published_sha256": "cc9879a86d8403b0ced177bd64caf020f8dccc83f211743f65abae57049d16e0"
+  },
+  "schema.json": {
+    "raw_sha256": "a70d57977ce2214cd5ac4c809169d2444e4bfbd2e07de10705d249a0c5ddba5b",
+    "published_sha256": "15dc48d847f2f86cfcffcd1f03fd45184884fb1dce2751cdc507d29f06bf3202"
+  }
+}

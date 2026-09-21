@@ -1,0 +1,29 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4622,
+      "outputTokens": 1804,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 8049,
+      "webSearchRequests": 0,
+      "costUSD": 0.02974,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 1566,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.02974,
+  "error": null,
+  "response": {
+    "action": "finish",
+    "path": "rectarea.py",
+    "text": "All tests passing. The rectangle union library correctly handles: (1) overlapping rectangles using coordinate compression algorithm which avoids undercounting, (2) reversed/negative coordinates by normalizing with min/max before storing, and (3) fractional coordinates with arbitrary precision using Python's Fraction class for exact rational arithmetic instead of floating-point. The CLI properly reads stdin with support for integer and rational (n/d) input, and outputs reduced integer or n/d format."
+  },
+  "seconds": 16.406846167054027,
+  "exit_code": 0
+}

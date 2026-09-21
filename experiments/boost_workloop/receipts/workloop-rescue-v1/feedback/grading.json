@@ -1,0 +1,177 @@
+{
+  "policy": "feedback",
+  "status": "self_reported_complete",
+  "finished": true,
+  "elapsed": 66.99884595791809,
+  "first_valid_seconds": null,
+  "final_passed": false,
+  "calls": 6,
+  "snapshots": [
+    {
+      "label": "initial",
+      "elapsed": 8.499948307871819e-06,
+      "calls": 0,
+      "digest": "87f734b8cb881d2397b91ec0a0ae2cfe5569f2da08f6c8fd1c3331db56da9e87",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'west'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.068s\n\nFAILED (errors=1)\n",
+        "seconds": 0.46914412500336766,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 18.949362125014886,
+      "calls": 1,
+      "digest": "485060b7b731e2c4a402ac8099b471b1529248fb97cd8969fa24d6156f660cf4",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.054s\n\nOK\n",
+        "seconds": 0.41451970813795924,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"23\"}",
+            "actual": "{\"area\": \"23\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"72\"}",
+            "actual": "{\"area\": \"72\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"272\"}",
+            "actual": "{\"area\": \"272\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"574/45\"}",
+            "actual": "{\"area\": \"574/45\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"35\"}",
+            "actual": "{\"area\": \"35\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"14/5\"}",
+            "actual": "{\"area\": \"14/5\"}"
+          }
+        ]
+      }
+    },
+    {
+      "label": "final",
+      "elapsed": 66.9986802500207,
+      "calls": 6,
+      "digest": "485060b7b731e2c4a402ac8099b471b1529248fb97cd8969fa24d6156f660cf4",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.054s\n\nOK\n",
+        "seconds": 0.41451970813795924,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"23\"}",
+            "actual": "{\"area\": \"23\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"72\"}",
+            "actual": "{\"area\": \"72\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"272\"}",
+            "actual": "{\"area\": \"272\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"574/45\"}",
+            "actual": "{\"area\": \"574/45\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"35\"}",
+            "actual": "{\"area\": \"35\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"14/5\"}",
+            "actual": "{\"area\": \"14/5\"}"
+          }
+        ]
+      }
+    }
+  ]
+}

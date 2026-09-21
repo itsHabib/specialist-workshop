@@ -1,0 +1,29 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 6293,
+      "outputTokens": 603,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 9737,
+      "webSearchRequests": 0,
+      "costUSD": 0.028782000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 420,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.028782000000000002,
+  "error": null,
+  "response": {
+    "action": "finish",
+    "path": "rectarea.py",
+    "text": "Rectangle union library repaired. All tests pass (5/5). Key fixes: coordinate normalization handles reversed boxes, Fraction arithmetic preserves exact rational values, coordinate compression algorithm correctly counts overlapping regions without double-counting, comment stripping works inline, --input flag reads files, and --json outputs compact format without trailing newline. External check confirms exact area computation and compact JSON output."
+  },
+  "seconds": 7.792100915918127,
+  "exit_code": 0
+}

@@ -1,0 +1,77 @@
+Extract one reusable lesson from this practice repair. A Python rectangle-union program previously used floats and subtracted pairwise overlaps. The new source below passes the visible regression tests. State a concise trigger, useful algorithm/engineering guidance, and how to check it on a NEW task. Under180 words total. No full implementation, no example answers or hardcoded values, no claim it generalizes without evaluation. Explain the useful representation concretely rather than generic advice.
+"""Compute the union area of axis-aligned rectangles."""
+import argparse
+import json
+import sys
+from fractions import Fraction
+
+
+def read_rectangles(lines):
+    rectangles = []
+    for number, raw in enumerate(lines, 1):
+        line = raw.strip()
+        if not line:
+            continue
+        values = [Fraction(value) for value in line.split()]
+        if len(values) != 4:
+            raise ValueError(f"line {number}: expected four coordinates")
+        x1, y1, x2, y2 = values
+        x1, x2 = min(x1, x2), max(x1, x2)
+        y1, y2 = min(y1, y2), max(y1, y2)
+        rectangles.append((x1, y1, x2, y2))
+    return rectangles
+
+
+def union_area(rectangles):
+    if not rectangles:
+        return Fraction(0)
+    
+    x_coords = set()
+    y_coords = set()
+    for x1, y1, x2, y2 in rectangles:
+        x_coords.add(x1)
+        x_coords.add(x2)
+        y_coords.add(y1)
+        y_coords.add(y2)
+    
+    x_coords = sorted(x_coords)
+    y_coords = sorted(y_coords)
+    
+    total = Fraction(0)
+    for i in range(len(x_coords) - 1):
+        for j in range(len(y_coords) - 1):
+            x_left = x_coords[i]
+            x_right = x_coords[i + 1]
+            y_bottom = y_coords[j]
+            y_top = y_coords[j + 1]
+            
+            for x1, y1, x2, y2 in rectangles:
+                if x1 <= x_left and x_right <= x2 and y1 <= y_bottom and y_top <= y2:
+                    total += (x_right - x_left) * (y_top - y_bottom)
+                    break
+    
+    return total
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input")
+    parser.add_argument("--json", action="store_true")
+    args = parser.parse_args(argv)
+    stream = open(args.input) if args.input else sys.stdin
+    try:
+        area = union_area(read_rectangles(stream))
+    finally:
+        if args.input:
+            stream.close()
+    
+    if area.denominator == 1:
+        text = str(area.numerator)
+    else:
+        text = f"{area.numerator}/{area.denominator}"
+    
+    print(json.dumps({"area": text}) if args.json else text)
+
+
+if __name__ == "__main__":
+    main()

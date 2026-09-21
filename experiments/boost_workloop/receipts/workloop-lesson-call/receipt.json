@@ -1,0 +1,29 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1724,
+      "outputTokens": 803,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 5137,
+      "webSearchRequests": 0,
+      "costUSD": 0.016013,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 488,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.016013,
+  "error": null,
+  "response": {
+    "trigger": "Float precision errors accumulate in geometry calculations (area, length, overlap subtraction), especially with many shapes or tight coordinate tolerances.",
+    "guidance": "Replace float with exact rational arithmetic (Fraction). Switch from inclusion-exclusion (subtract pairwise overlaps) to coordinate compression: extract all boundary coordinates from rectangles, sort them to form an axis-aligned grid, then check each cell against all rectangles. Each cell's coverage is binary (fully inside or fully outside any rectangle), avoiding cumulative rounding.\n\nThis works because splitting only at existing boundaries preserves exactness\u2014no intermediate approximations occur. The representation (Fraction) carries numerator/denominator exactly through all arithmetic.",
+    "check": "On a new geometry task: (1) parse input coordinates as Fraction objects, not floats; (2) verify the grid correctly partitions the plane at all boundary values; (3) test against cases where float subtraction would fail (tiny overlaps, many shapes, large coordinate ranges); (4) validate output as reduced fractions, not decimal approximations."
+  },
+  "seconds": 11.102284707827494,
+  "exit_code": 0
+}

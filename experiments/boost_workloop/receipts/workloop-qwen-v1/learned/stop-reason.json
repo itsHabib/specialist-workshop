@@ -1,0 +1,6 @@
+{
+  "reason": "Three consecutive identical source snapshots with the same visible failures; switch intervention to verified component reuse, not a reasoning deadline.",
+  "calls_completed": 6,
+  "last_digest": "d3b5325735b162e3f909f11a75f8f12f77cf0ae63814249f08e4394992c9889b",
+  "classification": "stopped exploratory run, not proof of model inability"
+}

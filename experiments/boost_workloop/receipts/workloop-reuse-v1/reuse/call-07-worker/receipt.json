@@ -1,0 +1,10 @@
+{
+  "provider": "qwen2.5:7b",
+  "requested_model": "qwen2.5:7b",
+  "usage": null,
+  "estimated_cost_usd": null,
+  "error": "stopped",
+  "response": null,
+  "seconds": 20.703802166040987,
+  "exit_code": -15
+}

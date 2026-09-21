@@ -1,0 +1,29 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 5492,
+      "outputTokens": 501,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 8935,
+      "webSearchRequests": 0,
+      "costUSD": 0.025867,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 301,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "estimated_cost_usd": 0.025867,
+  "error": null,
+  "response": {
+    "action": "finish",
+    "path": "rectarea.py",
+    "text": "Fixed JSON formatting to use compact separators. All requirements met: handles exact integer/rational coordinates, reversed/degenerate rectangles, comments, --input flag, and --json with compact output. All 5 tests passing."
+  },
+  "seconds": 7.548796749906614,
+  "exit_code": 0
+}

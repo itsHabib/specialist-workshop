@@ -1,0 +1,120 @@
+{
+  "schema": "boost-grading.v1",
+  "run_plan_sha256": "682a706ea14962c8b6087cd6c76b7e26c9e40718171ba678abb0b3e01325f187",
+  "task_sha256": "00516c9789ff1d135401ac0e39ce2a4b2cf9ddc99c628142128d82a976f57836",
+  "evaluator": {
+    "seed": 90137,
+    "variant": 0,
+    "task_sha256": "00516c9789ff1d135401ac0e39ce2a4b2cf9ddc99c628142128d82a976f57836",
+    "source_sha256": {
+      "pilot.py": "be773e435761fb0afe4e88a68ffed74588afb0279a36e70e6c1b2f9705ba4929",
+      "taskpack/taskpack.py": "3207f223f149eeebc0f6c4d872671aac65a351722cf13b17d66103c83029f0bb",
+      "runtime.py": "4ac4478b073c5ccc19f6f3df857c64455c7a3c9c7386e19402a0eed2c03860a4"
+    }
+  },
+  "policy": "feedback",
+  "status": "self_reported_complete",
+  "finished": true,
+  "elapsed": 109.86877587507479,
+  "first_valid_seconds": 39.86319900001399,
+  "final_passed": true,
+  "calls": 8,
+  "snapshots": [
+    {
+      "label": "initial",
+      "elapsed": 7.6249707490205765e-06,
+      "calls": 0,
+      "digest": "f4052ab0e94a18c96e5fece42701d68cf90008c9190e0a99755bb2d8babe3115",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 50, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '3/2'\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '12.0' != '12'\n- 12.0\n?   --\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '6.0' != '6'\n- 6.0\n+ 6\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22.0' != '23'\n- 22.0\n+ 23\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.048s\n\nFAILED (failures=4)\n",
+        "seconds": 0.4514622502028942,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "area",
+            "expected": "1",
+            "actual": "0"
+          },
+          {
+            "kind": "area",
+            "expected": "23",
+            "actual": "22"
+          },
+          {
+            "kind": "exit",
+            "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '7/3'\n"
+          },
+          {
+            "kind": "area",
+            "expected": "87",
+            "actual": "21"
+          },
+          {
+            "kind": "exit",
+            "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '1/2'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": " 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '7/5'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '-7/5'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '-3/2'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 39.86319900001399,
+      "calls": 1,
+      "digest": "2b7172b0de623623247e05dbb312f6be5cf00de9de87360a2efbcf541ed89408",
+      "passed": true,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.051s\n\nOK\n",
+        "seconds": 0.35996675002388656,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": true,
+        "checks": 14,
+        "failures": []
+      }
+    },
+    {
+      "label": "final",
+      "elapsed": 109.86869654105976,
+      "calls": 8,
+      "digest": "2b7172b0de623623247e05dbb312f6be5cf00de9de87360a2efbcf541ed89408",
+      "passed": true,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.051s\n\nOK\n",
+        "seconds": 0.35996675002388656,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": true,
+        "checks": 14,
+        "failures": []
+      }
+    }
+  ]
+}

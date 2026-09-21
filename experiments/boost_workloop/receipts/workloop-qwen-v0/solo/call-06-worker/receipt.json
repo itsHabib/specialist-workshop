@@ -1,0 +1,20 @@
+{
+  "provider": "qwen2.5:7b",
+  "requested_model": "qwen2.5:7b",
+  "usage": {
+    "model": "qwen2.5:7b",
+    "prompt_eval_count": 2143,
+    "eval_count": 474,
+    "total_duration": 19498295042,
+    "done_reason": "stop"
+  },
+  "estimated_cost_usd": null,
+  "error": null,
+  "response": {
+    "action": "write",
+    "path": "rectarea.py",
+    "text": "import argparse\nimport json\nfrom fractions import Fraction, gcd\n\n\ndef read_rectangles(lines):\n    rectangles = []\n    for number, raw in enumerate(lines, 1):\n        line = raw.strip()\n        if not line:\n            continue\n        values = [Fraction(value) for value in line.split()]\n        if len(values) != 4:\n            raise ValueError(f\"line {number}: expected four coordinates\")\n        rectangles.append(tuple(values))\n    return rectangles\n\n\ndef union_area(rectangles):\n    total = 0\n    seen = []\n    for x1, y1, x2, y2 in rectangles:\n        width = (x2 - x1).limit_denominator()\n        height = (y2 - y1).limit_denominator()\n        total += width * height\n        for a1, b1, a2, b2 in seen:\n            overlap_width = max(0, min(x2, a2) - max(x1, a1)).limit_denominator()\n            overlap_height = max(0, min(y2, b2) - max(y1, b1)).limit_denominator()\n            total -= overlap_width * overlap_height\n        seen.append((x1, y1, x2, y2))\n    return int(total) if total.denominator == 1 else f\"{total.numerator}/{total.denominator}\n\"\n\n\ndef main(argv=None):\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--input\")\n    parser.add_argument(\"--json\", action=\"store_true\")\n    args = parser.parse_args(argv)\n    stream = open(args.input) if args.input else sys.stdin\n    try:\n        area = union_area(read_rectangles(stream))\n    finally:\n        if args.input:\n            stream.close()\n    text = str(area) if isinstance(area, int) else area\n    print(json.dumps({\"area\": text}) if args.json else text)\n\n\nif __name__ == \"__main__\":\n    main()"
+  },
+  "seconds": 19.600326374871656,
+  "exit_code": 0
+}

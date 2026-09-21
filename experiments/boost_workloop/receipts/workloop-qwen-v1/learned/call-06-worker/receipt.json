@@ -1,0 +1,20 @@
+{
+  "provider": "qwen2.5:7b",
+  "requested_model": "qwen2.5:7b",
+  "usage": {
+    "model": "qwen2.5:7b",
+    "prompt_eval_count": 4207,
+    "eval_count": 677,
+    "total_duration": 46074864250,
+    "done_reason": "stop"
+  },
+  "estimated_cost_usd": null,
+  "error": null,
+  "response": {
+    "action": "write",
+    "path": "rectarea.py",
+    "text": "import argparse\nimport json\nfrom fractions import Fraction\nimport sys\n\n\ndef read_rectangles(lines):\n    rectangles = []\n    for number, raw in enumerate(lines, 1):\n        line = raw.strip()\n        if not line or line.startswith('#'):\n            continue\n        values = [Fraction(value) for value in line.split()]\n        if len(values) != 4:\n            raise ValueError(f\"line {number}: expected four coordinates\")\n        rectangles.append(tuple(values))\n    return rectangles\n\n\ndef union_area(rectangles):\n    # Extract all boundary points and sort them.\n    points = set()\n    for x1, y1, x2, y2 in rectangles:\n        points.update([x1, x2])\n        points.update([y1, y2])\n    points = sorted(points)\n\n    # Create a grid of cells from the boundary points.\n    cell_widths = [points[i+1] - points[i] for i in range(len(points) - 1)]\n    total_area = sum(cell * (cell_widths[i + 1] if i < len(cell_widths) - 1 else 0)\n                     for i, cell in enumerate(points[:-1]))\n\n    # Check each cell against all rectangles to determine coverage.\n    covered_cells = set()\n    for x1, y1, x2, y2 in rectangles:\n        for x in range(points.index(x1), points.index(x2) + 1):\n            for y in range(points.index(y1), points.index(y2) + 1):\n                if (x, y) not in covered_cells and all(\n                        p[0] <= x < p[2] and p[1] <= y < p[3]\n                        for p in rectangles\n                ):\n                    covered_cells.add((x, y))\n\n    # Calculate the area of covered cells.\n    covered_area = sum(cell_widths[i] * (points[i + 1] - points[i])\n                       for i in range(len(points) - 1)\n                       if any(p == (i, j) for p in covered_cells))\n\n    return total_area - covered_area\n\n\ndef main(argv=None):\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--input\")\n    parser.add_argument(\"--json\", action=\"store_true\")\n    args = parser.parse_args(argv)\n    stream = open(args.input) if args.input else sys.stdin\n    try:\n        area = union_area(read_rectangles(stream))\n    finally:\n        if args.input:\n            stream.close()\n    text = str(int(area.numerator) // int(area.denominator)) if area.denominator == 1 else f'{area.numerator}/{area.denominator}'\n    print(json.dumps({\"area\": text}) if args.json else text)\n\n\nif __name__ == \"__main__\":\n    main()"
+  },
+  "seconds": 46.17593970778398,
+  "exit_code": 0
+}

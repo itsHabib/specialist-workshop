@@ -1,0 +1,449 @@
+{
+  "policy": "reuse",
+  "status": "stopped",
+  "finished": false,
+  "elapsed": 289.590891999891,
+  "first_valid_seconds": null,
+  "final_passed": false,
+  "calls": 7,
+  "snapshots": [
+    {
+      "label": "initial",
+      "elapsed": 6.125075742602348e-06,
+      "calls": 0,
+      "digest": "bc0242748397adb628f56eb16982d58a0c62b0b8f52c39db52fdad41017345d0",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 50, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '3/2'\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '12.0' != '12'\n- 12.0\n?   --\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '6.0' != '6'\n- 6.0\n+ 6\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22.0' != '23'\n- 22.0\n+ 23\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.067s\n\nFAILED (failures=4, errors=1)\n",
+        "seconds": 0.36025533312931657,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 48.1819062079303,
+      "calls": 1,
+      "digest": "524df0074b6abb6437c0100c78a67c2c67ea9801e964539e288bbce7867ead75",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.053s\n\nFAILED (errors=1)\n",
+        "seconds": 0.34326237509958446,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"76\"}",
+            "actual": "{\"area\": \"76\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 93.32573333289474,
+      "calls": 2,
+      "digest": "2273c69e175c6ff2f4266889258e3527f7f9c41dc39410202a2d3efee3682ae2",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.055s\n\nFAILED (errors=1)\n",
+        "seconds": 0.40640104096382856,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"76\"}",
+            "actual": "{\"area\": \"76\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 139.34090966708027,
+      "calls": 3,
+      "digest": "2273c69e175c6ff2f4266889258e3527f7f9c41dc39410202a2d3efee3682ae2",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.055s\n\nFAILED (errors=1)\n",
+        "seconds": 0.40640104096382856,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"76\"}",
+            "actual": "{\"area\": \"76\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 176.75927049992606,
+      "calls": 4,
+      "digest": "524df0074b6abb6437c0100c78a67c2c67ea9801e964539e288bbce7867ead75",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.053s\n\nFAILED (errors=1)\n",
+        "seconds": 0.34326237509958446,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"76\"}",
+            "actual": "{\"area\": \"76\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 221.94616108294576,
+      "calls": 5,
+      "digest": "524df0074b6abb6437c0100c78a67c2c67ea9801e964539e288bbce7867ead75",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.053s\n\nFAILED (errors=1)\n",
+        "seconds": 0.34326237509958446,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"76\"}",
+            "actual": "{\"area\": \"76\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "tarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split()]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 268.17298587504774,
+      "calls": 6,
+      "digest": "87f734b8cb881d2397b91ec0a0ae2cfe5569f2da08f6c8fd1c3331db56da9e87",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'west'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.061s\n\nFAILED (errors=1)\n",
+        "seconds": 0.3574590408243239,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"76\"}",
+            "actual": "{\"area\": \"76\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "final",
+      "elapsed": 289.59075316693634,
+      "calls": 7,
+      "digest": "87f734b8cb881d2397b91ec0a0ae2cfe5569f2da08f6c8fd1c3331db56da9e87",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 12, in read_rectangles\n    values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'west'\n\n----------------------------------------------------------------------\nRan 5 tests in 0.061s\n\nFAILED (errors=1)\n",
+        "seconds": 0.3574590408243239,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"76\"}",
+            "actual": "{\"area\": \"76\"}"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "  values = [Fraction(value) for value in line.split() if value and not value.startswith('#')]\n              ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/fractions.py\", line 239, in __new__\n    raise ValueError('Invalid literal for Fraction: %r' %\nValueError: Invalid literal for Fraction: 'box'\n"
+          }
+        ]
+      }
+    }
+  ]
+}

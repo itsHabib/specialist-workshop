@@ -1,0 +1,92 @@
+[
+  {
+    "run": "workloop-checked-v1/checked",
+    "calls": 5,
+    "elapsed_seconds": 44.924128875136375,
+    "known_model_cost_usd": 0.119075,
+    "all_costs_known": true,
+    "first_valid_candidate_seconds": 23.33326279115863,
+    "final_passed": true,
+    "status": "self_reported_complete"
+  },
+  {
+    "run": "workloop-cli-v1/checked",
+    "calls": 6,
+    "elapsed_seconds": 122.27968812501058,
+    "known_model_cost_usd": 0.209501,
+    "all_costs_known": true,
+    "first_valid_candidate_seconds": 112.82045058300719,
+    "final_passed": true,
+    "status": "self_reported_complete"
+  },
+  {
+    "run": "workloop-haiku-v0/feedback",
+    "calls": 8,
+    "elapsed_seconds": 109.86877587507479,
+    "known_model_cost_usd": 0.210252,
+    "all_costs_known": true,
+    "first_valid_candidate_seconds": 39.86319900001399,
+    "final_passed": true,
+    "status": "self_reported_complete"
+  },
+  {
+    "run": "workloop-qwen-v0/feedback",
+    "calls": 12,
+    "elapsed_seconds": 458.3369277920574,
+    "known_model_cost_usd": 0,
+    "all_costs_known": false,
+    "first_valid_candidate_seconds": null,
+    "final_passed": false,
+    "status": "call_budget"
+  },
+  {
+    "run": "workloop-qwen-v0/solo",
+    "calls": 12,
+    "elapsed_seconds": 291.0143942499999,
+    "known_model_cost_usd": 0,
+    "all_costs_known": false,
+    "first_valid_candidate_seconds": null,
+    "final_passed": false,
+    "status": "call_budget"
+  },
+  {
+    "run": "workloop-qwen-v1/learned",
+    "calls": 6,
+    "elapsed_seconds": 269.71387479198165,
+    "known_model_cost_usd": 0,
+    "all_costs_known": false,
+    "first_valid_candidate_seconds": null,
+    "final_passed": false,
+    "status": "stopped"
+  },
+  {
+    "run": "workloop-rescue-v0/run",
+    "calls": 8,
+    "elapsed_seconds": 89.03601854201406,
+    "known_model_cost_usd": 0.28937799999999997,
+    "all_costs_known": true,
+    "first_valid_candidate_seconds": 34.98230079188943,
+    "final_passed": true,
+    "status": "call_budget"
+  },
+  {
+    "run": "workloop-rescue-v1/feedback",
+    "calls": 6,
+    "elapsed_seconds": 66.99884595791809,
+    "known_model_cost_usd": 0.16668,
+    "all_costs_known": true,
+    "first_valid_candidate_seconds": null,
+    "final_passed": false,
+    "status": "self_reported_complete"
+  },
+  {
+    "run": "workloop-reuse-v1/reuse",
+    "calls": 7,
+    "elapsed_seconds": 289.590891999891,
+    "known_model_cost_usd": 0,
+    "all_costs_known": false,
+    "first_valid_candidate_seconds": null,
+    "final_passed": false,
+    "status": "stopped"
+  }
+]

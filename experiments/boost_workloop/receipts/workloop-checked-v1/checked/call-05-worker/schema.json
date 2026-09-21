@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": [
+        "read",
+        "write",
+        "edit",
+        "run",
+        "help",
+        "finish"
+      ]
+    },
+    "path": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "old_text": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "action",
+    "path",
+    "text"
+  ]
+}

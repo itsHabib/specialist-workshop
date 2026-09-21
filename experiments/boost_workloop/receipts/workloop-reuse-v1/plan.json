@@ -1,0 +1,17 @@
+{
+  "variant": 1,
+  "final_seed": 90149,
+  "worker": "qwen2.5:7b",
+  "component": {
+    "schema": "boost-component.v1",
+    "source_name": "rectarea.py",
+    "source": "\"\"\"Compute the union area of axis-aligned rectangles.\"\"\"\nimport argparse\nimport json\nimport sys\nfrom fractions import Fraction\n\n\ndef read_rectangles(lines):\n    rectangles = []\n    for number, raw in enumerate(lines, 1):\n        line = raw.strip()\n        if not line:\n            continue\n        values = [Fraction(value) for value in line.split()]\n        if len(values) != 4:\n            raise ValueError(f\"line {number}: expected four coordinates\")\n        x1, y1, x2, y2 = values\n        x1, x2 = min(x1, x2), max(x1, x2)\n        y1, y2 = min(y1, y2), max(y1, y2)\n        rectangles.append((x1, y1, x2, y2))\n    return rectangles\n\n\ndef union_area(rectangles):\n    if not rectangles:\n        return Fraction(0)\n    \n    x_coords = set()\n    y_coords = set()\n    for x1, y1, x2, y2 in rectangles:\n        x_coords.add(x1)\n        x_coords.add(x2)\n        y_coords.add(y1)\n        y_coords.add(y2)\n    \n    x_coords = sorted(x_coords)\n    y_coords = sorted(y_coords)\n    \n    total = Fraction(0)\n    for i in range(len(x_coords) - 1):\n        for j in range(len(y_coords) - 1):\n            x_left = x_coords[i]\n            x_right = x_coords[i + 1]\n            y_bottom = y_coords[j]\n            y_top = y_coords[j + 1]\n            \n            for x1, y1, x2, y2 in rectangles:\n                if x1 <= x_left and x_right <= x2 and y1 <= y_bottom and y_top <= y2:\n                    total += (x_right - x_left) * (y_top - y_bottom)\n                    break\n    \n    return total\n\n\ndef main(argv=None):\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--input\")\n    parser.add_argument(\"--json\", action=\"store_true\")\n    args = parser.parse_args(argv)\n    stream = open(args.input) if args.input else sys.stdin\n    try:\n        area = union_area(read_rectangles(stream))\n    finally:\n        if args.input:\n            stream.close()\n    \n    if area.denominator == 1:\n        text = str(area.numerator)\n    else:\n        text = f\"{area.numerator}/{area.denominator}\"\n    \n    print(json.dumps({\"area\": text}) if args.json else text)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "source_sha256": "c66336164f1ccd637ed186af2326aa6aec76973999a960c7c16b24eafc578a02",
+    "accepted_snapshot": "2b7172b0de623623247e05dbb312f6be5cf00de9de87360a2efbcf541ed89408",
+    "accepted_goal": "Repair the rectangle union library and stdin CLI. Coordinates are exact integer or rational strings, may be reversed, and may be arbitrarily large. Print the nonnegative union area as a reduced integer or n/d.",
+    "scope": "Accepted only for the recorded practice task; importing code does not prove new-task correctness."
+  },
+  "mechanism": "reuse independently accepted practice implementation, not model-weight improvement",
+  "model_calls": 12,
+  "seconds": 7200
+}

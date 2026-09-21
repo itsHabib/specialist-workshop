@@ -1,0 +1,173 @@
+{
+  "schema": "boost-grading.v1",
+  "run_plan_sha256": "c6af4ef096b04bba579f32434f4f02608d8ce6f8488bc259b364ffa3ad3c2df6",
+  "task_sha256": "1b2490778fd9a38716b124bb5eff0d45d4804f071a3975f5af9944f649643b85",
+  "evaluator": {
+    "seed": 771251,
+    "variant": 1,
+    "task_sha256": "1b2490778fd9a38716b124bb5eff0d45d4804f071a3975f5af9944f649643b85",
+    "source_sha256": {
+      "pilot.py": "be773e435761fb0afe4e88a68ffed74588afb0279a36e70e6c1b2f9705ba4929",
+      "taskpack/taskpack.py": "3207f223f149eeebc0f6c4d872671aac65a351722cf13b17d66103c83029f0bb",
+      "runtime.py": "4ac4478b073c5ccc19f6f3df857c64455c7a3c9c7386e19402a0eed2c03860a4"
+    }
+  },
+  "policy": "checked",
+  "status": "self_reported_complete",
+  "finished": true,
+  "elapsed": 122.27968812501058,
+  "first_valid_seconds": 112.82045058300719,
+  "final_passed": true,
+  "calls": 6,
+  "snapshots": [
+    {
+      "label": "initial",
+      "elapsed": 8.499948307871819e-06,
+      "calls": 0,
+      "digest": "732862790d846dc0b612aa380a75cfe01e331573f456ca12723a11477715eb5c",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... FAIL\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ERROR\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... FAIL\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... FAIL\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... FAIL\n\n======================================================================\nERROR: test_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 29, in test_comments_are_ignored\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"3\")\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n\n======================================================================\nFAIL: test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 26, in test_cli_reads_stdin\n    self.assertEqual((run.returncode, run.stdout), (0, \"3\\n\"), run.stderr)\nAssertionError: Tuples differ: (1, '') != (0, '3\\n')\n\nFirst differing element 0:\n1\n0\n\n- (1, '')\n+ (0, '3\\n') : Traceback (most recent call last):\n  File \"/tmp/repo/rectarea.py\", line 50, in <module>\n    main()\n  File \"/tmp/repo/rectarea.py\", line 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '3/2'\n\n\n======================================================================\nFAIL: test_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 11, in test_disjoint_and_overlapping_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"12\")\nAssertionError: '12.0' != '12'\n- 12.0\n?   --\n+ 12\n\n\n======================================================================\nFAIL: test_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 19, in test_reversed_and_degenerate_rectangles\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"6\")\nAssertionError: '6.0' != '6'\n- 6.0\n+ 6\n\n\n======================================================================\nFAIL: test_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/repo/tests/test_rectarea.py\", line 15, in test_three_way_overlap_is_not_subtracted_twice\n    self.assertEqual(str(rectarea.union_area(rectarea.read_rectangles(source))), \"23\")\nAssertionError: '22.0' != '23'\n- 22.0\n+ 23\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.048s\n\nFAILED (failures=4, errors=1)\n",
+        "seconds": 0.4056046660989523,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          },
+          {
+            "kind": "exit",
+            "stderr": "ne 41, in main\n    area = union_area(read_rectangles(stream))\n                      ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/rectarea.py\", line 13, in read_rectangles\n    values = [float(value) for value in line.split()]\n              ^^^^^^^^^^^^\nValueError: could not convert string to float: '#'\n"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 66.87936941697262,
+      "calls": 1,
+      "digest": "378ccaff6f6b909ea25cf9c28123d0c8b86861a5227d31487c0ae84c85e5d6d7",
+      "passed": false,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.070s\n\nOK\n",
+        "seconds": 0.4058856670744717,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": false,
+        "checks": 14,
+        "failures": [
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"23\"}",
+            "actual": "{\"area\": \"23\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"9387/100\"}",
+            "actual": "{\"area\": \"9387/100\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"109/4\"}",
+            "actual": "{\"area\": \"109/4\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"6079/225\"}",
+            "actual": "{\"area\": \"6079/225\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"0\"}",
+            "actual": "{\"area\": \"0\"}"
+          },
+          {
+            "kind": "json_format",
+            "expected": "{\"area\":\"240\"}",
+            "actual": "{\"area\": \"240\"}"
+          }
+        ]
+      }
+    },
+    {
+      "label": "edit",
+      "elapsed": 112.82045058300719,
+      "calls": 5,
+      "digest": "f599148227e3dd64fdbd8bf60cca10ef1d490e7066ceab3745e06ed548d65072",
+      "passed": true,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.089s\n\nOK\n",
+        "seconds": 0.4060795418918133,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": true,
+        "checks": 14,
+        "failures": []
+      }
+    },
+    {
+      "label": "final",
+      "elapsed": 122.27962733292952,
+      "calls": 6,
+      "digest": "f599148227e3dd64fdbd8bf60cca10ef1d490e7066ceab3745e06ed548d65072",
+      "passed": true,
+      "regression": {
+        "error": null,
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cli_reads_stdin (test_rectarea.RectangleAreaTests.test_cli_reads_stdin) ... ok\ntest_comments_are_ignored (test_rectarea.RectangleAreaTests.test_comments_are_ignored) ... ok\ntest_disjoint_and_overlapping_rectangles (test_rectarea.RectangleAreaTests.test_disjoint_and_overlapping_rectangles) ... ok\ntest_reversed_and_degenerate_rectangles (test_rectarea.RectangleAreaTests.test_reversed_and_degenerate_rectangles) ... ok\ntest_three_way_overlap_is_not_subtracted_twice (test_rectarea.RectangleAreaTests.test_three_way_overlap_is_not_subtracted_twice) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.089s\n\nOK\n",
+        "seconds": 0.4060795418918133,
+        "cleanup_confirmed": true
+      },
+      "hidden": {
+        "passed": true,
+        "checks": 14,
+        "failures": []
+      }
+    }
+  ]
+}

@@ -1,7 +1,74 @@
-# Next experiments that can change our decisions
+# Next: real work loops, then learning across tasks
 
-Start with the current geometry pilot. Keep failures; do not shop for a winning
-prompt after reading final answers. Each new comparison needs fresh cases.
+**Current evidence:** no repeatable boost demonstrated. The first pilot mostly
+measured generation/interface failures under short deadlines. Keep its receipts;
+do not treat that as a verdict on iterative agents or small models generally.
+
+## Give the baseline a fair chance
+
+Solo means one capable working session, not one answer. Both conditions get the
+same starting repository, tools, visible tests, ability to inspect files, edit,
+run commands, diagnose failures, retry and keep context. Assistance adds useful
+help to that workflow; it must beat a baseline allowed to do ordinary engineering.
+Count the assistance, consolidation and verification costs too.
+
+Start with a repository task: take the synthetic geometry implementation through
+a bug report, reproduction, patch and regression tests while preserving its API.
+Then test a feature spanning parser, geometry and CLI behavior. Acceptance needs
+independent hidden behavior checks AND the existing regression suite. Keep work
+material out. These are controlled repo exercises; validate on actual public
+backlog work before claiming real-world productivity.
+
+Let agents create tests and small tools, inspect runtime errors, change approach,
+and ask for a helper when evidence warrants it. Do not force every task through
+a critic. A controller can decide to decompose, derive independently, consult,
+repair a representation or continue solo. Record what it actually did.
+
+## Let worthwhile work take time
+
+Remove the four-minute model-call deadline from the next comparison. Declare a
+generous total run/spend budget before starting, and allow long reasoning calls.
+Observe progress where available; silence from a non-streaming client is not
+proof of a hang. Check transport/liveness separately from task difficulty.
+
+Save work and receipts on interruption. Budget exhaustion or a transport failure
+is an incomplete run, not proof of mathematical inability. Keep slow completions
+in the results. Compare success versus cumulative time/tokens/spend, including
+an equal-spend solo continuation; equal call count alone is not a fair budget.
+Candidate-program CPU/memory limits still protect the host and should be sized
+to the workload. They are separate from time allowed to think and repair.
+
+## Test whether anything is learned
+
+Use three conditions on matched starting states:
+
+| Condition | What it tests |
+|---|---|
+| Ordinary iterative agent | What the model already accomplishes with normal tools and retries |
+| Same agent with adaptive assistance | Whether assistance improves completion beyond more solo effort |
+| Assisted agent with lessons from earlier tasks | Whether retained knowledge improves later, unseen work |
+
+A useful lesson is small: failure pattern, intervention, supporting example,
+when it applies and when it does not. It may become a prompt, skill, executable
+helper or test technique. Version it; do not assume every retrospective is true.
+First learn these artifacts; weight training can follow if this earns its keep.
+
+Freeze the lesson set before evaluation on new task variants. Compare with
+lessons disabled, using the same model/tools, and repeat with varied task order.
+Improvement on the task that produced the lesson is repair; improvement on new
+tasks is evidence of transfer. Keep evaluators outside the agent's editable
+workspace so it cannot improve its score by weakening acceptance.
+
+Start with a small pilot, then replicate any win across several independent
+problems and runs. Report completed tasks, regressions, human intervention,
+latency and total spend. A repeatable boost means better accepted outcomes or
+less total effort at comparable quality—not more roles, tokens or activity.
+
+**Implementation status:** this is the revised next-run design. The archived
+pilot runner still implements the old bounded text-only protocol; it has not
+been converted into the tool-using, persistent work loop described here.
+
+## Candidate investigations
 
 | Experiment | What changes | Evidence worth keeping | Stop / reject condition |
 |---|---|---|---|

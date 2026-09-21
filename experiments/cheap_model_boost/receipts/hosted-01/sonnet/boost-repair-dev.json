@@ -1,0 +1,211 @@
+{
+  "passed": false,
+  "total": 4,
+  "failed": 4,
+  "failures": [
+    {
+      "input": {
+        "rings": [
+          [
+            [
+              7,
+              9
+            ],
+            [
+              -3,
+              4
+            ],
+            [
+              -1,
+              7
+            ],
+            [
+              -6,
+              6
+            ]
+          ],
+          [
+            [
+              -8,
+              -5
+            ],
+            [
+              -7,
+              -3
+            ],
+            [
+              -2,
+              4
+            ]
+          ],
+          [
+            [
+              8,
+              7
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              -4,
+              -4
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              -9,
+              -7
+            ],
+            [
+              9,
+              -6
+            ]
+          ]
+        ],
+        "rule": "nonzero"
+      },
+      "expected": {
+        "area": "4128/29"
+      },
+      "actual": {
+        "candidate_exception": "KeyError"
+      }
+    },
+    {
+      "input": {
+        "rings": [
+          [
+            [
+              -9,
+              5
+            ],
+            [
+              -5,
+              3
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        ],
+        "rule": "nonzero"
+      },
+      "expected": {
+        "area": "39/2"
+      },
+      "actual": {
+        "candidate_exception": "KeyError"
+      }
+    },
+    {
+      "input": {
+        "rings": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ]
+        ],
+        "rule": "evenodd"
+      },
+      "expected": {
+        "area": "0"
+      },
+      "actual": {
+        "candidate_exception": "KeyError"
+      }
+    },
+    {
+      "input": {
+        "rings": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1000000000,
+              1
+            ],
+            [
+              999999999,
+              1
+            ]
+          ]
+        ],
+        "rule": "nonzero"
+      },
+      "expected": {
+        "area": "1/2"
+      },
+      "actual": {
+        "candidate_exception": "KeyError"
+      }
+    }
+  ],
+  "execution": {
+    "backend": "docker",
+    "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+    "returncode": 0,
+    "seconds": 0.2235485001001507,
+    "error": null,
+    "outputs": [
+      {
+        "candidate_exception": "KeyError"
+      },
+      {
+        "candidate_exception": "KeyError"
+      },
+      {
+        "candidate_exception": "KeyError"
+      },
+      {
+        "candidate_exception": "KeyError"
+      }
+    ],
+    "cleanup_confirmed": true
+  }
+}

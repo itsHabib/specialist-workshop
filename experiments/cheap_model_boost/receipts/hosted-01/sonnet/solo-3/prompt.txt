@@ -1,0 +1,100 @@
+Implement evaluate(request) using only Python standard library. Request has rings: a list of closed polygonal walks, each a list of [x,y] integer vertices (last-to-first closes it), and rule: "evenodd" or "nonzero". Walks can self-intersect, overlap, retrace edges, contain repeated vertices, or have either orientation. Sum signed winding numbers of ALL walks, not a union of independently filled rings. Filled means total winding odd (evenodd), or nonzero (nonzero). Return {"area": canonical rational string} for exact nonnegative area: integers have no /1, fractions reduced with positive denominator. Boundary has zero area. Empty/degenerate walks contribute zero. At most 60 total vertices with integer coordinates |v|<=1000000000. No floating-point tolerance is adequate. Define evaluate, no stdin handling.
+Return the required JSON envelope. action=edit, source=complete Python code; hypothesis/prediction may be brief, probes_json="[]". No tools.
+Development examples:
+[{"input": {"rings": [[[7, 9], [-3, 4], [-1, 7], [-6, 6]], [[-8, -5], [-7, -3], [-2, 4]], [[8, 7], [1, 5], [2, 6], [-4, -4], [8, 2], [-9, -7], [9, -6]]], "rule": "nonzero"}, "expected": {"area": "4128/29"}}, {"input": {"rings": [[[-9, 5], [-5, 3], [7, 4], [2, 5]]], "rule": "nonzero"}, "expected": {"area": "39/2"}}, {"input": {"rings": [[[0, 0], [4, 0], [4, 4], [0, 4]], [[0, 0], [4, 0], [4, 4], [0, 4]]], "rule": "evenodd"}, "expected": {"area": "0"}}, {"input": {"rings": [[[0, 0], [1000000000, 1], [999999999, 1]]], "rule": "nonzero"}, "expected": {"area": "1/2"}}]
+Revise this candidate using development execution feedback.
+from fractions import Fraction
+
+
+def evaluate(request):
+    rings = request["rings"]
+    rule = request["rule"]
+
+    edges = []
+    for ring in rings:
+        n = len(ring)
+        if n < 2:
+            continue
+        for i in range(n):
+            x1, y1 = ring[i]
+            x2, y2 = ring[(i + 1) % n]
+            if x1 == x2:
+                continue
+            edges.append((Fraction(x1), Fraction(y1), Fraction(x2), Fraction(y2)))
+
+    if not edges:
+        return {"area": "0"}
+
+    bps = set()
+    for (x1, y1, x2, y2) in edges:
+        bps.add(x1)
+        bps.add(x2)
+
+    for i in range(len(edges)):
+        x1, y1, x2, y2 = edges[i]
+        for j in range(i + 1, len(edges)):
+            x3, y3, x4, y4 = edges[j]
+            denom = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
+            if denom == 0:
+                continue
+            t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / denom
+            u = ((x1 - x3) * (y1 - y2) - (y1 - y3) * (x1 - x2)) / denom
+            if 0 < t < 1 and 0 < u < 1:
+                px = x1 + t * (x2 - x1)
+                bps.add(px)
+
+    bps = sorted(bps)
+
+    total_area = Fraction(0)
+
+    for i in range(len(bps) - 1):
+        a, b = bps[i], bps[i + 1]
+        if a == b:
+            continue
+        xm = (a + b) / 2
+
+        crossings = []
+        for (x1, y1, x2, y2) in edges:
+            lo, hi = (x1, x2) if x1 < x2 else (x2, x1)
+            if lo < xm < hi:
+                y = y1 + (y2 - y1) * (xm - x1) / (x2 - x1)
+                sign = 1 if x2 > x1 else -1
+                crossings.append((y, sign))
+
+        if not crossings:
+            continue
+
+        crossings.sort(key=lambda t: t[0])
+
+        grouped = []
+        j = 0
+        while j < len(crossings):
+            yv = crossings[j][0]
+            s = 0
+            while j < len(crossings) and crossings[j][0] == yv:
+                s += crossings[j][1]
+                j += 1
+            grouped.append((yv, s))
+
+        width = b - a
+        running = 0
+        for k in range(len(grouped) - 1):
+            running += grouped[k][1]
+            if rule == "evenodd":
+                filled = (running % 2) != 0
+            else:
+                filled = running != 0
+            if filled:
+                dy = grouped[k + 1][0] - grouped[k][0]
+                total_area += width * dy
+
+    if total_area < 0:
+        total_area = -total_area
+
+    if total_area.denominator == 1:
+        return {"area": str(total_area.numerator)}
+    return {"area": f"{total_area.numerator}/{total_area.denominator}"}
+</parameter>
+</invoke>
+
+Feedback: {"passed": false, "total": 4, "failed": 4, "failures": [], "execution": {"backend": "docker", "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea", "container": "investigation-bridge-9dff0284dc944802", "returncode": 1, "seconds": 0.2419651250820607, "error": "candidate_or_runtime_exit", "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n  File \"solution.py\", line 92\n    </parameter>\n    ^\nSyntaxError: invalid syntax\n", "outputs": null, "cleanup_confirmed": true}}

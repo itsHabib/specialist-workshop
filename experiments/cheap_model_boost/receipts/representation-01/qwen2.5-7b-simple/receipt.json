@@ -1,0 +1,18 @@
+{
+  "provider": "qwen2.5:7b",
+  "requested_model": "qwen2.5:7b",
+  "usage": {
+    "model": "qwen2.5:7b",
+    "prompt_eval_count": 537,
+    "eval_count": 435,
+    "total_duration": 21207082792,
+    "done_reason": "stop"
+  },
+  "estimated_cost_usd": null,
+  "error": null,
+  "response": {
+    "source": "from math import gcd\n\ndef evaluate(request):\n    rings = request['rings']\n    rule = request['rule']\n    area = 0\n    for ring in rings:\n        if not ring: continue\n        x, y = zip(*ring)\n        n = len(x)\n        winding_numbers = [0] * n\n        for i in range(n):\n            j = (i + 1) % n\n            dx1, dy1 = x[i+1] - x[i], y[i+1] - y[i]\n            dx2, dy2 = x[j] - x[i], y[j] - y[i]\n            cross_product = dx1 * dy2 - dy1 * dx2\n            if rule == 'evenodd':\n                winding_numbers[i] += int(cross_product > 0)\n                winding_numbers[j] -= int(cross_product > 0)\n            else:\n                winding_numbers[i] += (cross_product > 0) - (cross_product < 0)\n        for i in range(n):\n            area += x[i] * y[(i + 1) % n] - y[i] * x[(i + 1) % n]\n    if rule == 'evenodd':\n        area = sum(winding_numbers[i] * (x[i] * y[(i + 1) % n] - y[i] * x[(i + 1) % n]) for i in range(n)) // 2\n    else:\n        area = sum(winding_numbers[i] * (x[i] * y[(i + 1) % n] - y[i] * x[(i + 1) % n]) for i in range(n))\n    common_divisor = gcd(area, abs(area)) if area != 0 else 1\n    return {'area': f'{abs(area) // common_divisor}/{common_divisor}' if area != 0 else '0'}"
+  },
+  "seconds": 21.2846643330995,
+  "exit_code": 0
+}

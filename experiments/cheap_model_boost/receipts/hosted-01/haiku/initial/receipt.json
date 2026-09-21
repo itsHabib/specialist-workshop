@@ -1,0 +1,10 @@
+{
+  "provider": "haiku",
+  "requested_model": "haiku",
+  "usage": null,
+  "estimated_cost_usd": null,
+  "error": "timeout_usage_unknown",
+  "response": null,
+  "seconds": 240.48066979204305,
+  "exit_code": 143
+}

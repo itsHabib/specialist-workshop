@@ -1,0 +1,3568 @@
+[
+  {
+    "model": "llama3.2:1b",
+    "arm": "guided",
+    "receipt": {
+      "provider": "llama3.2:1b",
+      "requested_model": "llama3.2:1b",
+      "usage": {
+        "model": "llama3.2:1b",
+        "prompt_eval_count": 686,
+        "eval_count": 6000,
+        "total_duration": 75625994834,
+        "done_reason": "length"
+      },
+      "estimated_cost_usd": null,
+      "error": "local_incomplete_response",
+      "response": null,
+      "seconds": 75.68595020915382,
+      "exit_code": 0
+    },
+    "result": {
+      "passed": false,
+      "total": 18,
+      "failed": 18,
+      "failures": [
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  3,
+                  -7
+                ],
+                [
+                  -8,
+                  0
+                ],
+                [
+                  -7,
+                  9
+                ],
+                [
+                  2,
+                  -5
+                ],
+                [
+                  4,
+                  3
+                ]
+              ],
+              [
+                [
+                  8,
+                  -7
+                ],
+                [
+                  -9,
+                  8
+                ],
+                [
+                  8,
+                  -7
+                ],
+                [
+                  -3,
+                  -1
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              [
+                [
+                  4,
+                  -7
+                ],
+                [
+                  1,
+                  9
+                ],
+                [
+                  5,
+                  -5
+                ],
+                [
+                  8,
+                  9
+                ],
+                [
+                  6,
+                  -5
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "2173444094526367/27349895913900"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  8,
+                  7
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  -7,
+                  -1
+                ],
+                [
+                  9,
+                  -1
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  -2,
+                  5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "923/14"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  6,
+                  -4
+                ],
+                [
+                  -1,
+                  -1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "13"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -2,
+                  -9
+                ],
+                [
+                  -4,
+                  2
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  8,
+                  7
+                ],
+                [
+                  -5,
+                  -7
+                ],
+                [
+                  5,
+                  -8
+                ],
+                [
+                  -4,
+                  -4
+                ]
+              ],
+              [
+                [
+                  9,
+                  6
+                ],
+                [
+                  -8,
+                  7
+                ],
+                [
+                  5,
+                  -8
+                ]
+              ],
+              [
+                [
+                  -4,
+                  -9
+                ],
+                [
+                  -8,
+                  7
+                ],
+                [
+                  0,
+                  5
+                ],
+                [
+                  7,
+                  -9
+                ],
+                [
+                  -6,
+                  -7
+                ],
+                [
+                  -9,
+                  5
+                ],
+                [
+                  -6,
+                  -5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "4948056028149301882547/34976752913601298800"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -5,
+                  -5
+                ],
+                [
+                  -2,
+                  5
+                ],
+                [
+                  4,
+                  -3
+                ],
+                [
+                  7,
+                  8
+                ],
+                [
+                  2,
+                  -7
+                ]
+              ],
+              [
+                [
+                  -2,
+                  3
+                ],
+                [
+                  9,
+                  -4
+                ],
+                [
+                  2,
+                  -6
+                ],
+                [
+                  1,
+                  -4
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "234295671/4033510"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  2,
+                  6
+                ],
+                [
+                  -4,
+                  3
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  8,
+                  -9
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "978/29"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  7,
+                  6
+                ],
+                [
+                  -5,
+                  -1
+                ],
+                [
+                  -3,
+                  7
+                ],
+                [
+                  -6,
+                  3
+                ],
+                [
+                  -8,
+                  -5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  6,
+                  -1
+                ]
+              ],
+              [
+                [
+                  -1,
+                  -7
+                ],
+                [
+                  5,
+                  -8
+                ],
+                [
+                  -1,
+                  -2
+                ],
+                [
+                  2,
+                  -1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  -7,
+                  -3
+                ]
+              ],
+              [
+                [
+                  4,
+                  -7
+                ],
+                [
+                  8,
+                  8
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  -7,
+                  4
+                ],
+                [
+                  -1,
+                  -5
+                ],
+                [
+                  7,
+                  0
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "19395332248313/203940430980"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  6,
+                  1
+                ],
+                [
+                  9,
+                  -9
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  3,
+                  -2
+                ],
+                [
+                  1,
+                  4
+                ]
+              ],
+              [
+                [
+                  -1,
+                  -9
+                ],
+                [
+                  3,
+                  9
+                ],
+                [
+                  -6,
+                  4
+                ]
+              ],
+              [
+                [
+                  8,
+                  7
+                ],
+                [
+                  -4,
+                  4
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  4,
+                  -2
+                ],
+                [
+                  2,
+                  -9
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  -2,
+                  7
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "159582697204059137069/1437966611276691496"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -7,
+                  -4
+                ],
+                [
+                  7,
+                  -2
+                ],
+                [
+                  -3,
+                  -7
+                ],
+                [
+                  -6,
+                  9
+                ]
+              ],
+              [
+                [
+                  -2,
+                  -3
+                ],
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  7,
+                  -4
+                ]
+              ],
+              [
+                [
+                  9,
+                  -2
+                ],
+                [
+                  -3,
+                  -7
+                ],
+                [
+                  -2,
+                  9
+                ],
+                [
+                  -6,
+                  -2
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "10071502001/150565728"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  9,
+                  5
+                ],
+                [
+                  2,
+                  -2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  6,
+                  -4
+                ],
+                [
+                  1,
+                  7
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  8
+                ]
+              ],
+              [
+                [
+                  7,
+                  -1
+                ],
+                [
+                  -7,
+                  5
+                ],
+                [
+                  -9,
+                  -1
+                ],
+                [
+                  -6,
+                  6
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "112918040681179/2452787620920"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  9,
+                  6
+                ],
+                [
+                  -6,
+                  -2
+                ],
+                [
+                  5,
+                  -8
+                ],
+                [
+                  -6,
+                  1
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  -2,
+                  -1
+                ],
+                [
+                  0,
+                  8
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "680912167/11053441"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  3,
+                  1
+                ],
+                [
+                  -6,
+                  -8
+                ],
+                [
+                  -4,
+                  -5
+                ],
+                [
+                  -1,
+                  3
+                ],
+                [
+                  -5,
+                  1
+                ],
+                [
+                  4,
+                  -9
+                ]
+              ],
+              [
+                [
+                  -7,
+                  -9
+                ],
+                [
+                  8,
+                  8
+                ],
+                [
+                  9,
+                  -8
+                ],
+                [
+                  -7,
+                  -7
+                ],
+                [
+                  -9,
+                  -4
+                ],
+                [
+                  6,
+                  -7
+                ],
+                [
+                  9,
+                  -1
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "14556768124299322463/150587818621109100"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  4,
+                  -6
+                ],
+                [
+                  7,
+                  2
+                ],
+                [
+                  5,
+                  -3
+                ]
+              ],
+              [
+                [
+                  -3,
+                  8
+                ],
+                [
+                  5,
+                  -1
+                ],
+                [
+                  4,
+                  6
+                ]
+              ],
+              [
+                [
+                  9,
+                  1
+                ],
+                [
+                  -8,
+                  0
+                ],
+                [
+                  6,
+                  -6
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  -2,
+                  7
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "31952350425749933/466961703398580"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -2,
+                  3
+                ],
+                [
+                  -3,
+                  1
+                ],
+                [
+                  6,
+                  -7
+                ],
+                [
+                  -5,
+                  -2
+                ],
+                [
+                  -4,
+                  4
+                ]
+              ],
+              [
+                [
+                  -7,
+                  6
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  8,
+                  8
+                ]
+              ],
+              [
+                [
+                  7,
+                  2
+                ],
+                [
+                  3,
+                  -6
+                ],
+                [
+                  7,
+                  -6
+                ],
+                [
+                  2,
+                  6
+                ],
+                [
+                  -3,
+                  -9
+                ],
+                [
+                  8,
+                  5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "81791202201799/943420948470"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -1,
+                  -8
+                ],
+                [
+                  -4,
+                  0
+                ],
+                [
+                  -4,
+                  6
+                ],
+                [
+                  -1,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ],
+                [
+                  -9,
+                  -9
+                ],
+                [
+                  8,
+                  -8
+                ]
+              ],
+              [
+                [
+                  8,
+                  -3
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  -2,
+                  -3
+                ]
+              ],
+              [
+                [
+                  -1,
+                  7
+                ],
+                [
+                  -3,
+                  6
+                ],
+                [
+                  7,
+                  -6
+                ],
+                [
+                  -9,
+                  -5
+                ],
+                [
+                  -8,
+                  8
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "1828971236943743/11130424898880"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -7,
+                  -7
+                ],
+                [
+                  9,
+                  8
+                ],
+                [
+                  -6,
+                  -2
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  5,
+                  3
+                ]
+              ],
+              [
+                [
+                  6,
+                  -3
+                ],
+                [
+                  -3,
+                  3
+                ],
+                [
+                  -3,
+                  4
+                ],
+                [
+                  9,
+                  -4
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "9695785/381276"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  4,
+                  0
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "8"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "16"
+          },
+          "actual": {
+            "candidate_exception": "KeyError"
+          }
+        }
+      ],
+      "execution": {
+        "backend": "docker",
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "returncode": 0,
+        "seconds": 0.31339370808564126,
+        "error": null,
+        "outputs": [
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          },
+          {
+            "candidate_exception": "KeyError"
+          }
+        ],
+        "cleanup_confirmed": true
+      }
+    }
+  },
+  {
+    "model": "qwen2.5:7b",
+    "arm": "simple",
+    "receipt": {
+      "provider": "qwen2.5:7b",
+      "requested_model": "qwen2.5:7b",
+      "usage": {
+        "model": "qwen2.5:7b",
+        "prompt_eval_count": 537,
+        "eval_count": 435,
+        "total_duration": 21207082792,
+        "done_reason": "stop"
+      },
+      "estimated_cost_usd": null,
+      "error": null,
+      "response": {
+        "source": "from math import gcd\n\ndef evaluate(request):\n    rings = request['rings']\n    rule = request['rule']\n    area = 0\n    for ring in rings:\n        if not ring: continue\n        x, y = zip(*ring)\n        n = len(x)\n        winding_numbers = [0] * n\n        for i in range(n):\n            j = (i + 1) % n\n            dx1, dy1 = x[i+1] - x[i], y[i+1] - y[i]\n            dx2, dy2 = x[j] - x[i], y[j] - y[i]\n            cross_product = dx1 * dy2 - dy1 * dx2\n            if rule == 'evenodd':\n                winding_numbers[i] += int(cross_product > 0)\n                winding_numbers[j] -= int(cross_product > 0)\n            else:\n                winding_numbers[i] += (cross_product > 0) - (cross_product < 0)\n        for i in range(n):\n            area += x[i] * y[(i + 1) % n] - y[i] * x[(i + 1) % n]\n    if rule == 'evenodd':\n        area = sum(winding_numbers[i] * (x[i] * y[(i + 1) % n] - y[i] * x[(i + 1) % n]) for i in range(n)) // 2\n    else:\n        area = sum(winding_numbers[i] * (x[i] * y[(i + 1) % n] - y[i] * x[(i + 1) % n]) for i in range(n))\n    common_divisor = gcd(area, abs(area)) if area != 0 else 1\n    return {'area': f'{abs(area) // common_divisor}/{common_divisor}' if area != 0 else '0'}"
+      },
+      "seconds": 21.2846643330995,
+      "exit_code": 0
+    },
+    "result": {
+      "passed": false,
+      "total": 18,
+      "failed": 18,
+      "failures": [
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  3,
+                  -7
+                ],
+                [
+                  -8,
+                  0
+                ],
+                [
+                  -7,
+                  9
+                ],
+                [
+                  2,
+                  -5
+                ],
+                [
+                  4,
+                  3
+                ]
+              ],
+              [
+                [
+                  8,
+                  -7
+                ],
+                [
+                  -9,
+                  8
+                ],
+                [
+                  8,
+                  -7
+                ],
+                [
+                  -3,
+                  -1
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              [
+                [
+                  4,
+                  -7
+                ],
+                [
+                  1,
+                  9
+                ],
+                [
+                  5,
+                  -5
+                ],
+                [
+                  8,
+                  9
+                ],
+                [
+                  6,
+                  -5
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "2173444094526367/27349895913900"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  8,
+                  7
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  -7,
+                  -1
+                ],
+                [
+                  9,
+                  -1
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  -2,
+                  5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "923/14"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  6,
+                  -4
+                ],
+                [
+                  -1,
+                  -1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "13"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -2,
+                  -9
+                ],
+                [
+                  -4,
+                  2
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  8,
+                  7
+                ],
+                [
+                  -5,
+                  -7
+                ],
+                [
+                  5,
+                  -8
+                ],
+                [
+                  -4,
+                  -4
+                ]
+              ],
+              [
+                [
+                  9,
+                  6
+                ],
+                [
+                  -8,
+                  7
+                ],
+                [
+                  5,
+                  -8
+                ]
+              ],
+              [
+                [
+                  -4,
+                  -9
+                ],
+                [
+                  -8,
+                  7
+                ],
+                [
+                  0,
+                  5
+                ],
+                [
+                  7,
+                  -9
+                ],
+                [
+                  -6,
+                  -7
+                ],
+                [
+                  -9,
+                  5
+                ],
+                [
+                  -6,
+                  -5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "4948056028149301882547/34976752913601298800"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -5,
+                  -5
+                ],
+                [
+                  -2,
+                  5
+                ],
+                [
+                  4,
+                  -3
+                ],
+                [
+                  7,
+                  8
+                ],
+                [
+                  2,
+                  -7
+                ]
+              ],
+              [
+                [
+                  -2,
+                  3
+                ],
+                [
+                  9,
+                  -4
+                ],
+                [
+                  2,
+                  -6
+                ],
+                [
+                  1,
+                  -4
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "234295671/4033510"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  2,
+                  6
+                ],
+                [
+                  -4,
+                  3
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  8,
+                  -9
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "978/29"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  7,
+                  6
+                ],
+                [
+                  -5,
+                  -1
+                ],
+                [
+                  -3,
+                  7
+                ],
+                [
+                  -6,
+                  3
+                ],
+                [
+                  -8,
+                  -5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  6,
+                  -1
+                ]
+              ],
+              [
+                [
+                  -1,
+                  -7
+                ],
+                [
+                  5,
+                  -8
+                ],
+                [
+                  -1,
+                  -2
+                ],
+                [
+                  2,
+                  -1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  -7,
+                  -3
+                ]
+              ],
+              [
+                [
+                  4,
+                  -7
+                ],
+                [
+                  8,
+                  8
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  -7,
+                  4
+                ],
+                [
+                  -1,
+                  -5
+                ],
+                [
+                  7,
+                  0
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "19395332248313/203940430980"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  6,
+                  1
+                ],
+                [
+                  9,
+                  -9
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  3,
+                  -2
+                ],
+                [
+                  1,
+                  4
+                ]
+              ],
+              [
+                [
+                  -1,
+                  -9
+                ],
+                [
+                  3,
+                  9
+                ],
+                [
+                  -6,
+                  4
+                ]
+              ],
+              [
+                [
+                  8,
+                  7
+                ],
+                [
+                  -4,
+                  4
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  4,
+                  -2
+                ],
+                [
+                  2,
+                  -9
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  -2,
+                  7
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "159582697204059137069/1437966611276691496"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -7,
+                  -4
+                ],
+                [
+                  7,
+                  -2
+                ],
+                [
+                  -3,
+                  -7
+                ],
+                [
+                  -6,
+                  9
+                ]
+              ],
+              [
+                [
+                  -2,
+                  -3
+                ],
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  7,
+                  -4
+                ]
+              ],
+              [
+                [
+                  9,
+                  -2
+                ],
+                [
+                  -3,
+                  -7
+                ],
+                [
+                  -2,
+                  9
+                ],
+                [
+                  -6,
+                  -2
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "10071502001/150565728"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  9,
+                  5
+                ],
+                [
+                  2,
+                  -2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  6,
+                  -4
+                ],
+                [
+                  1,
+                  7
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  8
+                ]
+              ],
+              [
+                [
+                  7,
+                  -1
+                ],
+                [
+                  -7,
+                  5
+                ],
+                [
+                  -9,
+                  -1
+                ],
+                [
+                  -6,
+                  6
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "112918040681179/2452787620920"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  9,
+                  6
+                ],
+                [
+                  -6,
+                  -2
+                ],
+                [
+                  5,
+                  -8
+                ],
+                [
+                  -6,
+                  1
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  -2,
+                  -1
+                ],
+                [
+                  0,
+                  8
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "680912167/11053441"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  3,
+                  1
+                ],
+                [
+                  -6,
+                  -8
+                ],
+                [
+                  -4,
+                  -5
+                ],
+                [
+                  -1,
+                  3
+                ],
+                [
+                  -5,
+                  1
+                ],
+                [
+                  4,
+                  -9
+                ]
+              ],
+              [
+                [
+                  -7,
+                  -9
+                ],
+                [
+                  8,
+                  8
+                ],
+                [
+                  9,
+                  -8
+                ],
+                [
+                  -7,
+                  -7
+                ],
+                [
+                  -9,
+                  -4
+                ],
+                [
+                  6,
+                  -7
+                ],
+                [
+                  9,
+                  -1
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "14556768124299322463/150587818621109100"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  4,
+                  -6
+                ],
+                [
+                  7,
+                  2
+                ],
+                [
+                  5,
+                  -3
+                ]
+              ],
+              [
+                [
+                  -3,
+                  8
+                ],
+                [
+                  5,
+                  -1
+                ],
+                [
+                  4,
+                  6
+                ]
+              ],
+              [
+                [
+                  9,
+                  1
+                ],
+                [
+                  -8,
+                  0
+                ],
+                [
+                  6,
+                  -6
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  -2,
+                  7
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "31952350425749933/466961703398580"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -2,
+                  3
+                ],
+                [
+                  -3,
+                  1
+                ],
+                [
+                  6,
+                  -7
+                ],
+                [
+                  -5,
+                  -2
+                ],
+                [
+                  -4,
+                  4
+                ]
+              ],
+              [
+                [
+                  -7,
+                  6
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  8,
+                  8
+                ]
+              ],
+              [
+                [
+                  7,
+                  2
+                ],
+                [
+                  3,
+                  -6
+                ],
+                [
+                  7,
+                  -6
+                ],
+                [
+                  2,
+                  6
+                ],
+                [
+                  -3,
+                  -9
+                ],
+                [
+                  8,
+                  5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "81791202201799/943420948470"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -1,
+                  -8
+                ],
+                [
+                  -4,
+                  0
+                ],
+                [
+                  -4,
+                  6
+                ],
+                [
+                  -1,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ],
+                [
+                  -9,
+                  -9
+                ],
+                [
+                  8,
+                  -8
+                ]
+              ],
+              [
+                [
+                  8,
+                  -3
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  -2,
+                  -3
+                ]
+              ],
+              [
+                [
+                  -1,
+                  7
+                ],
+                [
+                  -3,
+                  6
+                ],
+                [
+                  7,
+                  -6
+                ],
+                [
+                  -9,
+                  -5
+                ],
+                [
+                  -8,
+                  8
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "1828971236943743/11130424898880"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -7,
+                  -7
+                ],
+                [
+                  9,
+                  8
+                ],
+                [
+                  -6,
+                  -2
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  5,
+                  3
+                ]
+              ],
+              [
+                [
+                  6,
+                  -3
+                ],
+                [
+                  -3,
+                  3
+                ],
+                [
+                  -3,
+                  4
+                ],
+                [
+                  9,
+                  -4
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "9695785/381276"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  4,
+                  0
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "8"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "16"
+          },
+          "actual": {
+            "candidate_exception": "IndexError"
+          }
+        }
+      ],
+      "execution": {
+        "backend": "docker",
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "returncode": 0,
+        "seconds": 0.3094008748885244,
+        "error": null,
+        "outputs": [
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          },
+          {
+            "candidate_exception": "IndexError"
+          }
+        ],
+        "cleanup_confirmed": true
+      }
+    }
+  },
+  {
+    "model": "llama3.2:1b",
+    "arm": "simple",
+    "receipt": {
+      "provider": "llama3.2:1b",
+      "requested_model": "llama3.2:1b",
+      "usage": {
+        "model": "llama3.2:1b",
+        "prompt_eval_count": 499,
+        "eval_count": 15,
+        "total_duration": 1581499875,
+        "done_reason": "stop"
+      },
+      "estimated_cost_usd": null,
+      "error": null,
+      "response": {
+        "source": "def evaluate(request):\n"
+      },
+      "seconds": 1.6942247909028083,
+      "exit_code": 0
+    },
+    "result": {
+      "passed": false,
+      "total": 18,
+      "failed": 18,
+      "failures": [],
+      "execution": {
+        "backend": "docker",
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "returncode": 1,
+        "seconds": 0.22822591685689986,
+        "error": "candidate_or_runtime_exit",
+        "outputs": null,
+        "cleanup_confirmed": true
+      }
+    }
+  },
+  {
+    "model": "qwen2.5:7b",
+    "arm": "guided",
+    "receipt": {
+      "provider": "qwen2.5:7b",
+      "requested_model": "qwen2.5:7b",
+      "usage": {
+        "model": "qwen2.5:7b",
+        "prompt_eval_count": 724,
+        "eval_count": 1039,
+        "total_duration": 42338511500,
+        "done_reason": "stop"
+      },
+      "estimated_cost_usd": null,
+      "error": null,
+      "response": {
+        "source": "from fractions import Fraction\n\ndef evaluate(request):\n    def line_eq(p1, p2):\n        x1, y1 = p1\n        x2, y2 = p2\n        if x1 == x2:\n            return None, x1\n        a = (y2 - y1) / (x2 - x1)\n        b = y1 - a * x1\n        return Fraction(a).limit_denominator(), Fraction(b).limit_denominator()\n\ndef find_intersections(rings):\n    intersections = set()\n    for i, ring in enumerate(rings):\n        for j in range(len(ring) - 1):\n            p1, p2 = ring[j], ring[(j + 1) % len(ring)]\n            line_a, line_b = line_eq(p1, p2)\n            if not line_a:\n                continue\n            for k, other_ring in enumerate(rings):\n                if i == k:\n                    continue\n                for l in range(len(other_ring) - 1):\n                    q1, q2 = other_ring[l], other_ring[(l + 1) % len(other_ring)]\n                    if line_eq(q1, q2)[0] == line_a:\n                        x_intersect = (q1[1] - line_b) / line_a\n                        y_intersect = line_a * x_intersect + line_b\n                        intersections.add((x_intersect, y_intersect))\n    return sorted(intersections)\n\ndef process_slab(y, left, right, rule):\n    active_edges = []\n    for edge in left:\n        if edge[1] < y <= edge[2]:\n            active_edges.append(edge)\n    for edge in right:\n        if edge[0] < y <= edge[1]:\n            active_edges.append(edge)\n    active_edges.sort()\n    x_values = [edge[0] for edge in active_edges]\n    x_values += [edge[2] for edge in active_edges]\n    x_values = sorted(set(x_values))\n    total_winding = 0\n    i = 0\n    while i < len(active_edges) - 1:\n        j = i + 1\n        while j < len(active_edges) and active_edges[j][0] == active_edges[i][2]:\n            j += 1\n        for x in range(int(active_edges[i][2]) + 1, int(active_edges[j - 1][0])):\n            total_winding += sum(1 if active_edges[k][0] < x <= active_edges[k][2] else -1 for k in range(i, j))\n        i = j\n    return total_winding % 2 != 0 or (rule == 'nonzero' and total_winding != 0)\n\ndef integrate_slab(y, height):\n    if not process_slab(y, left_edges, right_edges, rule):\n        return Fraction(0)\n    x_left = min(edge[0] for edge in left_edges if y <= edge[2])\n    x_right = max(edge[2] for edge in right_edges if y >= edge[0])\n    area = (x_right - x_left) * height / 2\n    return Fraction(area).limit_denominator()\n\ndef evaluate(request):\n    rings = request['rings']\n    rule = request['rule']\n    intersections = find_intersections(rings)\n    y_values = sorted(set([p[1] for p in intersections])) + [max(p[1] for ring in rings for p in ring)]\n    total_area = Fraction(0)\n    left_edges, right_edges = [], []\n    for i in range(len(y_values) - 1):\n        y1, y2 = y_values[i], y_values[i + 1]\n        height = y2 - y1\n        slab_intersections = [p for p in intersections if y1 < p[1] <= y2]\n        left_edges = [(x, y1, y) for x, y in rings[0]]\n        right_edges = [(x, y, y2) for x, y in rings[0]]\n        for ring in rings[1:]:\n            new_left_edges = []\n            new_right_edges = []\n            for p in slab_intersections:\n                if rule == 'evenodd':\n                    total_area += integrate_slab(p[1], height)\n                else:\n                    left_edges.append((p[0], y1, p[1]))\n                    right_edges.append((p[0], p[1], y2))\n    return {'area': str(total_area)}"
+      },
+      "seconds": 42.38788575003855,
+      "exit_code": 0
+    },
+    "result": {
+      "passed": false,
+      "total": 18,
+      "failed": 18,
+      "failures": [
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  3,
+                  -7
+                ],
+                [
+                  -8,
+                  0
+                ],
+                [
+                  -7,
+                  9
+                ],
+                [
+                  2,
+                  -5
+                ],
+                [
+                  4,
+                  3
+                ]
+              ],
+              [
+                [
+                  8,
+                  -7
+                ],
+                [
+                  -9,
+                  8
+                ],
+                [
+                  8,
+                  -7
+                ],
+                [
+                  -3,
+                  -1
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              [
+                [
+                  4,
+                  -7
+                ],
+                [
+                  1,
+                  9
+                ],
+                [
+                  5,
+                  -5
+                ],
+                [
+                  8,
+                  9
+                ],
+                [
+                  6,
+                  -5
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "2173444094526367/27349895913900"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  8,
+                  7
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  -7,
+                  -1
+                ],
+                [
+                  9,
+                  -1
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  -2,
+                  5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "923/14"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  6,
+                  -4
+                ],
+                [
+                  -1,
+                  -1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "13"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -2,
+                  -9
+                ],
+                [
+                  -4,
+                  2
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  8,
+                  7
+                ],
+                [
+                  -5,
+                  -7
+                ],
+                [
+                  5,
+                  -8
+                ],
+                [
+                  -4,
+                  -4
+                ]
+              ],
+              [
+                [
+                  9,
+                  6
+                ],
+                [
+                  -8,
+                  7
+                ],
+                [
+                  5,
+                  -8
+                ]
+              ],
+              [
+                [
+                  -4,
+                  -9
+                ],
+                [
+                  -8,
+                  7
+                ],
+                [
+                  0,
+                  5
+                ],
+                [
+                  7,
+                  -9
+                ],
+                [
+                  -6,
+                  -7
+                ],
+                [
+                  -9,
+                  5
+                ],
+                [
+                  -6,
+                  -5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "4948056028149301882547/34976752913601298800"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -5,
+                  -5
+                ],
+                [
+                  -2,
+                  5
+                ],
+                [
+                  4,
+                  -3
+                ],
+                [
+                  7,
+                  8
+                ],
+                [
+                  2,
+                  -7
+                ]
+              ],
+              [
+                [
+                  -2,
+                  3
+                ],
+                [
+                  9,
+                  -4
+                ],
+                [
+                  2,
+                  -6
+                ],
+                [
+                  1,
+                  -4
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "234295671/4033510"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  2,
+                  6
+                ],
+                [
+                  -4,
+                  3
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  8,
+                  -9
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "978/29"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  7,
+                  6
+                ],
+                [
+                  -5,
+                  -1
+                ],
+                [
+                  -3,
+                  7
+                ],
+                [
+                  -6,
+                  3
+                ],
+                [
+                  -8,
+                  -5
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  6,
+                  -1
+                ]
+              ],
+              [
+                [
+                  -1,
+                  -7
+                ],
+                [
+                  5,
+                  -8
+                ],
+                [
+                  -1,
+                  -2
+                ],
+                [
+                  2,
+                  -1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  -7,
+                  -3
+                ]
+              ],
+              [
+                [
+                  4,
+                  -7
+                ],
+                [
+                  8,
+                  8
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  -7,
+                  4
+                ],
+                [
+                  -1,
+                  -5
+                ],
+                [
+                  7,
+                  0
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "19395332248313/203940430980"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  6,
+                  1
+                ],
+                [
+                  9,
+                  -9
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  3,
+                  -2
+                ],
+                [
+                  1,
+                  4
+                ]
+              ],
+              [
+                [
+                  -1,
+                  -9
+                ],
+                [
+                  3,
+                  9
+                ],
+                [
+                  -6,
+                  4
+                ]
+              ],
+              [
+                [
+                  8,
+                  7
+                ],
+                [
+                  -4,
+                  4
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  4,
+                  -2
+                ],
+                [
+                  2,
+                  -9
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  -2,
+                  7
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "159582697204059137069/1437966611276691496"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -7,
+                  -4
+                ],
+                [
+                  7,
+                  -2
+                ],
+                [
+                  -3,
+                  -7
+                ],
+                [
+                  -6,
+                  9
+                ]
+              ],
+              [
+                [
+                  -2,
+                  -3
+                ],
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  7,
+                  -4
+                ]
+              ],
+              [
+                [
+                  9,
+                  -2
+                ],
+                [
+                  -3,
+                  -7
+                ],
+                [
+                  -2,
+                  9
+                ],
+                [
+                  -6,
+                  -2
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "10071502001/150565728"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  9,
+                  5
+                ],
+                [
+                  2,
+                  -2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  6,
+                  -4
+                ],
+                [
+                  1,
+                  7
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  8
+                ]
+              ],
+              [
+                [
+                  7,
+                  -1
+                ],
+                [
+                  -7,
+                  5
+                ],
+                [
+                  -9,
+                  -1
+                ],
+                [
+                  -6,
+                  6
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "112918040681179/2452787620920"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  9,
+                  6
+                ],
+                [
+                  -6,
+                  -2
+                ],
+                [
+                  5,
+                  -8
+                ],
+                [
+                  -6,
+                  1
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  -2,
+                  -1
+                ],
+                [
+                  0,
+                  8
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "680912167/11053441"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  3,
+                  1
+                ],
+                [
+                  -6,
+                  -8
+                ],
+                [
+                  -4,
+                  -5
+                ],
+                [
+                  -1,
+                  3
+                ],
+                [
+                  -5,
+                  1
+                ],
+                [
+                  4,
+                  -9
+                ]
+              ],
+              [
+                [
+                  -7,
+                  -9
+                ],
+                [
+                  8,
+                  8
+                ],
+                [
+                  9,
+                  -8
+                ],
+                [
+                  -7,
+                  -7
+                ],
+                [
+                  -9,
+                  -4
+                ],
+                [
+                  6,
+                  -7
+                ],
+                [
+                  9,
+                  -1
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "14556768124299322463/150587818621109100"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  4,
+                  -6
+                ],
+                [
+                  7,
+                  2
+                ],
+                [
+                  5,
+                  -3
+                ]
+              ],
+              [
+                [
+                  -3,
+                  8
+                ],
+                [
+                  5,
+                  -1
+                ],
+                [
+                  4,
+                  6
+                ]
+              ],
+              [
+                [
+                  9,
+                  1
+                ],
+                [
+                  -8,
+                  0
+                ],
+                [
+                  6,
+                  -6
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  -2,
+                  7
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "31952350425749933/466961703398580"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -2,
+                  3
+                ],
+                [
+                  -3,
+                  1
+                ],
+                [
+                  6,
+                  -7
+                ],
+                [
+                  -5,
+                  -2
+                ],
+                [
+                  -4,
+                  4
+                ]
+              ],
+              [
+                [
+                  -7,
+                  6
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  8,
+                  8
+                ]
+              ],
+              [
+                [
+                  7,
+                  2
+                ],
+                [
+                  3,
+                  -6
+                ],
+                [
+                  7,
+                  -6
+                ],
+                [
+                  2,
+                  6
+                ],
+                [
+                  -3,
+                  -9
+                ],
+                [
+                  8,
+                  5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "81791202201799/943420948470"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -1,
+                  -8
+                ],
+                [
+                  -4,
+                  0
+                ],
+                [
+                  -4,
+                  6
+                ],
+                [
+                  -1,
+                  3
+                ],
+                [
+                  8,
+                  5
+                ],
+                [
+                  -9,
+                  -9
+                ],
+                [
+                  8,
+                  -8
+                ]
+              ],
+              [
+                [
+                  8,
+                  -3
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  -2,
+                  -3
+                ]
+              ],
+              [
+                [
+                  -1,
+                  7
+                ],
+                [
+                  -3,
+                  6
+                ],
+                [
+                  7,
+                  -6
+                ],
+                [
+                  -9,
+                  -5
+                ],
+                [
+                  -8,
+                  8
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "1828971236943743/11130424898880"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -7,
+                  -7
+                ],
+                [
+                  9,
+                  8
+                ],
+                [
+                  -6,
+                  -2
+                ],
+                [
+                  -2,
+                  2
+                ],
+                [
+                  5,
+                  3
+                ]
+              ],
+              [
+                [
+                  6,
+                  -3
+                ],
+                [
+                  -3,
+                  3
+                ],
+                [
+                  -3,
+                  4
+                ],
+                [
+                  9,
+                  -4
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "9695785/381276"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  4,
+                  0
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "8"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "16"
+          },
+          "actual": {
+            "candidate_exception": "NameError"
+          }
+        }
+      ],
+      "execution": {
+        "backend": "docker",
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "returncode": 0,
+        "seconds": 0.36468475009314716,
+        "error": null,
+        "outputs": [
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          },
+          {
+            "candidate_exception": "NameError"
+          }
+        ],
+        "cleanup_confirmed": true
+      }
+    }
+  }
+]

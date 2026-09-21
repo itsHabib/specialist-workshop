@@ -1,0 +1,1 @@
+Return JSON with action="finish", hypothesis="ready", prediction="", source="", probes_json="[]". No other task.

@@ -1,0 +1,18 @@
+{
+  "provider": "llama3.2:1b",
+  "requested_model": "llama3.2:1b",
+  "usage": {
+    "model": "llama3.2:1b",
+    "prompt_eval_count": 499,
+    "eval_count": 15,
+    "total_duration": 1581499875,
+    "done_reason": "stop"
+  },
+  "estimated_cost_usd": null,
+  "error": null,
+  "response": {
+    "source": "def evaluate(request):\n"
+  },
+  "seconds": 1.6942247909028083,
+  "exit_code": 0
+}

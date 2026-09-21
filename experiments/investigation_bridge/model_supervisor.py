@@ -68,7 +68,7 @@ def run(out):
     request = json.loads((out / "request.json").read_text())
     provider = request["provider"]
     receipt = {"provider": provider,
-               "requested_model": "claude-opus-5" if provider == "opus" else "gpt-6-astra",
+               "requested_model": request.get("requested_model", "claude-opus-5" if provider == "opus" else "gpt-6-astra"),
                "usage": None, "estimated_cost_usd": None, "error": None, "response": None}
     process = None
     interrupted = False

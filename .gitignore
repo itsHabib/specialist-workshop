@@ -17,3 +17,6 @@ secrets/
 *.epub
 *.pdf
 coverage/
+
+# Private native model receipts for bounded experiments.
+/.runs/

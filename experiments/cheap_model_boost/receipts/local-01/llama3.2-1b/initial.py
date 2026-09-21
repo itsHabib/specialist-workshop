@@ -1,0 +1,1 @@
+Python code to evaluate the signed winding numbers of all walks in a list of closed polygonal walks with a given rule.

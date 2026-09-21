@@ -1,0 +1,80 @@
+[
+  {
+    "task": "flow",
+    "provider": "opus",
+    "accepted": true,
+    "status": "finished",
+    "error": null,
+    "calls": 1,
+    "seconds": 137.8209920001682,
+    "estimated_cost_usd": 0.327636,
+    "final_total": 44,
+    "final_unseen_total": 42,
+    "final_failed": 0
+  },
+  {
+    "task": "leases",
+    "provider": "astra",
+    "accepted": true,
+    "status": "finished",
+    "error": null,
+    "calls": 1,
+    "seconds": 43.77948308293708,
+    "estimated_cost_usd": null,
+    "final_total": 31,
+    "final_unseen_total": 30,
+    "final_failed": 0
+  },
+  {
+    "task": "geometry",
+    "provider": "opus",
+    "accepted": false,
+    "status": "incomplete",
+    "error": "timeout_usage_unknown",
+    "calls": 1,
+    "seconds": 150.4590318328701,
+    "estimated_cost_usd": null,
+    "final_total": 20,
+    "final_unseen_total": 18,
+    "final_failed": null
+  },
+  {
+    "task": "geometry",
+    "provider": "astra",
+    "accepted": true,
+    "status": "finished",
+    "error": null,
+    "calls": 1,
+    "seconds": 58.651837665820494,
+    "estimated_cost_usd": null,
+    "final_total": 20,
+    "final_unseen_total": 18,
+    "final_failed": 0
+  },
+  {
+    "task": "leases",
+    "provider": "opus",
+    "accepted": true,
+    "status": "finished",
+    "error": null,
+    "calls": 1,
+    "seconds": 67.50149041600525,
+    "estimated_cost_usd": 0.17073600000000003,
+    "final_total": 31,
+    "final_unseen_total": 30,
+    "final_failed": 0
+  },
+  {
+    "task": "flow",
+    "provider": "astra",
+    "accepted": true,
+    "status": "finished",
+    "error": null,
+    "calls": 1,
+    "seconds": 82.08829645812511,
+    "estimated_cost_usd": null,
+    "final_total": 44,
+    "final_unseen_total": 42,
+    "final_failed": 0
+  }
+]

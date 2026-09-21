@@ -1,0 +1,138 @@
+{
+  "task": "geometry",
+  "provider": "astra",
+  "accepted": true,
+  "status": "finished",
+  "error": null,
+  "calls": [
+    {
+      "provider": "astra",
+      "requested_model": "gpt-6-astra",
+      "usage": {
+        "input_tokens": 15301,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1691,
+        "reasoning_output_tokens": 978
+      },
+      "estimated_cost_usd": null,
+      "error": null,
+      "response": {
+        "action": "edit",
+        "hypothesis": "Partition the x-axis at every vertex and segment crossing. Within each open slab, edge order is fixed and filled vertical length is affine, so its exact midpoint value times slab width gives the area. Accumulate signed crossings across all walks together.",
+        "prediction": "Handles self-intersections, coincident and retraced edges, repeated vertices, opposite orientations, degenerate walks, both fill rules, and large coordinates using exact rational arithmetic.",
+        "source": "from fractions import Fraction\nimport sys\n\n\ndef evaluate(request):\n    edges = []\n    cuts = set()\n\n    for ring in request.get('rings', []):\n        n = len(ring)\n        if not n:\n            continue\n        for i in range(n):\n            x1, y1 = ring[i]\n            x2, y2 = ring[(i + 1) % n]\n            cuts.add(Fraction(x1))\n            dx = x2 - x1\n            if dx == 0:\n                continue\n            slope = Fraction(y2 - y1, dx)\n            intercept = Fraction(y1) - slope * x1\n            edges.append((min(x1, x2), max(x1, x2),\n                          slope, intercept, 1 if dx > 0 else -1))\n\n    if not edges:\n        return {'area': '0'}\n\n    for i, edge in enumerate(edges):\n        lo1, hi1, m1, b1, _ = edge\n        for j in range(i):\n            lo2, hi2, m2, b2, _ = edges[j]\n            lo = max(lo1, lo2)\n            hi = min(hi1, hi2)\n            if lo >= hi or m1 == m2:\n                continue\n            crossing = (b2 - b1) / (m1 - m2)\n            if lo < crossing < hi:\n                cuts.add(crossing)\n\n    cuts = sorted(cuts)\n    evenodd = request['rule'] == 'evenodd'\n    area = Fraction(0)\n\n    for left, right in zip(cuts, cuts[1:]):\n        midpoint = (left + right) / 2\n        crossings = []\n        for lo, hi, slope, intercept, delta in edges:\n            if lo < midpoint < hi:\n                crossings.append((slope * midpoint + intercept, delta))\n        crossings.sort()\n\n        winding = 0\n        previous_y = None\n        filled_length = Fraction(0)\n        for y, delta in crossings:\n            filled = (winding % 2 != 0) if evenodd else (winding != 0)\n            if previous_y is not None and filled:\n                filled_length += y - previous_y\n            winding += delta\n            previous_y = y\n\n        area += filled_length * (right - left)\n\n    # Exact results can exceed Python's default decimal conversion limit.\n    if hasattr(sys, 'set_int_max_str_digits'):\n        sys.set_int_max_str_digits(0)\n    return {'area': str(area)}\n",
+        "probes_json": "[]"
+      },
+      "seconds": 58.09962125006132,
+      "exit_code": 0,
+      "tool_events": 0
+    }
+  ],
+  "development": {
+    "passed": true,
+    "total": 4,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "docker",
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "returncode": 0,
+      "seconds": 0.29718195903114974,
+      "error": null,
+      "outputs": [
+        {
+          "area": "1172007417377/12373387950"
+        },
+        {
+          "area": "145/2"
+        },
+        {
+          "area": "0"
+        },
+        {
+          "area": "1/2"
+        }
+      ],
+      "cleanup_confirmed": true
+    }
+  },
+  "final": {
+    "passed": true,
+    "total": 20,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "docker",
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "returncode": 0,
+      "seconds": 0.18910445808432996,
+      "error": null,
+      "outputs": [
+        {
+          "area": "14"
+        },
+        {
+          "area": "3198877408659073364074739/22859383769187383527200"
+        },
+        {
+          "area": "110852315953061/2166053293404"
+        },
+        {
+          "area": "208825097/4712400"
+        },
+        {
+          "area": "130311081/4278560"
+        },
+        {
+          "area": "2794/49"
+        },
+        {
+          "area": "44474906185277402759/680996611204449408"
+        },
+        {
+          "area": "66"
+        },
+        {
+          "area": "798137735024819129/7703739829353945"
+        },
+        {
+          "area": "43237/600"
+        },
+        {
+          "area": "1380230808677421877495889/29014044329033660496600"
+        },
+        {
+          "area": "16575449825828956150237/144371108986535471040"
+        },
+        {
+          "area": "1520221630310491957/13079145956516640"
+        },
+        {
+          "area": "1472993157089/13995440910"
+        },
+        {
+          "area": "2463/143"
+        },
+        {
+          "area": "118095337223/4042321668"
+        },
+        {
+          "area": "8"
+        },
+        {
+          "area": "16"
+        },
+        {
+          "area": "0"
+        },
+        {
+          "area": "1/2"
+        }
+      ],
+      "cleanup_confirmed": true
+    }
+  },
+  "seconds": 58.651837665820494,
+  "source_sha256": "81f6a38d0fe468af123d703b12e17dd1ce08ad9f1ab0f51d6f13796aab45fdcf"
+}

@@ -60,6 +60,7 @@ def freeze(root, diagnostic=False):
 def reference_source(name):
     prelude='from fractions import Fraction as F\nfrom functools import lru_cache\n'
     if name=='leases':prelude+=inspect.getsource(tasks.step)+'\n'
+    if name=='geometry':prelude+=inspect.getsource(tasks.integer_text)+'\n'
     return prelude+inspect.getsource(tasks.REFERENCES[name])+f'\nevaluate={name}\n'
 
 

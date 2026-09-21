@@ -18,6 +18,10 @@ class OracleTests(unittest.TestCase):
         self.assertEqual(tasks.flow(a),{'cost':-2999996})
         self.assertEqual(tasks.flow(b),{'cost':-3000000})
 
+    def test_integer_serialization_above_python_default_limit(self):
+        self.assertEqual(tasks.integer_text(10**6000+17),'1'+'0'*5998+'17')
+        self.assertEqual(tasks.integer_text(-(10**6000+17)),'-1'+'0'*5998+'17')
+
     def test_geometry_hand_answers(self):
         for ring,answer in [([[0,0],[4,4],[0,4],[4,0]],'8'),([[0,0],[4,0],[4,3],[0,3]],'12'),([[0,0],[1000000000,1],[999999999,1]],'1/2'),([[0,0],[0,0],[1,1]],'0')]:
             for rule in ('evenodd','nonzero'):

@@ -1,0 +1,171 @@
+{
+  "task": "leases",
+  "provider": "astra",
+  "accepted": true,
+  "status": "finished",
+  "error": null,
+  "calls": [
+    {
+      "provider": "astra",
+      "requested_model": "gpt-6-astra",
+      "usage": {
+        "input_tokens": 15954,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1252,
+        "reasoning_output_tokens": 514
+      },
+      "estimated_cost_usd": null,
+      "error": null,
+      "response": {
+        "action": "edit",
+        "hypothesis": "Memoized search explores real-time-compatible operation orders and simulates the queue exactly. Pending operations can be included with unconstrained results or omitted. Whenever a lease exists, its token equals the current generation.",
+        "prediction": "Handles all histories up to nine operations, including pending calls, nonmonotonic supplied times, deadline equality, resets, stale tokens, and boolean-versus-numeric distinctions.",
+        "source": "from functools import lru_cache\n\n\ndef evaluate(request):\n    history = request['history']\n    n = len(history)\n    required = 0\n    predecessors = [0] * n\n    for i, operation in enumerate(history):\n        if operation['end'] is not None:\n            required |= 1 << i\n        for j, earlier in enumerate(history):\n            if earlier['end'] is not None and earlier['end'] < operation['start']:\n                predecessors[i] |= 1 << j\n\n    order = sorted(range(n), key=lambda i: history[i]['end'] is None)\n\n    def equal(a, b):\n        if isinstance(a, bool) or isinstance(b, bool):\n            return isinstance(a, bool) and isinstance(b, bool) and a == b\n        return a == b\n\n    @lru_cache(maxsize=None)\n    def search(mask, generation, lease, done):\n        if (mask & required) == required:\n            return True\n        for i in order:\n            bit = 1 << i\n            if mask & bit or predecessors[i] & ~mask:\n                continue\n            operation = history[i]\n            args = operation['args']\n            kind = operation['op']\n            next_generation, next_lease, next_done = generation, lease, done\n\n            if kind == 'reset':\n                next_generation = generation + 1\n                next_lease = -1\n                next_done = False\n                result = next_generation\n            elif kind == 'claim':\n                active = False\n                if lease >= 0:\n                    previous = history[lease]['args']\n                    active = args['now'] < previous['now'] + previous['ttl']\n                if done or active:\n                    result = None\n                else:\n                    next_generation = generation + 1\n                    next_lease = i\n                    result = next_generation\n            elif kind == 'finish':\n                result = False\n                if not done and lease >= 0:\n                    previous = history[lease]['args']\n                    # A reset clears the lease; a successful claim installs\n                    # a lease with the newly incremented generation.\n                    result = bool(\n                        equal(args['worker'], previous['worker'])\n                        and equal(args['token'], generation)\n                        and args['now'] < previous['now'] + previous['ttl']\n                    )\n                if result:\n                    next_done = True\n            else:\n                continue\n\n            if operation['end'] is not None and not equal(result, operation['result']):\n                continue\n            if search(mask | bit, next_generation, next_lease, next_done):\n                return True\n        return False\n\n    return {'linearizable': search(0, 0, -1, False)}\n",
+        "probes_json": "[]"
+      },
+      "seconds": 43.257469499949366,
+      "exit_code": 0,
+      "tool_events": 0
+    }
+  ],
+  "development": {
+    "passed": true,
+    "total": 4,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "docker",
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "returncode": 0,
+      "seconds": 0.2986992090009153,
+      "error": null,
+      "outputs": [
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        }
+      ],
+      "cleanup_confirmed": true
+    }
+  },
+  "final": {
+    "passed": true,
+    "total": 31,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "docker",
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "returncode": 0,
+      "seconds": 0.18162041692994535,
+      "error": null,
+      "outputs": [
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        }
+      ],
+      "cleanup_confirmed": true
+    }
+  },
+  "seconds": 43.77948308293708,
+  "source_sha256": "ccd791891ff772f7121dec42afab6e1bf7eff2692cc30a2595d018dc6f9baf86"
+}

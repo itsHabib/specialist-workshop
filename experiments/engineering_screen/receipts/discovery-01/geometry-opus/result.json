@@ -1,0 +1,23 @@
+{
+  "task": "geometry",
+  "provider": "opus",
+  "accepted": false,
+  "status": "incomplete",
+  "error": "timeout_usage_unknown",
+  "calls": [
+    {
+      "provider": "opus",
+      "requested_model": "claude-opus-5",
+      "usage": null,
+      "estimated_cost_usd": null,
+      "error": "timeout_usage_unknown",
+      "response": null,
+      "seconds": 150.40757554210722,
+      "exit_code": 143
+    }
+  ],
+  "development": null,
+  "final": null,
+  "seconds": 150.4590318328701,
+  "source_sha256": null
+}

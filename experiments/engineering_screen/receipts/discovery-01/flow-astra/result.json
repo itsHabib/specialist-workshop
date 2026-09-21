@@ -1,0 +1,210 @@
+{
+  "task": "flow",
+  "provider": "astra",
+  "accepted": true,
+  "status": "finished",
+  "error": null,
+  "calls": [
+    {
+      "provider": "astra",
+      "requested_model": "gpt-6-astra",
+      "usage": {
+        "input_tokens": 15456,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2538,
+        "reasoning_output_tokens": 1394
+      },
+      "estimated_cost_usd": null,
+      "error": null,
+      "response": {
+        "action": "edit",
+        "hypothesis": "Start every edge at its individually cheapest bound, giving a residual network with nonnegative costs. Repair node imbalances using minimum-cost flow with Dijkstra potentials and blocking flows on zero reduced-cost edges. This optimizes all components, including disconnected negative circulations.",
+        "prediction": "Returns the exact minimum integer cost or null for infeasibility; handles lower bounds, parallel edges, self-loops, negative costs and cycles, disconnected components, zero amounts, and large capacities without enumerating flow assignments.",
+        "source": "from collections import deque\nfrom heapq import heappush, heappop\n\n\ndef evaluate(request):\n    n = request['n']\n    source = request['source']\n    sink = request['sink']\n    amount = request['amount']\n    ss, tt = n, n + 1\n    size = n + 2\n    graph = [[] for _ in range(size)]\n    balance = [0] * n\n    balance[source] = amount\n    balance[sink] = -amount\n    cost = 0\n\n    def add_pair(u, v, forward, backward, weight):\n        # Self-loops are optimized separately below.\n        a = [v, len(graph[v]), forward, weight]\n        b = [u, len(graph[u]), backward, -weight]\n        graph[u].append(a)\n        graph[v].append(b)\n\n    for edge in request['edges']:\n        u, v = edge['u'], edge['v']\n        lower, upper = edge['lower'], edge['upper']\n        weight = edge['cost']\n        flow = upper if weight < 0 else lower\n        cost += flow * weight\n        if u == v:\n            continue\n        balance[u] -= flow\n        balance[v] += flow\n        if upper > lower:\n            add_pair(u, v, upper - flow, flow - lower, weight)\n\n    required = 0\n    for v, b in enumerate(balance):\n        if b > 0:\n            add_pair(ss, v, b, 0, 0)\n            required += b\n        elif b < 0:\n            add_pair(v, tt, -b, 0, 0)\n\n    if required == 0:\n        return {'cost': cost}\n\n    potential = [0] * size\n    sent = 0\n    infinity = float('inf')\n\n    def send_zero(v, limit):\n        if v == tt:\n            return limit\n        while cursor[v] < len(graph[v]):\n            edge = graph[v][cursor[v]]\n            w, reverse, capacity, weight = edge\n            if (capacity > 0 and level[w] == level[v] + 1\n                    and weight + potential[v] - potential[w] == 0):\n                pushed = send_zero(w, min(limit, capacity))\n                if pushed:\n                    edge[2] -= pushed\n                    graph[w][reverse][2] += pushed\n                    return pushed\n            cursor[v] += 1\n        return 0\n\n    while sent < required:\n        distance = [infinity] * size\n        distance[ss] = 0\n        heap = [(0, ss)]\n        while heap:\n            current, v = heappop(heap)\n            if current != distance[v]:\n                continue\n            for w, reverse, capacity, weight in graph[v]:\n                if capacity <= 0:\n                    continue\n                candidate = current + weight + potential[v] - potential[w]\n                if candidate < distance[w]:\n                    distance[w] = candidate\n                    heappush(heap, (candidate, w))\n\n        if distance[tt] == infinity:\n            return {'cost': None}\n\n        # Capping all potential increments preserves nonnegative reduced\n        # costs even on edges entering the reachable region.\n        increment = distance[tt]\n        for v in range(size):\n            potential[v] += min(distance[v], increment)\n\n        unit_cost = potential[tt] - potential[ss]\n\n        # Exhaust all paths at this marginal cost before running Dijkstra\n        # again. Each augmentation sends a whole capacity bottleneck.\n        while sent < required:\n            level = [-1] * size\n            level[ss] = 0\n            queue = deque([ss])\n            while queue:\n                v = queue.popleft()\n                for w, reverse, capacity, weight in graph[v]:\n                    if (capacity > 0 and level[w] < 0\n                            and weight + potential[v] - potential[w] == 0):\n                        level[w] = level[v] + 1\n                        queue.append(w)\n            if level[tt] < 0:\n                break\n\n            cursor = [0] * size\n            while sent < required:\n                pushed = send_zero(ss, required - sent)\n                if pushed == 0:\n                    break\n                sent += pushed\n                cost += pushed * unit_cost\n\n    return {'cost': cost}\n",
+        "probes_json": "[]"
+      },
+      "seconds": 81.61054729204625,
+      "exit_code": 0,
+      "tool_events": 0
+    }
+  ],
+  "development": {
+    "passed": true,
+    "total": 4,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "docker",
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "returncode": 0,
+      "seconds": 0.24128433293662965,
+      "error": null,
+      "outputs": [
+        {
+          "cost": -10
+        },
+        {
+          "cost": -10
+        },
+        {
+          "cost": -2999996
+        },
+        {
+          "cost": -3000000
+        }
+      ],
+      "cleanup_confirmed": true
+    }
+  },
+  "final": {
+    "passed": true,
+    "total": 44,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "docker",
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "returncode": 0,
+      "seconds": 0.1848635422065854,
+      "error": null,
+      "outputs": [
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": -16
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": -9
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": -1
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": 4
+        },
+        {
+          "cost": 1
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": -5
+        },
+        {
+          "cost": -6
+        },
+        {
+          "cost": 1
+        },
+        {
+          "cost": -13
+        },
+        {
+          "cost": -22
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": -14
+        },
+        {
+          "cost": -3
+        },
+        {
+          "cost": -16
+        },
+        {
+          "cost": -11
+        },
+        {
+          "cost": -10
+        },
+        {
+          "cost": -14
+        },
+        {
+          "cost": -10
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": -2999996
+        },
+        {
+          "cost": -3000000
+        }
+      ],
+      "cleanup_confirmed": true
+    }
+  },
+  "seconds": 82.08829645812511,
+  "source_sha256": "5dbe413a4d3196eb036e5009fc2c56bcc6e99bdf758e90124b6b3a7fafa3ac0c"
+}

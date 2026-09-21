@@ -1,0 +1,232 @@
+{
+  "task": "flow",
+  "provider": "opus",
+  "accepted": true,
+  "status": "finished",
+  "error": null,
+  "calls": [
+    {
+      "provider": "opus",
+      "requested_model": "claude-opus-5",
+      "usage": {
+        "claude-haiku-4-5-20251001": {
+          "inputTokens": 1718,
+          "outputTokens": 15,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.0017929999999999999,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-haiku-4-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        },
+        "claude-opus-5": {
+          "inputTokens": 2,
+          "outputTokens": 12345,
+          "cacheReadInputTokens": 2896,
+          "cacheCreationInputTokens": 1576,
+          "webSearchRequests": 0,
+          "costUSD": 0.325843,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 64000,
+          "thinkingTokens": 7620,
+          "canonicalModel": "claude-opus-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "estimated_cost_usd": 0.327636,
+      "error": null,
+      "response": {
+        "action": "edit",
+        "hypothesis": "Reduce to min-cost circulation: add a virtual arc sink->source with lower=upper=amount, cost 0. Self-loops don't affect conservation, so each contributes upper*cost if cost<0 else lower*cost, in closed form. For every remaining edge, pick the base flow f0 at a bound (f0=lower if cost>=0, f0=upper if cost<0) and represent the remaining freedom by a single residual arc of capacity upper-lower whose cost is |cost| >= 0 (forward u->v with cost c, or backward v->u with cost -c for saturated negative edges). Cost(f) = base + cost(residual flow) exactly, and the leftover problem is a b-flow: node v with divergence d(v)=out-in must receive -d(v). Attach a super-source to deficit nodes and super-sink to surplus nodes and run successive-shortest-paths min-cost max-flow with Dijkstra + Johnson potentials (valid since all residual costs are nonnegative; stale potentials on unreachable nodes stay consistent because any residual arc into an unreachable node comes from an unreachable node). Feasible iff the max flow saturates all supplies; answer = base + selfloop + flow cost, else null.",
+        "prediction": "Handles negative costs and negative cycles (profitable circulations disconnected from source/sink are captured because the formulation is a full circulation), self-loops with lower bounds, parallel edges, zero-capacity and lower=upper edges, amount=0, unreachable/disconnected components, capacities up to 1e6 with exact integer arithmetic (no enumeration; SSP augmentations bounded by arc saturations on a <=62-node, <=130-arc network). Infeasible cases (amount not routable, supplies unsaturated, lower>upper, source==sink with amount>0) return {\"cost\": null}. Verified by hand on all four examples: -10, -10, -2999996, -3000000.",
+        "source": "import heapq\n\n\nclass _MCMF(object):\n    \"\"\"Successive shortest paths min-cost max-flow (Dijkstra + potentials).\n\n    All arc costs added here are non-negative, so potentials start at zero.\n    \"\"\"\n\n    def __init__(self, n):\n        self.n = n\n        self.g = [[] for _ in range(n)]\n\n    def add_edge(self, u, v, cap, cost):\n        if cap <= 0:\n            return\n        self.g[u].append([v, cap, cost, len(self.g[v])])\n        self.g[v].append([u, 0, -cost, len(self.g[u]) - 1])\n\n    def run(self, s, t, maxf):\n        n = self.n\n        INF = float('inf')\n        h = [0] * n\n        flow = 0\n        total = 0\n        while flow < maxf:\n            dist = [INF] * n\n            dist[s] = 0\n            prevv = [-1] * n\n            preve = [-1] * n\n            pq = [(0, s)]\n            while pq:\n                d, u = heapq.heappop(pq)\n                if d > dist[u]:\n                    continue\n                gu = self.g[u]\n                hu = h[u]\n                for i in range(len(gu)):\n                    e = gu[i]\n                    if e[1] <= 0:\n                        continue\n                    v = e[0]\n                    nd = d + e[2] + hu - h[v]\n                    if nd < dist[v]:\n                        dist[v] = nd\n                        prevv[v] = u\n                        preve[v] = i\n                        heapq.heappush(pq, (nd, v))\n            if dist[t] == INF:\n                break\n            for v in range(n):\n                if dist[v] < INF:\n                    h[v] += dist[v]\n            # bottleneck\n            d = maxf - flow\n            v = t\n            while v != s:\n                cap = self.g[prevv[v]][preve[v]][1]\n                if cap < d:\n                    d = cap\n                v = prevv[v]\n            v = t\n            while v != s:\n                e = self.g[prevv[v]][preve[v]]\n                e[1] -= d\n                self.g[v][e[3]][1] += d\n                v = prevv[v]\n            flow += d\n            total += d * h[t]\n        return flow, total\n\n\ndef _as_int(x):\n    return int(x)\n\n\ndef evaluate(request):\n    if isinstance(request, (str, bytes)):\n        import json\n        request = json.loads(request)\n\n    n = _as_int(request.get(\"n\", 0))\n    source = _as_int(request.get(\"source\", 0))\n    sink = _as_int(request.get(\"sink\", 0))\n    amount = _as_int(request.get(\"amount\", 0))\n    raw_edges = request.get(\"edges\") or []\n\n    # Normalize edges and determine the node universe defensively.\n    edges = []\n    max_idx = n - 1\n    for e in raw_edges:\n        if isinstance(e, dict):\n            u = _as_int(e.get(\"u\", 0))\n            v = _as_int(e.get(\"v\", 0))\n            lo = _as_int(e.get(\"lower\", 0))\n            hi = _as_int(e.get(\"upper\", 0))\n            c = _as_int(e.get(\"cost\", 0))\n        else:\n            u, v, lo, hi, c = (_as_int(x) for x in e)\n        if lo > hi:\n            return {\"cost\": None}\n        if u < 0 or v < 0:\n            return {\"cost\": None}\n        if u > max_idx:\n            max_idx = u\n        if v > max_idx:\n            max_idx = v\n        edges.append((u, v, lo, hi, c))\n\n    if source > max_idx:\n        max_idx = source\n    if sink > max_idx:\n        max_idx = sink\n    if amount < 0:\n        return {\"cost\": None}\n    if source == sink and amount != 0:\n        return {\"cost\": None}\n\n    N = max_idx + 1\n    if N <= 0:\n        return {\"cost\": 0 if amount == 0 else None}\n\n    # Required net flow: a virtual arc sink -> source with lower = upper = amount\n    # turns the problem into a pure min-cost circulation.\n    if source != sink:\n        edges.append((sink, source, amount, amount, 0))\n\n    base = 0\n    div = [0] * N          # divergence (outflow - inflow) of the base flow\n    residual = []          # (u, v, capacity, non-negative cost)\n\n    for (u, v, lo, hi, c) in edges:\n        if u == v:\n            # Self-loops never affect conservation: optimize independently.\n            base += (hi * c) if c < 0 else (lo * c)\n            continue\n        if c >= 0:\n            f0 = lo\n            if hi > lo:\n                residual.append((u, v, hi - lo, c))\n        else:\n            f0 = hi                      # saturate negative-cost arcs\n            if hi > lo:\n                residual.append((v, u, hi - lo, -c))\n        if f0:\n            base += f0 * c\n            div[u] += f0\n            div[v] -= f0\n\n    # Fix the imbalance of the base flow with a min-cost b-flow on the\n    # residual network (all residual costs are non-negative by construction).\n    S = N\n    T = N + 1\n    mc = _MCMF(N + 2)\n    need = 0\n    for v in range(N):\n        d = div[v]\n        if d > 0:\n            mc.add_edge(v, T, d, 0)\n            need += d\n        elif d < 0:\n            mc.add_edge(S, v, -d, 0)\n    for (u, v, cap, cost) in residual:\n        mc.add_edge(u, v, cap, cost)\n\n    if need == 0:\n        return {\"cost\": int(base)}\n\n    got, extra = mc.run(S, T, need)\n    if got < need:\n        return {\"cost\": None}\n    return {\"cost\": int(base + extra)}\n",
+        "probes_json": "[]"
+      },
+      "seconds": 137.31585208303295,
+      "exit_code": 0
+    }
+  ],
+  "development": {
+    "passed": true,
+    "total": 4,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "docker",
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "returncode": 0,
+      "seconds": 0.28071783296763897,
+      "error": null,
+      "outputs": [
+        {
+          "cost": -10
+        },
+        {
+          "cost": -10
+        },
+        {
+          "cost": -2999996
+        },
+        {
+          "cost": -3000000
+        }
+      ],
+      "cleanup_confirmed": true
+    }
+  },
+  "final": {
+    "passed": true,
+    "total": 44,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "docker",
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "returncode": 0,
+      "seconds": 0.17195912497118115,
+      "error": null,
+      "outputs": [
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": -16
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": -9
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": -1
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": 4
+        },
+        {
+          "cost": 1
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": null
+        },
+        {
+          "cost": -5
+        },
+        {
+          "cost": -6
+        },
+        {
+          "cost": 1
+        },
+        {
+          "cost": -13
+        },
+        {
+          "cost": -22
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": -14
+        },
+        {
+          "cost": -3
+        },
+        {
+          "cost": -16
+        },
+        {
+          "cost": -11
+        },
+        {
+          "cost": -10
+        },
+        {
+          "cost": -14
+        },
+        {
+          "cost": -10
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": 0
+        },
+        {
+          "cost": -2999996
+        },
+        {
+          "cost": -3000000
+        }
+      ],
+      "cleanup_confirmed": true
+    }
+  },
+  "seconds": 137.8209920001682,
+  "source_sha256": "a74ef8c91e43c879586d8843a247795b1289de491273c49d303d21411a7a5486"
+}

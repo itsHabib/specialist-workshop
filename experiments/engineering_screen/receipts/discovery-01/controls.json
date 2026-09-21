@@ -1,0 +1,6188 @@
+[
+  {
+    "task": "geometry",
+    "good": {
+      "passed": true,
+      "total": 20,
+      "failed": 0,
+      "failures": [],
+      "execution": {
+        "backend": "docker",
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "returncode": 0,
+        "seconds": 0.3453529169782996,
+        "error": null,
+        "outputs": [
+          {
+            "area": "14"
+          },
+          {
+            "area": "3198877408659073364074739/22859383769187383527200"
+          },
+          {
+            "area": "110852315953061/2166053293404"
+          },
+          {
+            "area": "208825097/4712400"
+          },
+          {
+            "area": "130311081/4278560"
+          },
+          {
+            "area": "2794/49"
+          },
+          {
+            "area": "44474906185277402759/680996611204449408"
+          },
+          {
+            "area": "66"
+          },
+          {
+            "area": "798137735024819129/7703739829353945"
+          },
+          {
+            "area": "43237/600"
+          },
+          {
+            "area": "1380230808677421877495889/29014044329033660496600"
+          },
+          {
+            "area": "16575449825828956150237/144371108986535471040"
+          },
+          {
+            "area": "1520221630310491957/13079145956516640"
+          },
+          {
+            "area": "1472993157089/13995440910"
+          },
+          {
+            "area": "2463/143"
+          },
+          {
+            "area": "118095337223/4042321668"
+          },
+          {
+            "area": "8"
+          },
+          {
+            "area": "16"
+          },
+          {
+            "area": "0"
+          },
+          {
+            "area": "1/2"
+          }
+        ],
+        "cleanup_confirmed": true
+      }
+    },
+    "empty_control": {
+      "passed": false,
+      "total": 20,
+      "failed": 20,
+      "failures": [
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  1,
+                  -1
+                ],
+                [
+                  -3,
+                  -3
+                ],
+                [
+                  -9,
+                  1
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "14"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -9,
+                  6
+                ],
+                [
+                  0,
+                  -4
+                ],
+                [
+                  -5,
+                  -5
+                ],
+                [
+                  -4,
+                  -6
+                ]
+              ],
+              [
+                [
+                  -9,
+                  -5
+                ],
+                [
+                  -7,
+                  3
+                ],
+                [
+                  -6,
+                  -8
+                ],
+                [
+                  1,
+                  -8
+                ],
+                [
+                  -2,
+                  9
+                ],
+                [
+                  -1,
+                  2
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              [
+                [
+                  -8,
+                  7
+                ],
+                [
+                  0,
+                  -7
+                ],
+                [
+                  0,
+                  -8
+                ],
+                [
+                  6,
+                  9
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "3198877408659073364074739/22859383769187383527200"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  2,
+                  -5
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  0,
+                  -1
+                ],
+                [
+                  3,
+                  5
+                ]
+              ],
+              [
+                [
+                  -5,
+                  -3
+                ],
+                [
+                  -4,
+                  -3
+                ],
+                [
+                  3,
+                  -1
+                ],
+                [
+                  -5,
+                  3
+                ],
+                [
+                  -7,
+                  -3
+                ]
+              ],
+              [
+                [
+                  -8,
+                  -5
+                ],
+                [
+                  3,
+                  -6
+                ],
+                [
+                  -4,
+                  5
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  6
+                ],
+                [
+                  -2,
+                  -9
+                ],
+                [
+                  1,
+                  -7
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "110852315953061/2166053293404"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  6
+                ],
+                [
+                  -3,
+                  -1
+                ],
+                [
+                  -9,
+                  3
+                ],
+                [
+                  -5,
+                  -4
+                ]
+              ],
+              [
+                [
+                  -5,
+                  9
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  -9,
+                  -3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  9
+                ],
+                [
+                  -4,
+                  3
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "208825097/4712400"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  7,
+                  1
+                ],
+                [
+                  -7,
+                  2
+                ],
+                [
+                  -6,
+                  -2
+                ],
+                [
+                  0,
+                  9
+                ],
+                [
+                  -4,
+                  -8
+                ],
+                [
+                  -5,
+                  1
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "130311081/4278560"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  3,
+                  7
+                ],
+                [
+                  9,
+                  -2
+                ],
+                [
+                  8,
+                  6
+                ],
+                [
+                  -1,
+                  -5
+                ]
+              ],
+              [
+                [
+                  -9,
+                  -4
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  -6,
+                  2
+                ],
+                [
+                  -3,
+                  -4
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "2794/49"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -4,
+                  -9
+                ],
+                [
+                  -9,
+                  -8
+                ],
+                [
+                  1,
+                  -1
+                ],
+                [
+                  -8,
+                  1
+                ],
+                [
+                  5,
+                  7
+                ],
+                [
+                  -8,
+                  4
+                ]
+              ],
+              [
+                [
+                  0,
+                  7
+                ],
+                [
+                  -2,
+                  6
+                ],
+                [
+                  -6,
+                  3
+                ],
+                [
+                  -5,
+                  8
+                ],
+                [
+                  -1,
+                  -5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "44474906185277402759/680996611204449408"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -1,
+                  9
+                ],
+                [
+                  0,
+                  7
+                ],
+                [
+                  4,
+                  7
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  -3,
+                  -2
+                ]
+              ],
+              [
+                [
+                  2,
+                  -4
+                ],
+                [
+                  6,
+                  -3
+                ],
+                [
+                  -8,
+                  -6
+                ],
+                [
+                  4,
+                  -3
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "66"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  7,
+                  -7
+                ],
+                [
+                  7,
+                  6
+                ],
+                [
+                  -4,
+                  0
+                ]
+              ],
+              [
+                [
+                  5,
+                  -2
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  -8,
+                  -4
+                ],
+                [
+                  -4,
+                  8
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  -8
+                ]
+              ],
+              [
+                [
+                  -8,
+                  -3
+                ],
+                [
+                  4,
+                  -7
+                ],
+                [
+                  9,
+                  9
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "798137735024819129/7703739829353945"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  4,
+                  -1
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  9,
+                  1
+                ]
+              ],
+              [
+                [
+                  3,
+                  7
+                ],
+                [
+                  -3,
+                  -6
+                ],
+                [
+                  -5,
+                  2
+                ]
+              ],
+              [
+                [
+                  -2,
+                  -9
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  -7,
+                  7
+                ],
+                [
+                  -7,
+                  -8
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "43237/600"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  4,
+                  2
+                ],
+                [
+                  -1,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  -5,
+                  -1
+                ],
+                [
+                  -7,
+                  4
+                ],
+                [
+                  -2,
+                  7
+                ]
+              ],
+              [
+                [
+                  -5,
+                  1
+                ],
+                [
+                  -7,
+                  8
+                ],
+                [
+                  4,
+                  -9
+                ],
+                [
+                  0,
+                  -4
+                ],
+                [
+                  6,
+                  3
+                ],
+                [
+                  -9,
+                  9
+                ],
+                [
+                  2,
+                  -5
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "1380230808677421877495889/29014044329033660496600"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  7,
+                  6
+                ],
+                [
+                  3,
+                  -3
+                ],
+                [
+                  -3,
+                  -9
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              [
+                [
+                  1,
+                  5
+                ],
+                [
+                  7,
+                  7
+                ],
+                [
+                  -9,
+                  -9
+                ],
+                [
+                  -2,
+                  -7
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  3,
+                  -6
+                ],
+                [
+                  8,
+                  5
+                ]
+              ],
+              [
+                [
+                  4,
+                  -7
+                ],
+                [
+                  -6,
+                  2
+                ],
+                [
+                  -6,
+                  4
+                ],
+                [
+                  5,
+                  9
+                ],
+                [
+                  -5,
+                  -6
+                ],
+                [
+                  -2,
+                  -3
+                ],
+                [
+                  -8,
+                  7
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "16575449825828956150237/144371108986535471040"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  9,
+                  -4
+                ],
+                [
+                  -8,
+                  3
+                ],
+                [
+                  -7,
+                  -6
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  8,
+                  -1
+                ]
+              ],
+              [
+                [
+                  8,
+                  -3
+                ],
+                [
+                  5,
+                  -9
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  7,
+                  4
+                ]
+              ],
+              [
+                [
+                  9,
+                  9
+                ],
+                [
+                  -6,
+                  -6
+                ],
+                [
+                  8,
+                  4
+                ],
+                [
+                  4,
+                  -7
+                ],
+                [
+                  -6,
+                  -5
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "1520221630310491957/13079145956516640"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  3,
+                  -6
+                ],
+                [
+                  6,
+                  -6
+                ],
+                [
+                  2,
+                  7
+                ],
+                [
+                  -9,
+                  -1
+                ],
+                [
+                  8,
+                  -9
+                ],
+                [
+                  8,
+                  -1
+                ]
+              ],
+              [
+                [
+                  6,
+                  1
+                ],
+                [
+                  5,
+                  -4
+                ],
+                [
+                  -2,
+                  -6
+                ],
+                [
+                  -5,
+                  -9
+                ],
+                [
+                  -4,
+                  -8
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "1472993157089/13995440910"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  -3,
+                  0
+                ],
+                [
+                  3,
+                  -5
+                ],
+                [
+                  3,
+                  -7
+                ],
+                [
+                  1,
+                  -4
+                ],
+                [
+                  -6,
+                  4
+                ],
+                [
+                  -7,
+                  -7
+                ],
+                [
+                  -8,
+                  0
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "2463/143"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  8,
+                  2
+                ],
+                [
+                  3,
+                  -7
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  9,
+                  0
+                ],
+                [
+                  1,
+                  -5
+                ],
+                [
+                  5,
+                  -7
+                ]
+              ],
+              [
+                [
+                  3,
+                  3
+                ],
+                [
+                  8,
+                  -1
+                ],
+                [
+                  4,
+                  3
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "118095337223/4042321668"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  4,
+                  0
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "8"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "16"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  0,
+                  4
+                ]
+              ]
+            ],
+            "rule": "evenodd"
+          },
+          "expected": {
+            "area": "0"
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "rings": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1000000000,
+                  1
+                ],
+                [
+                  999999999,
+                  1
+                ]
+              ]
+            ],
+            "rule": "nonzero"
+          },
+          "expected": {
+            "area": "1/2"
+          },
+          "actual": {}
+        }
+      ],
+      "execution": {
+        "backend": "docker",
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "returncode": 0,
+        "seconds": 0.1864826250821352,
+        "error": null,
+        "outputs": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "cleanup_confirmed": true
+      }
+    }
+  },
+  {
+    "task": "leases",
+    "good": {
+      "passed": true,
+      "total": 31,
+      "failed": 0,
+      "failures": [],
+      "execution": {
+        "backend": "docker",
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "returncode": 0,
+        "seconds": 0.1870575831271708,
+        "error": null,
+        "outputs": [
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          },
+          {
+            "linearizable": false
+          },
+          {
+            "linearizable": true
+          }
+        ],
+        "cleanup_confirmed": true
+      }
+    },
+    "empty_control": {
+      "passed": false,
+      "total": 31,
+      "failed": 31,
+      "failures": [
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "ttl": 1
+                },
+                "start": 0,
+                "end": 2,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 3,
+                  "token": 3
+                },
+                "start": 3,
+                "end": 5,
+                "result": false
+              },
+              {
+                "id": "2",
+                "op": "reset",
+                "args": {},
+                "start": 6,
+                "end": null,
+                "result": 2
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 0,
+                  "ttl": 2
+                },
+                "start": 9,
+                "end": 11,
+                "result": 3
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 4,
+                  "ttl": 2
+                },
+                "start": 12,
+                "end": 14,
+                "result": 4
+              },
+              {
+                "id": "5",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 2
+                },
+                "start": 15,
+                "end": 17,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 7,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 5,
+                  "ttl": 4
+                },
+                "start": 1,
+                "end": 8,
+                "result": 2
+              },
+              {
+                "id": "2",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "token": 1
+                },
+                "start": 2,
+                "end": 9,
+                "result": false
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 6,
+                  "ttl": 3
+                },
+                "start": 3,
+                "end": 10,
+                "result": null
+              },
+              {
+                "id": "4",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 2,
+                  "token": 2
+                },
+                "start": 4,
+                "end": 11,
+                "result": false
+              },
+              {
+                "id": "5",
+                "op": "reset",
+                "args": {},
+                "start": 5,
+                "end": 12,
+                "result": 3
+              },
+              {
+                "id": "6",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 7,
+                  "token": 2
+                },
+                "start": 6,
+                "end": 13,
+                "result": false
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 6,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "reset",
+                "args": {},
+                "start": 1,
+                "end": 7,
+                "result": 2
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 6,
+                  "ttl": 1
+                },
+                "start": 2,
+                "end": 8,
+                "result": 3
+              },
+              {
+                "id": "3",
+                "op": "reset",
+                "args": {},
+                "start": 3,
+                "end": 9,
+                "result": 4
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 3
+                },
+                "start": 4,
+                "end": 10,
+                "result": 5
+              },
+              {
+                "id": "5",
+                "op": "reset",
+                "args": {},
+                "start": 5,
+                "end": 11,
+                "result": 6
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 6,
+                  "ttl": 2
+                },
+                "start": 0,
+                "end": 2,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 7,
+                  "ttl": 4
+                },
+                "start": 3,
+                "end": 5,
+                "result": null
+              },
+              {
+                "id": "2",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "token": 3
+                },
+                "start": 6,
+                "end": 8,
+                "result": false
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 6,
+                  "ttl": 3
+                },
+                "start": 9,
+                "end": 11,
+                "result": null
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "ttl": 2
+                },
+                "start": 12,
+                "end": 14,
+                "result": null
+              },
+              {
+                "id": "5",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 4,
+                  "ttl": 1
+                },
+                "start": 15,
+                "end": 17,
+                "result": 99
+              },
+              {
+                "id": "6",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 0,
+                  "token": 1
+                },
+                "start": 18,
+                "end": 20,
+                "result": true
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 1,
+                  "ttl": 4
+                },
+                "start": 0,
+                "end": 6,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "reset",
+                "args": {},
+                "start": 1,
+                "end": 7,
+                "result": 2
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 1,
+                  "ttl": 3
+                },
+                "start": 2,
+                "end": 8,
+                "result": 3
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "ttl": 2
+                },
+                "start": 3,
+                "end": 9,
+                "result": null
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 2,
+                  "ttl": 3
+                },
+                "start": 4,
+                "end": null,
+                "result": null
+              },
+              {
+                "id": "5",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 6,
+                  "token": 4
+                },
+                "start": 5,
+                "end": 11,
+                "result": false
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 7,
+                  "token": 4
+                },
+                "start": 0,
+                "end": 5,
+                "result": false
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 2,
+                  "ttl": 4
+                },
+                "start": 1,
+                "end": 6,
+                "result": 1
+              },
+              {
+                "id": "2",
+                "op": "reset",
+                "args": {},
+                "start": 2,
+                "end": 7,
+                "result": 99
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "ttl": 4
+                },
+                "start": 3,
+                "end": 8,
+                "result": 3
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 2,
+                  "ttl": 1
+                },
+                "start": 4,
+                "end": 9,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 1,
+                  "ttl": 4
+                },
+                "start": 0,
+                "end": 2,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 2,
+                  "ttl": 1
+                },
+                "start": 3,
+                "end": 5,
+                "result": null
+              },
+              {
+                "id": "2",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "token": 1
+                },
+                "start": 6,
+                "end": 8,
+                "result": false
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 1,
+                  "ttl": 4
+                },
+                "start": 9,
+                "end": 11,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 8,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 7,
+                  "ttl": 3
+                },
+                "start": 1,
+                "end": 9,
+                "result": 2
+              },
+              {
+                "id": "2",
+                "op": "reset",
+                "args": {},
+                "start": 2,
+                "end": 10,
+                "result": 3
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 7,
+                  "ttl": 2
+                },
+                "start": 3,
+                "end": 11,
+                "result": 99
+              },
+              {
+                "id": "4",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "token": 2
+                },
+                "start": 4,
+                "end": 12,
+                "result": false
+              },
+              {
+                "id": "5",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 3,
+                  "token": 4
+                },
+                "start": 5,
+                "end": 13,
+                "result": false
+              },
+              {
+                "id": "6",
+                "op": "reset",
+                "args": {},
+                "start": 6,
+                "end": 14,
+                "result": 5
+              },
+              {
+                "id": "7",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 1,
+                  "ttl": 4
+                },
+                "start": 7,
+                "end": 15,
+                "result": 6
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "token": 2
+                },
+                "start": 0,
+                "end": 5,
+                "result": false
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 0,
+                  "ttl": 1
+                },
+                "start": 1,
+                "end": null,
+                "result": 1
+              },
+              {
+                "id": "2",
+                "op": "reset",
+                "args": {},
+                "start": 2,
+                "end": 7,
+                "result": 2
+              },
+              {
+                "id": "3",
+                "op": "reset",
+                "args": {},
+                "start": 3,
+                "end": 8,
+                "result": 3
+              },
+              {
+                "id": "4",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 2,
+                  "token": 1
+                },
+                "start": 4,
+                "end": 9,
+                "result": false
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 2,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 1,
+                  "ttl": 2
+                },
+                "start": 3,
+                "end": 5,
+                "result": 99
+              },
+              {
+                "id": "2",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 7,
+                  "token": 1
+                },
+                "start": 6,
+                "end": 8,
+                "result": false
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 6,
+                  "ttl": 2
+                },
+                "start": 9,
+                "end": 11,
+                "result": 3
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 4,
+                  "ttl": 4
+                },
+                "start": 12,
+                "end": 14,
+                "result": null
+              },
+              {
+                "id": "5",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "ttl": 2
+                },
+                "start": 15,
+                "end": 17,
+                "result": null
+              },
+              {
+                "id": "6",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 4,
+                  "ttl": 2
+                },
+                "start": 18,
+                "end": 20,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 7,
+                  "token": 1
+                },
+                "start": 0,
+                "end": 8,
+                "result": false
+              },
+              {
+                "id": "1",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 0,
+                  "token": 2
+                },
+                "start": 1,
+                "end": 9,
+                "result": false
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 0,
+                  "ttl": 4
+                },
+                "start": 2,
+                "end": 10,
+                "result": 1
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 4,
+                  "ttl": 3
+                },
+                "start": 3,
+                "end": 11,
+                "result": 2
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 4,
+                  "ttl": 3
+                },
+                "start": 4,
+                "end": 12,
+                "result": null
+              },
+              {
+                "id": "5",
+                "op": "reset",
+                "args": {},
+                "start": 5,
+                "end": 13,
+                "result": 3
+              },
+              {
+                "id": "6",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 7,
+                  "token": 2
+                },
+                "start": 6,
+                "end": 14,
+                "result": false
+              },
+              {
+                "id": "7",
+                "op": "reset",
+                "args": {},
+                "start": 7,
+                "end": 15,
+                "result": 4
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 4,
+                  "ttl": 3
+                },
+                "start": 0,
+                "end": 5,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 0,
+                  "ttl": 4
+                },
+                "start": 1,
+                "end": 6,
+                "result": null
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 1
+                },
+                "start": 2,
+                "end": 7,
+                "result": null
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "ttl": 2
+                },
+                "start": 3,
+                "end": 8,
+                "result": null
+              },
+              {
+                "id": "4",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 4,
+                  "token": 4
+                },
+                "start": 4,
+                "end": 9,
+                "result": true
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": null,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 2,
+                  "ttl": 2
+                },
+                "start": 3,
+                "end": 5,
+                "result": 2
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 7,
+                  "ttl": 2
+                },
+                "start": 6,
+                "end": 8,
+                "result": 3
+              },
+              {
+                "id": "3",
+                "op": "reset",
+                "args": {},
+                "start": 9,
+                "end": 11,
+                "result": 4
+              },
+              {
+                "id": "4",
+                "op": "reset",
+                "args": {},
+                "start": 12,
+                "end": 14,
+                "result": 5
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 7,
+                  "ttl": 1
+                },
+                "start": 0,
+                "end": 8,
+                "result": 99
+              },
+              {
+                "id": "1",
+                "op": "reset",
+                "args": {},
+                "start": 1,
+                "end": 9,
+                "result": 2
+              },
+              {
+                "id": "2",
+                "op": "reset",
+                "args": {},
+                "start": 2,
+                "end": 10,
+                "result": 3
+              },
+              {
+                "id": "3",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "token": 3
+                },
+                "start": 3,
+                "end": 11,
+                "result": false
+              },
+              {
+                "id": "4",
+                "op": "reset",
+                "args": {},
+                "start": 4,
+                "end": 12,
+                "result": 4
+              },
+              {
+                "id": "5",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 0,
+                  "ttl": 4
+                },
+                "start": 5,
+                "end": 13,
+                "result": 5
+              },
+              {
+                "id": "6",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 1,
+                  "ttl": 4
+                },
+                "start": 6,
+                "end": 14,
+                "result": null
+              },
+              {
+                "id": "7",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 0,
+                  "ttl": 3
+                },
+                "start": 7,
+                "end": 15,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 6,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "reset",
+                "args": {},
+                "start": 1,
+                "end": 7,
+                "result": 2
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 0,
+                  "ttl": 4
+                },
+                "start": 2,
+                "end": 8,
+                "result": 3
+              },
+              {
+                "id": "3",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 3,
+                  "token": 3
+                },
+                "start": 3,
+                "end": 9,
+                "result": true
+              },
+              {
+                "id": "4",
+                "op": "reset",
+                "args": {},
+                "start": 4,
+                "end": 10,
+                "result": 4
+              },
+              {
+                "id": "5",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 6,
+                  "ttl": 1
+                },
+                "start": 5,
+                "end": 11,
+                "result": 5
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 2,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 6,
+                  "token": 4
+                },
+                "start": 3,
+                "end": 5,
+                "result": false
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 1,
+                  "ttl": 2
+                },
+                "start": 6,
+                "end": 8,
+                "result": 2
+              },
+              {
+                "id": "3",
+                "op": "reset",
+                "args": {},
+                "start": 9,
+                "end": 11,
+                "result": 3
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 1,
+                  "ttl": 4
+                },
+                "start": 12,
+                "end": 14,
+                "result": 4
+              },
+              {
+                "id": "5",
+                "op": "reset",
+                "args": {},
+                "start": 15,
+                "end": 17,
+                "result": 5
+              },
+              {
+                "id": "6",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 7,
+                  "ttl": 3
+                },
+                "start": 18,
+                "end": 20,
+                "result": 99
+              },
+              {
+                "id": "7",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 4
+                },
+                "start": 21,
+                "end": 23,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 6,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 5,
+                  "token": 3
+                },
+                "start": 1,
+                "end": 7,
+                "result": false
+              },
+              {
+                "id": "2",
+                "op": "reset",
+                "args": {},
+                "start": 2,
+                "end": 8,
+                "result": 2
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "ttl": 1
+                },
+                "start": 3,
+                "end": 9,
+                "result": 3
+              },
+              {
+                "id": "4",
+                "op": "reset",
+                "args": {},
+                "start": 4,
+                "end": 10,
+                "result": 4
+              },
+              {
+                "id": "5",
+                "op": "reset",
+                "args": {},
+                "start": 5,
+                "end": null,
+                "result": 5
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 7,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 2,
+                  "token": 2
+                },
+                "start": 1,
+                "end": 8,
+                "result": true
+              },
+              {
+                "id": "2",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 4,
+                  "token": 3
+                },
+                "start": 2,
+                "end": 9,
+                "result": false
+              },
+              {
+                "id": "3",
+                "op": "reset",
+                "args": {},
+                "start": 3,
+                "end": 10,
+                "result": 2
+              },
+              {
+                "id": "4",
+                "op": "reset",
+                "args": {},
+                "start": 4,
+                "end": 11,
+                "result": 3
+              },
+              {
+                "id": "5",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "ttl": 3
+                },
+                "start": 5,
+                "end": 12,
+                "result": 4
+              },
+              {
+                "id": "6",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 1
+                },
+                "start": 6,
+                "end": 13,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 2,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "ttl": 3
+                },
+                "start": 3,
+                "end": 5,
+                "result": 2
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "ttl": 3
+                },
+                "start": 6,
+                "end": 8,
+                "result": null
+              },
+              {
+                "id": "3",
+                "op": "reset",
+                "args": {},
+                "start": 9,
+                "end": 11,
+                "result": 3
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 0,
+                  "ttl": 4
+                },
+                "start": 12,
+                "end": 14,
+                "result": 4
+              },
+              {
+                "id": "5",
+                "op": "reset",
+                "args": {},
+                "start": 15,
+                "end": 17,
+                "result": 5
+              },
+              {
+                "id": "6",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 2
+                },
+                "start": 18,
+                "end": 20,
+                "result": 6
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 1,
+                  "ttl": 1
+                },
+                "start": 0,
+                "end": 8,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 1,
+                  "ttl": 4
+                },
+                "start": 1,
+                "end": 9,
+                "result": null
+              },
+              {
+                "id": "2",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "token": 1
+                },
+                "start": 2,
+                "end": 10,
+                "result": false
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "ttl": 1
+                },
+                "start": 3,
+                "end": 11,
+                "result": 2
+              },
+              {
+                "id": "4",
+                "op": "reset",
+                "args": {},
+                "start": 4,
+                "end": 12,
+                "result": 3
+              },
+              {
+                "id": "5",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "token": 4
+                },
+                "start": 5,
+                "end": 13,
+                "result": false
+              },
+              {
+                "id": "6",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 0,
+                  "token": 2
+                },
+                "start": 6,
+                "end": 14,
+                "result": false
+              },
+              {
+                "id": "7",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 2,
+                  "ttl": 3
+                },
+                "start": 7,
+                "end": 15,
+                "result": 99
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 6,
+                  "ttl": 3
+                },
+                "start": 0,
+                "end": 6,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "reset",
+                "args": {},
+                "start": 1,
+                "end": 7,
+                "result": 2
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 4,
+                  "ttl": 2
+                },
+                "start": 2,
+                "end": 8,
+                "result": 3
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 7,
+                  "ttl": 1
+                },
+                "start": 3,
+                "end": 9,
+                "result": 4
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 1
+                },
+                "start": 4,
+                "end": 10,
+                "result": null
+              },
+              {
+                "id": "5",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 3,
+                  "ttl": 4
+                },
+                "start": 5,
+                "end": null,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 1,
+                  "ttl": 3
+                },
+                "start": 0,
+                "end": 2,
+                "result": 99
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 0,
+                  "ttl": 2
+                },
+                "start": 3,
+                "end": 5,
+                "result": null
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 3
+                },
+                "start": 6,
+                "end": 8,
+                "result": 2
+              },
+              {
+                "id": "3",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "token": 1
+                },
+                "start": 9,
+                "end": 11,
+                "result": false
+              },
+              {
+                "id": "4",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "token": 4
+                },
+                "start": 12,
+                "end": 14,
+                "result": false
+              },
+              {
+                "id": "5",
+                "op": "reset",
+                "args": {},
+                "start": 15,
+                "end": 17,
+                "result": 3
+              },
+              {
+                "id": "6",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 3,
+                  "token": 4
+                },
+                "start": 18,
+                "end": 20,
+                "result": false
+              },
+              {
+                "id": "7",
+                "op": "reset",
+                "args": {},
+                "start": 21,
+                "end": 23,
+                "result": 4
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 5,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "token": 1
+                },
+                "start": 1,
+                "end": 6,
+                "result": false
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "ttl": 1
+                },
+                "start": 2,
+                "end": 7,
+                "result": 2
+              },
+              {
+                "id": "3",
+                "op": "reset",
+                "args": {},
+                "start": 3,
+                "end": 8,
+                "result": 3
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 7,
+                  "ttl": 4
+                },
+                "start": 4,
+                "end": 9,
+                "result": 4
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 0,
+                  "token": 3
+                },
+                "start": 0,
+                "end": 5,
+                "result": false
+              },
+              {
+                "id": "1",
+                "op": "reset",
+                "args": {},
+                "start": 1,
+                "end": 6,
+                "result": 1
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 6,
+                  "ttl": 2
+                },
+                "start": 2,
+                "end": 7,
+                "result": 2
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 3,
+                  "ttl": 4
+                },
+                "start": 3,
+                "end": 8,
+                "result": 99
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 5,
+                  "ttl": 1
+                },
+                "start": 4,
+                "end": 9,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "token": 3
+                },
+                "start": 0,
+                "end": 2,
+                "result": false
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 2,
+                  "ttl": 4
+                },
+                "start": 3,
+                "end": 5,
+                "result": 1
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 3
+                },
+                "start": 6,
+                "end": 8,
+                "result": null
+              },
+              {
+                "id": "3",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 7,
+                  "token": 2
+                },
+                "start": 9,
+                "end": null,
+                "result": false
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 4
+                },
+                "start": 12,
+                "end": 14,
+                "result": null
+              },
+              {
+                "id": "5",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 7,
+                  "ttl": 2
+                },
+                "start": 15,
+                "end": 17,
+                "result": 2
+              },
+              {
+                "id": "6",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 0,
+                  "ttl": 4
+                },
+                "start": 18,
+                "end": 20,
+                "result": null
+              },
+              {
+                "id": "7",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 7,
+                  "token": 3
+                },
+                "start": 21,
+                "end": 23,
+                "result": false
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 7,
+                  "ttl": 2
+                },
+                "start": 0,
+                "end": 8,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 1,
+                  "ttl": 1
+                },
+                "start": 1,
+                "end": 9,
+                "result": 99
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 3,
+                  "ttl": 2
+                },
+                "start": 2,
+                "end": 10,
+                "result": null
+              },
+              {
+                "id": "3",
+                "op": "reset",
+                "args": {},
+                "start": 3,
+                "end": 11,
+                "result": 2
+              },
+              {
+                "id": "4",
+                "op": "reset",
+                "args": {},
+                "start": 4,
+                "end": 12,
+                "result": 3
+              },
+              {
+                "id": "5",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 1,
+                  "ttl": 3
+                },
+                "start": 5,
+                "end": 13,
+                "result": 4
+              },
+              {
+                "id": "6",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 1,
+                  "token": 1
+                },
+                "start": 6,
+                "end": 14,
+                "result": false
+              },
+              {
+                "id": "7",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 0,
+                  "ttl": 1
+                },
+                "start": 7,
+                "end": 15,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 4,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 1,
+                  "ttl": 2
+                },
+                "start": 1,
+                "end": 5,
+                "result": 2
+              },
+              {
+                "id": "2",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 6,
+                  "ttl": 2
+                },
+                "start": 2,
+                "end": 6,
+                "result": 3
+              },
+              {
+                "id": "3",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 6,
+                  "token": 3
+                },
+                "start": 3,
+                "end": 7,
+                "result": true
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 1,
+                  "token": 4
+                },
+                "start": 0,
+                "end": 2,
+                "result": false
+              },
+              {
+                "id": "1",
+                "op": "reset",
+                "args": {},
+                "start": 3,
+                "end": 5,
+                "result": 1
+              },
+              {
+                "id": "2",
+                "op": "reset",
+                "args": {},
+                "start": 6,
+                "end": 8,
+                "result": 99
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 7,
+                  "ttl": 3
+                },
+                "start": 9,
+                "end": 11,
+                "result": 3
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "reset",
+                "args": {},
+                "start": 0,
+                "end": 7,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "finish",
+                "args": {
+                  "worker": "b",
+                  "now": 4,
+                  "token": 2
+                },
+                "start": 1,
+                "end": 8,
+                "result": false
+              },
+              {
+                "id": "2",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 0,
+                  "token": 2
+                },
+                "start": 2,
+                "end": 9,
+                "result": false
+              },
+              {
+                "id": "3",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 1,
+                  "ttl": 4
+                },
+                "start": 3,
+                "end": 10,
+                "result": 2
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 6,
+                  "ttl": 1
+                },
+                "start": 4,
+                "end": 11,
+                "result": 3
+              },
+              {
+                "id": "5",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "ttl": 1
+                },
+                "start": 5,
+                "end": 12,
+                "result": null
+              },
+              {
+                "id": "6",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 5,
+                  "ttl": 3
+                },
+                "start": 6,
+                "end": null,
+                "result": null
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "0",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 0,
+                  "ttl": 4
+                },
+                "start": 0,
+                "end": 7,
+                "result": 1
+              },
+              {
+                "id": "1",
+                "op": "claim",
+                "args": {
+                  "worker": "b",
+                  "now": 0,
+                  "ttl": 3
+                },
+                "start": 1,
+                "end": 8,
+                "result": null
+              },
+              {
+                "id": "2",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "token": 3
+                },
+                "start": 2,
+                "end": 9,
+                "result": false
+              },
+              {
+                "id": "3",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 5,
+                  "token": 4
+                },
+                "start": 3,
+                "end": 10,
+                "result": true
+              },
+              {
+                "id": "4",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "ttl": 1
+                },
+                "start": 4,
+                "end": 11,
+                "result": null
+              },
+              {
+                "id": "5",
+                "op": "reset",
+                "args": {},
+                "start": 5,
+                "end": 12,
+                "result": 2
+              },
+              {
+                "id": "6",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "now": 2,
+                  "token": 3
+                },
+                "start": 6,
+                "end": 13,
+                "result": false
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": false
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "history": [
+              {
+                "id": "a",
+                "op": "claim",
+                "args": {
+                  "worker": "a",
+                  "now": 0,
+                  "ttl": 2
+                },
+                "start": 0,
+                "end": null,
+                "result": null
+              },
+              {
+                "id": "b",
+                "op": "finish",
+                "args": {
+                  "worker": "a",
+                  "token": 1,
+                  "now": 1
+                },
+                "start": 1,
+                "end": 2,
+                "result": true
+              }
+            ]
+          },
+          "expected": {
+            "linearizable": true
+          },
+          "actual": {}
+        }
+      ],
+      "execution": {
+        "backend": "docker",
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "returncode": 0,
+        "seconds": 0.18899366701953113,
+        "error": null,
+        "outputs": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "cleanup_confirmed": true
+      }
+    }
+  },
+  {
+    "task": "flow",
+    "good": {
+      "passed": true,
+      "total": 44,
+      "failed": 0,
+      "failures": [],
+      "execution": {
+        "backend": "docker",
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "returncode": 0,
+        "seconds": 0.18759308313019574,
+        "error": null,
+        "outputs": [
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": -16
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": 0
+          },
+          {
+            "cost": -9
+          },
+          {
+            "cost": 0
+          },
+          {
+            "cost": -1
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": 4
+          },
+          {
+            "cost": 1
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": null
+          },
+          {
+            "cost": -5
+          },
+          {
+            "cost": -6
+          },
+          {
+            "cost": 1
+          },
+          {
+            "cost": -13
+          },
+          {
+            "cost": -22
+          },
+          {
+            "cost": 0
+          },
+          {
+            "cost": 0
+          },
+          {
+            "cost": -14
+          },
+          {
+            "cost": -3
+          },
+          {
+            "cost": -16
+          },
+          {
+            "cost": -11
+          },
+          {
+            "cost": -10
+          },
+          {
+            "cost": -14
+          },
+          {
+            "cost": -10
+          },
+          {
+            "cost": 0
+          },
+          {
+            "cost": 0
+          },
+          {
+            "cost": -2999996
+          },
+          {
+            "cost": -3000000
+          }
+        ],
+        "cleanup_confirmed": true
+      }
+    },
+    "empty_control": {
+      "passed": false,
+      "total": 44,
+      "failed": 44,
+      "failures": [
+        {
+          "input": {
+            "n": 5,
+            "source": 0,
+            "sink": 1,
+            "amount": 2,
+            "edges": [
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": 0
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 0,
+                "cost": -1
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 2,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 1,
+                "upper": 2,
+                "cost": -1
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": -2
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": 0
+              },
+              {
+                "u": 1,
+                "v": 2,
+                "lower": 0,
+                "upper": 0,
+                "cost": 1
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": -2
+              },
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 1,
+                "upper": 1,
+                "cost": 3
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 2,
+                "cost": -1
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 2,
+                "upper": 2,
+                "cost": -1
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 1,
+                "cost": 3
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 2,
+            "edges": [
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 1,
+                "cost": -2
+              },
+              {
+                "u": 1,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": -4
+              },
+              {
+                "u": 1,
+                "v": 2,
+                "lower": 1,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": 3
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 1,
+                "upper": 1,
+                "cost": 4
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 1,
+                "upper": 1,
+                "cost": 5
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 2,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": -4
+              },
+              {
+                "u": 1,
+                "v": 1,
+                "lower": 2,
+                "upper": 2,
+                "cost": -5
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 0,
+                "upper": 2,
+                "cost": 5
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 1,
+                "upper": 2,
+                "cost": 2
+              }
+            ]
+          },
+          "expected": {
+            "cost": -16
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 5,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": -2
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 1,
+                "cost": 3
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 5,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 3,
+                "v": 4,
+                "lower": 0,
+                "upper": 0,
+                "cost": 0
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": -2
+              },
+              {
+                "u": 4,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": 4
+              },
+              {
+                "u": 3,
+                "v": 4,
+                "lower": 0,
+                "upper": 0,
+                "cost": -5
+              },
+              {
+                "u": 1,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 5
+              }
+            ]
+          },
+          "expected": {
+            "cost": 0
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": -4
+              },
+              {
+                "u": 1,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": -5
+              }
+            ]
+          },
+          "expected": {
+            "cost": -9
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 2,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": 5
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": 1
+              },
+              {
+                "u": 1,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": 4
+              }
+            ]
+          },
+          "expected": {
+            "cost": 0
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 2,
+                "v": 0,
+                "lower": 0,
+                "upper": 2,
+                "cost": -4
+              },
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": -2
+              },
+              {
+                "u": 1,
+                "v": 1,
+                "lower": 2,
+                "upper": 2,
+                "cost": -1
+              },
+              {
+                "u": 1,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": 0
+              },
+              {
+                "u": 3,
+                "v": 3,
+                "lower": 1,
+                "upper": 1,
+                "cost": 1
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": 5
+              }
+            ]
+          },
+          "expected": {
+            "cost": -1
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 5,
+            "source": 0,
+            "sink": 1,
+            "amount": 2,
+            "edges": [
+              {
+                "u": 1,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": -4
+              },
+              {
+                "u": 4,
+                "v": 4,
+                "lower": 0,
+                "upper": 0,
+                "cost": 4
+              },
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 0,
+                "cost": 3
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 5,
+            "source": 0,
+            "sink": 1,
+            "amount": 2,
+            "edges": [
+              {
+                "u": 2,
+                "v": 0,
+                "lower": 1,
+                "upper": 1,
+                "cost": -5
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 2,
+                "v": 2,
+                "lower": 1,
+                "upper": 1,
+                "cost": 2
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 1,
+                "upper": 1,
+                "cost": 2
+              },
+              {
+                "u": 4,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": -4
+              },
+              {
+                "u": 3,
+                "v": 0,
+                "lower": 1,
+                "upper": 1,
+                "cost": 5
+              },
+              {
+                "u": 1,
+                "v": 4,
+                "lower": 1,
+                "upper": 1,
+                "cost": 1
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 0,
+                "upper": 2,
+                "cost": -5
+              },
+              {
+                "u": 1,
+                "v": 2,
+                "lower": 1,
+                "upper": 1,
+                "cost": -2
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 2,
+                "upper": 2,
+                "cost": 2
+              },
+              {
+                "u": 1,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": 3
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": -4
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 1,
+                "upper": 2,
+                "cost": 2
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 1,
+                "upper": 1,
+                "cost": -5
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": 4
+              },
+              {
+                "u": 2,
+                "v": 2,
+                "lower": 0,
+                "upper": 0,
+                "cost": 5
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 5,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": -2
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": -5
+              },
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 1,
+                "upper": 1,
+                "cost": -3
+              },
+              {
+                "u": 3,
+                "v": 0,
+                "lower": 1,
+                "upper": 2,
+                "cost": 2
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 1,
+                "v": 2,
+                "lower": 1,
+                "upper": 1,
+                "cost": -5
+              },
+              {
+                "u": 1,
+                "v": 2,
+                "lower": 1,
+                "upper": 2,
+                "cost": 2
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 1,
+                "upper": 1,
+                "cost": -5
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": 3
+              },
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 1,
+                "upper": 1,
+                "cost": 1
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 5,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 1,
+                "v": 3,
+                "lower": 0,
+                "upper": 0,
+                "cost": 5
+              },
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 4
+              },
+              {
+                "u": 4,
+                "v": 4,
+                "lower": 0,
+                "upper": 0,
+                "cost": 4
+              }
+            ]
+          },
+          "expected": {
+            "cost": 4
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 2,
+                "v": 0,
+                "lower": 1,
+                "upper": 1,
+                "cost": -3
+              },
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": 4
+              }
+            ]
+          },
+          "expected": {
+            "cost": 1
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 5,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 0,
+                "cost": 3
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 1,
+                "upper": 1,
+                "cost": 1
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": -1
+              },
+              {
+                "u": 0,
+                "v": 4,
+                "lower": 0,
+                "upper": 1,
+                "cost": -3
+              },
+              {
+                "u": 0,
+                "v": 4,
+                "lower": 0,
+                "upper": 2,
+                "cost": -4
+              },
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 2
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 4
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": 1
+              },
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 0,
+                "cost": 4
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 2,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": -5
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 1,
+                "v": 1,
+                "lower": 2,
+                "upper": 2,
+                "cost": -5
+              },
+              {
+                "u": 2,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": -3
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 1,
+                "upper": 1,
+                "cost": -3
+              },
+              {
+                "u": 1,
+                "v": 2,
+                "lower": 1,
+                "upper": 2,
+                "cost": 4
+              },
+              {
+                "u": 2,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": 4
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 0
+              },
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": 3
+              },
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 1,
+                "upper": 1,
+                "cost": 4
+              },
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 0,
+                "cost": 2
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 2,
+                "v": 2,
+                "lower": 0,
+                "upper": 0,
+                "cost": 4
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": -1
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": -5
+              },
+              {
+                "u": 2,
+                "v": 2,
+                "lower": 1,
+                "upper": 2,
+                "cost": 2
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 3,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 1,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": -2
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 2,
+                "upper": 2,
+                "cost": 4
+              },
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 2,
+                "upper": 2,
+                "cost": 1
+              },
+              {
+                "u": 2,
+                "v": 0,
+                "lower": 0,
+                "upper": 0,
+                "cost": 1
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": 3
+              },
+              {
+                "u": 1,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 1
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 5,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 4,
+                "v": 0,
+                "lower": 0,
+                "upper": 1,
+                "cost": 3
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 1,
+                "upper": 2,
+                "cost": -3
+              },
+              {
+                "u": 4,
+                "v": 0,
+                "lower": 0,
+                "upper": 2,
+                "cost": 1
+              },
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 0,
+                "cost": 5
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 1,
+                "upper": 1,
+                "cost": -1
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 0,
+                "cost": 1
+              }
+            ]
+          },
+          "expected": {
+            "cost": null
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": 5
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": 1
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 3
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 3,
+                "cost": -4
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 2,
+                "cost": -3
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": -1
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 3
+              }
+            ]
+          },
+          "expected": {
+            "cost": -5
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 1,
+                "upper": 3,
+                "cost": 2
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 1,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": -1
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 3,
+                "cost": -1
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 1,
+                "cost": -2
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": -5
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": -2
+              }
+            ]
+          },
+          "expected": {
+            "cost": -6
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 3,
+                "cost": 2
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": 1
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": 2
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 1,
+                "cost": -4
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 2,
+                "cost": 4
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 5
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": -1
+              }
+            ]
+          },
+          "expected": {
+            "cost": 1
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": -4
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 1
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 3,
+                "cost": 4
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 1,
+                "cost": -2
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 1,
+                "cost": -1
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": -4
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": -3
+              }
+            ]
+          },
+          "expected": {
+            "cost": -13
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 1,
+                "upper": 2,
+                "cost": 1
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 1,
+                "upper": 2,
+                "cost": -5
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 1,
+                "cost": 2
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 3,
+                "cost": -5
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 1
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 3,
+                "cost": -5
+              }
+            ]
+          },
+          "expected": {
+            "cost": -22
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 1,
+                "upper": 3,
+                "cost": -3
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 1,
+                "upper": 1,
+                "cost": 3
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": 5
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 1,
+                "cost": 1
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 1,
+                "cost": 2
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": -3
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 3,
+                "cost": 3
+              }
+            ]
+          },
+          "expected": {
+            "cost": 0
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 1,
+                "upper": 3,
+                "cost": -2
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 1,
+                "upper": 1,
+                "cost": 2
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 3,
+                "cost": 4
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 3,
+                "cost": 4
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 3,
+                "cost": 3
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 3,
+                "cost": 2
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 2
+              }
+            ]
+          },
+          "expected": {
+            "cost": 0
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 1,
+                "upper": 2,
+                "cost": -4
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 1,
+                "upper": 3,
+                "cost": -2
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": 5
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": 4
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 1,
+                "cost": -2
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 2
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 5
+              }
+            ]
+          },
+          "expected": {
+            "cost": -14
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": 0
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": -1
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": -3
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": 1
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 1,
+                "cost": 5
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 2
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 5
+              }
+            ]
+          },
+          "expected": {
+            "cost": -3
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": 0
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 3,
+                "cost": -4
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 3,
+                "cost": -2
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 1,
+                "cost": -2
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 3,
+                "cost": 2
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 3
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": -5
+              }
+            ]
+          },
+          "expected": {
+            "cost": -16
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": -4
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": 0
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": -4
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 3,
+                "cost": -2
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 1,
+                "cost": 0
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 1
+              }
+            ]
+          },
+          "expected": {
+            "cost": -11
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 3,
+                "cost": -4
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 1
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 1,
+                "cost": -3
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 2,
+                "cost": -3
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 0
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": 1
+              }
+            ]
+          },
+          "expected": {
+            "cost": -10
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 0,
+                "upper": 3,
+                "cost": 1
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 0,
+                "upper": 3,
+                "cost": 0
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 3,
+                "cost": 5
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": -2
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 2,
+                "cost": 0
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": -5
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": -1
+              }
+            ]
+          },
+          "expected": {
+            "cost": -14
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 1,
+                "upper": 3,
+                "cost": 2
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 1,
+                "upper": 1,
+                "cost": -2
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": -1
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 3,
+                "cost": -4
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 3,
+                "cost": 4
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 2,
+                "cost": -4
+              }
+            ]
+          },
+          "expected": {
+            "cost": -10
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 1,
+                "upper": 3,
+                "cost": 2
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 1,
+                "upper": 3,
+                "cost": 1
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 4
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": -2
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 3,
+                "cost": 5
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": -3
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 1,
+                "cost": -5
+              }
+            ]
+          },
+          "expected": {
+            "cost": 0
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 1,
+            "edges": [
+              {
+                "u": 0,
+                "v": 2,
+                "lower": 1,
+                "upper": 1,
+                "cost": 5
+              },
+              {
+                "u": 2,
+                "v": 1,
+                "lower": 1,
+                "upper": 3,
+                "cost": -5
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 1,
+                "cost": 1
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 2,
+                "cost": 3
+              },
+              {
+                "u": 1,
+                "v": 0,
+                "lower": 0,
+                "upper": 1,
+                "cost": 4
+              },
+              {
+                "u": 0,
+                "v": 3,
+                "lower": 0,
+                "upper": 2,
+                "cost": 2
+              },
+              {
+                "u": 3,
+                "v": 1,
+                "lower": 0,
+                "upper": 3,
+                "cost": -3
+              }
+            ]
+          },
+          "expected": {
+            "cost": 0
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 4,
+            "source": 0,
+            "sink": 1,
+            "amount": 2,
+            "edges": [
+              {
+                "u": 0,
+                "v": 1,
+                "lower": 0,
+                "upper": 3,
+                "cost": 2
+              },
+              {
+                "u": 2,
+                "v": 3,
+                "lower": 0,
+                "upper": 1000000,
+                "cost": -4
+              },
+              {
+                "u": 3,
+                "v": 2,
+                "lower": 0,
+                "upper": 1000000,
+                "cost": 1
+              }
+            ]
+          },
+          "expected": {
+            "cost": -2999996
+          },
+          "actual": {}
+        },
+        {
+          "input": {
+            "n": 2,
+            "source": 0,
+            "sink": 1,
+            "amount": 0,
+            "edges": [
+              {
+                "u": 0,
+                "v": 0,
+                "lower": 2,
+                "upper": 1000000,
+                "cost": -3
+              }
+            ]
+          },
+          "expected": {
+            "cost": -3000000
+          },
+          "actual": {}
+        }
+      ],
+      "execution": {
+        "backend": "docker",
+        "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+        "returncode": 0,
+        "seconds": 0.18576016696169972,
+        "error": null,
+        "outputs": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "cleanup_confirmed": true
+      }
+    }
+  }
+]

@@ -16,6 +16,15 @@ request.history is <=9 operations, each with id (unique string), start (unique i
 FLOW = '''Implement evaluate(request) using only Python standard library. Find exact minimum COST of a feasible integral circulation with required net flow amount from source to sink. Nodes 0..n-1; request has n, source, sink (distinct), amount >=0, edges list of {u,v,lower,upper,cost} integers, 0<=lower<=upper. Parallel edges, self-loops, negative costs, disconnected components and negative cycles are allowed. For each node, outgoing flow minus incoming flow must be amount at source, -amount at sink, 0 elsewhere. Minimize sum(flow*cost) over ALL edges, including useful circulations disconnected from source/sink. Return {"cost": integer} or {"cost": null} if infeasible. n<=30, edges<=60, upper<=1000000, |cost|<=1000; exact arithmetic. Do not enumerate every assignment of edge flow. Define evaluate, no stdin handling.'''
 
 
+def integer_text(value):
+    # Exact rational outputs can exceed Python's default integer-string limit.
+    if value < 0:return '-'+integer_text(-value)
+    chunks=[]
+    while value >= 10**9:
+        value,part=divmod(value,10**9);chunks.append(part)
+    return str(value)+''.join(f'{part:09d}' for part in reversed(chunks))
+
+
 def geometry(q):
     edges=[]; ys=set()
     for ring in q['rings']:
@@ -37,7 +46,8 @@ def geometry(q):
             winding+=e[3]
             if (winding%2 if q['rule']=='evenodd' else winding!=0):
                 total+=((f[1]-e[1])*(lo+hi)/2+f[2]-e[2])*(hi-lo)
-    return {'area':str(total)}
+    numerator=integer_text(total.numerator)
+    return {'area':numerator if total.denominator==1 else numerator+'/'+integer_text(total.denominator)}
 
 
 def step(state,operation):

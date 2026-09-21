@@ -1,0 +1,193 @@
+{
+  "task": "leases",
+  "provider": "opus",
+  "accepted": true,
+  "status": "finished",
+  "error": null,
+  "calls": [
+    {
+      "provider": "opus",
+      "requested_model": "claude-opus-5",
+      "usage": {
+        "claude-haiku-4-5-20251001": {
+          "inputTokens": 2243,
+          "outputTokens": 16,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.0023230000000000004,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-haiku-4-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        },
+        "claude-opus-5": {
+          "inputTokens": 2,
+          "outputTokens": 5805,
+          "cacheReadInputTokens": 2896,
+          "cacheCreationInputTokens": 2183,
+          "webSearchRequests": 0,
+          "costUSD": 0.16841300000000003,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 64000,
+          "thinkingTokens": 3362,
+          "canonicalModel": "claude-opus-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "estimated_cost_usd": 0.17073600000000003,
+      "error": null,
+      "response": {
+        "action": "edit",
+        "hypothesis": "Exhaustive backtracking linearizability check (\u22649 ops, so \u22649! orderings, heavily pruned). State = (generation, lease|None, done). At each step pick any remaining op that is \"minimal\" w.r.t. real-time order (no remaining op Y with Y.end < X.start must precede it), apply the sequential spec, and for completed ops require a type-strict result match (bool never equals int, None distinct). Pending (end=null) ops are unconstrained in result and optional: since they have no end they never force anything to follow them, so \"drop the rest\" is exactly the base case \"no completed ops remain\". Memoize failed (remaining-set, state) pairs to prune.",
+        "prediction": "Handles: non-monotonic supplied `now` values; expiry at exactly the deadline counted as expired and not incrementing generation; claim blocked by done or live lease returning null with no state change; finish requiring not-done + matching worker + matching token + now &lt; deadline; reset always bumping generation and clearing lease/done; impossible result values (e.g. generation 99) rejected; strict bool/int discrimination so token 1 \u2260 True and result true \u2260 1; pending ops dropped or linearized anywhere after their invocation with arbitrary result; overlapping calls ordered either way while non-overlapping calls keep real-time order; empty history \u2192 true; unknown/malformed ops or missing args fail that branch safely.",
+        "source": "\"\"\"Linearizability checker for a one-job leased queue.\n\nState: (generation, lease, done) where lease is None or (worker, token, deadline).\nSearch: backtracking over all real-time-respecting linearizations, with\nmemoization of failed (remaining, state) pairs.\n\"\"\"\n\n_MISSING = object()\n\n\ndef _is_bool(x):\n    return isinstance(x, bool)\n\n\ndef _num_eq(a, b):\n    \"\"\"Strict numeric equality: booleans never equal numbers.\"\"\"\n    if _is_bool(a) or _is_bool(b):\n        return False\n    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n        return False\n    return a == b\n\n\ndef _results_match(expected, actual):\n    \"\"\"Compare a recorded result against the spec's result, type-strictly.\"\"\"\n    if actual is None:\n        return expected is None\n    if _is_bool(actual):\n        return _is_bool(expected) and expected == actual\n    # actual is a numeric token/generation\n    if expected is None or _is_bool(expected):\n        return False\n    return _num_eq(expected, actual)\n\n\ndef _lt(a, b):\n    \"\"\"now < deadline, guarding against non-numeric junk.\"\"\"\n    if _is_bool(a) or _is_bool(b):\n        return False\n    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):\n        return False\n    return a < b\n\n\ndef _apply(opname, args, state):\n    \"\"\"Return (new_state, result) or None if the operation is not applicable.\"\"\"\n    gen, lease, done = state\n    if opname == \"claim\":\n        worker = args.get(\"worker\", _MISSING)\n        now = args.get(\"now\", _MISSING)\n        ttl = args.get(\"ttl\", _MISSING)\n        if worker is _MISSING or now is _MISSING or ttl is _MISSING:\n            return None\n        if not isinstance(now, (int, float)) or _is_bool(now):\n            return None\n        if not isinstance(ttl, (int, float)) or _is_bool(ttl):\n            return None\n        if done or (lease is not None and _lt(now, lease[2])):\n            return state, None\n        gen += 1\n        return (gen, (worker, gen, now + ttl), done), gen\n    if opname == \"finish\":\n        worker = args.get(\"worker\", _MISSING)\n        token = args.get(\"token\", _MISSING)\n        now = args.get(\"now\", _MISSING)\n        if worker is _MISSING or token is _MISSING or now is _MISSING:\n            return None\n        if (not done) and lease is not None and lease[0] == worker \\\n                and _num_eq(token, lease[1]) and _lt(now, lease[2]):\n            return (gen, lease, True), True\n        return state, False\n    if opname == \"reset\":\n        return (gen + 1, None, False), gen + 1\n    return None\n\n\ndef _extract_history(request):\n    hist = None\n    if isinstance(request, dict):\n        hist = request.get(\"history\")\n    else:\n        hist = getattr(request, \"history\", None)\n        if hist is None and hasattr(request, \"get\"):\n            try:\n                hist = request.get(\"history\")\n            except Exception:\n                hist = None\n    if hist is None:\n        return []\n    try:\n        return list(hist)\n    except TypeError:\n        return []\n\n\ndef _field(entry, name, default=None):\n    if isinstance(entry, dict):\n        return entry.get(name, default)\n    return getattr(entry, name, default)\n\n\ndef evaluate(request):\n    entries = _extract_history(request)\n\n    ops = []\n    for e in entries:\n        opname = _field(e, \"op\")\n        args = _field(e, \"args\") or {}\n        if not isinstance(args, dict):\n            args = {}\n        start = _field(e, \"start\")\n        end = _field(e, \"end\")\n        result = _field(e, \"result\")\n        ops.append({\n            \"op\": opname,\n            \"args\": args,\n            \"start\": start,\n            \"end\": end,\n            \"result\": result,\n            \"pending\": end is None,\n        })\n\n    n = len(ops)\n    if n == 0:\n        return {\"linearizable\": True}\n\n    # preds[i] = indices that must be linearized before i (A.end < B.start).\n    preds = []\n    for i in range(n):\n        si = ops[i][\"start\"]\n        s = set()\n        if isinstance(si, (int, float)) and not _is_bool(si):\n            for j in range(n):\n                if j == i:\n                    continue\n                ej = ops[j][\"end\"]\n                if ej is None:\n                    continue\n                if isinstance(ej, (int, float)) and not _is_bool(ej) and ej < si:\n                    s.add(j)\n        preds.append(s)\n\n    completed = frozenset(i for i in range(n) if not ops[i][\"pending\"])\n\n    failed = set()\n    init_state = (0, None, False)\n\n    def rec(remaining, state):\n        # Any pending ops still left may simply be dropped.\n        if not (remaining & completed):\n            return True\n        key = (remaining, state)\n        if key in failed:\n            return False\n        for i in remaining:\n            if preds[i] & remaining:\n                continue  # something that must precede i hasn't run yet\n            applied = _apply(ops[i][\"op\"], ops[i][\"args\"], state)\n            if applied is None:\n                continue\n            new_state, res = applied\n            if not ops[i][\"pending\"]:\n                if not _results_match(ops[i][\"result\"], res):\n                    continue\n            if rec(remaining - {i}, new_state):\n                return True\n        failed.add(key)\n        return False\n\n    ok = rec(frozenset(range(n)), init_state)\n    return {\"linearizable\": bool(ok)}\n",
+        "probes_json": "[]"
+      },
+      "seconds": 67.08448625006713,
+      "exit_code": 0
+    }
+  ],
+  "development": {
+    "passed": true,
+    "total": 4,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "docker",
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "returncode": 0,
+      "seconds": 0.21997325005941093,
+      "error": null,
+      "outputs": [
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        }
+      ],
+      "cleanup_confirmed": true
+    }
+  },
+  "final": {
+    "passed": true,
+    "total": 31,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "docker",
+      "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+      "returncode": 0,
+      "seconds": 0.17729458305984735,
+      "error": null,
+      "outputs": [
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        },
+        {
+          "linearizable": false
+        },
+        {
+          "linearizable": true
+        }
+      ],
+      "cleanup_confirmed": true
+    }
+  },
+  "seconds": 67.50149041600525,
+  "source_sha256": "e2f24ec7b1abc5159323b161e1febb55b79d36d4b68a5ef3fb8cf2b3803bbda8"
+}

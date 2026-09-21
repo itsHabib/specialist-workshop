@@ -1,0 +1,21 @@
+{
+  "task": "geometry",
+  "attempts": [
+    {
+      "response": {
+        "action": "edit",
+        "hypothesis": "Partition the x-axis at every vertex and segment intersection. Within each open slab, edge order and winding transitions are fixed, so filled vertical length is affine and midpoint integration is exact. Combine coincident crossings before applying the fill rule.",
+        "prediction": "Computes exact reduced rational area for both winding rules, including self-intersections, overlapping walks, retraced edges, repeated vertices, opposite orientations, and degenerate inputs.",
+        "source": "from fractions import Fraction\n\n\ndef evaluate(request):\n    edges = []\n    cuts = set()\n    for ring in request.get('rings', []):\n        n = len(ring)\n        if not n:\n            continue\n        for i in range(n):\n            x1, y1 = ring[i]\n            x2, y2 = ring[(i + 1) % n]\n            cuts.add(Fraction(x1))\n            if x1 == x2:\n                continue\n            slope = Fraction(y2 - y1, x2 - x1)\n            intercept = Fraction(y1) - slope * x1\n            edges.append((min(x1, x2), max(x1, x2), slope,\n                          intercept, 1 if x2 > x1 else -1))\n\n    if not edges:\n        return {'area': '0'}\n\n    for i, first in enumerate(edges):\n        lo1, hi1, m1, b1, _ = first\n        for j in range(i + 1, len(edges)):\n            lo2, hi2, m2, b2, _ = edges[j]\n            lo = max(lo1, lo2)\n            hi = min(hi1, hi2)\n            if lo >= hi or m1 == m2:\n                continue\n            crossing = (b2 - b1) / (m1 - m2)\n            if lo < crossing < hi:\n                cuts.add(crossing)\n\n    cuts = sorted(cuts)\n    evenodd = request['rule'] == 'evenodd'\n    area = Fraction(0)\n    for left, right in zip(cuts, cuts[1:]):\n        midpoint = (left + right) / 2\n        events = sorted(\n            (slope * midpoint + intercept, delta)\n            for lo, hi, slope, intercept, delta in edges\n            if lo < midpoint < hi\n        )\n        winding = 0\n        previous = None\n        filled_length = Fraction(0)\n        i = 0\n        while i < len(events):\n            height = events[i][0]\n            filled = (winding % 2 != 0) if evenodd else (winding != 0)\n            if previous is not None and filled:\n                filled_length += height - previous\n            change = 0\n            while i < len(events) and events[i][0] == height:\n                change += events[i][1]\n                i += 1\n            winding += change\n            previous = height\n        area += filled_length * (right - left)\n\n    return {'area': str(area)}\n",
+        "probes_json": "[]"
+      },
+      "development": {
+        "passed": true,
+        "total": 4,
+        "failed": 0,
+        "failures": [],
+        "execution_error": null
+      }
+    }
+  ]
+}

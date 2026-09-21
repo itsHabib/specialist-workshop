@@ -1,0 +1,52 @@
+{
+  "schema": "engineering-screen.v1",
+  "trials": [
+    {
+      "task": "flow",
+      "provider": "opus"
+    },
+    {
+      "task": "leases",
+      "provider": "astra"
+    },
+    {
+      "task": "geometry",
+      "provider": "opus"
+    },
+    {
+      "task": "geometry",
+      "provider": "astra"
+    },
+    {
+      "task": "leases",
+      "provider": "opus"
+    },
+    {
+      "task": "flow",
+      "provider": "astra"
+    }
+  ],
+  "calls_per_arm": 2,
+  "timeout": 150,
+  "tasks_sha256": "dd867cac2755380031458b94b4db9d863bde12b5c1e5078bc01d59638626fbe6",
+  "files": {
+    "engineering_screen/tasks.py": "dd6ce196a8db1d01d89d49f7d2aed0e3bd47f3e8e4020791e375ecba8b00e2f0",
+    "engineering_screen/screen.py": "71fd743ba807bad9bb82b33c2f867f9a573c5f7c85beaf7bcb5ebd62e70cade1",
+    "engineering_screen/PROTOCOL.md": "3089ed8b593b77fc5593886a8cdc212cd4eba20976a5c84cfaa2a2a99b03e625",
+    "investigation_bridge/models.py": "490e9048fd8fe20667a465db27154f773aa12f1a1a143db81ac8d208f60c3046",
+    "investigation_bridge/model_supervisor.py": "976c707fb85ef27b9f5ddca72461b7daeac4d905e1ba6618afe6df4b0e697806",
+    "investigation_bridge/sandbox.py": "5e5a8c9e40e77ca6e004799da4b055b20d17e1093240f0dc99918fe65bf1d90d"
+  },
+  "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+  "models": {
+    "opus": "claude-opus-5",
+    "astra": "gpt-6-astra"
+  },
+  "effort": "high",
+  "backend": "docker",
+  "seeds": {
+    "development": 1729,
+    "final": 2718
+  },
+  "frozen_commit": "81f9488"
+}

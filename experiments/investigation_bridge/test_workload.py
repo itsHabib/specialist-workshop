@@ -1,3 +1,4 @@
+from fractions import Fraction
 import json
 import re
 import unittest
@@ -18,6 +19,13 @@ def load_evaluate(source):
     namespace = {}
     exec(compile(source, "solution.py", "exec"), namespace)
     return namespace["evaluate"]
+
+
+def candidate_result(evaluate, request):
+    try:
+        return evaluate(request)
+    except Exception as error:
+        return {"candidate_exception": type(error).__name__}
 
 
 class ReferenceTests(unittest.TestCase):
@@ -122,6 +130,22 @@ class ReferenceTests(unittest.TestCase):
         }
         self.assertEqual(workload.reference(singular_source), {"point": ["1", "1"]})
 
+    def test_invertible_target_below_singular_ancestor_is_singular(self):
+        request = {
+            "frames": {
+                "collapsed": frame(
+                    "world", ("3", "-1"), (("1", "2"), ("2", "4"))
+                ),
+                "camera": frame(
+                    "collapsed", ("-2", "5"), (("0", "-1"), ("1", "0"))
+                ),
+            },
+            "source": "world",
+            "target": "camera",
+            "point": ["7", "11"],
+        }
+        self.assertEqual(workload.reference(request), {"error": "singular"})
+
 
 class DatasetTests(unittest.TestCase):
     def test_task_shape_determinism_and_split_boundaries(self):
@@ -133,23 +157,58 @@ class DatasetTests(unittest.TestCase):
         self.assertEqual(
             set(first), {"id", "contract", "starter", "development", "final"}
         )
-        self.assertEqual(len(first["development"]), 12)
-        self.assertEqual(len(first["final"]), 48)
+        self.assertEqual(len(first["development"]), 13)
+        self.assertEqual(len(first["final"]), 52)
         development = {json.dumps(item, sort_keys=True) for item in first["development"]}
         final = {json.dumps(item, sort_keys=True) for item in first["final"]}
         self.assertTrue(development.isdisjoint(final))
-        self.assertEqual(len(development), 12)
-        self.assertEqual(len(final), 48)
+        self.assertEqual(len(development), 13)
+        self.assertEqual(len(final), 52)
+
+        all_names = {
+            name
+            for request in first["development"] + first["final"]
+            for name in request["frames"]
+        }
+        self.assertFalse(any("development" in name or "final" in name for name in all_names))
+        final_sizes = {len(request["frames"]) for request in first["final"]}
+        self.assertGreaterEqual(len(final_sizes), 8)
 
     def test_variants_are_single_fault_starters_and_hard_compiles(self):
         controls = workload.mutants()
-        self.assertEqual(tuple(controls), workload.VARIANTS)
+        self.assertEqual(tuple(controls), workload.CONTROL_MUTANTS)
         for variant in workload.VARIANTS:
             self.assertEqual(workload.task("variant-seed", variant)["starter"], controls[variant])
             load_evaluate(controls[variant])
         load_evaluate(workload.task("variant-seed", "hard")["starter"])
         with self.assertRaises(ValueError):
             workload.task(1, "not-a-variant")
+
+    def test_each_split_has_inherited_target_singularity(self):
+        task = workload.task(314159, "singular_conversion")
+        regression = load_evaluate(workload.mutants()["target_local_singularity"])
+        for split in ("development", "final"):
+            inherited = []
+            for request in task[split]:
+                if workload.reference(request) != {"error": "singular"}:
+                    continue
+                target = request["target"]
+                if target == "world":
+                    continue
+                linear = request["frames"][target]["linear"]
+                determinant = (
+                    Fraction(linear[0][0]) * Fraction(linear[1][1])
+                    - Fraction(linear[0][1]) * Fraction(linear[1][0])
+                )
+                if determinant:
+                    inherited.append(request)
+            self.assertTrue(inherited, f"no inherited singularity in {split}")
+            self.assertTrue(
+                any(
+                    candidate_result(regression, request) != workload.reference(request)
+                    for request in inherited
+                )
+            )
 
     def test_generated_results_are_json_and_canonical(self):
         rational = re.compile(r"^-?(?:0|[1-9][0-9]*)(?:/[1-9][0-9]*)?$")
@@ -181,7 +240,7 @@ class ControlTests(unittest.TestCase):
                     failures = [
                         request
                         for request in task[split]
-                        if evaluate(request) != workload.reference(request)
+                        if candidate_result(evaluate, request) != workload.reference(request)
                     ]
                     self.assertTrue(failures, f"{name} survived {split} for seed {seed!r}")
 

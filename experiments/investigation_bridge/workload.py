@@ -24,6 +24,8 @@ VARIANTS = (
     "sibling_paths",
 )
 
+CONTROL_MUTANTS = (*VARIANTS, "target_local_singularity")
+
 CONTRACT = """\
 Write solution.py with evaluate(request) -> JSON-compatible dict.
 
@@ -374,6 +376,17 @@ def _apply_mutation(source: str, name: str) -> str:
     if source != "world" and target != "world":
         target_leg = target_leg[:1]
     for frame_name in reversed(target_leg):
+            """,
+        )
+    if name == "target_local_singularity":
+        return _replace_once(
+            source,
+            """    if target != "world" and any(
+            _determinant(frames[name]) == 0 for name in target_chain[:-1]):
+        return {"error": "singular"}
+""",
+            """    if target != "world" and _determinant(frames[target]) == 0:
+        return {"error": "singular"}
 """,
         )
     raise ValueError(f"unknown mutation: {name}")
@@ -386,9 +399,9 @@ def correct_source() -> str:
 
 
 def mutants() -> dict[str, str]:
-    """Return the six single-fault candidate controls."""
+    """Return the six starters plus a held-out regression control."""
 
-    return {name: _apply_mutation(_CORRECT_SOURCE, name) for name in VARIANTS}
+    return {name: _apply_mutation(_CORRECT_SOURCE, name) for name in CONTROL_MUTANTS}
 
 
 def _rational(value: Fraction | int) -> str:
@@ -414,100 +427,155 @@ def _stable_rng(seed: int | str, label: str) -> random.Random:
     return random.Random(int.from_bytes(digest, "big"))
 
 
-def _salt(rng: random.Random, base: int) -> Fraction:
-    return Fraction(base * 19 + rng.randint(1, 17), rng.choice((2, 3, 5, 7)))
+def _salt(rng: random.Random) -> Fraction:
+    numerator = rng.randint(11, 997)
+    if rng.randrange(2):
+        numerator = -numerator
+    return Fraction(numerator, rng.choice((2, 3, 5, 7, 11)))
 
 
-def _core_cases(prefix: str, salt: Fraction) -> list[dict[str, Any]]:
-    def name(label: str) -> str:
-        return f"{prefix}_{label}"
+def _token(seed: int | str, suite: int) -> str:
+    material = json.dumps([seed, "affine-suite", suite], separators=(",", ":"))
+    return hashlib.sha256(material.encode("utf-8")).hexdigest()[:10]
 
-    pivot_frame = _frame(
-        "world",
-        (salt, Fraction(-3, 2)),
-        ((2, 1), (0, 3)),
-        (Fraction(3, 2), -2),
+
+_REGULAR_LINEAR = (
+    ((1, 1), (0, 1)),
+    ((0, -1), (1, 0)),
+    ((2, 0), (1, 1)),
+    ((1, 0), (-1, 1)),
+    ((2, 1), (1, 1)),
+)
+
+
+def _node(token: str, case: int, index: int) -> str:
+    return f"f{token}{case:02x}{index:02x}"
+
+
+def _regular_chain(
+    frames: dict[str, dict[str, Any]],
+    token: str,
+    case: int,
+    parent: str,
+    depth: int,
+    salt: Fraction,
+    flavor: int,
+) -> str:
+    current = parent
+    for index in range(depth):
+        name = _node(token, case, index)
+        linear = _REGULAR_LINEAR[(case + index + flavor) % len(_REGULAR_LINEAR)]
+        translation = (salt + index - case, Fraction((flavor + 1) * (index + 1), 3))
+        pivot = (Fraction((case + index) % 5 - 2, 2), Fraction((flavor + index) % 7 - 3, 2))
+        frames[name] = _frame(current, translation, linear, pivot)
+        current = name
+    return current
+
+
+def _case_suite(token: str, salt: Fraction, depth: int, flavor: int) -> list[dict[str, Any]]:
+    cases: list[dict[str, Any]] = []
+
+    # World identity with an unrelated, valid branch exercises whole-scene traversal.
+    frames: dict[str, dict[str, Any]] = {}
+    _regular_chain(frames, token, 0, "world", max(1, depth), salt, flavor)
+    cases.append({"frames": frames, "source": "world", "target": "world", "point": _pair(salt, -salt)})
+
+    # Pivoted forward and inverse conversions sit below different ancestor depths.
+    frames = {}
+    parent = _regular_chain(frames, token, 1, "world", 1 + depth % 3, salt, flavor)
+    pivoted = _node(token, 1, 12)
+    frames[pivoted] = _frame(parent, (salt, Fraction(-3, 2)), ((2, 1), (0, 3)), (Fraction(3, 2), -2))
+    cases.append({"frames": frames, "source": pivoted, "target": "world", "point": _pair(2, 1)})
+
+    frames = {}
+    parent = _regular_chain(frames, token, 2, "world", 1 + (depth + 1) % 4, salt, flavor)
+    inverse = _node(token, 2, 12)
+    frames[inverse] = _frame(parent, (salt, -2), ((2, 1), (1, 2)), (1, -1))
+    cases.append({"frames": frames, "source": "world", "target": inverse, "point": _pair(salt + 7, 5)})
+
+    # A non-commuting source chain catches reversed composition and missing ancestors.
+    frames = {}
+    parent = _regular_chain(frames, token, 3, "world", depth, salt, flavor)
+    upper = _node(token, 3, 12)
+    lower = _node(token, 3, 13)
+    frames[upper] = _frame(parent, (salt, 1), ((0, -1), (1, 0)), (0, 0))
+    frames[lower] = _frame(upper, (-1, Fraction(2, 3)), ((2, 1), (0, 1)), (1, -1))
+    cases.append({"frames": frames, "source": lower, "target": "world", "point": _pair(2, 3)})
+
+    # Cousin frames have asymmetric branch depths and a varying common-ancestor depth.
+    frames = {}
+    common = _regular_chain(frames, token, 4, "world", 1 + depth % 3, salt, flavor)
+    left = _regular_chain(frames, token, 5, common, 1 + depth % 2, salt + 1, flavor)
+    right = _regular_chain(frames, token, 6, common, 2 + (depth + flavor) % 3, salt - 1, flavor)
+    cases.append({"frames": frames, "source": left, "target": right, "point": _pair(Fraction(5, 2), -3)})
+
+    # A singular source is legal because no inverse is required.
+    frames = {}
+    parent = _regular_chain(frames, token, 7, "world", depth % 3, salt, flavor)
+    singular_source = _node(token, 7, 12)
+    frames[singular_source] = _frame(parent, (salt, 2), ((1, 2), (2, 4)), (1, -1))
+    cases.append({"frames": frames, "source": singular_source, "target": "world", "point": _pair(2, -1)})
+
+    # Direct target singularity remains distinct from singularity inherited from an ancestor.
+    frames = {}
+    parent = _regular_chain(frames, token, 8, "world", depth % 2, salt, flavor)
+    singular_target = _node(token, 8, 12)
+    frames[singular_target] = _frame(parent, (salt, 2), ((1, 2), (2, 4)), (1, -1))
+    cases.append({"frames": frames, "source": "world", "target": singular_target, "point": _pair(1, 4)})
+
+    frames = {}
+    parent = _regular_chain(frames, token, 9, "world", 1 + depth % 2, salt, flavor)
+    collapsed = _node(token, 9, 12)
+    frames[collapsed] = _frame(parent, (1, -2), ((1, 2), (2, 4)), (0, 1))
+    inherited_target = _regular_chain(
+        frames, token, 10, collapsed, 1 + depth % 3, salt + 2, flavor
     )
+    cases.append({"frames": frames, "source": "world", "target": inherited_target, "point": _pair(-2, 3)})
 
-    parent = name("parent")
-    child = name("child")
-    composition_frames = {
-        parent: _frame("world", (salt, 1), ((0, -1), (1, 0)), (0, 0)),
-        child: _frame(parent, (-1, Fraction(2, 3)), ((2, 1), (0, 1)), (1, -1)),
+    # Unknown-frame precedence is tested against an otherwise singular target path.
+    ghost_source = _node(token, 11, 31)
+    cases.append({"frames": frames, "source": ghost_source, "target": inherited_target, "point": _pair(0, 0)})
+
+    frames = {}
+    known_source = _regular_chain(frames, token, 12, "world", 1 + depth, salt, flavor)
+    ghost_target = _node(token, 12, 31)
+    cases.append({"frames": frames, "source": known_source, "target": ghost_target, "point": _pair(1, 1)})
+
+    # Invalid nodes and cycles are disconnected from the query to enforce whole-graph precedence.
+    frames = {}
+    _regular_chain(frames, token, 13, "world", 1 + depth % 3, salt, flavor)
+    missing = _node(token, 14, 0)
+    absent = _node(token, 14, 31)
+    frames[missing] = _frame(absent, (0, 0), ((1, 0), (0, 1)), (0, 0))
+    cases.append({"frames": frames, "source": ghost_source, "target": ghost_target, "point": _pair(0, 0)})
+
+    cycle_depth = 2 + depth % 4
+    cycle_names = [_node(token, 15, index) for index in range(cycle_depth)]
+    frames = {
+        name: _frame(cycle_names[(index + 1) % cycle_depth], (index, -index), ((1, 0), (0, 1)), (0, 0))
+        for index, name in enumerate(cycle_names)
     }
+    cases.append({"frames": frames, "source": "world", "target": "world", "point": _pair(1, 2)})
 
-    root = name("root")
-    left = name("left")
-    left_leaf = name("left_leaf")
-    right = name("right")
-    right_leaf = name("right_leaf")
-    sibling_frames = {
-        root: _frame("world", (salt, -2), ((1, 1), (0, 1)), (0, 0)),
-        left: _frame(root, (2, 1), ((0, -1), (1, 0)), (1, 0)),
-        left_leaf: _frame(left, (-1, 3), ((2, 0), (1, 1)), (0, 1)),
-        right: _frame(root, (-2, 4), ((1, 0), (1, 1)), (-1, 2)),
-        right_leaf: _frame(right, (3, -1), ((1, 2), (0, 1)), (2, 0)),
-    }
-
-    singular = name("singular")
-    regular = name("regular")
-    singular_frames = {
-        singular: _frame("world", (salt, 2), ((1, 2), (2, 4)), (1, -1)),
-        regular: _frame("world", (-3, 1), ((2, 0), (0, 1)), (0, 0)),
-    }
-
-    deep_root = name("deep_root")
-    deep_mid = name("deep_mid")
-    deep_leaf = name("deep_leaf")
-    deep_frames = {
-        deep_root: _frame("world", (salt, -1), ((1, 1), (0, 1)), (0, 0)),
-        deep_mid: _frame(deep_root, (2, 3), ((0, 1), (-1, 0)), (1, 1)),
-        deep_leaf: _frame(deep_mid, (-2, 1), ((3, 0), (0, 2)), (-1, 2)),
-    }
-
-    missing = name("missing")
-    cycle_a = name("cycle_a")
-    cycle_b = name("cycle_b")
-    spare = name("spare")
-    return [
-        {"frames": {}, "source": "world", "target": "world", "point": _pair(salt, -salt)},
-        {"frames": {name("pivot"): pivot_frame}, "source": name("pivot"), "target": "world", "point": _pair(2, 1)},
-        {"frames": {name("inverse"): pivot_frame}, "source": "world", "target": name("inverse"), "point": _pair(salt + 7, 5)},
-        {"frames": composition_frames, "source": child, "target": "world", "point": _pair(2, 3)},
-        {"frames": sibling_frames, "source": left_leaf, "target": right_leaf, "point": _pair(Fraction(5, 2), -3)},
-        {"frames": singular_frames, "source": singular, "target": "world", "point": _pair(2, -1)},
-        {"frames": singular_frames, "source": regular, "target": singular, "point": _pair(1, 4)},
-        {"frames": singular_frames, "source": name("ghost_source"), "target": singular, "point": _pair(0, 0)},
-        {"frames": {regular: singular_frames[regular]}, "source": regular, "target": name("ghost_target"), "point": _pair(1, 1)},
-        {
-            "frames": {
-                spare: _frame("world", (0, 0), ((1, 0), (0, 1)), (0, 0)),
-                missing: _frame(name("absent_parent"), (0, 0), ((1, 0), (0, 1)), (0, 0)),
-            },
-            "source": name("ghost_source"),
-            "target": name("ghost_target"),
-            "point": _pair(0, 0),
-        },
-        {
-            "frames": {
-                cycle_a: _frame(cycle_b, (0, 0), ((1, 0), (0, 1)), (0, 0)),
-                cycle_b: _frame(cycle_a, (0, 0), ((1, 0), (0, 1)), (0, 0)),
-            },
-            "source": "world",
-            "target": "world",
-            "point": _pair(1, 2),
-        },
-        {"frames": deep_frames, "source": "world", "target": deep_leaf, "point": _pair(salt - 4, salt + 3)},
-    ]
+    # The deepest valid target also carries an unused sibling branch.
+    frames = {}
+    deep_target = _regular_chain(frames, token, 16, "world", 3 + depth, salt, flavor)
+    _regular_chain(frames, token, 17, "world", 1 + (depth + 1) % 4, -salt, flavor)
+    cases.append({"frames": frames, "source": "world", "target": deep_target, "point": _pair(salt - 4, salt + 3)})
+    return cases
 
 
 def _requests(seed: int | str):
-    development_rng = _stable_rng(seed, "development")
-    final_rng = _stable_rng(seed, "final")
-    development = _core_cases("development", _salt(development_rng, 3))
-    final: list[dict[str, Any]] = []
-    for batch in range(4):
-        final.extend(_core_cases(f"final_{batch}", _salt(final_rng, 100 + batch)))
+    topology_rng = _stable_rng(seed, "topology-order")
+    depths = list(range(1, 7))
+    topology_rng.shuffle(depths)
+    suites = []
+    for suite, depth in enumerate(depths[:5]):
+        rng = _stable_rng(seed, f"suite-{suite}")
+        suites.append(_case_suite(_token(seed, suite), _salt(rng), depth, suite))
+    development = suites[0]
+    final = [request for suite in suites[1:] for request in suite]
+    _stable_rng(seed, "case-order").shuffle(final)
     return development, final
 
 

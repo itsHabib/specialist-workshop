@@ -1,5 +1,8 @@
 # Independent investigators, measured
 
+**First result:** all three policies passed; no capability gain established.
+[Results and lessons](RESULTS.md).
+
 Can several Opus investigators find a repair that a solo Opus session misses?
 This experiment compares them with each other and with Astra on independently
 authored synthetic programs. No work code, data, or derived fixtures are used.

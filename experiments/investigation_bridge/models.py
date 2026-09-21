@@ -14,7 +14,7 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
 
 
 def complete(prompt, provider, out, timeout=150, stop=None):
-    if provider not in ("opus", "astra"):
+    if provider not in ("opus", "astra", "sonnet", "haiku", "llama3.2:1b"):
         raise ValueError("unknown model provider")
     out = Path(out).resolve(); out.mkdir(parents=True, exist_ok=False)
     os.chmod(out, 0o700)
@@ -24,6 +24,17 @@ def complete(prompt, provider, out, timeout=150, stop=None):
                "--safe-mode", "--tools", "", "--strict-mcp-config", "--mcp-config",
                '{"mcpServers":{}}', "--no-session-persistence", "--output-format", "json",
                "--max-budget-usd", "0.80", "--json-schema", json.dumps(SCHEMA)]
+    if provider in ("sonnet", "haiku"):
+        command[3] = provider
+        del command[4:6]  # Use provider default effort consistently across treatments.
+    if provider == "llama3.2:1b":
+        payload = {"model": provider, "messages": [{"role": "user", "content": prompt}],
+                   "stream": False, "format": SCHEMA, "keep_alive": "5m",
+                   "options": {"temperature": 0, "num_ctx": 16384, "num_predict": 6000}}
+        (out / "prompt.txt").write_text(json.dumps(payload))
+        command = ["curl", "--silent", "--show-error", "--fail", "--max-time", str(timeout),
+                   "http://127.0.0.1:11434/api/chat", "-H", "Content-Type: application/json",
+                   "--data-binary", "@-"]
     if provider == "astra":
         command = ["codex", "exec", "--ignore-user-config", "--ephemeral", "--skip-git-repo-check",
                    "--sandbox", "read-only", "--enable", "skip_host_skill_discovery",
@@ -32,7 +43,7 @@ def complete(prompt, provider, out, timeout=150, stop=None):
                    "--disable", "skill_search", "-c", "project_doc_max_bytes=0", "-c", 'web_search="disabled"',
                    "-c", 'model_reasoning_effort="high"', "--model", "gpt-6-astra", "--json",
                    "--output-schema", str(out / "schema.json"), "-o", str(out / "answer.json"), "-"]
-    request = {"provider": provider, "command": command, "owner_pid": os.getpid(),
+    request = {"provider": provider, "requested_model": provider if provider != "opus" else "claude-opus-5", "command": command, "owner_pid": os.getpid(),
                "started": time.monotonic(), "timeout": timeout,
                "stop": str(Path(stop).resolve()) if stop is not None else None}
     (out / "request.json").write_text(json.dumps(request))
@@ -54,7 +65,14 @@ def complete(prompt, provider, out, timeout=150, stop=None):
 
 
 def decode(receipt, out):
-    if receipt["provider"] == "opus":
+    if receipt["provider"] == "llama3.2:1b":
+        raw = json.loads((out / "stdout.log").read_text())
+        receipt["usage"] = {k: raw.get(k) for k in ("model", "prompt_eval_count", "eval_count", "total_duration", "done_reason")}
+        if receipt["exit_code"] or not raw.get("done") or raw.get("done_reason") == "length":
+            receipt["error"] = "local_incomplete_response"; return
+        receipt["response"] = json.loads(raw["message"]["content"])
+        return
+    if receipt["provider"] in ("opus", "sonnet", "haiku"):
         raw = json.loads((out / "stdout.log").read_text())
         receipt["usage"] = raw.get("modelUsage")
         receipt["estimated_cost_usd"] = raw.get("total_cost_usd")

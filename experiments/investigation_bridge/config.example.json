@@ -1,0 +1,18 @@
+{
+  "host": "rooms-host",
+  "limactl": "limactl",
+  "binary": "/opt/rooms/rooms",
+  "snapshot": "/srv/rooms/python-snapshot",
+  "snapshot_sha256": {
+    "snapshot.json": "REPLACE_WITH_VERIFIED_SHA256",
+    "snapshot.vmstate": "REPLACE_WITH_VERIFIED_SHA256",
+    "snapshot.mem": "REPLACE_WITH_VERIFIED_SHA256"
+  },
+  "image_path": "/srv/rooms/python.ext4",
+  "image_sha256": "REPLACE_WITH_VERIFIED_SHA256",
+  "toolstore": "/srv/rooms/python-toolstore",
+  "toolstore_sha256": "REPLACE_WITH_VERIFIED_SHA256",
+  "remote_root": "/root/bridge-runs",
+  "state_root": "/root/.local/state/rooms",
+  "identity": "your-verified-neutral-snapshot"
+}

@@ -1,0 +1,354 @@
+[
+  {
+    "control": "known-good",
+    "passed": true,
+    "failed": 0,
+    "total": 65,
+    "backend": "rooms",
+    "error": null,
+    "seconds": 4.8780976249836385,
+    "evidence": {
+      "schema": "investigation-bridge.rooms-evidence.v1",
+      "run_id": "21aae76f01054a3c82a75c37eba1325b",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "snapshot_sha256": {
+        "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+        "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+        "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+      },
+      "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+      "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+      "host_command_sha256": "8f02afedc5aead5208c926d93af7abf26ab2885349cb0d8dffc70c7110849c18",
+      "matrix_sha256": "sha256:13535212cc389672835ca87914f70553d4cad55257ebb45f946fbb469b6e0d18",
+      "command_sha256": "sha256:e35e1f134358153a11ac4a63d13b0b4c756780a3e4199ced7fe78583d2739f19",
+      "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+      "room_id": "01m30qg6ew30t5yqtqzaqz6zz3",
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "teardown": {
+        "checks": {
+          "host_veth_absent": true,
+          "jail_absent": true,
+          "namespace_absent": true,
+          "process_absent": true,
+          "room_absent_from_roster": true,
+          "room_state_absent": true,
+          "tap_absent": true
+        },
+        "complete": true
+      }
+    }
+  },
+  {
+    "control": "composition",
+    "passed": false,
+    "failed": 15,
+    "total": 65,
+    "backend": "rooms",
+    "error": null,
+    "seconds": 4.701278833905235,
+    "evidence": {
+      "schema": "investigation-bridge.rooms-evidence.v1",
+      "run_id": "7b3a422afa9e403285425bf5dd5c0108",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "snapshot_sha256": {
+        "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+        "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+        "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+      },
+      "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+      "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+      "host_command_sha256": "639527559913a911d35d416065e553782565cb3a58ebb9daf192e351ee9687c5",
+      "matrix_sha256": "sha256:16339909335ea9031fa5d23d61bb1473e1f54c7e4dcb81e9187d24eb38ed1b4f",
+      "command_sha256": "sha256:ffd1a6acab0acdf11ed5eb19c80b1f4838b929a93ce713ae56faecdff399ec2e",
+      "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+      "room_id": "01m30qgb5dms51nc99by8jc2jp",
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "teardown": {
+        "checks": {
+          "host_veth_absent": true,
+          "jail_absent": true,
+          "namespace_absent": true,
+          "process_absent": true,
+          "room_absent_from_roster": true,
+          "room_state_absent": true,
+          "tap_absent": true
+        },
+        "complete": true
+      }
+    }
+  },
+  {
+    "control": "inverse_translation",
+    "passed": false,
+    "failed": 15,
+    "total": 65,
+    "backend": "rooms",
+    "error": null,
+    "seconds": 4.843384416075423,
+    "evidence": {
+      "schema": "investigation-bridge.rooms-evidence.v1",
+      "run_id": "2a318f57f0f940fc9fea3ed6b979e0fa",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "snapshot_sha256": {
+        "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+        "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+        "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+      },
+      "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+      "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+      "host_command_sha256": "7652b90fcdcf0ac6f269fe333dd77971f4d966d43e64c116bb5873765117553a",
+      "matrix_sha256": "sha256:af5cd0d1426f14e11c67adeb7c87706f16863e14d3795615a1389246b96689a6",
+      "command_sha256": "sha256:281bc13e183917650db94973eb3201a4c2e2f5db698e7d1a2b8baf2019a45f91",
+      "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+      "room_id": "01m30qgfrkrjn4532g2xz7hvwj",
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "teardown": {
+        "checks": {
+          "host_veth_absent": true,
+          "jail_absent": true,
+          "namespace_absent": true,
+          "process_absent": true,
+          "room_absent_from_roster": true,
+          "room_state_absent": true,
+          "tap_absent": true
+        },
+        "complete": true
+      }
+    }
+  },
+  {
+    "control": "pivot",
+    "passed": false,
+    "failed": 30,
+    "total": 65,
+    "backend": "rooms",
+    "error": null,
+    "seconds": 4.6428112499415874,
+    "evidence": {
+      "schema": "investigation-bridge.rooms-evidence.v1",
+      "run_id": "41c70496124147afa999106d6b43a645",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "snapshot_sha256": {
+        "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+        "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+        "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+      },
+      "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+      "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+      "host_command_sha256": "d9fd450fbdf121405f006407d59882cb2ca2adff9e5754c1958a8d25e620a45a",
+      "matrix_sha256": "sha256:9a004aad6a1c12b9d18f81235960e8c9f777d50318a6ab5af78010cc5f84cd0e",
+      "command_sha256": "sha256:eaf58bb0cb5bbf8147864c8bddb92bb6451b53d33c28c77f9e3842cb6da4fffd",
+      "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+      "room_id": "01m30qgmg8dbagshetycvyxq57",
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "teardown": {
+        "checks": {
+          "host_veth_absent": true,
+          "jail_absent": true,
+          "namespace_absent": true,
+          "process_absent": true,
+          "room_absent_from_roster": true,
+          "room_state_absent": true,
+          "tap_absent": true
+        },
+        "complete": true
+      }
+    }
+  },
+  {
+    "control": "singular_conversion",
+    "passed": false,
+    "failed": 5,
+    "total": 65,
+    "backend": "rooms",
+    "error": null,
+    "seconds": 4.629494708031416,
+    "evidence": {
+      "schema": "investigation-bridge.rooms-evidence.v1",
+      "run_id": "8de356da29444268beaf126f9364bc12",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "snapshot_sha256": {
+        "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+        "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+        "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+      },
+      "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+      "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+      "host_command_sha256": "d6e4765f3c546920ae9da65bb90ad8bb54bc2b761250be7f882cd3faa4db41f3",
+      "matrix_sha256": "sha256:9756db835377701c7034a9e76aa031dc73af739cd530c885c1881f3d459881b5",
+      "command_sha256": "sha256:857d2e1dc2e11087cb924bea16fa014dedf2294721983c5d0b830b633c383014",
+      "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+      "room_id": "01m30qgs1bt66d8z1skp1rdp7d",
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "teardown": {
+        "checks": {
+          "host_veth_absent": true,
+          "jail_absent": true,
+          "namespace_absent": true,
+          "process_absent": true,
+          "room_absent_from_roster": true,
+          "room_state_absent": true,
+          "tap_absent": true
+        },
+        "complete": true
+      }
+    }
+  },
+  {
+    "control": "ancestor_omission",
+    "passed": false,
+    "failed": 33,
+    "total": 65,
+    "backend": "rooms",
+    "error": null,
+    "seconds": 4.628415875136852,
+    "evidence": {
+      "schema": "investigation-bridge.rooms-evidence.v1",
+      "run_id": "8418d043851440728bd7446bffe661c2",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "snapshot_sha256": {
+        "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+        "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+        "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+      },
+      "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+      "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+      "host_command_sha256": "5aaaaef970b31414eebb22d7ef1fa9defc1b47dea0b82d1511438ac3a9431b52",
+      "matrix_sha256": "sha256:49cb66a266a4bf2c45ad56cb4efab08a7f81595137520cff2b1a24ef412c3b89",
+      "command_sha256": "sha256:eb5d4fcddc9298e0539344d18a6087b4af298b0c380c00dc6f094ba86e7fc986",
+      "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+      "room_id": "01m30qgxj7wzhmkfb779ds2k2h",
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "teardown": {
+        "checks": {
+          "host_veth_absent": true,
+          "jail_absent": true,
+          "namespace_absent": true,
+          "process_absent": true,
+          "room_absent_from_roster": true,
+          "room_state_absent": true,
+          "tap_absent": true
+        },
+        "complete": true
+      }
+    }
+  },
+  {
+    "control": "sibling_paths",
+    "passed": false,
+    "failed": 5,
+    "total": 65,
+    "backend": "rooms",
+    "error": null,
+    "seconds": 4.589816291118041,
+    "evidence": {
+      "schema": "investigation-bridge.rooms-evidence.v1",
+      "run_id": "2b8810ad863145c78a18bfef7c9150b3",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "snapshot_sha256": {
+        "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+        "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+        "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+      },
+      "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+      "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+      "host_command_sha256": "9c17d24f392656d033cea0a66e1d59add11773ca13dd87efaec91a1cb88e9092",
+      "matrix_sha256": "sha256:2a370ea2e88cbc9ca0cac52f49156225a8d24d8ab423ea60939614cde0c13d33",
+      "command_sha256": "sha256:ae6b37be085df3f33fe104b98bd8553e53d6e15a323b5d3c35cf9df3cc592187",
+      "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+      "room_id": "01m30qh234dzv26y3erv6eybjr",
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "teardown": {
+        "checks": {
+          "host_veth_absent": true,
+          "jail_absent": true,
+          "namespace_absent": true,
+          "process_absent": true,
+          "room_absent_from_roster": true,
+          "room_state_absent": true,
+          "tap_absent": true
+        },
+        "complete": true
+      }
+    }
+  },
+  {
+    "control": "target_local_singularity",
+    "passed": false,
+    "failed": 5,
+    "total": 65,
+    "backend": "rooms",
+    "error": null,
+    "seconds": 4.701218000147492,
+    "evidence": {
+      "schema": "investigation-bridge.rooms-evidence.v1",
+      "run_id": "3802d7f767ab40e4a4e76d9b320a2b7d",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "snapshot_sha256": {
+        "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+        "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+        "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+      },
+      "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+      "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+      "host_command_sha256": "c6857266b84a41e3f01a8b4cd48e6f989050139be904585acad130fe7bfa0341",
+      "matrix_sha256": "sha256:cbee2e98cfb90d93bced5269eac836e498862a26a89b6bff8b73dec0751d2556",
+      "command_sha256": "sha256:fa0894f985ebeb4401d46bd5069be45cb9fad9211d33c9ec7e967e245b2453a5",
+      "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+      "room_id": "01m30qh6jnrp5hpn3wsz32qpq2",
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "teardown": {
+        "checks": {
+          "host_veth_absent": true,
+          "jail_absent": true,
+          "namespace_absent": true,
+          "process_absent": true,
+          "room_absent_from_roster": true,
+          "room_state_absent": true,
+          "tap_absent": true
+        },
+        "complete": true
+      }
+    }
+  }
+]

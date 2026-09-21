@@ -101,13 +101,27 @@ except (FileNotFoundError, ProcessLookupError, ValueError):
 _TEARDOWN = """import json, pathlib, subprocess, sys
 binary, state_root, room_id, namespace, host_veth, tap = sys.argv[1:]
 roster_run = subprocess.run([binary, "ls", "--json"], capture_output=True, text=True)
+roster_json_valid = False
+roster_schema_valid = False
+rooms = []
 try:
     roster = json.loads(roster_run.stdout)
-except json.JSONDecodeError:
-    roster = {"rooms": [{"id": "unreadable-roster"}]}
-room_ids = {room.get("id") for room in roster.get("rooms", [])}
+    roster_json_valid = True
+    rooms = roster.get("rooms") if isinstance(roster, dict) else None
+    roster_schema_valid = isinstance(rooms, list) and all(isinstance(room, dict) for room in rooms)
+except (json.JSONDecodeError, TypeError):
+    pass
+if not roster_schema_valid:
+    rooms = []
+room_ids = {room.get("id") for room in rooms}
 process_found = False
-for entry in pathlib.Path("/proc").iterdir():
+process_scan_complete = True
+try:
+    process_entries = list(pathlib.Path("/proc").iterdir())
+except OSError:
+    process_entries = []
+    process_scan_complete = False
+for entry in process_entries:
     if not entry.name.isdigit():
         continue
     try:
@@ -116,21 +130,26 @@ for entry in pathlib.Path("/proc").iterdir():
         if executable in {"firecracker", "jailer", "rooms"} and room_id.encode() in command:
             process_found = True
             break
-    except (FileNotFoundError, PermissionError, ProcessLookupError):
+    except PermissionError:
+        process_scan_complete = False
+    except (FileNotFoundError, ProcessLookupError):
         pass
-netns = subprocess.run(["ip", "netns", "list"], capture_output=True, text=True).stdout.splitlines()
-links = {}
-for name in (host_veth, tap):
-    links[name] = subprocess.run(["ip", "link", "show", name], capture_output=True).returncode == 0
+netns_run = subprocess.run(["ip", "netns", "list"], capture_output=True, text=True)
+netns = netns_run.stdout.splitlines() if netns_run.returncode == 0 else []
 state = pathlib.Path(state_root)
 checks = {
+    "roster_command_ok": roster_run.returncode == 0,
+    "roster_json_valid": roster_json_valid,
+    "roster_schema_valid": roster_schema_valid,
     "room_absent_from_roster": room_id not in room_ids,
     "room_state_absent": not (state / room_id).exists(),
     "jail_absent": not (state / "jailer" / "firecracker" / room_id).exists(),
     "process_absent": not process_found,
+    "process_scan_complete": process_scan_complete,
+    "netns_command_ok": netns_run.returncode == 0,
     "namespace_absent": not any(line.split()[0] == namespace for line in netns if line.split()),
-    "host_veth_absent": not links[host_veth],
-    "tap_absent": not links[tap],
+    "host_veth_absent": not (pathlib.Path("/sys/class/net") / host_veth).exists(),
+    "tap_absent": not (pathlib.Path("/sys/class/net") / tap).exists(),
 }
 print(json.dumps({"checks": checks, "complete": all(checks.values())}, sort_keys=True))
 """
@@ -259,6 +278,8 @@ def _manifest(source, requests, case_id):
 def _stop_requested(stop):
     if stop is None:
         return False
+    if isinstance(stop, (str, os.PathLike)):
+        return pathlib.Path(stop).exists()
     if callable(stop):
         return bool(stop())
     is_set = getattr(stop, "is_set", None)
@@ -368,9 +389,14 @@ class _Lima:
     def _roster(self):
         result = self.run(["sudo", "-H", self.config["binary"], "ls", "--json"])
         try:
-            return json.loads(result.stdout)
-        except json.JSONDecodeError as error:
+            roster = json.loads(result.stdout)
+        except (json.JSONDecodeError, TypeError) as error:
             raise _BackendError("rooms ls did not emit a JSON document") from error
+        if not isinstance(roster, dict) or not isinstance(roster.get("rooms"), list):
+            raise _BackendError("rooms ls emitted an invalid roster")
+        if not all(isinstance(room, dict) for room in roster["rooms"]):
+            raise _BackendError("rooms ls emitted an invalid room record")
+        return roster
 
     def cleanup_owned(self, case_id):
         """Reap only the room carrying this invocation's unguessable case label."""
@@ -379,7 +405,8 @@ class _Lima:
         if len(owned) > 1:
             return {"complete": False, "error": "multiple rooms carried the unique case label"}
         if not owned:
-            return {"complete": True, "checks": {"owned_room_absent": True}}
+            return {"complete": False, "checks": {"owned_room_absent": True},
+                    "error": "room identity unavailable; residue absence unproved"}
         room = owned[0]
         room_id = room.get("id")
         slot = room.get("slot", {}).get("index")
@@ -407,8 +434,8 @@ class _Lima:
         clone = {
             "room_id": room_id,
             "slot": slot,
-            "namespace": "rooms-c1",
-            "host_veth": "veth-h1",
+            "namespace": f"rooms-c{slot}",
+            "host_veth": f"veth-h{slot}",
         }
         return self.teardown(clone)
 
@@ -443,9 +470,16 @@ def _wait(process, lima, remote_dir, timeout, stop):
 def evaluate(source: str, requests: list, image=None, timeout=50, stop=None) -> dict:
     """Execute ``evaluate(request)`` once per request in one fresh Rooms VM."""
     began = time.monotonic()
+    config = None
     identity = None
     stderr_text = ""
     evidence = None
+    lima = None
+    case_id = None
+    remote_dir = None
+    host_command_sha256 = None
+    started = False
+    teardown = None
     try:
         config = _load_config(image)
         identity = config["identity"]
@@ -484,40 +518,23 @@ def evaluate(source: str, requests: list, image=None, timeout=50, stop=None) -> 
             json.dumps(rooms_argv, separators=(",", ":")).encode("utf-8")
         ).hexdigest()
         process = lima.start(rooms_argv, remote_dir)
+        started = True
         stdout, stderr, interrupted = _wait(process, lima, remote_dir, float(timeout), stop)
         stderr_text = stderr.decode("utf-8", "replace")[-_STDERR_LIMIT:]
         if interrupted:
-            teardown = lima.cleanup_owned(case_id)
-            summary = {
-                "schema": "investigation-bridge.rooms-evidence.v1",
-                "run_id": run_id,
-                "image": identity,
-                "status": interrupted,
-                "snapshot_sha256": config["snapshot_sha256"],
-                "host_command_sha256": host_command_sha256,
-                "teardown": teardown,
-            }
-            lima.write_public(f"{remote_dir}/public.json", summary)
-            error = interrupted if teardown.get("complete") else f"{interrupted}; cleanup incomplete"
-            return _failure(
-                identity,
-                error,
-                stderr=stderr_text,
-                seconds=time.monotonic() - began,
-                evidence=evidence,
-                evidence_summary=summary,
-            )
-        try:
-            matrix = _json_line(stdout.decode("utf-8", "replace"), "rooms matrix")
-        except _BackendError as error:
-            teardown = lima.cleanup_owned(case_id)
-            if teardown.get("complete") is not True:
-                raise _BackendError(f"{error}; cleanup incomplete") from error
-            raise
+            raise _BackendError(interrupted)
+        matrix = _json_line(stdout.decode("utf-8", "replace"), "rooms matrix")
         clones = matrix.get("clones")
         if matrix.get("status") != "completed" or not isinstance(clones, list) or len(clones) != 1:
             raise _BackendError(f"Rooms matrix did not complete: {matrix.get('status')}")
         clone = clones[0]
+        required = ('room_id', 'snapshot_id', 'command_sha256', 'namespace', 'host_veth')
+        if (process.returncode != 0 or not isinstance(clone, dict)
+                or clone.get('case_id') != case_id
+                or any(not isinstance(clone.get(key), str) or not clone[key] for key in required)
+                or not isinstance(clone.get('slot'), int)
+                or not isinstance(matrix.get('matrix_sha256'), str)):
+            raise _BackendError('incomplete Rooms execution identity')
         teardown = lima.teardown(clone)
         if teardown.get("complete") is not True:
             raise _BackendError("Rooms teardown evidence is incomplete")
@@ -566,19 +583,39 @@ def evaluate(source: str, requests: list, image=None, timeout=50, stop=None) -> 
             "witness": summary["witness"],
             "evidence_summary": summary,
         }
-    except (
-        OSError,
-        subprocess.SubprocessError,
-        json.JSONDecodeError,
-        KeyError,
-        TypeError,
-        ValueError,
-        _BackendError,
-    ) as error:
+    except Exception as error:
+        error_text = str(error)
+        if started and (not isinstance(teardown, dict) or teardown.get("complete") is not True):
+            try:
+                teardown = lima.cleanup_owned(case_id)
+            except Exception as cleanup_error:
+                teardown = {"complete": False, "error": str(cleanup_error)}
+        extra = {}
+        if started:
+            if not isinstance(teardown, dict) or teardown.get("complete") is not True:
+                error_text = f"{error_text}; cleanup incomplete"
+            summary = {
+                "schema": "investigation-bridge.rooms-evidence.v1",
+                "run_id": run_id,
+                "image": identity,
+                "status": "failed",
+                "snapshot_sha256": config["snapshot_sha256"],
+                "host_command_sha256": host_command_sha256,
+                "teardown": teardown,
+            }
+            try:
+                lima.write_public(f"{remote_dir}/public.json", summary)
+            except Exception as evidence_error:
+                evidence = None
+                summary["evidence_error"] = str(evidence_error)
+            extra["evidence_summary"] = summary
+        if not started:
+            evidence = None
         return _failure(
             identity,
-            error,
+            error_text,
             stderr=stderr_text,
             seconds=time.monotonic() - began,
             evidence=evidence,
+            **extra,
         )

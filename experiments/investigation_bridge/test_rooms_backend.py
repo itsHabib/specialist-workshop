@@ -59,6 +59,7 @@ class FakeLima:
         type(self).instance = self
         self.manifest = None
         self.cancelled = False
+        self.cleanup_calls = 0
         self.public = None
         self.outputs = [{"answer": 2}, {"candidate_exception": "ValueError"}]
         self.clone = {
@@ -108,6 +109,7 @@ class FakeLima:
         return {"complete": True, "checks": {"process_absent": True}}
 
     def cleanup_owned(self, _case_id):
+        self.cleanup_calls += 1
         return {"complete": True, "checks": {"owned_room_absent": True}}
 
     def write_public(self, _path, record):
@@ -177,11 +179,99 @@ class RoomsBackendTests(unittest.TestCase):
         self.assertEqual(result["error"], "stopped")
         self.assertTrue(SlowLima.instance.cancelled)
 
+    def test_noncompleted_matrix_runs_owned_cleanup(self):
+        class FailedMatrixLima(FakeLima):
+            def start(self, _rooms_argv, _remote_dir):
+                matrix = {"status": "failed", "clones": []}
+                return FakeProcess((json.dumps(matrix) + "\n").encode())
+
+        with mock.patch.object(rooms_backend, "_Lima", FailedMatrixLima):
+            result = rooms_backend.evaluate("def evaluate(x): return x", [], image=config())
+        self.assertIn("did not complete", result["error"])
+        self.assertEqual(FailedMatrixLima.instance.cleanup_calls, 1)
+        self.assertTrue(result["evidence_summary"]["teardown"]["complete"])
+
+    def test_roster_requires_rooms_list(self):
+        lima = rooms_backend._Lima.__new__(rooms_backend._Lima)
+        lima.config = config()
+        completed = subprocess.CompletedProcess([], 0, b"{}", b"")
+        lima.run = mock.Mock(return_value=completed)
+        with self.assertRaisesRegex(rooms_backend._BackendError, "invalid roster"):
+            lima._roster()
+
+    def test_failed_teardown_probes_cannot_report_complete(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            binary = root / "rooms"
+            ip = root / "ip"
+            binary.write_text("#!/bin/sh\nprintf not-json\nexit 1\n", encoding="utf-8")
+            ip.write_text("#!/bin/sh\nexit 1\n", encoding="utf-8")
+            binary.chmod(0o700)
+            ip.chmod(0o700)
+            env = dict(os.environ)
+            env["PATH"] = f"{root}:{env['PATH']}"
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    "-c",
+                    rooms_backend._TEARDOWN,
+                    binary,
+                    root / "state",
+                    "room-test",
+                    "rooms-c3",
+                    "veth-h3",
+                    "tap-fc3",
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+                env=env,
+            )
+            probe = json.loads(completed.stdout)
+        self.assertFalse(probe["complete"])
+        self.assertFalse(probe["checks"]["roster_command_ok"])
+        self.assertFalse(probe["checks"]["roster_json_valid"])
+        self.assertFalse(probe["checks"]["netns_command_ok"])
+
+    def test_cleanup_derives_network_names_from_owned_slot(self):
+        class SlotLima(rooms_backend._Lima):
+            def __init__(self):
+                self.config = config()
+                self.rosters = [
+                    {
+                        "rooms": [
+                            {
+                                "id": "room-3",
+                                "label": "matrix:candidate-batch-test",
+                                "state": "running",
+                                "slot": {"index": 3},
+                            }
+                        ]
+                    },
+                    {"rooms": []},
+                ]
+                self.probed = None
+
+            def _roster(self):
+                return self.rosters.pop(0)
+
+            def run(self, _argv, **_kwargs):
+                return subprocess.CompletedProcess([], 0, b"", b"")
+
+            def teardown(self, clone):
+                self.probed = clone
+                return {"complete": True}
+
+        lima = SlotLima()
+        self.assertTrue(lima.cleanup_owned("candidate-batch-test")["complete"])
+        self.assertEqual(lima.probed["namespace"], "rooms-c3")
+        self.assertEqual(lima.probed["host_veth"], "veth-h3")
+
 
 class RoomsBackendLiveTests(unittest.TestCase):
     @unittest.skipUnless(
-        pathlib.Path("/tmp/bridge-rooms-config.json").is_file(),
-        "local Rooms config is unavailable",
+        os.environ.get("BRIDGE_ROOMS_TESTS") == "1",
+        "explicit local Rooms execution checks",
     )
     def test_live_python_batch_has_zero_egress_witness_and_cleanup(self):
         source = """def evaluate(request):
@@ -192,7 +282,7 @@ class RoomsBackendLiveTests(unittest.TestCase):
         result = rooms_backend.evaluate(
             source,
             [{"value": 3}, {"value": 9, "explode": True}],
-            image="/tmp/bridge-rooms-config.json",
+            image=os.environ["BRIDGE_ROOMS_CONFIG"],
             timeout=50,
         )
         self.assertIsNone(result["error"], result)

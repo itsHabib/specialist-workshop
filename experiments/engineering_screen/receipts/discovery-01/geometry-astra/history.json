@@ -1,0 +1,21 @@
+{
+  "task": "geometry",
+  "attempts": [
+    {
+      "response": {
+        "action": "edit",
+        "hypothesis": "Partition the x-axis at every vertex and segment crossing. Within each open slab, edge order is fixed and filled vertical length is affine, so its exact midpoint value times slab width gives the area. Accumulate signed crossings across all walks together.",
+        "prediction": "Handles self-intersections, coincident and retraced edges, repeated vertices, opposite orientations, degenerate walks, both fill rules, and large coordinates using exact rational arithmetic.",
+        "source": "from fractions import Fraction\nimport sys\n\n\ndef evaluate(request):\n    edges = []\n    cuts = set()\n\n    for ring in request.get('rings', []):\n        n = len(ring)\n        if not n:\n            continue\n        for i in range(n):\n            x1, y1 = ring[i]\n            x2, y2 = ring[(i + 1) % n]\n            cuts.add(Fraction(x1))\n            dx = x2 - x1\n            if dx == 0:\n                continue\n            slope = Fraction(y2 - y1, dx)\n            intercept = Fraction(y1) - slope * x1\n            edges.append((min(x1, x2), max(x1, x2),\n                          slope, intercept, 1 if dx > 0 else -1))\n\n    if not edges:\n        return {'area': '0'}\n\n    for i, edge in enumerate(edges):\n        lo1, hi1, m1, b1, _ = edge\n        for j in range(i):\n            lo2, hi2, m2, b2, _ = edges[j]\n            lo = max(lo1, lo2)\n            hi = min(hi1, hi2)\n            if lo >= hi or m1 == m2:\n                continue\n            crossing = (b2 - b1) / (m1 - m2)\n            if lo < crossing < hi:\n                cuts.add(crossing)\n\n    cuts = sorted(cuts)\n    evenodd = request['rule'] == 'evenodd'\n    area = Fraction(0)\n\n    for left, right in zip(cuts, cuts[1:]):\n        midpoint = (left + right) / 2\n        crossings = []\n        for lo, hi, slope, intercept, delta in edges:\n            if lo < midpoint < hi:\n                crossings.append((slope * midpoint + intercept, delta))\n        crossings.sort()\n\n        winding = 0\n        previous_y = None\n        filled_length = Fraction(0)\n        for y, delta in crossings:\n            filled = (winding % 2 != 0) if evenodd else (winding != 0)\n            if previous_y is not None and filled:\n                filled_length += y - previous_y\n            winding += delta\n            previous_y = y\n\n        area += filled_length * (right - left)\n\n    # Exact results can exceed Python's default decimal conversion limit.\n    if hasattr(sys, 'set_int_max_str_digits'):\n        sys.set_int_max_str_digits(0)\n    return {'area': str(area)}\n",
+        "probes_json": "[]"
+      },
+      "development": {
+        "passed": true,
+        "total": 4,
+        "failed": 0,
+        "failures": [],
+        "execution_error": null
+      }
+    }
+  ]
+}

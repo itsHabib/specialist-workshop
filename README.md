@@ -67,6 +67,7 @@ Retries received schema/context validation errors, never the expected answer. Th
 ### What else can you explore?
 
 - **Real local fine-tuning:** the support and analytics experiments train and load actual adapters. The tiny support run exercises the full loop; the analytics study explores output formatting and task accuracy. [Training and evaluation notes](docs/READINESS.md) · [Analytics study](docs/ANALYTICS-EXPERIMENT.md).
+- **Engineering failure discovery:** exact geometry, concurrent lease histories, and constrained flow, screened with executable validators before adding helpers. [Tasks and protocol](experiments/engineering_screen/README.md).
 - **Independent investigators:** a synthetic repair comparison of solo Opus, an Opus investigation team, and Astra, with candidate execution in Rooms or Docker. [Protocol and reproduction](experiments/investigation_bridge/README.md).
 - **Tasks with observable outcomes:** the CI evidence example lets a policy inspect fixture evidence and write an advisory in a resettable environment. [Workflow experiments](docs/WORKFLOW-EXPERIMENTS.md).
 - **Your own comparison:** import a package, establish a baseline, train, inspect responses and save corrections as a new version. Evaluation defaults to development cases, with an explicit final step. A portable script compares bounded retries using your package and checkpoint. [Walkthrough](docs/MONDAY.md) · [Cost comparison protocol](docs/ECONOMICS.md).

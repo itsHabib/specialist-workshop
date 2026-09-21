@@ -1,0 +1,28 @@
+[
+  {
+    "task": "geometry",
+    "provider": "opus",
+    "accepted": true,
+    "status": "finished",
+    "error": null,
+    "calls": 1,
+    "seconds": 161.09457187517546,
+    "estimated_cost_usd": 0.356833,
+    "final_total": 18,
+    "final_unseen_total": 18,
+    "final_failed": 0
+  },
+  {
+    "task": "geometry",
+    "provider": "astra",
+    "accepted": true,
+    "status": "finished",
+    "error": null,
+    "calls": 1,
+    "seconds": 41.07918658410199,
+    "estimated_cost_usd": null,
+    "final_total": 18,
+    "final_unseen_total": 18,
+    "final_failed": 0
+  }
+]

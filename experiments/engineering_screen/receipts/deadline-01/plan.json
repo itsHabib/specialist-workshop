@@ -1,0 +1,37 @@
+{
+  "schema": "engineering-screen.v1",
+  "trials": [
+    {
+      "task": "geometry",
+      "provider": "opus"
+    },
+    {
+      "task": "geometry",
+      "provider": "astra"
+    }
+  ],
+  "calls_per_arm": 1,
+  "timeout": 300,
+  "tasks_sha256": "f39ef640189b299a9cc6ddee29fa9cbfdd8da705109220913b8ef6262118091c",
+  "files": {
+    "engineering_screen/tasks.py": "dd6ce196a8db1d01d89d49f7d2aed0e3bd47f3e8e4020791e375ecba8b00e2f0",
+    "engineering_screen/screen.py": "a54db4d77de1bcd3f107390d282c44006bff540288ecddb37fdd5a21c54520ce",
+    "engineering_screen/DEADLINE-PROTOCOL.md": "6e9c5103fb83c933fd1958c49e748ed22266fad249dea60ab1ddc6dca7e07620",
+    "investigation_bridge/models.py": "490e9048fd8fe20667a465db27154f773aa12f1a1a143db81ac8d208f60c3046",
+    "investigation_bridge/model_supervisor.py": "976c707fb85ef27b9f5ddca72461b7daeac4d905e1ba6618afe6df4b0e697806",
+    "investigation_bridge/sandbox.py": "5e5a8c9e40e77ca6e004799da4b055b20d17e1093240f0dc99918fe65bf1d90d"
+  },
+  "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+  "models": {
+    "opus": "claude-opus-5",
+    "astra": "gpt-6-astra"
+  },
+  "effort": "high",
+  "backend": "docker",
+  "seeds": {
+    "development": 1729,
+    "final": 5772
+  },
+  "label": "deadline-diagnostic",
+  "frozen_commit": "9e1d9a1"
+}

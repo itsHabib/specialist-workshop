@@ -37,19 +37,22 @@ def grade(name,source,inputs,stop):
     return {'passed':execution['error'] is None and complete and not failures,'total':len(inputs),'failed':len(failures) if complete else len(inputs),'failures':failures,'execution':execution}
 
 
-def freeze(root):
+def freeze(root, diagnostic=False):
     root.mkdir(parents=True,exist_ok=False,mode=0o700)
-    discovery=tasks.cases(1729);heldout=tasks.cases(2718)
+    discovery=tasks.cases(1729);heldout=tasks.cases(5772 if diagnostic else 2718)
     packages={}
     for name,qs in discovery.items():
+        if diagnostic and name!='geometry':continue
         # All edge cases are in the contract. Development examples are fixed before calls.
         selected=[qs[0],qs[1],qs[-2],qs[-1]]
-        packages[name]={'contract':tasks.CONTRACTS[name],'development':selected,'final':heldout[name]}
+        seen={json.dumps(q,sort_keys=True) for q in selected}
+        final=[q for q in heldout[name] if json.dumps(q,sort_keys=True) not in seen]
+        packages[name]={'contract':tasks.CONTRACTS[name],'development':selected,'final':final}
     write(root/'tasks.json',packages)
     trials=[{'task':name,'provider':provider} for name in packages for provider in ('opus','astra')]
     random.Random(573).shuffle(trials)
-    files=[ROOT/'tasks.py',ROOT/'screen.py',ROOT/'PROTOCOL.md',BRIDGE/'models.py',BRIDGE/'model_supervisor.py',BRIDGE/'sandbox.py']
-    plan={'schema':'engineering-screen.v1','trials':trials,'calls_per_arm':2,'timeout':150,'tasks_sha256':sha(root/'tasks.json'),'files':{str(p.relative_to(ROOT.parent)):sha(p) for p in files},'image':sandbox.IMAGE,'models':{'opus':'claude-opus-5','astra':'gpt-6-astra'},'effort':'high','backend':'docker','seeds':{'development':1729,'final':2718}}
+    files=[ROOT/'tasks.py',ROOT/'screen.py',ROOT/('DEADLINE-PROTOCOL.md' if diagnostic else 'PROTOCOL.md'),BRIDGE/'models.py',BRIDGE/'model_supervisor.py',BRIDGE/'sandbox.py']
+    plan={'schema':'engineering-screen.v1','trials':trials,'calls_per_arm':1 if diagnostic else 2,'timeout':300 if diagnostic else 150,'tasks_sha256':sha(root/'tasks.json'),'files':{str(p.relative_to(ROOT.parent)):sha(p) for p in files},'image':sandbox.IMAGE,'models':{'opus':'claude-opus-5','astra':'gpt-6-astra'},'effort':'high','backend':'docker','seeds':{'development':1729,'final':5772 if diagnostic else 2718},'label':'deadline-diagnostic' if diagnostic else 'discovery'}
     write(root/'plan.json',plan)
     return plan
 
@@ -70,12 +73,12 @@ def controls(root):
     write(root/'controls.json',rows)
 
 
-def prompt(package,history):
+def prompt(package,history,max_calls=2):
     return ('Solve this synthetic engineering implementation task. Return the required JSON action object. '
             'Use action="edit", source=the complete self-contained Python implementation defining evaluate(request), '
             'hypothesis=a concise design explanation, prediction=what your implementation handles, probes_json="[]". '
             'Only standard library; no tools/network/filesystem access. The harness executes your program. '
-            'You have at most two model calls with development feedback after the first. '
+            f'You have at most {max_calls} model calls; remaining calls receive development feedback. '
             'A passing development implementation is sealed and evaluated on final inputs once. '
             'Reason carefully about edge cases; choose an algorithm fitting the stated bounds.\n'+json.dumps({'contract':package['contract'],'examples':[{'input':q,'expected':tasks.REFERENCES[history['task']](q)} for q in package['development']], 'previous_attempts':history['attempts']}))
 
@@ -91,7 +94,7 @@ def trial(root,entry,package,plan):
         if out.exists():
             if not (out/'receipt.json').exists():raise RuntimeError('uncertain paid call: '+str(out))
             receipt=json.loads((out/'receipt.json').read_text())
-        else:receipt=models.complete(prompt(package,history),provider,out,timeout=plan['timeout'],stop=root/'STOP')
+        else:receipt=models.complete(prompt(package,history,plan['calls_per_arm']),provider,out,timeout=plan['timeout'],stop=root/'STOP')
         calls.append(receipt)
         if receipt['error']:error=receipt['error'];break
         response=receipt['response']
@@ -126,7 +129,7 @@ def execute(root):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('command',choices=['freeze','controls','run']);parser.add_argument('directory',type=Path);args=parser.parse_args();root=args.directory.resolve()
-    if args.command=='freeze':freeze(root)
+    parser=argparse.ArgumentParser();parser.add_argument('command',choices=['freeze','freeze-deadline','controls','run']);parser.add_argument('directory',type=Path);args=parser.parse_args();root=args.directory.resolve()
+    if args.command in ('freeze','freeze-deadline'):freeze(root,diagnostic=args.command=='freeze-deadline')
     elif args.command=='controls':controls(root)
     else:execute(root)

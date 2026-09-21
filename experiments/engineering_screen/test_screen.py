@@ -20,6 +20,14 @@ class ScreenTests(unittest.TestCase):
         self.assertNotIn('SECRET',prompt)
         self.assertNotIn('def geometry',prompt)
 
+    def test_frozen_final_inputs_do_not_repeat_development(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)/'screen';screen.freeze(root)
+            for task in json.loads((root/'tasks.json').read_text()).values():
+                development={json.dumps(q,sort_keys=True) for q in task['development']}
+                self.assertTrue(task['final'])
+                self.assertFalse(development & {json.dumps(q,sort_keys=True) for q in task['final']})
+
     def test_unknown_call_never_retried(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);(root/'geometry-opus'/'call-1').mkdir(parents=True)

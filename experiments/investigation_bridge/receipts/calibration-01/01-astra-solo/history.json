@@ -1,0 +1,422 @@
+[
+  {
+    "role": "solver",
+    "response": {
+      "action": "probe",
+      "hypothesis": "The earliest incorrect intermediate result for nested frames is _chain: it fabricates a direct world parent and omits ancestors. Independent defects ignore pivots, subtract translation after inversion, and reject singular sources. Restoring chains also requires source traversal in child-to-parent order and removal of target-leg truncation. Scene validation and unknown-frame precedence appear correct.",
+      "prediction": "The four probes should respectively return [\"8\",\"0\"], [\"5\",\"0\"], [\"2\",\"0\"], and [\"1\",\"0\"]. The current candidate should instead return [\"4\",\"0\"], [\"8\",\"0\"], [\"1/2\",\"0\"], and error singular, isolating ancestry, pivot, inverse translation, and singular-source handling.",
+      "source": "",
+      "probes_json": "[{\"frames\":{\"a\":{\"parent\":\"world\",\"translation\":[\"0\",\"0\"],\"linear\":[[\"2\",\"0\"],[\"0\",\"1\"]],\"pivot\":[\"0\",\"0\"]},\"b\":{\"parent\":\"a\",\"translation\":[\"3\",\"0\"],\"linear\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"pivot\":[\"0\",\"0\"]}},\"source\":\"b\",\"target\":\"world\",\"point\":[\"1\",\"0\"]},{\"frames\":{\"a\":{\"parent\":\"world\",\"translation\":[\"0\",\"0\"],\"linear\":[[\"2\",\"0\"],[\"0\",\"1\"]],\"pivot\":[\"3\",\"0\"]}},\"source\":\"a\",\"target\":\"world\",\"point\":[\"4\",\"0\"]},{\"frames\":{\"a\":{\"parent\":\"world\",\"translation\":[\"3\",\"0\"],\"linear\":[[\"2\",\"0\"],[\"0\",\"1\"]],\"pivot\":[\"0\",\"0\"]}},\"source\":\"world\",\"target\":\"a\",\"point\":[\"7\",\"0\"]},{\"frames\":{\"a\":{\"parent\":\"world\",\"translation\":[\"0\",\"0\"],\"linear\":[[\"1\",\"0\"],[\"0\",\"0\"]],\"pivot\":[\"0\",\"0\"]}},\"source\":\"a\",\"target\":\"world\",\"point\":[\"1\",\"2\"]}]"
+    },
+    "probe_result": {
+      "passed": false,
+      "total": 4,
+      "failed": 4,
+      "failures": [
+        {
+          "input": {
+            "frames": {
+              "a": {
+                "parent": "world",
+                "translation": [
+                  "0",
+                  "0"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "0"
+                ]
+              },
+              "b": {
+                "parent": "a",
+                "translation": [
+                  "3",
+                  "0"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "0"
+                ]
+              }
+            },
+            "source": "b",
+            "target": "world",
+            "point": [
+              "1",
+              "0"
+            ]
+          },
+          "expected": {
+            "point": [
+              "8",
+              "0"
+            ]
+          },
+          "actual": {
+            "point": [
+              "4",
+              "0"
+            ]
+          }
+        },
+        {
+          "input": {
+            "frames": {
+              "a": {
+                "parent": "world",
+                "translation": [
+                  "0",
+                  "0"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "3",
+                  "0"
+                ]
+              }
+            },
+            "source": "a",
+            "target": "world",
+            "point": [
+              "4",
+              "0"
+            ]
+          },
+          "expected": {
+            "point": [
+              "5",
+              "0"
+            ]
+          },
+          "actual": {
+            "point": [
+              "8",
+              "0"
+            ]
+          }
+        },
+        {
+          "input": {
+            "frames": {
+              "a": {
+                "parent": "world",
+                "translation": [
+                  "3",
+                  "0"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "0"
+                ]
+              }
+            },
+            "source": "world",
+            "target": "a",
+            "point": [
+              "7",
+              "0"
+            ]
+          },
+          "expected": {
+            "point": [
+              "2",
+              "0"
+            ]
+          },
+          "actual": {
+            "point": [
+              "1/2",
+              "0"
+            ]
+          }
+        },
+        {
+          "input": {
+            "frames": {
+              "a": {
+                "parent": "world",
+                "translation": [
+                  "0",
+                  "0"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "0"
+                ]
+              }
+            },
+            "source": "a",
+            "target": "world",
+            "point": [
+              "1",
+              "2"
+            ]
+          },
+          "expected": {
+            "point": [
+              "1",
+              "0"
+            ]
+          },
+          "actual": {
+            "error": "singular"
+          }
+        }
+      ],
+      "execution": {
+        "backend": "rooms",
+        "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+        "outputs": [
+          {
+            "point": [
+              "4",
+              "0"
+            ]
+          },
+          {
+            "point": [
+              "8",
+              "0"
+            ]
+          },
+          {
+            "point": [
+              "1/2",
+              "0"
+            ]
+          },
+          {
+            "error": "singular"
+          }
+        ],
+        "error": null,
+        "seconds": 4.668485749978572,
+        "witness": {
+          "capture_complete": true,
+          "egress_policy": "none",
+          "permitted": [],
+          "blocked": []
+        },
+        "evidence_summary": {
+          "schema": "investigation-bridge.rooms-evidence.v1",
+          "run_id": "6aa2b5918c624522a0a5db102b2eb692",
+          "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+          "snapshot_sha256": {
+            "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+            "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+            "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+          },
+          "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+          "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+          "host_command_sha256": "e1f3ee9520c830b7a7039e4f40f0527593646e5aa848d26af8609a36770b93f8",
+          "matrix_sha256": "sha256:883c4f8ed8467d7a0c8bd9690bc756a871b217d87690f40e45e3d94cda32b207",
+          "command_sha256": "sha256:4927a69a1c04474518d01a927767d879df57dbc72426772c5fbe53f6d439d807",
+          "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+          "room_id": "01m30r29z1zjwxt3c90wca0cfn",
+          "witness": {
+            "capture_complete": true,
+            "egress_policy": "none",
+            "permitted": [],
+            "blocked": []
+          },
+          "teardown": {
+            "checks": {
+              "host_veth_absent": true,
+              "jail_absent": true,
+              "namespace_absent": true,
+              "netns_command_ok": true,
+              "process_absent": true,
+              "process_scan_complete": true,
+              "room_absent_from_roster": true,
+              "room_state_absent": true,
+              "roster_command_ok": true,
+              "roster_json_valid": true,
+              "roster_schema_valid": true,
+              "tap_absent": true
+            },
+            "complete": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "role": "solver",
+    "response": {
+      "action": "edit",
+      "hypothesis": "The probes confirm that _chain first loses required ancestors. Independent errors omit pivot offsets, apply inverse translation in the wrong order, and reject allowed singular sources. Repair full ancestry, forward traversal order, affine formulas, and target-only singularity checks while preserving scene validation and error precedence.",
+      "prediction": "All four discriminating probes should produce their expected coordinates, and all 13 development cases should pass. Singular target ancestors remain errors even when source equals target; unrelated invalid graph components still take precedence over unknown frames.",
+      "source": "\"\"\"Evaluate affine frame coordinates using exact rational arithmetic.\"\"\"\n\nfrom fractions import Fraction\n\n\ndef _number(value):\n    return Fraction(str(value))\n\n\ndef _text(value):\n    if value.denominator == 1:\n        return str(value.numerator)\n    return f\"{value.numerator}/{value.denominator}\"\n\n\ndef _valid_scene(frames):\n    if \"world\" in frames:\n        return False\n    for start in frames:\n        current = start\n        seen = set()\n        while current != \"world\":\n            if current not in frames or current in seen:\n                return False\n            seen.add(current)\n            current = frames[current][\"parent\"]\n    return True\n\n\ndef _chain(name, frames):\n    chain = []\n    while name != \"world\":\n        chain.append(name)\n        name = frames[name][\"parent\"]\n    return chain\n\n\ndef _determinant(frame):\n    linear = frame[\"linear\"]\n    return (_number(linear[0][0]) * _number(linear[1][1])\n            - _number(linear[0][1]) * _number(linear[1][0]))\n\n\ndef _to_parent(frame, point):\n    x, y = point\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    a, b = map(_number, frame[\"linear\"][0])\n    c, d = map(_number, frame[\"linear\"][1])\n    dx, dy = x - px, y - py\n    return (tx + px + a * dx + b * dy,\n            ty + py + c * dx + d * dy)\n\n\ndef _from_parent(frame, point):\n    x, y = point\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    a, b = map(_number, frame[\"linear\"][0])\n    c, d = map(_number, frame[\"linear\"][1])\n    determinant = a * d - b * c\n    dx, dy = x - tx - px, y - ty - py\n    return (px + (d * dx - b * dy) / determinant,\n            py + (-c * dx + a * dy) / determinant)\n\n\ndef evaluate(request):\n    frames = request[\"frames\"]\n    if not _valid_scene(frames):\n        return {\"error\": \"invalid_scene\"}\n\n    source = request[\"source\"]\n    target = request[\"target\"]\n    if source != \"world\" and source not in frames:\n        return {\"error\": \"unknown_frame\"}\n    if target != \"world\" and target not in frames:\n        return {\"error\": \"unknown_frame\"}\n\n    source_chain = _chain(source, frames)\n    target_chain = _chain(target, frames)\n    if any(_determinant(frames[name]) == 0 for name in target_chain):\n        return {\"error\": \"singular\"}\n\n    point = tuple(map(_number, request[\"point\"]))\n    for name in source_chain:\n        point = _to_parent(frames[name], point)\n    for name in reversed(target_chain):\n        point = _from_parent(frames[name], point)\n\n    return {\"point\": [_text(point[0]), _text(point[1])]}\n",
+      "probes_json": "[]"
+    },
+    "development": {
+      "passed": true,
+      "total": 13,
+      "failed": 0,
+      "failures": [],
+      "execution": {
+        "backend": "rooms",
+        "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+        "outputs": [
+          {
+            "point": [
+              "-219/11",
+              "219/11"
+            ]
+          },
+          {
+            "point": [
+              "-44/3",
+              "-1630/33"
+            ]
+          },
+          {
+            "point": [
+              "471/22",
+              "5/2"
+            ]
+          },
+          {
+            "point": [
+              "-4503/22",
+              "3035/33"
+            ]
+          },
+          {
+            "point": [
+              "811/22",
+              "1105/66"
+            ]
+          },
+          {
+            "point": [
+              "-690/11",
+              "-481/33"
+            ]
+          },
+          {
+            "error": "singular"
+          },
+          {
+            "error": "singular"
+          },
+          {
+            "error": "unknown_frame"
+          },
+          {
+            "error": "unknown_frame"
+          },
+          {
+            "error": "invalid_scene"
+          },
+          {
+            "error": "invalid_scene"
+          },
+          {
+            "point": [
+              "-387/44",
+              "-21133/132"
+            ]
+          }
+        ],
+        "error": null,
+        "seconds": 5.182226041099057,
+        "witness": {
+          "capture_complete": true,
+          "egress_policy": "none",
+          "permitted": [],
+          "blocked": []
+        },
+        "evidence_summary": {
+          "schema": "investigation-bridge.rooms-evidence.v1",
+          "run_id": "0be12c3bfbb24d7fa3e9b4b939fbe22b",
+          "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+          "snapshot_sha256": {
+            "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+            "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+            "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+          },
+          "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+          "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+          "host_command_sha256": "dd166e4022ebfb2406e228d9937880cb76e8fa3f0afaba0ea32d311ff36d94c1",
+          "matrix_sha256": "sha256:252508f2c335857af9af8ae75cb22f2ae43c5d09d15c4938e13da9559619b992",
+          "command_sha256": "sha256:4936990dea4e355e5b850d1ca437e1a7a4091c07d73f64f5f52ddb6d903bb8ad",
+          "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+          "room_id": "01m30r3g1yazkpagh0w930snhh",
+          "witness": {
+            "capture_complete": true,
+            "egress_policy": "none",
+            "permitted": [],
+            "blocked": []
+          },
+          "teardown": {
+            "checks": {
+              "host_veth_absent": true,
+              "jail_absent": true,
+              "namespace_absent": true,
+              "netns_command_ok": true,
+              "process_absent": true,
+              "process_scan_complete": true,
+              "room_absent_from_roster": true,
+              "room_state_absent": true,
+              "roster_command_ok": true,
+              "roster_json_valid": true,
+              "roster_schema_valid": true,
+              "tap_absent": true
+            },
+            "complete": true
+          }
+        }
+      }
+    }
+  }
+]

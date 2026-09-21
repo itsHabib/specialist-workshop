@@ -1,0 +1,570 @@
+{
+  "arm": "opus-team",
+  "task_id": "investigation-bridge-hard-f51795f69b75",
+  "task_sha256": "df97213c4d5292dcedfde5a580542659e2720a2baf353fd9b834911f56a9f273",
+  "candidate_sha256": "20b5debef711b3c79b943534aff6c18f0a5ab45679fbfb117390999226e14e06",
+  "status": "finished",
+  "error": null,
+  "accepted": true,
+  "calls": [
+    {
+      "provider": "opus",
+      "requested_model": "claude-opus-5",
+      "usage": {
+        "claude-haiku-4-5-20251001": {
+          "inputTokens": 8956,
+          "outputTokens": 14,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.009026000000000001,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-haiku-4-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        },
+        "claude-opus-5": {
+          "inputTokens": 2,
+          "outputTokens": 3284,
+          "cacheReadInputTokens": 2896,
+          "cacheCreationInputTokens": 10772,
+          "webSearchRequests": 0,
+          "costUSD": 0.191278,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 64000,
+          "thinkingTokens": 1488,
+          "canonicalModel": "claude-opus-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "estimated_cost_usd": 0.200304,
+      "error": null,
+      "response": {
+        "action": "edit",
+        "hypothesis": "The earliest wrong intermediate result is the ancestor chain itself: `_chain(name, frames)` returns `[name, \"world\"]` instead of walking `parent` links, so every frame is treated as a direct child of world and all intermediate frames are skipped (visible in test 2, where the composition through 0101 and 0100 is dropped). Three further defects compound it: (1) `_to_parent`/`_from_parent` compute `translation + linear*p` and ignore the pivot, so they implement the wrong map \u2014 the contract is `translation + pivot + linear*(p - pivot)`, inverse `pivot + linear^{-1}*(p - translation - pivot)`; (2) the singular check is applied to the source chain, but the contract explicitly allows a singular source (test 6 wrongly returns \"singular\") and, because the chain is truncated, a singular *ancestor* of the target is never seen (test 8 wrongly succeeds); (3) the `target_leg = target_leg[:1]` hack drops inverse legs. Repair: build real chains by walking parents, route source->world->target (the source leg needs only forward maps, so a singular source is fine), validate det!=0 for every frame on the full target chain, and apply the pivot-correct affine maps. Scene validation (world reserved, missing parent/cycle over all frames) and the error ordering are kept as specified.",
+        "prediction": "All 13 development inputs pass: the 6 currently-passing cases (world->world identity, unknown_frame, invalid_scene cases) are unchanged, and the 7 failures now produce the expected values, e.g. test 2 -> [\"-44/3\",\"-1630/33\"], test 5 -> [\"-690/11\",\"-481/33\"] (singular source allowed), test 6 -> {\"error\":\"singular\"} (singular ancestor of target), test 4 -> [\"811/22\",\"1105/66\"] via the world route.",
+        "source": "\"\"\"Affine frame evaluator. Exact rational arithmetic over parent chains.\"\"\"\n\nfrom fractions import Fraction\n\n\ndef _number(value):\n    return Fraction(str(value))\n\n\ndef _text(value):\n    if value.denominator == 1:\n        return str(value.numerator)\n    return f\"{value.numerator}/{value.denominator}\"\n\n\ndef _valid_scene(frames):\n    if \"world\" in frames:\n        return False\n    known_good = set()\n    for start in frames:\n        current = start\n        seen = set()\n        while current != \"world\":\n            if current in known_good:\n                break\n            if current not in frames or current in seen:\n                return False\n            seen.add(current)\n            current = frames[current][\"parent\"]\n        known_good |= seen\n    return True\n\n\ndef _chain(name, frames):\n    \"\"\"Frames from `name` up to but not including world, nearest first.\"\"\"\n    chain = []\n    current = name\n    while current != \"world\":\n        chain.append(current)\n        current = frames[current][\"parent\"]\n    return chain\n\n\ndef _parts(frame):\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    a, b = map(_number, frame[\"linear\"][0])\n    c, d = map(_number, frame[\"linear\"][1])\n    return tx, ty, px, py, a, b, c, d\n\n\ndef _determinant(frame):\n    _, _, _, _, a, b, c, d = _parts(frame)\n    return a * d - b * c\n\n\ndef _to_parent(frame, point):\n    x, y = point\n    tx, ty, px, py, a, b, c, d = _parts(frame)\n    sx = x - px\n    sy = y - py\n    return (tx + px + a * sx + b * sy,\n            ty + py + c * sx + d * sy)\n\n\ndef _from_parent(frame, point):\n    x, y = point\n    tx, ty, px, py, a, b, c, d = _parts(frame)\n    determinant = a * d - b * c\n    sx = x - tx - px\n    sy = y - ty - py\n    return (px + (d * sx - b * sy) / determinant,\n            py + (-c * sx + a * sy) / determinant)\n\n\ndef evaluate(request):\n    frames = request[\"frames\"]\n    if not _valid_scene(frames):\n        return {\"error\": \"invalid_scene\"}\n\n    source = request[\"source\"]\n    target = request[\"target\"]\n    if source != \"world\" and source not in frames:\n        return {\"error\": \"unknown_frame\"}\n    if target != \"world\" and target not in frames:\n        return {\"error\": \"unknown_frame\"}\n\n    source_chain = _chain(source, frames) if source != \"world\" else []\n    target_chain = _chain(target, frames) if target != \"world\" else []\n\n    # Only the target leg is inverted; a singular source maps toward world fine.\n    if any(_determinant(frames[name]) == 0 for name in target_chain):\n        return {\"error\": \"singular\"}\n\n    point = tuple(map(_number, request[\"point\"]))\n    for name in source_chain:\n        point = _to_parent(frames[name], point)\n    for name in reversed(target_chain):\n        point = _from_parent(frames[name], point)\n\n    return {\"point\": [_text(point[0]), _text(point[1])]}\n",
+        "probes_json": "[]"
+      },
+      "seconds": 36.170482208020985,
+      "exit_code": 0,
+      "role": "investigator-1"
+    },
+    {
+      "provider": "opus",
+      "requested_model": "claude-opus-5",
+      "usage": {
+        "claude-haiku-4-5-20251001": {
+          "inputTokens": 8970,
+          "outputTokens": 14,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.009040000000000001,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-haiku-4-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        },
+        "claude-opus-5": {
+          "inputTokens": 2,
+          "outputTokens": 4078,
+          "cacheReadInputTokens": 2896,
+          "cacheCreationInputTokens": 10798,
+          "webSearchRequests": 0,
+          "costUSD": 0.21138800000000002,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 64000,
+          "thinkingTokens": 2090,
+          "canonicalModel": "claude-opus-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "estimated_cost_usd": 0.220428,
+      "error": null,
+      "response": {
+        "action": "edit",
+        "hypothesis": "The candidate's representation of both the scene graph and the affine map is wrong in four independent, compounding ways; the earliest incorrect intermediate is the parent chain. (1) `_chain` returns `[name, \"world\"]`, asserting every frame is a direct child of world, so all ancestors are skipped \u2014 for the first failing case the source chain is `[010c, world]` instead of `[010c, 0101, 0100, world]`. (2) `_to_parent`/`_from_parent` unpack `pivot` but never use it: they compute `t + L*p` instead of the documented `t + pivot + L*(p - pivot)`, and the inverse computes `L^-1*p - t` instead of `pivot + L^-1*(p - t - pivot)` (wrong both in the missing pivot conjugation and in subtracting the translation after, rather than before, the inverse linear map). (3) The upward leg iterates `reversed(source_chain[...])`, applying the root-most frame's map first \u2014 order-reversed composition. (4) The singular policy is inverted relative to the contract: a singular frame anywhere on the *source* chain returns \"singular\" (case 5 must succeed), while only the first hop of the target leg is used (`target_leg[:1]` hack), so a singular ancestor of the target (case 8) escapes detection and produces a bogus point. The `_determinant`/`_valid_scene`/`_text` helpers and the error precedence (scene \u2192 unknown \u2192 singular) are correct and are preserved.",
+        "prediction": "Rewriting with real parent-chain walks, pivot-correct forward/inverse maps, forward composition up the source leg, and a singular check over the full target-to-world chain only, all 13 development inputs pass: case 1 yields [\"-44/3\",\"-1630/33\"], case 2 [\"471/22\",\"5/2\"], case 5 [\"-690/11\",\"-481/33\"] (singular source allowed), case 8 {\"error\":\"singular\"} (singular target ancestor), and the currently passing cases (world\u2192world identity, unknown_frame, invalid_scene cycle/missing-parent) are unchanged.",
+        "source": "\"\"\"Affine frame evaluator. Exact rational arithmetic over a rooted frame tree.\n\nlocal -> parent is  translation + pivot + linear * (point - pivot)\nso      parent -> local is  pivot + linear^-1 * (point - translation - pivot)\n\"\"\"\n\nfrom fractions import Fraction\n\n\ndef _number(value):\n    return Fraction(str(value))\n\n\ndef _text(value):\n    if value.denominator == 1:\n        return str(value.numerator)\n    return f\"{value.numerator}/{value.denominator}\"\n\n\ndef _valid_scene(frames):\n    if \"world\" in frames:\n        return False\n    for start in frames:\n        current = start\n        seen = set()\n        while current != \"world\":\n            if current not in frames or current in seen:\n                return False\n            seen.add(current)\n            current = frames[current][\"parent\"]\n    return True\n\n\ndef _chain(name, frames):\n    \"\"\"Frame names from `name` up to and including \"world\".\"\"\"\n    chain = []\n    current = name\n    while current != \"world\":\n        chain.append(current)\n        current = frames[current][\"parent\"]\n    chain.append(\"world\")\n    return chain\n\n\ndef _parts(frame):\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    linear = frame[\"linear\"]\n    a, b = map(_number, linear[0])\n    c, d = map(_number, linear[1])\n    return tx, ty, px, py, a, b, c, d\n\n\ndef _determinant(frame):\n    _, _, _, _, a, b, c, d = _parts(frame)\n    return a * d - b * c\n\n\ndef _to_parent(frame, point):\n    x, y = point\n    tx, ty, px, py, a, b, c, d = _parts(frame)\n    ux = x - px\n    uy = y - py\n    return (tx + px + a * ux + b * uy,\n            ty + py + c * ux + d * uy)\n\n\ndef _from_parent(frame, point):\n    x, y = point\n    tx, ty, px, py, a, b, c, d = _parts(frame)\n    determinant = a * d - b * c\n    ux = x - tx - px\n    uy = y - ty - py\n    return (px + (d * ux - b * uy) / determinant,\n            py + (-c * ux + a * uy) / determinant)\n\n\ndef evaluate(request):\n    frames = request[\"frames\"]\n    if not _valid_scene(frames):\n        return {\"error\": \"invalid_scene\"}\n\n    source = request[\"source\"]\n    target = request[\"target\"]\n    if source != \"world\" and source not in frames:\n        return {\"error\": \"unknown_frame\"}\n    if target != \"world\" and target not in frames:\n        return {\"error\": \"unknown_frame\"}\n\n    source_chain = _chain(source, frames)\n    target_chain = _chain(target, frames)\n\n    # Only the target needs inverting; a singular source maps fine toward world.\n    if any(_determinant(frames[name]) == 0 for name in target_chain[:-1]):\n        return {\"error\": \"singular\"}\n\n    target_names = set(target_chain)\n    common = next(name for name in source_chain if name in target_names)\n    source_stop = source_chain.index(common)\n    target_stop = target_chain.index(common)\n\n    point = tuple(map(_number, request[\"point\"]))\n    for frame_name in source_chain[:source_stop]:\n        point = _to_parent(frames[frame_name], point)\n    for frame_name in reversed(target_chain[:target_stop]):\n        point = _from_parent(frames[frame_name], point)\n\n    return {\"point\": [_text(point[0]), _text(point[1])]}\n",
+        "probes_json": "[]"
+      },
+      "seconds": 45.2819595830515,
+      "exit_code": 0,
+      "role": "investigator-2"
+    },
+    {
+      "provider": "opus",
+      "requested_model": "claude-opus-5",
+      "usage": {
+        "claude-haiku-4-5-20251001": {
+          "inputTokens": 12154,
+          "outputTokens": 12,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.012214,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-haiku-4-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        },
+        "claude-opus-5": {
+          "inputTokens": 2,
+          "outputTokens": 3129,
+          "cacheReadInputTokens": 2896,
+          "cacheCreationInputTokens": 14915,
+          "webSearchRequests": 0,
+          "costUSD": 0.228833,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 64000,
+          "thinkingTokens": 1220,
+          "canonicalModel": "claude-opus-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "estimated_cost_usd": 0.241047,
+      "error": null,
+      "response": {
+        "action": "edit",
+        "hypothesis": "Earliest wrong intermediate is the ancestor chain: `_chain` returns `[name,\"world\"]`, asserting every frame is a direct child of world, so all intermediate frames are dropped (case 1: chain should be 010c\u21920101\u21920100\u2192world). Three compounding defects follow. (a) `_to_parent`/`_from_parent` unpack `pivot` but never use it \u2014 they compute `t + L*p` instead of the contract's `t + pivot + L*(p - pivot)`, and the inverse computes `L^-1*p - t` instead of `pivot + L^-1*(p - t - pivot)` (translation subtracted after rather than before the inverse linear map). (b) The upward leg composes in reversed order. (c) The singular policy is inverted: the source chain is rejected when singular (case 6 must succeed and does have a valid forward-only path, hand-checked to [-690/11, -481/33]), while the `target_leg[:1]` truncation hides a singular ancestor of the target (case 8 must be \"singular\"). Repair: walk real parent links, route source\u2192world\u2192target with pivot-correct forward maps up and inverse maps down, and test det\u22600 over the entire target-to-world chain only. `_valid_scene`, `_text`, and the error precedence (invalid_scene \u2192 unknown_frame \u2192 singular) are already correct and are preserved verbatim.",
+        "prediction": "All 13 development inputs pass. The 6 currently-passing cases (world\u2192world identity, unknown_frame, invalid_scene cycle/missing-parent, singular direct target) are unchanged; the 7 failures now yield the expected values: case 1 [\"-44/3\",\"-1630/33\"], case 2 [\"471/22\",\"5/2\"], case 3 [\"-4503/22\",\"3035/33\"], case 4 [\"811/22\",\"1105/66\"], case 5 [\"-690/11\",\"-481/33\"] (singular source allowed, verified by hand), case 6 {\"error\":\"singular\"} (singular target ancestor), case 7 [\"-387/44\",\"-21133/132\"].",
+        "source": "\"\"\"Affine frame evaluator. Exact rational arithmetic over a rooted frame tree.\n\nFor a frame, local -> parent is\n\n    translation + pivot + linear * (point - pivot)\n\nso parent -> local is\n\n    pivot + linear^-1 * (point - translation - pivot)\n\"\"\"\n\nfrom fractions import Fraction\n\n\ndef _number(value):\n    return Fraction(str(value))\n\n\ndef _text(value):\n    if value.denominator == 1:\n        return str(value.numerator)\n    return f\"{value.numerator}/{value.denominator}\"\n\n\ndef _valid_scene(frames):\n    if \"world\" in frames:\n        return False\n    for start in frames:\n        current = start\n        seen = set()\n        while current != \"world\":\n            if current not in frames or current in seen:\n                return False\n            seen.add(current)\n            current = frames[current][\"parent\"]\n    return True\n\n\ndef _chain(name, frames):\n    \"\"\"Frame names from `name` up to world, nearest first, world excluded.\"\"\"\n    chain = []\n    current = name\n    while current != \"world\":\n        chain.append(current)\n        current = frames[current][\"parent\"]\n    return chain\n\n\ndef _parts(frame):\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    linear = frame[\"linear\"]\n    a, b = map(_number, linear[0])\n    c, d = map(_number, linear[1])\n    return tx, ty, px, py, a, b, c, d\n\n\ndef _determinant(frame):\n    _, _, _, _, a, b, c, d = _parts(frame)\n    return a * d - b * c\n\n\ndef _to_parent(frame, point):\n    x, y = point\n    tx, ty, px, py, a, b, c, d = _parts(frame)\n    ux = x - px\n    uy = y - py\n    return (tx + px + a * ux + b * uy,\n            ty + py + c * ux + d * uy)\n\n\ndef _from_parent(frame, point):\n    x, y = point\n    tx, ty, px, py, a, b, c, d = _parts(frame)\n    determinant = a * d - b * c\n    ux = x - tx - px\n    uy = y - ty - py\n    return (px + (d * ux - b * uy) / determinant,\n            py + (-c * ux + a * uy) / determinant)\n\n\ndef evaluate(request):\n    frames = request[\"frames\"]\n    if not _valid_scene(frames):\n        return {\"error\": \"invalid_scene\"}\n\n    source = request[\"source\"]\n    target = request[\"target\"]\n    if source != \"world\" and source not in frames:\n        return {\"error\": \"unknown_frame\"}\n    if target != \"world\" and target not in frames:\n        return {\"error\": \"unknown_frame\"}\n\n    source_chain = [] if source == \"world\" else _chain(source, frames)\n    target_chain = [] if target == \"world\" else _chain(target, frames)\n\n    # Only the target leg is inverted; a singular source maps toward world fine.\n    if any(_determinant(frames[name]) == 0 for name in target_chain):\n        return {\"error\": \"singular\"}\n\n    point = tuple(map(_number, request[\"point\"]))\n    for frame_name in source_chain:\n        point = _to_parent(frames[frame_name], point)\n    for frame_name in reversed(target_chain):\n        point = _from_parent(frames[frame_name], point)\n\n    return {\"point\": [_text(point[0]), _text(point[1])]}\n",
+        "probes_json": "[]"
+      },
+      "seconds": 32.97960833390243,
+      "exit_code": 0,
+      "role": "integrator"
+    }
+  ],
+  "development": {
+    "passed": true,
+    "total": 13,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "rooms",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "outputs": [
+        {
+          "point": [
+            "-219/11",
+            "219/11"
+          ]
+        },
+        {
+          "point": [
+            "-44/3",
+            "-1630/33"
+          ]
+        },
+        {
+          "point": [
+            "471/22",
+            "5/2"
+          ]
+        },
+        {
+          "point": [
+            "-4503/22",
+            "3035/33"
+          ]
+        },
+        {
+          "point": [
+            "811/22",
+            "1105/66"
+          ]
+        },
+        {
+          "point": [
+            "-690/11",
+            "-481/33"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "-387/44",
+            "-21133/132"
+          ]
+        }
+      ],
+      "error": null,
+      "seconds": 4.654971125070006,
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "evidence_summary": {
+        "schema": "investigation-bridge.rooms-evidence.v1",
+        "run_id": "a7af3a5a2e6048aa9e5c6336c8f12cd2",
+        "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+        "snapshot_sha256": {
+          "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+          "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+          "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+        },
+        "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+        "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+        "host_command_sha256": "562c11f6216693db3c1eefaae6aba35ff75854284c3b573c18b30611087c0227",
+        "matrix_sha256": "sha256:f8c689c37a8f2677aa017d4b23fcefdf9503b7281320bd8b5289279064ac3f64",
+        "command_sha256": "sha256:28d1f41d94e4d9a40b980422a0e5aa1bbbf2c8410308847d34f2a54ea8811217",
+        "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+        "room_id": "01m30qy1z4jvqvt3zw8rred8vf",
+        "witness": {
+          "capture_complete": true,
+          "egress_policy": "none",
+          "permitted": [],
+          "blocked": []
+        },
+        "teardown": {
+          "checks": {
+            "host_veth_absent": true,
+            "jail_absent": true,
+            "namespace_absent": true,
+            "netns_command_ok": true,
+            "process_absent": true,
+            "process_scan_complete": true,
+            "room_absent_from_roster": true,
+            "room_state_absent": true,
+            "roster_command_ok": true,
+            "roster_json_valid": true,
+            "roster_schema_valid": true,
+            "tap_absent": true
+          },
+          "complete": true
+        }
+      }
+    }
+  },
+  "final": {
+    "passed": true,
+    "total": 52,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "rooms",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "outputs": [
+        {
+          "point": [
+            "-1569",
+            "971"
+          ]
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "point": [
+            "-1",
+            "-7"
+          ]
+        },
+        {
+          "point": [
+            "-4979/28",
+            "-11432/21"
+          ]
+        },
+        {
+          "point": [
+            "-939/11",
+            "3"
+          ]
+        },
+        {
+          "point": [
+            "-4592/15",
+            "40949/30"
+          ]
+        },
+        {
+          "point": [
+            "-52631/66",
+            "-10685/66"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "point": [
+            "9657/11",
+            "-60131/132"
+          ]
+        },
+        {
+          "point": [
+            "843/2",
+            "175"
+          ]
+        },
+        {
+          "point": [
+            "6821/63",
+            "-26171/126"
+          ]
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "-9773/14",
+            "-1033/7"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "point": [
+            "-1033/9",
+            "464/9"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "point": [
+            "-2318/7",
+            "2353/14"
+          ]
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "point": [
+            "1148/5",
+            "2521/30"
+          ]
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "13831/60",
+            "43853/60"
+          ]
+        },
+        {
+          "point": [
+            "366/5",
+            "3"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "-5557/14",
+            "-3197/21"
+          ]
+        },
+        {
+          "point": [
+            "-691/6",
+            "421/3"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "-961/11",
+            "961/11"
+          ]
+        },
+        {
+          "point": [
+            "12335/198",
+            "-6811/198"
+          ]
+        },
+        {
+          "point": [
+            "356/5",
+            "-356/5"
+          ]
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "85",
+            "-85"
+          ]
+        },
+        {
+          "point": [
+            "-1295/2",
+            "409"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "point": [
+            "-3635/22",
+            "43/6"
+          ]
+        },
+        {
+          "point": [
+            "2493/28",
+            "1847/21"
+          ]
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "point": [
+            "-931/30",
+            "-65/3"
+          ]
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "point": [
+            "-569/7",
+            "569/7"
+          ]
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "745",
+            "2296/3"
+          ]
+        },
+        {
+          "point": [
+            "1081/2",
+            "-264"
+          ]
+        }
+      ],
+      "error": null,
+      "seconds": 4.620641374960542,
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "evidence_summary": {
+        "schema": "investigation-bridge.rooms-evidence.v1",
+        "run_id": "76cda6f3385946829a932c77447c2f8e",
+        "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+        "snapshot_sha256": {
+          "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+          "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+          "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+        },
+        "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+        "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+        "host_command_sha256": "5ca160ac57715a5d126bcd75f24bde1d3e1ef16b10a25aeea8de985071d5e03b",
+        "matrix_sha256": "sha256:03090c11f0a2c0b96fe26d2975ff8ccb3798115df3c4d390ca5f8668e3089b0c",
+        "command_sha256": "sha256:b411fae2a55e1b24bca29ffdf95a7bec3fa6b5431c21337a6434e42d4381b88b",
+        "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+        "room_id": "01m30qy6f86z3gbey0r19apq5t",
+        "witness": {
+          "capture_complete": true,
+          "egress_policy": "none",
+          "permitted": [],
+          "blocked": []
+        },
+        "teardown": {
+          "checks": {
+            "host_veth_absent": true,
+            "jail_absent": true,
+            "namespace_absent": true,
+            "netns_command_ok": true,
+            "process_absent": true,
+            "process_scan_complete": true,
+            "room_absent_from_roster": true,
+            "room_state_absent": true,
+            "roster_command_ok": true,
+            "roster_json_valid": true,
+            "roster_schema_valid": true,
+            "tap_absent": true
+          },
+          "complete": true
+        }
+      }
+    }
+  },
+  "seconds": 87.63298916700296
+}

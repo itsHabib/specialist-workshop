@@ -1,0 +1,45 @@
+{
+  "seed": 1729,
+  "variant": "hard",
+  "trials": [
+    {
+      "name": "01-opus-team",
+      "arm": "opus-team",
+      "task_sha256": "df97213c4d5292dcedfde5a580542659e2720a2baf353fd9b834911f56a9f273"
+    },
+    {
+      "name": "01-opus-solo",
+      "arm": "opus-solo",
+      "task_sha256": "df97213c4d5292dcedfde5a580542659e2720a2baf353fd9b834911f56a9f273"
+    },
+    {
+      "name": "01-astra-solo",
+      "arm": "astra-solo",
+      "task_sha256": "df97213c4d5292dcedfde5a580542659e2720a2baf353fd9b834911f56a9f273"
+    }
+  ],
+  "max_calls": 6,
+  "call_timeout": 150,
+  "image": "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+  "backend": "rooms",
+  "models": {
+    "opus": "claude-opus-5",
+    "astra": "gpt-6-astra"
+  },
+  "effort": "high",
+  "protocol_sha256": "3e4b82fe4827dfa2d611762b260fff760fff8169228fadab7a8c50b0bcdd3a7a",
+  "code": {
+    "model_supervisor.py": "976c707fb85ef27b9f5ddca72461b7daeac4d905e1ba6618afe6df4b0e697806",
+    "models.py": "490e9048fd8fe20667a465db27154f773aa12f1a1a143db81ac8d208f60c3046",
+    "rooms_backend.py": "0269f7ada25de401979ac8d0f395bfec5d18f15ac85cda300404ab5253db3cc1",
+    "run.py": "d3dd2010586d26b633aa6dafe018022923a3903dd69c4e18789e990dee761f20",
+    "sandbox.py": "5e5a8c9e40e77ca6e004799da4b055b20d17e1093240f0dc99918fe65bf1d90d",
+    "test_models.py": "1a30374f0232ae676457832cf7ded47325fc473eb73455328fcb09a4c06dbb80",
+    "test_rooms_backend.py": "1a46089cf250e5bb92541e3589cc81e48e901fba90790382e6168df5111709a6",
+    "test_runner.py": "c03a0a9cba43f0738616f247d1db8451c629916f048230398cb47df093f29ecb",
+    "test_workload.py": "bd9e670010140b0008763aa1b95c403d650781997c0a91ff0c74a6bdfe051026",
+    "workload.py": "ebd9235c1b02d092173523078d3a4582f38536edb194f9c3fd67b942014ac746"
+  },
+  "rooms_config_sha256": "9471aa8cbca3240f59fbda00f38d4fb61c2cfe8629cc866f00375a3b5924cae3",
+  "frozen_commit": "065d3ad"
+}

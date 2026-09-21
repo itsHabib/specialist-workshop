@@ -1,0 +1,480 @@
+{
+  "arm": "astra-solo",
+  "task_id": "investigation-bridge-hard-f51795f69b75",
+  "task_sha256": "df97213c4d5292dcedfde5a580542659e2720a2baf353fd9b834911f56a9f273",
+  "candidate_sha256": "ecd5f41b3370059e075b452660ae2b03e8ee2d89464f7033fed1e28489f9f736",
+  "status": "finished",
+  "error": null,
+  "accepted": true,
+  "calls": [
+    {
+      "provider": "astra",
+      "requested_model": "gpt-6-astra",
+      "usage": {
+        "input_tokens": 22402,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 555,
+        "reasoning_output_tokens": 79
+      },
+      "estimated_cost_usd": null,
+      "error": null,
+      "response": {
+        "action": "probe",
+        "hypothesis": "The earliest incorrect intermediate result for nested frames is _chain: it fabricates a direct world parent and omits ancestors. Independent defects ignore pivots, subtract translation after inversion, and reject singular sources. Restoring chains also requires source traversal in child-to-parent order and removal of target-leg truncation. Scene validation and unknown-frame precedence appear correct.",
+        "prediction": "The four probes should respectively return [\"8\",\"0\"], [\"5\",\"0\"], [\"2\",\"0\"], and [\"1\",\"0\"]. The current candidate should instead return [\"4\",\"0\"], [\"8\",\"0\"], [\"1/2\",\"0\"], and error singular, isolating ancestry, pivot, inverse translation, and singular-source handling.",
+        "source": "",
+        "probes_json": "[{\"frames\":{\"a\":{\"parent\":\"world\",\"translation\":[\"0\",\"0\"],\"linear\":[[\"2\",\"0\"],[\"0\",\"1\"]],\"pivot\":[\"0\",\"0\"]},\"b\":{\"parent\":\"a\",\"translation\":[\"3\",\"0\"],\"linear\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"pivot\":[\"0\",\"0\"]}},\"source\":\"b\",\"target\":\"world\",\"point\":[\"1\",\"0\"]},{\"frames\":{\"a\":{\"parent\":\"world\",\"translation\":[\"0\",\"0\"],\"linear\":[[\"2\",\"0\"],[\"0\",\"1\"]],\"pivot\":[\"3\",\"0\"]}},\"source\":\"a\",\"target\":\"world\",\"point\":[\"4\",\"0\"]},{\"frames\":{\"a\":{\"parent\":\"world\",\"translation\":[\"3\",\"0\"],\"linear\":[[\"2\",\"0\"],[\"0\",\"1\"]],\"pivot\":[\"0\",\"0\"]}},\"source\":\"world\",\"target\":\"a\",\"point\":[\"7\",\"0\"]},{\"frames\":{\"a\":{\"parent\":\"world\",\"translation\":[\"0\",\"0\"],\"linear\":[[\"1\",\"0\"],[\"0\",\"0\"]],\"pivot\":[\"0\",\"0\"]}},\"source\":\"a\",\"target\":\"world\",\"point\":[\"1\",\"2\"]}]"
+      },
+      "seconds": 21.148535874905065,
+      "exit_code": 0,
+      "tool_events": 0,
+      "role": "solver"
+    },
+    {
+      "provider": "astra",
+      "requested_model": "gpt-6-astra",
+      "usage": {
+        "input_tokens": 25409,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1032,
+        "reasoning_output_tokens": 85
+      },
+      "estimated_cost_usd": null,
+      "error": null,
+      "response": {
+        "action": "edit",
+        "hypothesis": "The probes confirm that _chain first loses required ancestors. Independent errors omit pivot offsets, apply inverse translation in the wrong order, and reject allowed singular sources. Repair full ancestry, forward traversal order, affine formulas, and target-only singularity checks while preserving scene validation and error precedence.",
+        "prediction": "All four discriminating probes should produce their expected coordinates, and all 13 development cases should pass. Singular target ancestors remain errors even when source equals target; unrelated invalid graph components still take precedence over unknown frames.",
+        "source": "\"\"\"Evaluate affine frame coordinates using exact rational arithmetic.\"\"\"\n\nfrom fractions import Fraction\n\n\ndef _number(value):\n    return Fraction(str(value))\n\n\ndef _text(value):\n    if value.denominator == 1:\n        return str(value.numerator)\n    return f\"{value.numerator}/{value.denominator}\"\n\n\ndef _valid_scene(frames):\n    if \"world\" in frames:\n        return False\n    for start in frames:\n        current = start\n        seen = set()\n        while current != \"world\":\n            if current not in frames or current in seen:\n                return False\n            seen.add(current)\n            current = frames[current][\"parent\"]\n    return True\n\n\ndef _chain(name, frames):\n    chain = []\n    while name != \"world\":\n        chain.append(name)\n        name = frames[name][\"parent\"]\n    return chain\n\n\ndef _determinant(frame):\n    linear = frame[\"linear\"]\n    return (_number(linear[0][0]) * _number(linear[1][1])\n            - _number(linear[0][1]) * _number(linear[1][0]))\n\n\ndef _to_parent(frame, point):\n    x, y = point\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    a, b = map(_number, frame[\"linear\"][0])\n    c, d = map(_number, frame[\"linear\"][1])\n    dx, dy = x - px, y - py\n    return (tx + px + a * dx + b * dy,\n            ty + py + c * dx + d * dy)\n\n\ndef _from_parent(frame, point):\n    x, y = point\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    a, b = map(_number, frame[\"linear\"][0])\n    c, d = map(_number, frame[\"linear\"][1])\n    determinant = a * d - b * c\n    dx, dy = x - tx - px, y - ty - py\n    return (px + (d * dx - b * dy) / determinant,\n            py + (-c * dx + a * dy) / determinant)\n\n\ndef evaluate(request):\n    frames = request[\"frames\"]\n    if not _valid_scene(frames):\n        return {\"error\": \"invalid_scene\"}\n\n    source = request[\"source\"]\n    target = request[\"target\"]\n    if source != \"world\" and source not in frames:\n        return {\"error\": \"unknown_frame\"}\n    if target != \"world\" and target not in frames:\n        return {\"error\": \"unknown_frame\"}\n\n    source_chain = _chain(source, frames)\n    target_chain = _chain(target, frames)\n    if any(_determinant(frames[name]) == 0 for name in target_chain):\n        return {\"error\": \"singular\"}\n\n    point = tuple(map(_number, request[\"point\"]))\n    for name in source_chain:\n        point = _to_parent(frames[name], point)\n    for name in reversed(target_chain):\n        point = _from_parent(frames[name], point)\n\n    return {\"point\": [_text(point[0]), _text(point[1])]}\n",
+        "probes_json": "[]"
+      },
+      "seconds": 34.22443458298221,
+      "exit_code": 0,
+      "tool_events": 0,
+      "role": "solver"
+    }
+  ],
+  "development": {
+    "passed": true,
+    "total": 13,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "rooms",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "outputs": [
+        {
+          "point": [
+            "-219/11",
+            "219/11"
+          ]
+        },
+        {
+          "point": [
+            "-44/3",
+            "-1630/33"
+          ]
+        },
+        {
+          "point": [
+            "471/22",
+            "5/2"
+          ]
+        },
+        {
+          "point": [
+            "-4503/22",
+            "3035/33"
+          ]
+        },
+        {
+          "point": [
+            "811/22",
+            "1105/66"
+          ]
+        },
+        {
+          "point": [
+            "-690/11",
+            "-481/33"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "-387/44",
+            "-21133/132"
+          ]
+        }
+      ],
+      "error": null,
+      "seconds": 5.182226041099057,
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "evidence_summary": {
+        "schema": "investigation-bridge.rooms-evidence.v1",
+        "run_id": "0be12c3bfbb24d7fa3e9b4b939fbe22b",
+        "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+        "snapshot_sha256": {
+          "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+          "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+          "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+        },
+        "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+        "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+        "host_command_sha256": "dd166e4022ebfb2406e228d9937880cb76e8fa3f0afaba0ea32d311ff36d94c1",
+        "matrix_sha256": "sha256:252508f2c335857af9af8ae75cb22f2ae43c5d09d15c4938e13da9559619b992",
+        "command_sha256": "sha256:4936990dea4e355e5b850d1ca437e1a7a4091c07d73f64f5f52ddb6d903bb8ad",
+        "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+        "room_id": "01m30r3g1yazkpagh0w930snhh",
+        "witness": {
+          "capture_complete": true,
+          "egress_policy": "none",
+          "permitted": [],
+          "blocked": []
+        },
+        "teardown": {
+          "checks": {
+            "host_veth_absent": true,
+            "jail_absent": true,
+            "namespace_absent": true,
+            "netns_command_ok": true,
+            "process_absent": true,
+            "process_scan_complete": true,
+            "room_absent_from_roster": true,
+            "room_state_absent": true,
+            "roster_command_ok": true,
+            "roster_json_valid": true,
+            "roster_schema_valid": true,
+            "tap_absent": true
+          },
+          "complete": true
+        }
+      }
+    }
+  },
+  "final": {
+    "passed": true,
+    "total": 52,
+    "failed": 0,
+    "failures": [],
+    "execution": {
+      "backend": "rooms",
+      "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+      "outputs": [
+        {
+          "point": [
+            "-1569",
+            "971"
+          ]
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "point": [
+            "-1",
+            "-7"
+          ]
+        },
+        {
+          "point": [
+            "-4979/28",
+            "-11432/21"
+          ]
+        },
+        {
+          "point": [
+            "-939/11",
+            "3"
+          ]
+        },
+        {
+          "point": [
+            "-4592/15",
+            "40949/30"
+          ]
+        },
+        {
+          "point": [
+            "-52631/66",
+            "-10685/66"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "point": [
+            "9657/11",
+            "-60131/132"
+          ]
+        },
+        {
+          "point": [
+            "843/2",
+            "175"
+          ]
+        },
+        {
+          "point": [
+            "6821/63",
+            "-26171/126"
+          ]
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "-9773/14",
+            "-1033/7"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "point": [
+            "-1033/9",
+            "464/9"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "point": [
+            "-2318/7",
+            "2353/14"
+          ]
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "point": [
+            "1148/5",
+            "2521/30"
+          ]
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "13831/60",
+            "43853/60"
+          ]
+        },
+        {
+          "point": [
+            "366/5",
+            "3"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "-5557/14",
+            "-3197/21"
+          ]
+        },
+        {
+          "point": [
+            "-691/6",
+            "421/3"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "-961/11",
+            "961/11"
+          ]
+        },
+        {
+          "point": [
+            "12335/198",
+            "-6811/198"
+          ]
+        },
+        {
+          "point": [
+            "356/5",
+            "-356/5"
+          ]
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "85",
+            "-85"
+          ]
+        },
+        {
+          "point": [
+            "-1295/2",
+            "409"
+          ]
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "point": [
+            "-3635/22",
+            "43/6"
+          ]
+        },
+        {
+          "point": [
+            "2493/28",
+            "1847/21"
+          ]
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "point": [
+            "-931/30",
+            "-65/3"
+          ]
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "error": "singular"
+        },
+        {
+          "error": "unknown_frame"
+        },
+        {
+          "point": [
+            "-569/7",
+            "569/7"
+          ]
+        },
+        {
+          "error": "invalid_scene"
+        },
+        {
+          "point": [
+            "745",
+            "2296/3"
+          ]
+        },
+        {
+          "point": [
+            "1081/2",
+            "-264"
+          ]
+        }
+      ],
+      "error": null,
+      "seconds": 4.84345845808275,
+      "witness": {
+        "capture_complete": true,
+        "egress_policy": "none",
+        "permitted": [],
+        "blocked": []
+      },
+      "evidence_summary": {
+        "schema": "investigation-bridge.rooms-evidence.v1",
+        "run_id": "aa7b0138facc4037994634ce4cc0e945",
+        "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+        "snapshot_sha256": {
+          "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+          "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+          "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+        },
+        "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+        "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+        "host_command_sha256": "ccbfc5aaeb924de7a8a0bfd55a0a2501bc8079b27326753351d1145c7139f1a6",
+        "matrix_sha256": "sha256:f061864139dbab87b5ac5aabcf92e2cccc93caaf98138169e3d4de5be7aaf74e",
+        "command_sha256": "sha256:7a0fb2c06b5f477d11d7f98d264f09897ffb2eb99fedbe7a9c2f18ef1f90970e",
+        "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+        "room_id": "01m30r3n0r65ker45pkx0cf7fb",
+        "witness": {
+          "capture_complete": true,
+          "egress_policy": "none",
+          "permitted": [],
+          "blocked": []
+        },
+        "teardown": {
+          "checks": {
+            "host_veth_absent": true,
+            "jail_absent": true,
+            "namespace_absent": true,
+            "netns_command_ok": true,
+            "process_absent": true,
+            "process_scan_complete": true,
+            "room_absent_from_roster": true,
+            "room_state_absent": true,
+            "roster_command_ok": true,
+            "roster_json_valid": true,
+            "roster_schema_valid": true,
+            "tap_absent": true
+          },
+          "complete": true
+        }
+      }
+    }
+  },
+  "seconds": 70.14781120792031
+}

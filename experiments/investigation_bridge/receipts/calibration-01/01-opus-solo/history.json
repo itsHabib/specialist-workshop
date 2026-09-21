@@ -1,0 +1,1016 @@
+[
+  {
+    "role": "solver",
+    "response": {
+      "action": "edit",
+      "hypothesis": "The candidate's earliest wrong intermediate is the frame chain itself: `_chain` returns `[name, \"world\"]`, pretending every frame is a direct child of world, so all ancestors between a frame and the root are skipped. Two further errors compound it: `_to_parent`/`_from_parent` drop the pivot (they compute `t + L*p` instead of `t + pivot + L*(p - pivot)`, i.e. they omit the constant `pivot - L*pivot`), the inverse also subtracts the translation after applying L^-1 instead of before, and the singular check is applied to the source chain (contract says a singular source is allowed) while the truncated target chain hides singular ancestors of the target. Rewriting with real root-ward chains, pivot-correct affine composition, and a singularity test only on the composed target-to-world map fixes all seven failures while preserving the passing world/world, unknown_frame, and invalid_scene cases.",
+      "prediction": "All 13 development inputs pass: the five arithmetic failures now match (e.g. case 1 recomputed by hand gives [\"-44/3\",\"-1630/33\"]), frame f820c7cb586070c with a singular source maps to world successfully, and the query targeting f820c7cb5860a01 through the singular ancestor f820c7cb586090c returns {\"error\":\"singular\"}.",
+      "source": "\"\"\"Affine frame evaluator. Exact rational composition over root-ward chains.\"\"\"\n\nfrom fractions import Fraction\n\n\ndef _number(value):\n    return Fraction(str(value))\n\n\ndef _text(value):\n    if value.denominator == 1:\n        return str(value.numerator)\n    return f\"{value.numerator}/{value.denominator}\"\n\n\ndef _valid_scene(frames):\n    if \"world\" in frames:\n        return False\n    limit = len(frames) + 1\n    for start in frames:\n        current = start\n        steps = 0\n        while current != \"world\":\n            if current not in frames:\n                return False\n            if steps > limit:\n                return False\n            current = frames[current][\"parent\"]\n            steps += 1\n    return True\n\n\ndef _chain(name, frames):\n    \"\"\"Frames from `name` up to but not including world, child first.\"\"\"\n    chain = []\n    current = name\n    while current != \"world\":\n        chain.append(current)\n        current = frames[current][\"parent\"]\n    return chain\n\n\ndef _affine(frame):\n    \"\"\"Local -> parent as (matrix, offset): p |-> L*p + offset.\"\"\"\n    a, b = map(_number, frame[\"linear\"][0])\n    c, d = map(_number, frame[\"linear\"][1])\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    # translation + pivot + L * (p - pivot)\n    return (a, b, c, d,\n            tx + px - (a * px + b * py),\n            ty + py - (c * px + d * py))\n\n\ndef _compose(outer, inner):\n    \"\"\"Apply `inner` first, then `outer`.\"\"\"\n    a1, b1, c1, d1, e1, f1 = outer\n    a2, b2, c2, d2, e2, f2 = inner\n    return (a1 * a2 + b1 * c2, a1 * b2 + b1 * d2,\n            c1 * a2 + d1 * c2, c1 * b2 + d1 * d2,\n            a1 * e2 + b1 * f2 + e1,\n            c1 * e2 + d1 * f2 + f1)\n\n\ndef _to_world(name, frames):\n    \"\"\"Composite frame -> world transform.\"\"\"\n    result = (Fraction(1), Fraction(0), Fraction(0), Fraction(1),\n              Fraction(0), Fraction(0))\n    for frame_name in _chain(name, frames):\n        result = _compose(result, _affine(frames[frame_name]))\n    return result\n\n\ndef _apply(transform, point):\n    a, b, c, d, e, f = transform\n    x, y = point\n    return (a * x + b * y + e, c * x + d * y + f)\n\n\ndef _invert(transform):\n    a, b, c, d, e, f = transform\n    determinant = a * d - b * c\n    ia = d / determinant\n    ib = -b / determinant\n    ic = -c / determinant\n    id_ = a / determinant\n    return (ia, ib, ic, id_,\n            -(ia * e + ib * f),\n            -(ic * e + id_ * f))\n\n\ndef evaluate(request):\n    frames = request[\"frames\"]\n    if not _valid_scene(frames):\n        return {\"error\": \"invalid_scene\"}\n\n    source = request[\"source\"]\n    target = request[\"target\"]\n    if source != \"world\" and source not in frames:\n        return {\"error\": \"unknown_frame\"}\n    if target != \"world\" and target not in frames:\n        return {\"error\": \"unknown_frame\"}\n\n    target_transform = _to_world(target, frames)\n    if target_transform[0] * target_transform[3] - target_transform[1] * target_transform[2] == 0:\n        return {\"error\": \"singular\"}\n\n    point = tuple(map(_number, request[\"point\"]))\n    point = _apply(_to_world(source, frames), point)\n    point = _apply(_invert(target_transform), point)\n\n    return {\"point\": [_text(point[0]), _text(point[1])]}\n",
+      "probes_json": "[]"
+    },
+    "development": {
+      "passed": false,
+      "total": 13,
+      "failed": 6,
+      "failures": [
+        {
+          "input": {
+            "frames": {
+              "f820c7cb5860100": {
+                "parent": "world",
+                "translation": [
+                  "-230/11",
+                  "1/3"
+                ],
+                "linear": [
+                  [
+                    "0",
+                    "-1"
+                  ],
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "pivot": [
+                  "-1/2",
+                  "-3/2"
+                ]
+              },
+              "f820c7cb5860101": {
+                "parent": "f820c7cb5860100",
+                "translation": [
+                  "-219/11",
+                  "2/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "-1"
+                ]
+              },
+              "f820c7cb586010c": {
+                "parent": "f820c7cb5860101",
+                "translation": [
+                  "-219/11",
+                  "-3/2"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "1"
+                  ],
+                  [
+                    "0",
+                    "3"
+                  ]
+                ],
+                "pivot": [
+                  "3/2",
+                  "-2"
+                ]
+              }
+            },
+            "source": "f820c7cb586010c",
+            "target": "world",
+            "point": [
+              "2",
+              "1"
+            ]
+          },
+          "expected": {
+            "point": [
+              "-44/3",
+              "-1630/33"
+            ]
+          },
+          "actual": {
+            "point": [
+              "-3889/22",
+              "-1391/22"
+            ]
+          }
+        },
+        {
+          "input": {
+            "frames": {
+              "f820c7cb5860200": {
+                "parent": "world",
+                "translation": [
+                  "-241/11",
+                  "1/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "-3/2"
+                ]
+              },
+              "f820c7cb5860201": {
+                "parent": "f820c7cb5860200",
+                "translation": [
+                  "-230/11",
+                  "2/3"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "-1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "1/2",
+                  "-1"
+                ]
+              },
+              "f820c7cb586020c": {
+                "parent": "f820c7cb5860201",
+                "translation": [
+                  "-219/11",
+                  "-2"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "1"
+                  ],
+                  [
+                    "1",
+                    "2"
+                  ]
+                ],
+                "pivot": [
+                  "1",
+                  "-1"
+                ]
+              }
+            },
+            "source": "world",
+            "target": "f820c7cb586020c",
+            "point": [
+              "-142/11",
+              "5"
+            ]
+          },
+          "expected": {
+            "point": [
+              "471/22",
+              "5/2"
+            ]
+          },
+          "actual": {
+            "point": [
+              "745/33",
+              "3/2"
+            ]
+          }
+        },
+        {
+          "input": {
+            "frames": {
+              "f820c7cb5860300": {
+                "parent": "world",
+                "translation": [
+                  "-252/11",
+                  "1/3"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "-1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "1/2",
+                  "-3/2"
+                ]
+              },
+              "f820c7cb5860301": {
+                "parent": "f820c7cb5860300",
+                "translation": [
+                  "-241/11",
+                  "2/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "1"
+                  ],
+                  [
+                    "1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "1",
+                  "-1"
+                ]
+              },
+              "f820c7cb5860302": {
+                "parent": "f820c7cb5860301",
+                "translation": [
+                  "-230/11",
+                  "1"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "1"
+                  ],
+                  [
+                    "0",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "-1",
+                  "-1/2"
+                ]
+              },
+              "f820c7cb5860303": {
+                "parent": "f820c7cb5860302",
+                "translation": [
+                  "-219/11",
+                  "4/3"
+                ],
+                "linear": [
+                  [
+                    "0",
+                    "-1"
+                  ],
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "pivot": [
+                  "-1/2",
+                  "0"
+                ]
+              },
+              "f820c7cb586030c": {
+                "parent": "f820c7cb5860303",
+                "translation": [
+                  "-219/11",
+                  "1"
+                ],
+                "linear": [
+                  [
+                    "0",
+                    "-1"
+                  ],
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "0"
+                ]
+              },
+              "f820c7cb586030d": {
+                "parent": "f820c7cb586030c",
+                "translation": [
+                  "-1",
+                  "2/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "1"
+                  ],
+                  [
+                    "0",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "1",
+                  "-1"
+                ]
+              }
+            },
+            "source": "f820c7cb586030d",
+            "target": "world",
+            "point": [
+              "2",
+              "3"
+            ]
+          },
+          "expected": {
+            "point": [
+              "-4503/22",
+              "3035/33"
+            ]
+          },
+          "actual": {
+            "point": [
+              "5212/33",
+              "-1/3"
+            ]
+          }
+        },
+        {
+          "input": {
+            "frames": {
+              "f820c7cb5860400": {
+                "parent": "world",
+                "translation": [
+                  "-263/11",
+                  "1/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "1"
+                  ],
+                  [
+                    "1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "1",
+                  "-3/2"
+                ]
+              },
+              "f820c7cb5860401": {
+                "parent": "f820c7cb5860400",
+                "translation": [
+                  "-252/11",
+                  "2/3"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "1"
+                  ],
+                  [
+                    "0",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "-1",
+                  "-1"
+                ]
+              },
+              "f820c7cb5860500": {
+                "parent": "f820c7cb5860401",
+                "translation": [
+                  "-263/11",
+                  "1/3"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "1"
+                  ],
+                  [
+                    "0",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "-1",
+                  "-3/2"
+                ]
+              },
+              "f820c7cb5860600": {
+                "parent": "f820c7cb5860401",
+                "translation": [
+                  "-296/11",
+                  "1/3"
+                ],
+                "linear": [
+                  [
+                    "0",
+                    "-1"
+                  ],
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "pivot": [
+                  "-1/2",
+                  "-3/2"
+                ]
+              },
+              "f820c7cb5860601": {
+                "parent": "f820c7cb5860600",
+                "translation": [
+                  "-285/11",
+                  "2/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "-1"
+                ]
+              },
+              "f820c7cb5860602": {
+                "parent": "f820c7cb5860601",
+                "translation": [
+                  "-274/11",
+                  "1"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "-1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "1/2",
+                  "-1/2"
+                ]
+              }
+            },
+            "source": "f820c7cb5860500",
+            "target": "f820c7cb5860602",
+            "point": [
+              "5/2",
+              "-3"
+            ]
+          },
+          "expected": {
+            "point": [
+              "811/22",
+              "1105/66"
+            ]
+          },
+          "actual": {
+            "point": [
+              "565/11",
+              "-4751/66"
+            ]
+          }
+        },
+        {
+          "input": {
+            "frames": {
+              "f820c7cb5860700": {
+                "parent": "world",
+                "translation": [
+                  "-296/11",
+                  "1/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "-3/2"
+                ]
+              },
+              "f820c7cb586070c": {
+                "parent": "f820c7cb5860700",
+                "translation": [
+                  "-219/11",
+                  "2"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "2"
+                  ],
+                  [
+                    "2",
+                    "4"
+                  ]
+                ],
+                "pivot": [
+                  "1",
+                  "-1"
+                ]
+              }
+            },
+            "source": "f820c7cb586070c",
+            "target": "world",
+            "point": [
+              "2",
+              "-1"
+            ]
+          },
+          "expected": {
+            "point": [
+              "-690/11",
+              "-481/33"
+            ]
+          },
+          "actual": {
+            "point": [
+              "-1259/33",
+              "-1237/33"
+            ]
+          }
+        },
+        {
+          "input": {
+            "frames": {
+              "f820c7cb5861000": {
+                "parent": "world",
+                "translation": [
+                  "-395/11",
+                  "1/3"
+                ],
+                "linear": [
+                  [
+                    "0",
+                    "-1"
+                  ],
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "pivot": [
+                  "-1/2",
+                  "-3/2"
+                ]
+              },
+              "f820c7cb5861001": {
+                "parent": "f820c7cb5861000",
+                "translation": [
+                  "-384/11",
+                  "2/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "-1"
+                ]
+              },
+              "f820c7cb5861002": {
+                "parent": "f820c7cb5861001",
+                "translation": [
+                  "-373/11",
+                  "1"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "-1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "1/2",
+                  "-1/2"
+                ]
+              },
+              "f820c7cb5861003": {
+                "parent": "f820c7cb5861002",
+                "translation": [
+                  "-362/11",
+                  "4/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "1"
+                  ],
+                  [
+                    "1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "1",
+                  "0"
+                ]
+              },
+              "f820c7cb5861004": {
+                "parent": "f820c7cb5861003",
+                "translation": [
+                  "-351/11",
+                  "5/3"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "1"
+                  ],
+                  [
+                    "0",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "-1",
+                  "1/2"
+                ]
+              },
+              "f820c7cb5861005": {
+                "parent": "f820c7cb5861004",
+                "translation": [
+                  "-340/11",
+                  "2"
+                ],
+                "linear": [
+                  [
+                    "0",
+                    "-1"
+                  ],
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "pivot": [
+                  "-1/2",
+                  "1"
+                ]
+              },
+              "f820c7cb5861006": {
+                "parent": "f820c7cb5861005",
+                "translation": [
+                  "-329/11",
+                  "7/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "3/2"
+                ]
+              },
+              "f820c7cb5861100": {
+                "parent": "world",
+                "translation": [
+                  "32/11",
+                  "1/3"
+                ],
+                "linear": [
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "0",
+                  "-3/2"
+                ]
+              },
+              "f820c7cb5861101": {
+                "parent": "f820c7cb5861100",
+                "translation": [
+                  "43/11",
+                  "2/3"
+                ],
+                "linear": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "-1",
+                    "1"
+                  ]
+                ],
+                "pivot": [
+                  "1/2",
+                  "-1"
+                ]
+              }
+            },
+            "source": "world",
+            "target": "f820c7cb5861006",
+            "point": [
+              "-263/11",
+              "-186/11"
+            ]
+          },
+          "expected": {
+            "point": [
+              "-387/44",
+              "-21133/132"
+            ]
+          },
+          "actual": {
+            "point": [
+              "-3067/33",
+              "-4219/33"
+            ]
+          }
+        }
+      ],
+      "execution": {
+        "backend": "rooms",
+        "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+        "outputs": [
+          {
+            "point": [
+              "-219/11",
+              "219/11"
+            ]
+          },
+          {
+            "point": [
+              "-3889/22",
+              "-1391/22"
+            ]
+          },
+          {
+            "point": [
+              "745/33",
+              "3/2"
+            ]
+          },
+          {
+            "point": [
+              "5212/33",
+              "-1/3"
+            ]
+          },
+          {
+            "point": [
+              "565/11",
+              "-4751/66"
+            ]
+          },
+          {
+            "point": [
+              "-1259/33",
+              "-1237/33"
+            ]
+          },
+          {
+            "error": "singular"
+          },
+          {
+            "error": "singular"
+          },
+          {
+            "error": "unknown_frame"
+          },
+          {
+            "error": "unknown_frame"
+          },
+          {
+            "error": "invalid_scene"
+          },
+          {
+            "error": "invalid_scene"
+          },
+          {
+            "point": [
+              "-3067/33",
+              "-4219/33"
+            ]
+          }
+        ],
+        "error": null,
+        "seconds": 4.792462124954909,
+        "witness": {
+          "capture_complete": true,
+          "egress_policy": "none",
+          "permitted": [],
+          "blocked": []
+        },
+        "evidence_summary": {
+          "schema": "investigation-bridge.rooms-evidence.v1",
+          "run_id": "654e6814eaec4379b22d03c116ee8ab1",
+          "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+          "snapshot_sha256": {
+            "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+            "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+            "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+          },
+          "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+          "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+          "host_command_sha256": "7e034154a47951e04b593198873ec6d0643eb5f11b5312379ec8495b4d8e2c7c",
+          "matrix_sha256": "sha256:dd39243ce6ca64e1eafee57bb5b1cd1f653c49081746c515cf72f29bf1347845",
+          "command_sha256": "sha256:5a11a39080e5643af22480dc4da56814ab0ad19ab94f706ff3ea8b2727bee0e7",
+          "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+          "room_id": "01m30qzkfyrs7ya4f58yavdq13",
+          "witness": {
+            "capture_complete": true,
+            "egress_policy": "none",
+            "permitted": [],
+            "blocked": []
+          },
+          "teardown": {
+            "checks": {
+              "host_veth_absent": true,
+              "jail_absent": true,
+              "namespace_absent": true,
+              "netns_command_ok": true,
+              "process_absent": true,
+              "process_scan_complete": true,
+              "room_absent_from_roster": true,
+              "room_state_absent": true,
+              "roster_command_ok": true,
+              "roster_json_valid": true,
+              "roster_schema_valid": true,
+              "tap_absent": true
+            },
+            "complete": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "role": "solver",
+    "response": {
+      "action": "edit",
+      "hypothesis": "My previous diagnosis was wrong about which step breaks: the pivot handling, chain walk, inverse, and error ordering are all already correct. The earliest incorrect intermediate is the composite in `_to_world`: the chain is child-first ([C, B, A]), and the correct world map is A\u2218B\u2218C (apply the child first, then each ancestor). The loop does `result = _compose(result, _affine(frame))`, i.e. `result \u2218 parent`, which builds C\u2218B\u2218A and applies the ancestors before the child. Hand-checking dev case 2 confirms this exactly: applying A, then B, then C to (2,1) yields (-3889/22, -1391/22), the reported `actual`, while the documented order (C, then B, then A) yields (-44/3, -1630/33), the expected value. Single-frame chains and the error paths are unaffected by the order, which is why the world/world, unknown_frame, invalid_scene, and both singular cases already pass. Repair: swap the arguments so each ancestor becomes the outer map \u2014 `result = _compose(_affine(frames[frame_name]), result)`.",
+      "prediction": "All 13 development inputs pass. The six arithmetic failures flip to the expected values (case 2 \u2192 [\"-44/3\",\"-1630/33\"], case 3 \u2192 [\"471/22\",\"5/2\"], case 4 \u2192 [\"-4503/22\",\"3035/33\"], case 5 \u2192 [\"811/22\",\"1105/66\"], case 6 \u2192 [\"-690/11\",\"-481/33\"], case 13 \u2192 [\"-387/44\",\"-21133/132\"]), and the seven currently passing cases are untouched since composition order is irrelevant for identity, single-frame, and error-path queries.",
+      "source": "\"\"\"Affine frame evaluator. Exact rational composition over root-ward chains.\"\"\"\n\nfrom fractions import Fraction\n\n\ndef _number(value):\n    return Fraction(str(value))\n\n\ndef _text(value):\n    if value.denominator == 1:\n        return str(value.numerator)\n    return f\"{value.numerator}/{value.denominator}\"\n\n\ndef _valid_scene(frames):\n    if \"world\" in frames:\n        return False\n    limit = len(frames) + 1\n    for start in frames:\n        current = start\n        steps = 0\n        while current != \"world\":\n            if current not in frames:\n                return False\n            if steps > limit:\n                return False\n            current = frames[current][\"parent\"]\n            steps += 1\n    return True\n\n\ndef _chain(name, frames):\n    \"\"\"Frames from `name` up to but not including world, child first.\"\"\"\n    chain = []\n    current = name\n    while current != \"world\":\n        chain.append(current)\n        current = frames[current][\"parent\"]\n    return chain\n\n\ndef _affine(frame):\n    \"\"\"Local -> parent as (matrix, offset): p |-> L*p + offset.\"\"\"\n    a, b = map(_number, frame[\"linear\"][0])\n    c, d = map(_number, frame[\"linear\"][1])\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    # translation + pivot + L * (p - pivot)\n    return (a, b, c, d,\n            tx + px - (a * px + b * py),\n            ty + py - (c * px + d * py))\n\n\ndef _compose(outer, inner):\n    \"\"\"Apply `inner` first, then `outer`.\"\"\"\n    a1, b1, c1, d1, e1, f1 = outer\n    a2, b2, c2, d2, e2, f2 = inner\n    return (a1 * a2 + b1 * c2, a1 * b2 + b1 * d2,\n            c1 * a2 + d1 * c2, c1 * b2 + d1 * d2,\n            a1 * e2 + b1 * f2 + e1,\n            c1 * e2 + d1 * f2 + f1)\n\n\ndef _to_world(name, frames):\n    \"\"\"Composite frame -> world transform.\"\"\"\n    result = (Fraction(1), Fraction(0), Fraction(0), Fraction(1),\n              Fraction(0), Fraction(0))\n    # Child first: each ancestor wraps around what has been built so far.\n    for frame_name in _chain(name, frames):\n        result = _compose(_affine(frames[frame_name]), result)\n    return result\n\n\ndef _apply(transform, point):\n    a, b, c, d, e, f = transform\n    x, y = point\n    return (a * x + b * y + e, c * x + d * y + f)\n\n\ndef _invert(transform):\n    a, b, c, d, e, f = transform\n    determinant = a * d - b * c\n    ia = d / determinant\n    ib = -b / determinant\n    ic = -c / determinant\n    id_ = a / determinant\n    return (ia, ib, ic, id_,\n            -(ia * e + ib * f),\n            -(ic * e + id_ * f))\n\n\ndef evaluate(request):\n    frames = request[\"frames\"]\n    if not _valid_scene(frames):\n        return {\"error\": \"invalid_scene\"}\n\n    source = request[\"source\"]\n    target = request[\"target\"]\n    if source != \"world\" and source not in frames:\n        return {\"error\": \"unknown_frame\"}\n    if target != \"world\" and target not in frames:\n        return {\"error\": \"unknown_frame\"}\n\n    target_transform = _to_world(target, frames)\n    if target_transform[0] * target_transform[3] - target_transform[1] * target_transform[2] == 0:\n        return {\"error\": \"singular\"}\n\n    point = tuple(map(_number, request[\"point\"]))\n    point = _apply(_to_world(source, frames), point)\n    point = _apply(_invert(target_transform), point)\n\n    return {\"point\": [_text(point[0]), _text(point[1])]}\n",
+      "probes_json": "[]"
+    },
+    "development": {
+      "passed": true,
+      "total": 13,
+      "failed": 0,
+      "failures": [],
+      "execution": {
+        "backend": "rooms",
+        "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+        "outputs": [
+          {
+            "point": [
+              "-219/11",
+              "219/11"
+            ]
+          },
+          {
+            "point": [
+              "-44/3",
+              "-1630/33"
+            ]
+          },
+          {
+            "point": [
+              "471/22",
+              "5/2"
+            ]
+          },
+          {
+            "point": [
+              "-4503/22",
+              "3035/33"
+            ]
+          },
+          {
+            "point": [
+              "811/22",
+              "1105/66"
+            ]
+          },
+          {
+            "point": [
+              "-690/11",
+              "-481/33"
+            ]
+          },
+          {
+            "error": "singular"
+          },
+          {
+            "error": "singular"
+          },
+          {
+            "error": "unknown_frame"
+          },
+          {
+            "error": "unknown_frame"
+          },
+          {
+            "error": "invalid_scene"
+          },
+          {
+            "error": "invalid_scene"
+          },
+          {
+            "point": [
+              "-387/44",
+              "-21133/132"
+            ]
+          }
+        ],
+        "error": null,
+        "seconds": 4.720647250069305,
+        "witness": {
+          "capture_complete": true,
+          "egress_policy": "none",
+          "permitted": [],
+          "blocked": []
+        },
+        "evidence_summary": {
+          "schema": "investigation-bridge.rooms-evidence.v1",
+          "run_id": "567cbf6432fd4818aa8606b1715e7c4e",
+          "image": "rooms-python-neutral-01m30pjdt6467cm4p0e5xv8x7q",
+          "snapshot_sha256": {
+            "snapshot.json": "f41b2255f665094cae506daa1dd9edf5fed82ab9c50245eff2f1dc67ec99a74b",
+            "snapshot.vmstate": "ef2a0c178cce8605e2ca876d8227deaee71d5b0303ac8a15bbd99e385db78270",
+            "snapshot.mem": "67b41ac19cf8fc93d06c6d9d2100557a670b3e25687d2453456565e73df7f650"
+          },
+          "image_sha256": "0fe65a5ce8a9c2e0b25bce0cb9d8f3856435ac0cd356a1a4472c934db5fb4d90",
+          "toolstore_sha256": "85074bedee9b2c34014488b422c0869c01571dbb121da5191b2e719863e760d3",
+          "host_command_sha256": "f33aadb24ac0544531b21f2b28d64535beca9d9957ea5a5f2ededa205d0af093",
+          "matrix_sha256": "sha256:7a037e5998e8f288299dd261d87668f205ad707788d23cc1eb9002804513d995",
+          "command_sha256": "sha256:f18d4fc0d153781980a5cae4fad2f1542e9cb59d43216e015b526a9d030271de",
+          "snapshot_id": "01m30pjdt6467cm4p0e5xv8x7q",
+          "room_id": "01m30r17k67azf87zm2n7yxnqk",
+          "witness": {
+            "capture_complete": true,
+            "egress_policy": "none",
+            "permitted": [],
+            "blocked": []
+          },
+          "teardown": {
+            "checks": {
+              "host_veth_absent": true,
+              "jail_absent": true,
+              "namespace_absent": true,
+              "netns_command_ok": true,
+              "process_absent": true,
+              "process_scan_complete": true,
+              "room_absent_from_roster": true,
+              "room_state_absent": true,
+              "roster_command_ok": true,
+              "roster_json_valid": true,
+              "roster_schema_valid": true,
+              "tap_absent": true
+            },
+            "complete": true
+          }
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,6581 @@
+{
+  "id": "investigation-bridge-hard-f51795f69b75",
+  "contract": "Write solution.py with evaluate(request) -> JSON-compatible dict.\n\nrequest has:\n  frames: {name: {parent, translation, linear, pivot}}\n  source: a frame name or \"world\"\n  target: a frame name or \"world\"\n  point: [x, y] in source coordinates\n\nAll numeric values are rational strings. For a frame, local -> parent is:\n  translation + pivot + linear * (point - pivot)\n\nFrames form a rooted graph whose root is the reserved name \"world\". Validate\nthe entire graph, including frames unrelated to the query. A missing parent or\ncycle returns {\"error\":\"invalid_scene\"}. After scene validation, an unknown\nsource or target returns {\"error\":\"unknown_frame\"}. After those checks, a\nsingular target-to-world transform returns {\"error\":\"singular\"}. A singular\nsource is allowed because mapping from source toward world needs no inverse.\n\nOn success return {\"point\":[x,y]}. Coordinates must be canonical rational\nstrings: integers have no denominator, and other values use reduced n/d form\nwith a positive denominator. Inputs have the documented shapes; malformed\nnumeric arrays and other unspecified invalid inputs are outside this task.\n",
+  "starter": "\"\"\"Affine frame evaluator. Uses scalar path traversal and exact fractions.\"\"\"\n\nfrom fractions import Fraction\n\n\ndef _number(value):\n    return Fraction(str(value))\n\n\ndef _text(value):\n    if value.denominator == 1:\n        return str(value.numerator)\n    return f\"{value.numerator}/{value.denominator}\"\n\n\ndef _valid_scene(frames):\n    if \"world\" in frames:\n        return False\n    for start in frames:\n        current = start\n        seen = set()\n        while current != \"world\":\n            if current not in frames or current in seen:\n                return False\n            seen.add(current)\n            current = frames[current][\"parent\"]\n    return True\n\n\ndef _chain(name, frames):\n    if name == \"world\":\n        return [\"world\"]\n    return [name, \"world\"]\n\n\ndef _determinant(frame):\n    linear = frame[\"linear\"]\n    return (_number(linear[0][0]) * _number(linear[1][1])\n            - _number(linear[0][1]) * _number(linear[1][0]))\n\n\ndef _to_parent(frame, point):\n    x, y = point\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    linear = frame[\"linear\"]\n    a, b = map(_number, linear[0])\n    c, d = map(_number, linear[1])\n    return (tx + a * x + b * y,\n            ty + c * x + d * y)\n\n\ndef _from_parent(frame, point):\n    x, y = point\n    tx, ty = map(_number, frame[\"translation\"])\n    px, py = map(_number, frame[\"pivot\"])\n    linear = frame[\"linear\"]\n    a, b = map(_number, linear[0])\n    c, d = map(_number, linear[1])\n    determinant = a * d - b * c\n    shifted_x = x\n    shifted_y = y\n    return ((d * shifted_x - b * shifted_y) / determinant - tx,\n            (-c * shifted_x + a * shifted_y) / determinant - ty)\n\n\ndef evaluate(request):\n    frames = request[\"frames\"]\n    if not _valid_scene(frames):\n        return {\"error\": \"invalid_scene\"}\n\n    source = request[\"source\"]\n    target = request[\"target\"]\n    if source != \"world\" and source not in frames:\n        return {\"error\": \"unknown_frame\"}\n    if target != \"world\" and target not in frames:\n        return {\"error\": \"unknown_frame\"}\n\n    source_chain = _chain(source, frames)\n    target_chain = _chain(target, frames)\n    if source != \"world\" and any(\n            _determinant(frames[name]) == 0 for name in source_chain[:-1]):\n        return {\"error\": \"singular\"}\n    if target != \"world\" and any(\n            _determinant(frames[name]) == 0 for name in target_chain[:-1]):\n        return {\"error\": \"singular\"}\n\n    target_names = set(target_chain)\n    common = next(name for name in source_chain if name in target_names)\n    source_stop = source_chain.index(common)\n    target_stop = target_chain.index(common)\n\n    point = tuple(map(_number, request[\"point\"]))\n    for frame_name in reversed(source_chain[:source_stop]):\n        point = _to_parent(frames[frame_name], point)\n\n    target_leg = target_chain[:target_stop]\n    if source != \"world\" and target != \"world\":\n        target_leg = target_leg[:1]\n    for frame_name in reversed(target_leg):\n                    point = _from_parent(frames[frame_name], point)\n\n    return {\"point\": [_text(point[0]), _text(point[1])]}\n",
+  "development": [
+    {
+      "frames": {
+        "f820c7cb5860000": {
+          "parent": "world",
+          "translation": [
+            "-219/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860001": {
+          "parent": "f820c7cb5860000",
+          "translation": [
+            "-208/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1"
+          ]
+        },
+        "f820c7cb5860002": {
+          "parent": "f820c7cb5860001",
+          "translation": [
+            "-197/11",
+            "1"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1/2"
+          ]
+        },
+        "f820c7cb5860003": {
+          "parent": "f820c7cb5860002",
+          "translation": [
+            "-186/11",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "0"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "world",
+      "point": [
+        "-219/11",
+        "219/11"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5860100": {
+          "parent": "world",
+          "translation": [
+            "-230/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860101": {
+          "parent": "f820c7cb5860100",
+          "translation": [
+            "-219/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1"
+          ]
+        },
+        "f820c7cb586010c": {
+          "parent": "f820c7cb5860101",
+          "translation": [
+            "-219/11",
+            "-3/2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "0",
+              "3"
+            ]
+          ],
+          "pivot": [
+            "3/2",
+            "-2"
+          ]
+        }
+      },
+      "source": "f820c7cb586010c",
+      "target": "world",
+      "point": [
+        "2",
+        "1"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5860200": {
+          "parent": "world",
+          "translation": [
+            "-241/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860201": {
+          "parent": "f820c7cb5860200",
+          "translation": [
+            "-230/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1"
+          ]
+        },
+        "f820c7cb586020c": {
+          "parent": "f820c7cb5860201",
+          "translation": [
+            "-219/11",
+            "-2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f820c7cb586020c",
+      "point": [
+        "-142/11",
+        "5"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5860300": {
+          "parent": "world",
+          "translation": [
+            "-252/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860301": {
+          "parent": "f820c7cb5860300",
+          "translation": [
+            "-241/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        },
+        "f820c7cb5860302": {
+          "parent": "f820c7cb5860301",
+          "translation": [
+            "-230/11",
+            "1"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1/2"
+          ]
+        },
+        "f820c7cb5860303": {
+          "parent": "f820c7cb5860302",
+          "translation": [
+            "-219/11",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "0"
+          ]
+        },
+        "f820c7cb586030c": {
+          "parent": "f820c7cb5860303",
+          "translation": [
+            "-219/11",
+            "1"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f820c7cb586030d": {
+          "parent": "f820c7cb586030c",
+          "translation": [
+            "-1",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "f820c7cb586030d",
+      "target": "world",
+      "point": [
+        "2",
+        "3"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5860400": {
+          "parent": "world",
+          "translation": [
+            "-263/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860401": {
+          "parent": "f820c7cb5860400",
+          "translation": [
+            "-252/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1"
+          ]
+        },
+        "f820c7cb5860500": {
+          "parent": "f820c7cb5860401",
+          "translation": [
+            "-263/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860600": {
+          "parent": "f820c7cb5860401",
+          "translation": [
+            "-296/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860601": {
+          "parent": "f820c7cb5860600",
+          "translation": [
+            "-285/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1"
+          ]
+        },
+        "f820c7cb5860602": {
+          "parent": "f820c7cb5860601",
+          "translation": [
+            "-274/11",
+            "1"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        }
+      },
+      "source": "f820c7cb5860500",
+      "target": "f820c7cb5860602",
+      "point": [
+        "5/2",
+        "-3"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5860700": {
+          "parent": "world",
+          "translation": [
+            "-296/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-3/2"
+          ]
+        },
+        "f820c7cb586070c": {
+          "parent": "f820c7cb5860700",
+          "translation": [
+            "-219/11",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "f820c7cb586070c",
+      "target": "world",
+      "point": [
+        "2",
+        "-1"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb586080c": {
+          "parent": "world",
+          "translation": [
+            "-219/11",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f820c7cb586080c",
+      "point": [
+        "1",
+        "4"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5860900": {
+          "parent": "world",
+          "translation": [
+            "-318/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-3/2"
+          ]
+        },
+        "f820c7cb586090c": {
+          "parent": "f820c7cb5860900",
+          "translation": [
+            "1",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f820c7cb5860a00": {
+          "parent": "f820c7cb586090c",
+          "translation": [
+            "-307/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860a01": {
+          "parent": "f820c7cb5860a00",
+          "translation": [
+            "-296/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f820c7cb5860a01",
+      "point": [
+        "-2",
+        "3"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5860900": {
+          "parent": "world",
+          "translation": [
+            "-318/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-3/2"
+          ]
+        },
+        "f820c7cb586090c": {
+          "parent": "f820c7cb5860900",
+          "translation": [
+            "1",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f820c7cb5860a00": {
+          "parent": "f820c7cb586090c",
+          "translation": [
+            "-307/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860a01": {
+          "parent": "f820c7cb5860a00",
+          "translation": [
+            "-296/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1"
+          ]
+        }
+      },
+      "source": "f820c7cb5860b1f",
+      "target": "f820c7cb5860a01",
+      "point": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5860c00": {
+          "parent": "world",
+          "translation": [
+            "-351/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860c01": {
+          "parent": "f820c7cb5860c00",
+          "translation": [
+            "-340/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1"
+          ]
+        },
+        "f820c7cb5860c02": {
+          "parent": "f820c7cb5860c01",
+          "translation": [
+            "-329/11",
+            "1"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1/2"
+          ]
+        },
+        "f820c7cb5860c03": {
+          "parent": "f820c7cb5860c02",
+          "translation": [
+            "-318/11",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "0"
+          ]
+        },
+        "f820c7cb5860c04": {
+          "parent": "f820c7cb5860c03",
+          "translation": [
+            "-307/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "1/2"
+          ]
+        }
+      },
+      "source": "f820c7cb5860c04",
+      "target": "f820c7cb5860c1f",
+      "point": [
+        "1",
+        "1"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5860d00": {
+          "parent": "world",
+          "translation": [
+            "-362/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5860d01": {
+          "parent": "f820c7cb5860d00",
+          "translation": [
+            "-351/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        },
+        "f820c7cb5860e00": {
+          "parent": "f820c7cb5860e1f",
+          "translation": [
+            "0",
+            "0"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "f820c7cb5860b1f",
+      "target": "f820c7cb5860c1f",
+      "point": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5860f00": {
+          "parent": "f820c7cb5860f01",
+          "translation": [
+            "0",
+            "0"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f820c7cb5860f01": {
+          "parent": "f820c7cb5860f00",
+          "translation": [
+            "1",
+            "-1"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "world",
+      "point": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "frames": {
+        "f820c7cb5861000": {
+          "parent": "world",
+          "translation": [
+            "-395/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5861001": {
+          "parent": "f820c7cb5861000",
+          "translation": [
+            "-384/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1"
+          ]
+        },
+        "f820c7cb5861002": {
+          "parent": "f820c7cb5861001",
+          "translation": [
+            "-373/11",
+            "1"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        },
+        "f820c7cb5861003": {
+          "parent": "f820c7cb5861002",
+          "translation": [
+            "-362/11",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "0"
+          ]
+        },
+        "f820c7cb5861004": {
+          "parent": "f820c7cb5861003",
+          "translation": [
+            "-351/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1/2"
+          ]
+        },
+        "f820c7cb5861005": {
+          "parent": "f820c7cb5861004",
+          "translation": [
+            "-340/11",
+            "2"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "1"
+          ]
+        },
+        "f820c7cb5861006": {
+          "parent": "f820c7cb5861005",
+          "translation": [
+            "-329/11",
+            "7/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "3/2"
+          ]
+        },
+        "f820c7cb5861100": {
+          "parent": "world",
+          "translation": [
+            "32/11",
+            "1/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-3/2"
+          ]
+        },
+        "f820c7cb5861101": {
+          "parent": "f820c7cb5861100",
+          "translation": [
+            "43/11",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f820c7cb5861006",
+      "point": [
+        "-263/11",
+        "-186/11"
+      ]
+    }
+  ],
+  "final": [
+    {
+      "frames": {
+        "f432ecf20681000": {
+          "parent": "world",
+          "translation": [
+            "69",
+            "1"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1/2"
+          ]
+        },
+        "f432ecf20681001": {
+          "parent": "f432ecf20681000",
+          "translation": [
+            "70",
+            "2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f432ecf20681002": {
+          "parent": "f432ecf20681001",
+          "translation": [
+            "71",
+            "3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        "f432ecf20681003": {
+          "parent": "f432ecf20681002",
+          "translation": [
+            "72",
+            "4"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1"
+          ]
+        },
+        "f432ecf20681004": {
+          "parent": "f432ecf20681003",
+          "translation": [
+            "73",
+            "5"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "3/2"
+          ]
+        },
+        "f432ecf20681005": {
+          "parent": "f432ecf20681004",
+          "translation": [
+            "74",
+            "6"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-3/2"
+          ]
+        },
+        "f432ecf20681006": {
+          "parent": "f432ecf20681005",
+          "translation": [
+            "75",
+            "7"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1"
+          ]
+        },
+        "f432ecf20681007": {
+          "parent": "f432ecf20681006",
+          "translation": [
+            "76",
+            "8"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        },
+        "f432ecf20681100": {
+          "parent": "world",
+          "translation": [
+            "-102",
+            "1"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1/2"
+          ]
+        },
+        "f432ecf20681101": {
+          "parent": "f432ecf20681100",
+          "translation": [
+            "-101",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "0"
+          ]
+        },
+        "f432ecf20681102": {
+          "parent": "f432ecf20681101",
+          "translation": [
+            "-100",
+            "3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1/2"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f432ecf20681007",
+      "point": [
+        "81",
+        "88"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680c00": {
+          "parent": "world",
+          "translation": [
+            "73",
+            "1"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680c01": {
+          "parent": "f432ecf20680c00",
+          "translation": [
+            "74",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "0"
+          ]
+        },
+        "f432ecf20680c02": {
+          "parent": "f432ecf20680c01",
+          "translation": [
+            "75",
+            "3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1/2"
+          ]
+        },
+        "f432ecf20680c03": {
+          "parent": "f432ecf20680c02",
+          "translation": [
+            "76",
+            "4"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1"
+          ]
+        },
+        "f432ecf20680c04": {
+          "parent": "f432ecf20680c03",
+          "translation": [
+            "77",
+            "5"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "3/2"
+          ]
+        },
+        "f432ecf20680c05": {
+          "parent": "f432ecf20680c04",
+          "translation": [
+            "78",
+            "6"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-3/2"
+          ]
+        }
+      },
+      "source": "f432ecf20680c05",
+      "target": "f432ecf20680c1f",
+      "point": [
+        "1",
+        "1"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480400": {
+          "parent": "world",
+          "translation": [
+            "-1005/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1/2"
+          ]
+        },
+        "f1abd64ca480500": {
+          "parent": "f1abd64ca480400",
+          "translation": [
+            "-1005/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1/2"
+          ]
+        },
+        "f1abd64ca480501": {
+          "parent": "f1abd64ca480500",
+          "translation": [
+            "-994/11",
+            "10/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "1"
+          ]
+        },
+        "f1abd64ca480600": {
+          "parent": "f1abd64ca480400",
+          "translation": [
+            "-1038/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "1/2"
+          ]
+        },
+        "f1abd64ca480601": {
+          "parent": "f1abd64ca480600",
+          "translation": [
+            "-1027/11",
+            "10/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f1abd64ca480602": {
+          "parent": "f1abd64ca480601",
+          "translation": [
+            "-1016/11",
+            "5"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "3/2"
+          ]
+        }
+      },
+      "source": "f1abd64ca480501",
+      "target": "f1abd64ca480602",
+      "point": [
+        "5/2",
+        "-3"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d1000": {
+          "parent": "world",
+          "translation": [
+            "-681/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1"
+          ]
+        },
+        "f798ba62c7d1001": {
+          "parent": "f798ba62c7d1000",
+          "translation": [
+            "-674/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d1002": {
+          "parent": "f798ba62c7d1001",
+          "translation": [
+            "-667/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "0"
+          ]
+        },
+        "f798ba62c7d1003": {
+          "parent": "f798ba62c7d1002",
+          "translation": [
+            "-660/7",
+            "8/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1/2"
+          ]
+        },
+        "f798ba62c7d1004": {
+          "parent": "f798ba62c7d1003",
+          "translation": [
+            "-653/7",
+            "10/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1"
+          ]
+        },
+        "f798ba62c7d1100": {
+          "parent": "world",
+          "translation": [
+            "450/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1"
+          ]
+        },
+        "f798ba62c7d1101": {
+          "parent": "f798ba62c7d1100",
+          "translation": [
+            "457/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d1102": {
+          "parent": "f798ba62c7d1101",
+          "translation": [
+            "464/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "0"
+          ]
+        },
+        "f798ba62c7d1103": {
+          "parent": "f798ba62c7d1102",
+          "translation": [
+            "471/7",
+            "8/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1/2"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f798ba62c7d1004",
+      "point": [
+        "-597/7",
+        "-548/7"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca48070c": {
+          "parent": "world",
+          "translation": [
+            "-961/11",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "f1abd64ca48070c",
+      "target": "world",
+      "point": [
+        "2",
+        "-1"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c0300": {
+          "parent": "world",
+          "translation": [
+            "341/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "0"
+          ]
+        },
+        "f6db267453c0301": {
+          "parent": "f6db267453c0300",
+          "translation": [
+            "346/5",
+            "8/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1/2"
+          ]
+        },
+        "f6db267453c0302": {
+          "parent": "f6db267453c0301",
+          "translation": [
+            "351/5",
+            "4"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1"
+          ]
+        },
+        "f6db267453c0303": {
+          "parent": "f6db267453c0302",
+          "translation": [
+            "356/5",
+            "16/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "3/2"
+          ]
+        },
+        "f6db267453c0304": {
+          "parent": "f6db267453c0303",
+          "translation": [
+            "361/5",
+            "20/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-3/2"
+          ]
+        },
+        "f6db267453c0305": {
+          "parent": "f6db267453c0304",
+          "translation": [
+            "366/5",
+            "8"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1"
+          ]
+        },
+        "f6db267453c030c": {
+          "parent": "f6db267453c0305",
+          "translation": [
+            "356/5",
+            "1"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f6db267453c030d": {
+          "parent": "f6db267453c030c",
+          "translation": [
+            "-1",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "f6db267453c030d",
+      "target": "world",
+      "point": [
+        "2",
+        "3"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480300": {
+          "parent": "world",
+          "translation": [
+            "-994/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        "f1abd64ca480301": {
+          "parent": "f1abd64ca480300",
+          "translation": [
+            "-983/11",
+            "10/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1"
+          ]
+        },
+        "f1abd64ca480302": {
+          "parent": "f1abd64ca480301",
+          "translation": [
+            "-972/11",
+            "5"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "3/2"
+          ]
+        },
+        "f1abd64ca48030c": {
+          "parent": "f1abd64ca480302",
+          "translation": [
+            "-961/11",
+            "1"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f1abd64ca48030d": {
+          "parent": "f1abd64ca48030c",
+          "translation": [
+            "-1",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "f1abd64ca48030d",
+      "target": "world",
+      "point": [
+        "2",
+        "3"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c080c": {
+          "parent": "world",
+          "translation": [
+            "356/5",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f6db267453c080c",
+      "point": [
+        "1",
+        "4"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca481000": {
+          "parent": "world",
+          "translation": [
+            "-1137/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "1/2"
+          ]
+        },
+        "f1abd64ca481001": {
+          "parent": "f1abd64ca481000",
+          "translation": [
+            "-1126/11",
+            "10/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f1abd64ca481002": {
+          "parent": "f1abd64ca481001",
+          "translation": [
+            "-1115/11",
+            "5"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "3/2"
+          ]
+        },
+        "f1abd64ca481003": {
+          "parent": "f1abd64ca481002",
+          "translation": [
+            "-1104/11",
+            "20/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-3/2"
+          ]
+        },
+        "f1abd64ca481004": {
+          "parent": "f1abd64ca481003",
+          "translation": [
+            "-1093/11",
+            "25/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1"
+          ]
+        },
+        "f1abd64ca481005": {
+          "parent": "f1abd64ca481004",
+          "translation": [
+            "-1082/11",
+            "10"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1/2"
+          ]
+        },
+        "f1abd64ca481100": {
+          "parent": "world",
+          "translation": [
+            "774/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1/2"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f1abd64ca481005",
+      "point": [
+        "-1005/11",
+        "-928/11"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680700": {
+          "parent": "world",
+          "translation": [
+            "78",
+            "1"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680701": {
+          "parent": "f432ecf20680700",
+          "translation": [
+            "79",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "0"
+          ]
+        },
+        "f432ecf2068070c": {
+          "parent": "f432ecf20680701",
+          "translation": [
+            "85",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "f432ecf2068070c",
+      "target": "world",
+      "point": [
+        "2",
+        "-1"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0200": {
+          "parent": "world",
+          "translation": [
+            "-583/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0201": {
+          "parent": "f798ba62c7d0200",
+          "translation": [
+            "-576/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d0202": {
+          "parent": "f798ba62c7d0201",
+          "translation": [
+            "-569/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "0"
+          ]
+        },
+        "f798ba62c7d0203": {
+          "parent": "f798ba62c7d0202",
+          "translation": [
+            "-562/7",
+            "8/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1/2"
+          ]
+        },
+        "f798ba62c7d020c": {
+          "parent": "f798ba62c7d0203",
+          "translation": [
+            "-569/7",
+            "-2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f798ba62c7d020c",
+      "point": [
+        "-520/7",
+        "5"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480c00": {
+          "parent": "world",
+          "translation": [
+            "-1093/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1/2"
+          ]
+        },
+        "f1abd64ca480c01": {
+          "parent": "f1abd64ca480c00",
+          "translation": [
+            "-1082/11",
+            "10/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1"
+          ]
+        },
+        "f1abd64ca480c02": {
+          "parent": "f1abd64ca480c01",
+          "translation": [
+            "-1071/11",
+            "5"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "3/2"
+          ]
+        },
+        "f1abd64ca480c03": {
+          "parent": "f1abd64ca480c02",
+          "translation": [
+            "-1060/11",
+            "20/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-3/2"
+          ]
+        }
+      },
+      "source": "f1abd64ca480c03",
+      "target": "f1abd64ca480c1f",
+      "point": [
+        "1",
+        "1"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680f00": {
+          "parent": "f432ecf20680f01",
+          "translation": [
+            "0",
+            "0"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f432ecf20680f01": {
+          "parent": "f432ecf20680f02",
+          "translation": [
+            "1",
+            "-1"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f432ecf20680f02": {
+          "parent": "f432ecf20680f00",
+          "translation": [
+            "2",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "world",
+      "point": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0100": {
+          "parent": "world",
+          "translation": [
+            "-576/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0101": {
+          "parent": "f798ba62c7d0100",
+          "translation": [
+            "-569/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d0102": {
+          "parent": "f798ba62c7d0101",
+          "translation": [
+            "-562/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "0"
+          ]
+        },
+        "f798ba62c7d010c": {
+          "parent": "f798ba62c7d0102",
+          "translation": [
+            "-569/7",
+            "-3/2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "0",
+              "3"
+            ]
+          ],
+          "pivot": [
+            "3/2",
+            "-2"
+          ]
+        }
+      },
+      "source": "f798ba62c7d010c",
+      "target": "world",
+      "point": [
+        "2",
+        "1"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480800": {
+          "parent": "world",
+          "translation": [
+            "-1049/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        "f1abd64ca48080c": {
+          "parent": "f1abd64ca480800",
+          "translation": [
+            "-961/11",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f1abd64ca48080c",
+      "point": [
+        "1",
+        "4"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680900": {
+          "parent": "world",
+          "translation": [
+            "76",
+            "1"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680901": {
+          "parent": "f432ecf20680900",
+          "translation": [
+            "77",
+            "2"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "0"
+          ]
+        },
+        "f432ecf2068090c": {
+          "parent": "f432ecf20680901",
+          "translation": [
+            "1",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f432ecf20680a00": {
+          "parent": "f432ecf2068090c",
+          "translation": [
+            "77",
+            "1"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680a01": {
+          "parent": "f432ecf20680a00",
+          "translation": [
+            "78",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "0"
+          ]
+        },
+        "f432ecf20680a02": {
+          "parent": "f432ecf20680a01",
+          "translation": [
+            "79",
+            "3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1/2"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f432ecf20680a02",
+      "point": [
+        "-2",
+        "3"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c0200": {
+          "parent": "world",
+          "translation": [
+            "346/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f6db267453c0201": {
+          "parent": "f6db267453c0200",
+          "translation": [
+            "351/5",
+            "8/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        "f6db267453c0202": {
+          "parent": "f6db267453c0201",
+          "translation": [
+            "356/5",
+            "4"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1"
+          ]
+        },
+        "f6db267453c0203": {
+          "parent": "f6db267453c0202",
+          "translation": [
+            "361/5",
+            "16/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "3/2"
+          ]
+        },
+        "f6db267453c020c": {
+          "parent": "f6db267453c0203",
+          "translation": [
+            "356/5",
+            "-2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f6db267453c020c",
+      "point": [
+        "391/5",
+        "5"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680800": {
+          "parent": "world",
+          "translation": [
+            "77",
+            "1"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        },
+        "f432ecf2068080c": {
+          "parent": "f432ecf20680800",
+          "translation": [
+            "85",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f432ecf2068080c",
+      "point": [
+        "1",
+        "4"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0900": {
+          "parent": "world",
+          "translation": [
+            "-632/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        },
+        "f798ba62c7d090c": {
+          "parent": "f798ba62c7d0900",
+          "translation": [
+            "1",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f798ba62c7d0a00": {
+          "parent": "f798ba62c7d090c",
+          "translation": [
+            "-625/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0a01": {
+          "parent": "f798ba62c7d0a00",
+          "translation": [
+            "-618/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d0a02": {
+          "parent": "f798ba62c7d0a01",
+          "translation": [
+            "-611/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "f798ba62c7d0b1f",
+      "target": "f798ba62c7d0a02",
+      "point": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0700": {
+          "parent": "world",
+          "translation": [
+            "-618/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0701": {
+          "parent": "f798ba62c7d0700",
+          "translation": [
+            "-611/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d070c": {
+          "parent": "f798ba62c7d0701",
+          "translation": [
+            "-569/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "f798ba62c7d070c",
+      "target": "world",
+      "point": [
+        "2",
+        "-1"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c0900": {
+          "parent": "world",
+          "translation": [
+            "311/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "0"
+          ]
+        },
+        "f6db267453c090c": {
+          "parent": "f6db267453c0900",
+          "translation": [
+            "1",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f6db267453c0a00": {
+          "parent": "f6db267453c090c",
+          "translation": [
+            "316/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "0"
+          ]
+        }
+      },
+      "source": "f6db267453c0b1f",
+      "target": "f6db267453c0a00",
+      "point": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c0100": {
+          "parent": "world",
+          "translation": [
+            "351/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "0"
+          ]
+        },
+        "f6db267453c010c": {
+          "parent": "f6db267453c0100",
+          "translation": [
+            "356/5",
+            "-3/2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "0",
+              "3"
+            ]
+          ],
+          "pivot": [
+            "3/2",
+            "-2"
+          ]
+        }
+      },
+      "source": "f6db267453c010c",
+      "target": "world",
+      "point": [
+        "2",
+        "1"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680d00": {
+          "parent": "world",
+          "translation": [
+            "72",
+            "1"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680d01": {
+          "parent": "f432ecf20680d00",
+          "translation": [
+            "73",
+            "2"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "0"
+          ]
+        },
+        "f432ecf20680d02": {
+          "parent": "f432ecf20680d01",
+          "translation": [
+            "74",
+            "3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1/2"
+          ]
+        },
+        "f432ecf20680e00": {
+          "parent": "f432ecf20680e1f",
+          "translation": [
+            "0",
+            "0"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "f432ecf20680b1f",
+      "target": "f432ecf20680c1f",
+      "point": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480f00": {
+          "parent": "f1abd64ca480f01",
+          "translation": [
+            "0",
+            "0"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f1abd64ca480f01": {
+          "parent": "f1abd64ca480f02",
+          "translation": [
+            "1",
+            "-1"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f1abd64ca480f02": {
+          "parent": "f1abd64ca480f03",
+          "translation": [
+            "2",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f1abd64ca480f03": {
+          "parent": "f1abd64ca480f04",
+          "translation": [
+            "3",
+            "-3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f1abd64ca480f04": {
+          "parent": "f1abd64ca480f00",
+          "translation": [
+            "4",
+            "-4"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "world",
+      "point": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c1000": {
+          "parent": "world",
+          "translation": [
+            "276/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "0"
+          ]
+        },
+        "f6db267453c1001": {
+          "parent": "f6db267453c1000",
+          "translation": [
+            "281/5",
+            "8/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1/2"
+          ]
+        },
+        "f6db267453c1002": {
+          "parent": "f6db267453c1001",
+          "translation": [
+            "286/5",
+            "4"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1"
+          ]
+        },
+        "f6db267453c1003": {
+          "parent": "f6db267453c1002",
+          "translation": [
+            "291/5",
+            "16/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "3/2"
+          ]
+        },
+        "f6db267453c1004": {
+          "parent": "f6db267453c1003",
+          "translation": [
+            "296/5",
+            "20/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-3/2"
+          ]
+        },
+        "f6db267453c1005": {
+          "parent": "f6db267453c1004",
+          "translation": [
+            "301/5",
+            "8"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1"
+          ]
+        },
+        "f6db267453c1006": {
+          "parent": "f6db267453c1005",
+          "translation": [
+            "306/5",
+            "28/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1/2"
+          ]
+        },
+        "f6db267453c1007": {
+          "parent": "f6db267453c1006",
+          "translation": [
+            "311/5",
+            "32/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "0"
+          ]
+        },
+        "f6db267453c1008": {
+          "parent": "f6db267453c1007",
+          "translation": [
+            "316/5",
+            "12"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1/2"
+          ]
+        },
+        "f6db267453c1100": {
+          "parent": "world",
+          "translation": [
+            "-441/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f6db267453c1101": {
+          "parent": "f6db267453c1100",
+          "translation": [
+            "-436/5",
+            "8/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        "f6db267453c1102": {
+          "parent": "f6db267453c1101",
+          "translation": [
+            "-431/5",
+            "4"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1"
+          ]
+        },
+        "f6db267453c1103": {
+          "parent": "f6db267453c1102",
+          "translation": [
+            "-426/5",
+            "16/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "3/2"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f6db267453c1008",
+      "point": [
+        "336/5",
+        "371/5"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c070c": {
+          "parent": "world",
+          "translation": [
+            "356/5",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "f6db267453c070c",
+      "target": "world",
+      "point": [
+        "2",
+        "-1"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c0900": {
+          "parent": "world",
+          "translation": [
+            "311/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "0"
+          ]
+        },
+        "f6db267453c090c": {
+          "parent": "f6db267453c0900",
+          "translation": [
+            "1",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f6db267453c0a00": {
+          "parent": "f6db267453c090c",
+          "translation": [
+            "316/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "0"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f6db267453c0a00",
+      "point": [
+        "-2",
+        "3"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c0f00": {
+          "parent": "f6db267453c0f01",
+          "translation": [
+            "0",
+            "0"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f6db267453c0f01": {
+          "parent": "f6db267453c0f02",
+          "translation": [
+            "1",
+            "-1"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f6db267453c0f02": {
+          "parent": "f6db267453c0f03",
+          "translation": [
+            "2",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f6db267453c0f03": {
+          "parent": "f6db267453c0f00",
+          "translation": [
+            "3",
+            "-3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "world",
+      "point": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0300": {
+          "parent": "world",
+          "translation": [
+            "-590/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0301": {
+          "parent": "f798ba62c7d0300",
+          "translation": [
+            "-583/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d030c": {
+          "parent": "f798ba62c7d0301",
+          "translation": [
+            "-569/7",
+            "1"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f798ba62c7d030d": {
+          "parent": "f798ba62c7d030c",
+          "translation": [
+            "-1",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "f798ba62c7d030d",
+      "target": "world",
+      "point": [
+        "2",
+        "3"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680200": {
+          "parent": "world",
+          "translation": [
+            "83",
+            "1"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680201": {
+          "parent": "f432ecf20680200",
+          "translation": [
+            "84",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "0"
+          ]
+        },
+        "f432ecf20680202": {
+          "parent": "f432ecf20680201",
+          "translation": [
+            "85",
+            "3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1/2"
+          ]
+        },
+        "f432ecf2068020c": {
+          "parent": "f432ecf20680202",
+          "translation": [
+            "85",
+            "-2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f432ecf2068020c",
+      "point": [
+        "92",
+        "5"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0900": {
+          "parent": "world",
+          "translation": [
+            "-632/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        },
+        "f798ba62c7d090c": {
+          "parent": "f798ba62c7d0900",
+          "translation": [
+            "1",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f798ba62c7d0a00": {
+          "parent": "f798ba62c7d090c",
+          "translation": [
+            "-625/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0a01": {
+          "parent": "f798ba62c7d0a00",
+          "translation": [
+            "-618/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d0a02": {
+          "parent": "f798ba62c7d0a01",
+          "translation": [
+            "-611/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f798ba62c7d0a02",
+      "point": [
+        "-2",
+        "3"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0d00": {
+          "parent": "world",
+          "translation": [
+            "-660/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0d01": {
+          "parent": "f798ba62c7d0d00",
+          "translation": [
+            "-653/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d0d02": {
+          "parent": "f798ba62c7d0d01",
+          "translation": [
+            "-646/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "0"
+          ]
+        },
+        "f798ba62c7d0e00": {
+          "parent": "f798ba62c7d0e1f",
+          "translation": [
+            "0",
+            "0"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "f798ba62c7d0b1f",
+      "target": "f798ba62c7d0c1f",
+      "point": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480000": {
+          "parent": "world",
+          "translation": [
+            "-961/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1/2"
+          ]
+        },
+        "f1abd64ca480001": {
+          "parent": "f1abd64ca480000",
+          "translation": [
+            "-950/11",
+            "10/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "1"
+          ]
+        },
+        "f1abd64ca480002": {
+          "parent": "f1abd64ca480001",
+          "translation": [
+            "-939/11",
+            "5"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "3/2"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "world",
+      "point": [
+        "-961/11",
+        "961/11"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480200": {
+          "parent": "world",
+          "translation": [
+            "-983/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1/2"
+          ]
+        },
+        "f1abd64ca48020c": {
+          "parent": "f1abd64ca480200",
+          "translation": [
+            "-961/11",
+            "-2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f1abd64ca48020c",
+      "point": [
+        "-884/11",
+        "5"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c0000": {
+          "parent": "world",
+          "translation": [
+            "356/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "0"
+          ]
+        },
+        "f6db267453c0001": {
+          "parent": "f6db267453c0000",
+          "translation": [
+            "361/5",
+            "8/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "1/2"
+          ]
+        },
+        "f6db267453c0002": {
+          "parent": "f6db267453c0001",
+          "translation": [
+            "366/5",
+            "4"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f6db267453c0003": {
+          "parent": "f6db267453c0002",
+          "translation": [
+            "371/5",
+            "16/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "3/2"
+          ]
+        },
+        "f6db267453c0004": {
+          "parent": "f6db267453c0003",
+          "translation": [
+            "376/5",
+            "20/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-3/2"
+          ]
+        },
+        "f6db267453c0005": {
+          "parent": "f6db267453c0004",
+          "translation": [
+            "381/5",
+            "8"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "world",
+      "point": [
+        "356/5",
+        "-356/5"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0f00": {
+          "parent": "f798ba62c7d0f01",
+          "translation": [
+            "0",
+            "0"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f798ba62c7d0f01": {
+          "parent": "f798ba62c7d0f02",
+          "translation": [
+            "1",
+            "-1"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f798ba62c7d0f02": {
+          "parent": "f798ba62c7d0f03",
+          "translation": [
+            "2",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f798ba62c7d0f03": {
+          "parent": "f798ba62c7d0f00",
+          "translation": [
+            "3",
+            "-3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "world",
+      "point": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680000": {
+          "parent": "world",
+          "translation": [
+            "85",
+            "1"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680001": {
+          "parent": "f432ecf20680000",
+          "translation": [
+            "86",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "0"
+          ]
+        },
+        "f432ecf20680002": {
+          "parent": "f432ecf20680001",
+          "translation": [
+            "87",
+            "3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1/2"
+          ]
+        },
+        "f432ecf20680003": {
+          "parent": "f432ecf20680002",
+          "translation": [
+            "88",
+            "4"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1"
+          ]
+        },
+        "f432ecf20680004": {
+          "parent": "f432ecf20680003",
+          "translation": [
+            "89",
+            "5"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "3/2"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "world",
+      "point": [
+        "85",
+        "-85"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680400": {
+          "parent": "world",
+          "translation": [
+            "81",
+            "1"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680401": {
+          "parent": "f432ecf20680400",
+          "translation": [
+            "82",
+            "2"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "0"
+          ]
+        },
+        "f432ecf20680402": {
+          "parent": "f432ecf20680401",
+          "translation": [
+            "83",
+            "3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "1/2"
+          ]
+        },
+        "f432ecf20680500": {
+          "parent": "f432ecf20680402",
+          "translation": [
+            "81",
+            "1"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680501": {
+          "parent": "f432ecf20680500",
+          "translation": [
+            "82",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "0"
+          ]
+        },
+        "f432ecf20680600": {
+          "parent": "f432ecf20680402",
+          "translation": [
+            "78",
+            "1"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680601": {
+          "parent": "f432ecf20680600",
+          "translation": [
+            "79",
+            "2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f432ecf20680602": {
+          "parent": "f432ecf20680601",
+          "translation": [
+            "80",
+            "3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1/2"
+          ]
+        }
+      },
+      "source": "f432ecf20680501",
+      "target": "f432ecf20680602",
+      "point": [
+        "5/2",
+        "-3"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480900": {
+          "parent": "world",
+          "translation": [
+            "-1060/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1/2"
+          ]
+        },
+        "f1abd64ca480901": {
+          "parent": "f1abd64ca480900",
+          "translation": [
+            "-1049/11",
+            "10/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1"
+          ]
+        },
+        "f1abd64ca48090c": {
+          "parent": "f1abd64ca480901",
+          "translation": [
+            "1",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f1abd64ca480a00": {
+          "parent": "f1abd64ca48090c",
+          "translation": [
+            "-1049/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1/2"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f1abd64ca480a00",
+      "point": [
+        "-2",
+        "3"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480100": {
+          "parent": "world",
+          "translation": [
+            "-972/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "1/2"
+          ]
+        },
+        "f1abd64ca48010c": {
+          "parent": "f1abd64ca480100",
+          "translation": [
+            "-961/11",
+            "-3/2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "0",
+              "3"
+            ]
+          ],
+          "pivot": [
+            "3/2",
+            "-2"
+          ]
+        }
+      },
+      "source": "f1abd64ca48010c",
+      "target": "world",
+      "point": [
+        "2",
+        "1"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0400": {
+          "parent": "world",
+          "translation": [
+            "-597/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0401": {
+          "parent": "f798ba62c7d0400",
+          "translation": [
+            "-590/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d0402": {
+          "parent": "f798ba62c7d0401",
+          "translation": [
+            "-583/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "0"
+          ]
+        },
+        "f798ba62c7d0500": {
+          "parent": "f798ba62c7d0402",
+          "translation": [
+            "-597/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0600": {
+          "parent": "f798ba62c7d0402",
+          "translation": [
+            "-618/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0601": {
+          "parent": "f798ba62c7d0600",
+          "translation": [
+            "-611/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1/2"
+          ]
+        }
+      },
+      "source": "f798ba62c7d0500",
+      "target": "f798ba62c7d0601",
+      "point": [
+        "5/2",
+        "-3"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0c00": {
+          "parent": "world",
+          "translation": [
+            "-653/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0c01": {
+          "parent": "f798ba62c7d0c00",
+          "translation": [
+            "-646/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        },
+        "f798ba62c7d0c02": {
+          "parent": "f798ba62c7d0c01",
+          "translation": [
+            "-639/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "0"
+          ]
+        }
+      },
+      "source": "f798ba62c7d0c02",
+      "target": "f798ba62c7d0c1f",
+      "point": [
+        "1",
+        "1"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c0400": {
+          "parent": "world",
+          "translation": [
+            "336/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "0"
+          ]
+        },
+        "f6db267453c0500": {
+          "parent": "f6db267453c0400",
+          "translation": [
+            "336/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "0"
+          ]
+        },
+        "f6db267453c0600": {
+          "parent": "f6db267453c0400",
+          "translation": [
+            "321/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "0"
+          ]
+        },
+        "f6db267453c0601": {
+          "parent": "f6db267453c0600",
+          "translation": [
+            "326/5",
+            "8/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1/2"
+          ]
+        }
+      },
+      "source": "f6db267453c0500",
+      "target": "f6db267453c0601",
+      "point": [
+        "5/2",
+        "-3"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c0c00": {
+          "parent": "world",
+          "translation": [
+            "296/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f6db267453c0c01": {
+          "parent": "f6db267453c0c00",
+          "translation": [
+            "301/5",
+            "8/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        "f6db267453c0c02": {
+          "parent": "f6db267453c0c01",
+          "translation": [
+            "306/5",
+            "4"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1"
+          ]
+        },
+        "f6db267453c0c03": {
+          "parent": "f6db267453c0c02",
+          "translation": [
+            "311/5",
+            "16/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "3/2"
+          ]
+        },
+        "f6db267453c0c04": {
+          "parent": "f6db267453c0c03",
+          "translation": [
+            "316/5",
+            "20/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-3/2"
+          ]
+        },
+        "f6db267453c0c05": {
+          "parent": "f6db267453c0c04",
+          "translation": [
+            "321/5",
+            "8"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "-1"
+          ]
+        },
+        "f6db267453c0c06": {
+          "parent": "f6db267453c0c05",
+          "translation": [
+            "326/5",
+            "28/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        }
+      },
+      "source": "f6db267453c0c06",
+      "target": "f6db267453c0c1f",
+      "point": [
+        "1",
+        "1"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480900": {
+          "parent": "world",
+          "translation": [
+            "-1060/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "1/2"
+          ]
+        },
+        "f1abd64ca480901": {
+          "parent": "f1abd64ca480900",
+          "translation": [
+            "-1049/11",
+            "10/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1"
+          ]
+        },
+        "f1abd64ca48090c": {
+          "parent": "f1abd64ca480901",
+          "translation": [
+            "1",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f1abd64ca480a00": {
+          "parent": "f1abd64ca48090c",
+          "translation": [
+            "-1049/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1/2"
+          ]
+        }
+      },
+      "source": "f1abd64ca480b1f",
+      "target": "f1abd64ca480a00",
+      "point": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "frames": {
+        "f6db267453c0d00": {
+          "parent": "world",
+          "translation": [
+            "291/5",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "0"
+          ]
+        },
+        "f6db267453c0e00": {
+          "parent": "f6db267453c0e1f",
+          "translation": [
+            "0",
+            "0"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "f6db267453c0b1f",
+      "target": "f6db267453c0c1f",
+      "point": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d080c": {
+          "parent": "world",
+          "translation": [
+            "-569/7",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "f798ba62c7d080c",
+      "point": [
+        "1",
+        "4"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680900": {
+          "parent": "world",
+          "translation": [
+            "76",
+            "1"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680901": {
+          "parent": "f432ecf20680900",
+          "translation": [
+            "77",
+            "2"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "0"
+          ]
+        },
+        "f432ecf2068090c": {
+          "parent": "f432ecf20680901",
+          "translation": [
+            "1",
+            "-2"
+          ],
+          "linear": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "4"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1"
+          ]
+        },
+        "f432ecf20680a00": {
+          "parent": "f432ecf2068090c",
+          "translation": [
+            "77",
+            "1"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680a01": {
+          "parent": "f432ecf20680a00",
+          "translation": [
+            "78",
+            "2"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "0"
+          ]
+        },
+        "f432ecf20680a02": {
+          "parent": "f432ecf20680a01",
+          "translation": [
+            "79",
+            "3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "1/2"
+          ]
+        }
+      },
+      "source": "f432ecf20680b1f",
+      "target": "f432ecf20680a02",
+      "point": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "frames": {
+        "f798ba62c7d0000": {
+          "parent": "world",
+          "translation": [
+            "-569/7",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "-1"
+          ]
+        },
+        "f798ba62c7d0001": {
+          "parent": "f798ba62c7d0000",
+          "translation": [
+            "-562/7",
+            "4/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1/2"
+          ]
+        }
+      },
+      "source": "world",
+      "target": "world",
+      "point": [
+        "-569/7",
+        "569/7"
+      ]
+    },
+    {
+      "frames": {
+        "f1abd64ca480d00": {
+          "parent": "world",
+          "translation": [
+            "-1104/11",
+            "5/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        "f1abd64ca480e00": {
+          "parent": "f1abd64ca480e1f",
+          "translation": [
+            "0",
+            "0"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        }
+      },
+      "source": "f1abd64ca480b1f",
+      "target": "f1abd64ca480c1f",
+      "point": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680300": {
+          "parent": "world",
+          "translation": [
+            "82",
+            "1"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680301": {
+          "parent": "f432ecf20680300",
+          "translation": [
+            "83",
+            "2"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "0"
+          ]
+        },
+        "f432ecf20680302": {
+          "parent": "f432ecf20680301",
+          "translation": [
+            "84",
+            "3"
+          ],
+          "linear": [
+            [
+              "2",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1",
+            "1/2"
+          ]
+        },
+        "f432ecf20680303": {
+          "parent": "f432ecf20680302",
+          "translation": [
+            "85",
+            "4"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "1"
+          ]
+        },
+        "f432ecf20680304": {
+          "parent": "f432ecf20680303",
+          "translation": [
+            "86",
+            "5"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "3/2"
+          ]
+        },
+        "f432ecf2068030c": {
+          "parent": "f432ecf20680304",
+          "translation": [
+            "85",
+            "1"
+          ],
+          "linear": [
+            [
+              "0",
+              "-1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f432ecf2068030d": {
+          "parent": "f432ecf2068030c",
+          "translation": [
+            "-1",
+            "2/3"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1",
+            "-1"
+          ]
+        }
+      },
+      "source": "f432ecf2068030d",
+      "target": "world",
+      "point": [
+        "2",
+        "3"
+      ]
+    },
+    {
+      "frames": {
+        "f432ecf20680100": {
+          "parent": "world",
+          "translation": [
+            "84",
+            "1"
+          ],
+          "linear": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "-1/2",
+            "-1/2"
+          ]
+        },
+        "f432ecf20680101": {
+          "parent": "f432ecf20680100",
+          "translation": [
+            "85",
+            "2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "0",
+            "0"
+          ]
+        },
+        "f432ecf20680102": {
+          "parent": "f432ecf20680101",
+          "translation": [
+            "86",
+            "3"
+          ],
+          "linear": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "pivot": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        "f432ecf2068010c": {
+          "parent": "f432ecf20680102",
+          "translation": [
+            "85",
+            "-3/2"
+          ],
+          "linear": [
+            [
+              "2",
+              "1"
+            ],
+            [
+              "0",
+              "3"
+            ]
+          ],
+          "pivot": [
+            "3/2",
+            "-2"
+          ]
+        }
+      },
+      "source": "f432ecf2068010c",
+      "target": "world",
+      "point": [
+        "2",
+        "1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "arm": "opus-team",
+    "accepted": true,
+    "calls": 3,
+    "seconds_excluding_baseline": 87.63298916700296,
+    "estimated_cost_usd": 0.661779,
+    "development_passed": 13,
+    "final_passed": 52,
+    "candidate_sha256": "20b5debef711b3c79b943534aff6c18f0a5ab45679fbfb117390999226e14e06"
+  },
+  {
+    "arm": "opus-solo",
+    "accepted": true,
+    "calls": 2,
+    "seconds_excluding_baseline": 99.60414774995297,
+    "estimated_cost_usd": 0.520428,
+    "development_passed": 13,
+    "final_passed": 52,
+    "candidate_sha256": "c8cfabe12a9ad84554f1ed3052897bd2e73cb68d0c651b7cb6fe0247dc948b9f"
+  },
+  {
+    "arm": "astra-solo",
+    "accepted": true,
+    "calls": 2,
+    "seconds_excluding_baseline": 70.14781120792031,
+    "estimated_cost_usd": null,
+    "development_passed": 13,
+    "final_passed": 52,
+    "candidate_sha256": "ecd5f41b3370059e075b452660ae2b03e8ee2d89464f7033fed1e28489f9f736"
+  }
+]

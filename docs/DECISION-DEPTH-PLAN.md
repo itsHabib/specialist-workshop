@@ -1,8 +1,48 @@
-# Depth plan for models that steer deterministic search
+# Decision Model Maker roadmap and depth experiments
 
 **First application milestone.** Pick an existing event-driven application that already spends time evaluating candidates. Reconstruct what its current decision loop could observe and whether its output arrived in time. Test whether selectively doing more work improves the user's result per unit of compute. The exact-cover and scheduling studies below are small controls where the right answer can be checked exhaustively.
 
 The workshop has tested candidate ranking, early stopping and regeneration. The scheduling experiments found cases where a fixed budget beat learned stopping. The next question is whether decisions at different stages can improve one another, and where several models compound mistakes. [Earlier steering results](DECISION-STEERING.md) · [Adoption plan](DECISION-ADOPTION.md)
+
+## What the maker must deliver
+
+An engineer should be able to give a fresh agent the toolkit and a separate application, point it at one decision, and get back a runnable comparison and a defensible recommendation. The host supplies the legal actions, verifier and fallback. A learned policy earns its place by improving the host's result. A reproducible reason to keep the existing code is a complete outcome.
+
+### Where the evidence stands
+
+| Capability | Evidence in this snapshot | What still needs to be demonstrated |
+| --- | --- | --- |
+| Train and reload | A from-scratch structured tree and a pinned Google BERT-Tiny encoder accept labeled records. The tree runs with standard Python. Clef-Flash is an optional Qwen-derived comparison. | A fresh adopter picks a suitable model from the actual handoff and identifies its training origin, feature requirements and runtime dependencies. |
+| Steer executable code | Candidate ranking, bounded sequences, a SQLite recovery worker and two cold adoption trials have executable evidence. In the ordinary recovery fixture, the tree verified 225/384 jobs by deadline, the tuned rule 271, and a repaired executor 337. | One external application with imperfect records runs the complete selected policy through its own verifier. The incumbent, a simple code repair and the model get the same observations and budget. |
+| Score the whole application | The evaluator distinguishes unknown candidate lists from known empty lists. It protects against reusing training IDs or groups and reports paired comparisons where baseline choices exist. | Every incoming job gets an accounting entry, including missing inputs, silence and fallback. Report separately which outcomes could be graded. |
+| Ship a decision | Reloadable checkpoints and caller-side prediction exist. One-host trials relocated their runtimes and exercised unseen groups. | The exact runtime, model, feature contract, threshold and fallback travel together. A new process reproduces the accepted behavior, and the previous version can be restored. |
+| Learn when to spend more compute | The flagship below specifies a router, selector and final policy with strong coded controls. | One real application records receipt and response times and can grade paired decisions under a shared deadline. The incremental value of the stack is an open question. |
+
+[Model guide](DECISION-MAKER.md) · [Cold adoption evidence](DECISION-ADOPTION.md) · [Recovery comparison](DECISION-RECOVERY.md) · [Limits under shift](DECISION-LIMITS.md)
+
+### Three gaps that can change a decision today
+
+These observations were reproduced on implementation revision `f25be5f`.
+
+1. **A job can disappear from headline coverage.** With two labeled held-out jobs, one correct suggestion and one unrecorded candidate list, the top-level evaluator counted two jobs. Its `model` section counted one, reported zero reviews and showed 100% coverage. To an operator there were two jobs and one suggestion, or 50% coverage. Preserve the conditional statistic and show its denominator alongside the total and the actual fallback result. [Evaluator](../decision_workshop/evaluation.py)
+2. **A reloaded checkpoint can make a different operational decision.** A tree with two votes for action A and one for B produced a review at a cutoff of 0.8. Calling the reloaded checkpoint with the default cutoff of zero produced a suggestion on the same request. The final-test and integration examples currently rely on the caller to carry the development setting forward. Treat the threshold and fallback as part of the deployed policy. [Runtime](../decision_workshop/core.py) · [Integration examples](DECISION-MAKER.md)
+3. **The default starter can silently teach a tree only the majority action.** The scaffold starts with one text field. The tree consumes structured features and ignores text. Training on three cases whose text explicitly identified A, A and B produced the same A preference on both input strings. A tree-first handoff needs a structured example and a way for the adopter to see which features the learner consumed. A candidate ranker also needs an explicit host tie and fallback policy. [Task scaffold](../decision_workshop/scaffold.py) · [Tree training](../decision_workshop/core.py) · [Ranker](../decision_workshop/steering.py)
+
+### Next work, in dependency order
+
+| Work | Deliverable | Acceptance evidence |
+| --- | --- | --- |
+| A1–A2, adoption and shipping | From the actual handoff artifact, have a fresh agent discover one decision in an unfamiliar application, use reviewed examples, train a structured tree offline and reload the selected policy from that application. Record Python/runtime version, source and model hashes, feature contract, threshold, allowed actions and fallback. | The training directory can be moved away. In a fresh process and on the adopter's target platform, an ordinary case, a low-score case, a missing list, a removed action and an unreadable checkpoint each produce the declared host behavior. Record command, friction, author hints and time to first checked result. |
+| F1, evidence for a real decision, in parallel with A1–A2 | The adopting team identifies the choice, unit of opportunity, time of first receipt, original policy or explicit skip, deadline and later measurable outcome. Preserve input versions and distinguish unknowns from observed events. | Replay a completed session. Change future data and insert a late correction. Each prior decision must stay identical. A missing original response stays unknown. Count observed, reconstructable and scorable opportunities separately. |
+| A3 and F2, headroom and fair comparison | Once there is a caller and a usable tape, freeze the objective, review costs, models, cutoff and minimum worthwhile improvement on development groups. Compare the incumbent, a repaired coded baseline, and the trained policy plus fallback. Use a bounded hindsight reference where alternatives can be verified. | Report paired wins, ties and losses on later sessions or untouched families, group-level uncertainty, wrong suggestions, review load, verified outcomes and full latency/cost. State which counterfactuals could be measured. If a simple rule wins or the interval is inconclusive, document the result and keep its reproducer. |
+| A4, shadow and recovery | Run the selected policy in shadow, then have the host owner decide whether its measured tradeoff warrants a limited pilot. Track overrides, missing features, changed input distributions and delayed outcomes by policy version. | Exercise a timeout, unavailable model, changed input schema and rollback on the host. The coded fallback returns the expected result and retry cannot duplicate the host's effect. Identify a concrete stop condition and reproduce the previous policy after rollback. |
+| F3–F4 and D1–D3, conditional research | After measurable headroom, compare one learned stage with a generalist and combinations of learned and coded stages. Use exact cover for solvable controls and a second application to test transfer. | Match end-to-end budget, including feature extraction, queue delay and verification. Measure missed candidates, ordering mistakes, premature stopping and downstream effects. Keep the simplest configuration that earns the declared gain. Deliver a minimized failure even when every learned variant loses. |
+
+**First work item.** Give an adopter a clean checkout or the review packet, an unfamiliar caller with a deterministic baseline, and a small log with two labeled held-out jobs. Leave one candidate list unknown. Have them train, reload and trace both jobs from the caller through fallback. Check the report against the two actual outcomes. Freeze a nonzero threshold and repeat in a new process. Passing means independently reproducing both the application behavior and its denominator. The existing two-job counterexample is the first regression to retain. This trial and F1 can proceed independently.
+
+For the provisional 80% coverage and 95% accuracy example, 100 eligible cases could yield 76 correct suggestions, four wrong suggestions and 20 reviews. That meets both percentages exactly. What the user ultimately received on those 20 cases depends on the fallback. Record its outcome, latency and cost. Set adoption thresholds per task, including a cost for harmful actions and a floor for performance on important rare families. The simulator already has a case where the cost-minimizing policy sensibly reviews more often. [Costed release experiment](DECISION-RELEASE-SPEC.md)
+
+The release decision and the research decision are separate. Access to the local review artifact is enough for an independent technical review. GitHub-clone adoption is earned when a fresh clone from the intended distribution channel passes A1. The adopting application retains its data, checkpoints and operational traces. [Independent review prompt](DECISION-REVIEW.md)
 
 ## Flagship. Decide when more computation is worth buying
 

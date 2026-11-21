@@ -1,0 +1,23 @@
+{
+  "name": "ci_failure_routing",
+  "version": "1.0",
+  "question": "What should the developer do next about this CI failure?",
+  "features": {
+    "failed_stage": "category",
+    "seen_on_default_branch": "boolean",
+    "consecutive_failures": "number",
+    "duration_seconds": "number"
+  },
+  "labels": [
+    "inspect_runner",
+    "triage_existing_failure",
+    "investigate_change",
+    "rerun_test"
+  ],
+  "descriptions": {
+    "inspect_runner": "Inspect the job runner and its setup logs.",
+    "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+    "investigate_change": "Investigate the proposed change for a reproducible regression.",
+    "rerun_test": "Run the failed test again to see whether the failure repeats."
+  }
+}

@@ -10,9 +10,23 @@ This is an open experiment to try, fork or take ideas from. Start with the inclu
 
 ![Task packages in Specialist Workshop](artifacts/public-packages-desktop.png)
 
+## Make a decision model
+
+Train one CPU specialist per question using the same command for each task. From the repository root, set up the trainer and run the synthetic software-routing example.
+
+```sh
+python3 -m venv .venv-decisions
+source .venv-decisions/bin/activate
+python -m pip install -r requirements-decisions.txt
+python -m decision_workshop prepare-base --out .state/base
+python -m decision_workshop make examples/decisions/software --out .state/ci-run
+```
+
+Open `.state/ci-run/report.json` to compare the fine-tuned Google BERT model with a decision tree on held-out development cases. To ask the trained model for a suggestion, run `python -m decision_workshop predict --model .state/ci-run/model --input examples/decisions/software/request.json`. To train your own specialist, define its question, actions, and labeled records in a task folder. The same trainer reads it directly. [Create a task and evaluate it](docs/DECISION-MAKER.md)
+
 ## Start locally
 
-Python 3.12+ is enough to explore packages and deterministic controls. **Apple Silicon is required for local model inference and training.** No API key is needed for the local path. First model use downloads pinned weights from Hugging Face: about 2.5 GB for task packages.
+Python 3.12+ is enough to explore packages and deterministic controls. **The web app’s MLX backend requires Apple Silicon for model inference and training.** No API key is needed for the local path. First model use downloads pinned weights from Hugging Face: about 2.5 GB for task packages.
 
 ```sh
 git clone https://github.com/itsHabib/specialist-workshop.git

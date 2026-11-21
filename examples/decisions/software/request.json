@@ -1,0 +1,13 @@
+{
+  "state": {
+    "failed_stage": "tests",
+    "seen_on_default_branch": false,
+    "consecutive_failures": 3,
+    "duration_seconds": 180
+  },
+  "candidates": [
+    "triage_existing_failure",
+    "investigate_change",
+    "rerun_test"
+  ]
+}

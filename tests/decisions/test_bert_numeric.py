@@ -71,5 +71,9 @@ class BertNumericalTest(unittest.TestCase):
             self.assertAlmostEqual(sum(scores.values()), 1.0, places=6)
             self.assertTrue(all(0.0 < p < 1.0 for p in scores.values()))
             self.assertEqual(scores, load_scorer(out, task)(state))
+            batch = [state, {"note": "done done"}] * 9
+            for item, batched in zip(batch, scorer.score_many(batch), strict=True):
+                for label, value in scorer(item).items():
+                    self.assertAlmostEqual(value, batched[label], places=6)
             with self.assertRaisesRegex(ValueError, "32-token limit"):
                 scorer({"note": "again " * 100})

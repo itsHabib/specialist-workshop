@@ -19,6 +19,8 @@ For offline dependency installation, use a connected computer with the same OS, 
 
 For measured limits across action counts, missing information and sequential decisions, see the [decision benchmark results](DECISION-LIMITS.md).
 
+For ranking candidates supplied by a program at runtime, see [steering deterministic programs](DECISION-STEERING.md).
+
 ```sh
 python -m decision_workshop make examples/decisions/software --out .state/ci-run
 python -m decision_workshop predict --model .state/ci-run/model --input examples/decisions/software/request.json

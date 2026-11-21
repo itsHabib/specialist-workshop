@@ -185,13 +185,20 @@ def load_scorer(model_dir: Path, task):
     labels = list(task["labels"])
     prompts = _option_prompts(task, tokenizer)
 
-    @torch.inference_mode()
-    def score(state):
-        options = _encode_state(tokenizer, encoder.config.max_position_embeddings, prompts, state)
-        logits = _logits(model, tokenizer, [options])[0]
-        probs = logits.softmax(dim=0).tolist()
-        if not all(map(math.isfinite, probs)):
-            raise ValueError("BERT produced nonfinite option probabilities")
-        return dict(zip(labels, probs))
+    class Scorer:
+        @torch.inference_mode()
+        def score_many(self, states):
+            distributions = []
+            for start in range(0, len(states), 16):
+                pairs = [_encode_state(tokenizer, encoder.config.max_position_embeddings, prompts, state)
+                         for state in states[start:start + 16]]
+                for probs in _logits(model, tokenizer, pairs).softmax(dim=1).tolist():
+                    if not all(map(math.isfinite, probs)):
+                        raise ValueError("BERT produced nonfinite option probabilities")
+                    distributions.append(dict(zip(labels, probs)))
+            return distributions
 
-    return score
+        def __call__(self, state):
+            return self.score_many([state])[0]
+
+    return Scorer()

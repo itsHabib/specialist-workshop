@@ -53,3 +53,5 @@ R5 depends on R4. Inspect the first reproducible miss on development cases. If t
 Then stress the winning handler with a worker restart, followed by two callers recovering the same request concurrently. Introduce one change at a time and repeat the independent outcome checks. Before proposing a product integration, demonstrate loading the frozen policy from disk in a sample caller and recovering through the coded path when the model is unavailable. A coded win is a result worth shipping. A synthetic win qualifies a model for a private shadow trial.
 
 R1 through R5 have now been exercised on the synthetic worker. The reusable sequence evaluator also matched 384 earlier release-policy runs. The original and feature-corrected trees both trailed their coded control. Reusing saved progress in the executor recovered all jobs feasible under the fixture's deadline and minimum-work bound. [Results, limits and reproduction commands](DECISION-RECOVERY.md)
+
+The next milestones cover [adoption from a clean checkout](DECISION-ADOPTION.md) and [stacking learned decisions in a constrained search](DECISION-DEPTH-PLAN.md).

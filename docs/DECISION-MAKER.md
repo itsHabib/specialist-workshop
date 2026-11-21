@@ -21,6 +21,8 @@ For measured limits across action counts, missing information and sequential dec
 
 For ranking candidates supplied by a program at runtime, see [steering deterministic programs](DECISION-STEERING.md).
 
+For decisions whose value becomes clear after several steps, see [training from verified outcomes](DECISION-SEQUENCES.md).
+
 ```sh
 python -m decision_workshop make examples/decisions/software --out .state/ci-run
 python -m decision_workshop predict --model .state/ci-run/model --input examples/decisions/software/request.json

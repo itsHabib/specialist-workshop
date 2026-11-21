@@ -10,6 +10,16 @@ from .core import load_model, predict, train, write_new
 from .evaluation import evaluate
 
 
+def training_input(task, args):
+    if args.outcomes is None:
+        return read_records(args.data, task)
+    from .sequence import outcome_labels
+    trials = read_json(args.outcomes)
+    if not isinstance(trials, list):
+        raise ValueError("outcomes file must contain an array of paired training trials")
+    return outcome_labels(task, trials)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
@@ -26,7 +36,6 @@ def main():
     maker.add_argument("--base", type=Path, default=Path(".state/base"))
     neural = commands.add_parser("train-bert", help="fine-tune verified BERT and its decision head offline")
     neural.add_argument("--task", type=Path, required=True)
-    neural.add_argument("--data", type=Path, required=True)
     neural.add_argument("--base", type=Path, required=True)
     neural.add_argument("--model", type=Path, required=True, help="new checkpoint directory")
     for command in (maker, neural):
@@ -36,7 +45,10 @@ def main():
         command.add_argument("--seed", type=int, default=17)
     trainer = commands.add_parser("train", help="fit a CPU decision tree from local labeled records")
     trainer.add_argument("--task", type=Path, required=True)
-    trainer.add_argument("--data", type=Path, required=True)
+    for command in (trainer, neural):
+        source = command.add_mutually_exclusive_group(required=True)
+        source.add_argument("--data", type=Path, help="local labeled JSONL records")
+        source.add_argument("--outcomes", type=Path, help="JSON array of paired action outcomes from training jobs")
     trainer.add_argument("--model", type=Path, required=True, help="new JSON file")
     trainer.add_argument("--max-depth", type=int, default=5)
     trainer.add_argument("--min-leaf", type=int, default=2)
@@ -74,14 +86,14 @@ def main():
         elif args.command == "train-bert":
             from .checkpoint import train_bert
             task = load_task(args.task)
-            model = train_bert(task, read_records(args.data, task), args.base, args.model,
+            model = train_bert(task, training_input(task, args), args.base, args.model,
                                epochs=args.epochs, seed=args.seed, batch_size=args.batch_size,
                                learning_rate=args.learning_rate)
             output = {"model": str(args.model), "sha256": model["sha256"], "training_rows": model["training"]["rows"],
                       "base": model["base"]["model"], "optimization": model["optimization"]}
         elif args.command == "train":
             task = load_task(args.task)
-            records = read_records(args.data, task)
+            records = training_input(task, args)
             model = train(task, records, args.max_depth, args.min_leaf, balanced_ties=args.balanced_ties)
             write_new(args.model, model)
             output = {"model": str(args.model), "sha256": model["sha256"], "training_rows": model["training"]["rows"]}

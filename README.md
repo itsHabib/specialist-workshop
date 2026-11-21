@@ -24,6 +24,8 @@ python -m decision_workshop make examples/decisions/software --out .state/ci-run
 
 Open `.state/ci-run/report.json` to compare the fine-tuned Google BERT model with a decision tree on held-out development cases. To ask the trained model for a suggestion, run `python -m decision_workshop predict --model .state/ci-run/model --input examples/decisions/software/request.json`. To train your own specialist, define its question, actions, and labeled records in a task folder. The same trainer reads it directly. [Create a task and evaluate it](docs/DECISION-MAKER.md)
 
+For a decision that takes several steps, supply a local operation, replay its available actions and grade the result the caller received. [Train from verified outcomes](docs/DECISION-SEQUENCES.md)
+
 ## Start locally
 
 Python 3.12+ is enough to explore packages and deterministic controls. **The web app’s MLX backend requires Apple Silicon for model inference and training.** No API key is needed for the local path. First model use downloads pinned weights from Hugging Face: about 2.5 GB for task packages.

@@ -40,6 +40,8 @@ def main():
     trainer.add_argument("--model", type=Path, required=True, help="new JSON file")
     trainer.add_argument("--max-depth", type=int, default=5)
     trainer.add_argument("--min-leaf", type=int, default=2)
+    trainer.add_argument("--balanced-ties", action="store_true",
+                         help="prefer more evenly sized children when two splits have equal Gini gain")
     evaluator = commands.add_parser("evaluate", help="replay a held-out split")
     evaluator.add_argument("--model", type=Path, required=True)
     evaluator.add_argument("--data", type=Path, required=True)
@@ -80,7 +82,7 @@ def main():
         elif args.command == "train":
             task = load_task(args.task)
             records = read_records(args.data, task)
-            model = train(task, records, args.max_depth, args.min_leaf)
+            model = train(task, records, args.max_depth, args.min_leaf, balanced_ties=args.balanced_ties)
             write_new(args.model, model)
             output = {"model": str(args.model), "sha256": model["sha256"], "training_rows": model["training"]["rows"]}
         elif args.command == "evaluate":

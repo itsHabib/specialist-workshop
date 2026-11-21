@@ -17,12 +17,23 @@ For offline dependency installation, use a connected computer with the same OS, 
 
 ## Train and try the example
 
+For measured limits across action counts, missing information and sequential decisions, see the [decision benchmark results](DECISION-LIMITS.md).
+
 ```sh
 python -m decision_workshop make examples/decisions/software --out .state/ci-run
 python -m decision_workshop predict --model .state/ci-run/model --input examples/decisions/software/request.json
 ```
 
 Open `.state/ci-run/report.json` for the development comparison. The run also contains the trained checkpoint in `model/`, the baseline in `tree.json`, and per-case results in `bert-dev.json` and `tree-dev.json`. Use a fresh output directory for each run. The example's recorded `planner` and `llm` choices are synthetic.
+
+For a second tree on the same data, try `--balanced-ties`. When several splits are equally predictive on the training records, this version prefers more evenly sized children. Compare it on development groups before choosing a model.
+
+```sh
+python -m decision_workshop train --task examples/decisions/software/task.json \
+  --data examples/decisions/software/records.jsonl --balanced-ties --model .state/balanced-tree.json
+python -m decision_workshop evaluate --model .state/balanced-tree.json \
+  --data examples/decisions/software/records.jsonl --split dev
+```
 
 The maker fine-tunes the two-layer Google encoder and a shared scoring head on the reviewed action for each training case. At prediction time it scores each action in the task. If the preferred action is missing from the caller's available options, the result includes that preference and sends the case for review. This lets you measure how often the caller omitted a useful option. The decision tree learns from the same records and uses their numeric, categorical and boolean fields. [Google BERT-Tiny checkpoint](https://huggingface.co/google/bert_uncased_L-2_H-128_A-2/tree/30b0a37ccaaa32f332884b96992754e246e48c5f)
 

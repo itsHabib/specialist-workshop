@@ -82,7 +82,7 @@ def training_summary(task, practice):
     }
 
 
-def train(task, rows, max_depth=5, min_leaf=2):
+def train(task, rows, max_depth=5, min_leaf=2, *, balanced_ties=False):
     """Fit a tree to structured features from validated training records."""
     if not 0 <= max_depth <= 30 or min_leaf < 1:
         raise ValueError("max_depth must be 0..30 and min_leaf must be positive")
@@ -93,8 +93,10 @@ def train(task, rows, max_depth=5, min_leaf=2):
         "settings": {"max_depth": max_depth, "min_leaf": min_leaf},
         "training": training_summary(task, practice),
         "tree": fit(structured, practice, task["labels"],
-                    max_depth=max_depth, min_leaf=min_leaf),
+                    max_depth=max_depth, min_leaf=min_leaf, balanced_ties=balanced_ties),
     }
+    if balanced_ties:
+        model["settings"]["balanced_ties"] = True
     return {**model, "sha256": digest(model)}
 
 

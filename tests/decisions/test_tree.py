@@ -4,6 +4,7 @@ import sys
 import unittest
 
 from decision_workshop.tree import fit, predict_counts
+from decision_workshop.core import train
 
 
 def records(feature, pairs):
@@ -11,6 +12,29 @@ def records(feature, pairs):
 
 
 class TreeTests(unittest.TestCase):
+    def test_balanced_ties_are_opt_in_and_preserve_the_default_digest(self):
+        labels = list("abcd")
+        task = {"name": "ordered", "version": "1", "labels": labels, "features": {"x": "number"}}
+        rows = [dict(id=str(i), group=str(i), split="train", state={"x": i}, target=labels[i // 2],
+                     candidates=labels) for i in range(8)]
+        original = train(task, rows, max_depth=1)
+        self.assertEqual(original["sha256"], "d64a6938f7d323091b9b29d927a97ca5602c5f03416eb9f8f834ec70ca50bf08")
+        self.assertEqual(train(task, rows, max_depth=1, balanced_ties=False), original)
+        self.assertEqual(original["tree"]["value"], 1.5)
+        balanced = train(task, rows, max_depth=1, balanced_ties=True)
+        self.assertEqual(balanced["tree"]["value"], 3.5)
+        self.assertTrue(balanced["settings"]["balanced_ties"])
+
+    def test_balancing_preserves_strictly_better_gain_and_equal_balance_order(self):
+        # The pure 2:6 split beats a more evenly sized, mixed split.
+        rows = records("x", enumerate("aabbbbbb"))
+        best = fit({"x": "number"}, rows, ["a", "b"], max_depth=1, balanced_ties=True)
+        self.assertEqual(best["value"], 1.5)
+        # Splitting three equal bands yields two equivalent 2:4 or 4:2 choices.
+        rows = records("x", enumerate("aabbcc"))
+        tied = fit({"x": "number"}, rows, list("abc"), max_depth=1, balanced_ties=True)
+        self.assertEqual(tied["value"], 1.5)
+
     def test_numeric_three_class_tree_round_trips(self):
         rows = records("x", [(1, "a"), (2, "a"), (4, "b"), (5, "b"), (8, "c"), (9, "c")])
         tree = fit({"x": "number"}, rows, ["a", "b", "c"])

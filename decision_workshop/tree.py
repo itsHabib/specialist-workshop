@@ -56,12 +56,13 @@ def _goes_left(value, operator, threshold):
     return value <= threshold if operator == "<=" else value == threshold
 
 
-def fit(features: dict, rows: list, labels: list, *, max_depth=5, min_leaf=2) -> dict:
+def fit(features: dict, rows: list, labels: list, *, max_depth=5, min_leaf=2, balanced_ties=False) -> dict:
     """Fit a JSON-safe tree and store empirical class counts in its leaves.
 
     Equal-quality splits prefer the first feature name, then the first split
-    value in sorted order. Splits with zero immediate gain are allowed so a
-    child can discover interactions such as XOR.
+    value in sorted order. With balanced_ties, prefer equal-quality splits
+    with more even child sizes, then use the same deterministic ordering.
+    Splits with zero immediate gain allow a child to discover interactions.
     """
     ordered_features = sorted(features.items())
 
@@ -88,7 +89,9 @@ def fit(features: dict, rows: list, labels: list, *, max_depth=5, min_leaf=2) ->
                 # Compare fractions exactly so tie-breaking is reproducible.
                 num = left_squared * right_size + right_squared * left_size
                 den = left_size * right_size
-                if best is None or num * best_den > best_num * den:
+                difference = num * best_den - best_num * den
+                # For a fixed total, left_size * right_size is greatest at an even split.
+                if best is None or difference > 0 or (difference == 0 and balanced_ties and den > best_den):
                     best = feature, operator, value
                     best_num, best_den = num, den
         if best is None:

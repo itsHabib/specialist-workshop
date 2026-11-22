@@ -1,6 +1,6 @@
 # When a better router breaks the recovery model's assumptions
 
-A trained tree chose the right CSV delimiter on 50 more held-out files than the supplied hint. First-pass imports rose from **143 to 193 out of 256**. With the original recovery tree still in place, both pipelines finished **the same 193 files**. Training recovery on failures from the new router raised the total to **240**. So did a small coded error handler.
+A trained tree chose the right CSV delimiter on all 256 held-out files. The supplied hint got 192 delimiters right. Of the 64 corrected choices, 50 yielded an exact first-pass import, eight still hit a decoding error and six exposed a bad value. First-pass imports rose from **143 to 193**. With the original recovery tree still in place, both pipelines finished **the same 193 files**. Training recovery on failures from the new router raised the total to **240**. So did a small coded error handler.
 
 This is a runnable example of training two decision models around deterministic software. It also shows how to tell whether a disappointing result comes from the training examples, the observation a model receives, or a limit on what the host can do.
 
@@ -30,7 +30,7 @@ Give the recovery tree only the word “failed”, then change one part of the p
 | Tree | Supplied hint | 193 | 193 | 63 |
 | Tree | Tree | 193 | 240 | 63 |
 
-The paired improvement from recollecting was **47 wins, zero losses and 209 ties**. It added 23 exact imports in the plain family and 24 in the held-out quoted family, at the same retry count. The gain was 18.36 percentage points. The paired 95% bootstrap interval on these generated files was 13.67 to 23.05 points. All three fit seeds reproduced the primary contrast using the same 256 test files.
+With one indistinguishable input, the recovery tree always picks the most frequent training action. Recollecting changed that constant from “switch delimiter” to “switch encoding”. The paired improvement was **47 wins, zero losses and 209 ties**. It added 23 exact imports in the plain family and 24 in the held-out quoted family, at the same retry count. The gain was 18.36 percentage points. The paired 95% bootstrap interval on these generated files was 13.67 to 23.05 points. The trees and sample order are deterministic. All three runs use the same files, and only BERT training varies with the seed.
 
 ## Experiment 2 · Measure the value of an error message
 
@@ -65,7 +65,7 @@ Here the fully coded pipeline reaches the ceiling with 50 retries. That is the i
 python3 -m experiments.import_recovery.audit --run experiments/import_recovery/evidence
 ```
 
-The auditor rebuilds the inputs, reads the compressed trace, parses with `csv.DictReader`, checks the actions and recomputes the totals and information ceilings. The published run covers **50,688 file–policy receipts and 720 aggregate rows** across development and test. One regression test deliberately decodes valid UTF-8 text as Windows-1252. Both parses return success, but the wrong one returns `CafÃ©` and fails the exact-content grade.
+The auditor rebuilds the inputs, reads the compressed trace, parses with `csv.DictReader`, checks the recorded actions and recomputes the totals, paired contrast and information ceilings. The published run covers **50,688 file–policy receipts and 720 aggregate rows** across development and test. The audit grades the decisions in the archive. The training command below recreates the checkpoints and invokes them. One regression test deliberately decodes valid UTF-8 text as Windows-1252. Both parses return success, but the wrong one returns `CafÃ©` and fails the exact-content grade.
 
 **Train your own copies** with the decision dependencies and Google base. Use a new output directory for each run. The first download fetches the pinned weights. Subsequent runs use the verified local copy.
 
@@ -78,11 +78,11 @@ python -m experiments.import_recovery.run --base .state/base --out .state/import
 python -m experiments.import_recovery.audit --run .state/import-recovery
 ```
 
-For a quicker wiring check, append `--seeds 17` to the training command. Open `fits/receipt.json` in your output to locate a trained checkpoint, its task, the actual training rows and its digest. Each neural entry records the pinned base, encoder hashes before and after fitting, and optimizer steps. The full three-seed run retained about 265 MiB of local fit artifacts on the measured machine. The published evidence includes the [training receipt](evidence/fits.json), [code and runtime fingerprints](evidence/freeze.json), [per-seed results](evidence/summary.json), [compressed per-file decisions](evidence/cases.jsonl.gz) and [prespecified protocol](PROTOCOL.md).
+For a quicker wiring check, append `--seeds 17` to the training command. Open `fits/receipt.json` in your output to locate a trained checkpoint, its task, the actual training rows and its digest. Each neural entry records the pinned base, encoder hashes before and after fitting, and optimizer steps. The full three-seed run retained about 265 MiB of local fit artifacts on the measured machine. The published evidence includes the [training receipt](evidence/fits.json), [code and runtime fingerprints](evidence/freeze.json), [per-seed results](evidence/summary.json), [compressed per-file decisions](evidence/cases.jsonl.gz) and [protocol frozen with the run](PROTOCOL.md).
 
 ## Adapt it to your own software
 
 1. Pick one host operation with an observable success condition and a bounded set of recovery actions. Capture what the caller received. Parser success alone missed a deliberately corrupted-text control here.
 2. Create separate datasets for the initial decision and the recovery decision. Record which router produced each failure, which action was attempted, and how the host verified the result. When untried actions have unknown outcomes, leave those labels unknown.
 3. Split by independent job, customer or revision before collecting labels. Fit both architectures within each stage on identical data. Reload the resulting checkpoints, switch one stage at a time and retain the existing coded policy as a baseline.
-4. Choose using whole-job successes at an agreed budget. Count review, wasted retries and successful parser returns that fail the downstream contract. If many cases exceed the bound for the observations you expose, test an additional signal. If many exceed the bound even with all observations, revisit the permitted actions.
+4. Choose using whole-job successes at an agreed budget. Count review, wasted retries and successful parser returns that fail the downstream contract. If the per-file ceiling is high but the ceiling for the visible error is low, test a richer error signal. If even the per-file ceiling falls short of the target, revisit the permitted actions or the retry budget.

@@ -1,5 +1,10 @@
 import copy
+import json
 import unittest
+from hashlib import sha256
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from types import SimpleNamespace
 
 from experiments.import_recovery import audit, host
 
@@ -34,12 +39,12 @@ class ImportRecoveryTests(unittest.TestCase):
                                    self.rows, "comma", "comma")
         self.assert_parses(malformed, "comma", None, "value_error", False)
 
-    def sample_receipts(self):
+    def sample_receipts(self, split="dev"):
         receipts, tables = [], []
         counts = {"jobs": 1, "first_exact": 1, "final_exact": 1, "attainable": 1, "flagged": 0,
                   "repair_calls": 0, "regressed": 0, "recovered": 0, "parser_accepted_wrong": 0}
         for arm in audit.ARMS:
-            setting = {"split": "dev", "seed": 7, **dict(zip(audit.POLICY_KEYS, arm))}
+            setting = {"split": split, "seed": 7, **dict(zip(audit.POLICY_KEYS, arm))}
             receipts.append({**setting, "family": "quoted", "job_id": "example", "route": "comma",
                              "action": None, "first_status": "ok", "final_status": "ok",
                              "first_exact": True, "final_exact": True, "attainable": True})
@@ -70,3 +75,43 @@ class ImportRecoveryTests(unittest.TestCase):
         wrong["tables"][0]["final_exact"] = 0
         with self.assertRaisesRegex(ValueError, "final_exact"):
             verify(rows, wrong)
+
+    def test_paired_contrast_pairs_files_within_each_family_and_resamples_them(self):
+        cohort = [SimpleNamespace(id=i, family=f) for i, f in enumerate(("plain", "plain", "quoted", "quoted"))]
+        outcomes = {(job.id, source): ok for job in cohort for source, ok in
+                    [("tree", job.id != 1), ("hint", job.id == 1)]}
+        result = audit.paired_contrast(cohort, outcomes)
+        self.assertEqual(result["all"], {"wins": 3, "losses": 1, "ties": 0, "rate_difference": 0.5})
+        self.assertEqual(result["by_family"]["plain"]["rate_difference"], 0.0)
+        self.assertEqual(result["by_family"]["quoted"]["rate_difference"], 1.0)
+        # The two quoted wins always contribute two. The two plain draws contribute -2, 0 or 2.
+        self.assertEqual(result["paired_95_percentile_interval"], [0.0, 1.0])
+
+    def test_audit_rejects_a_corrupt_headline_without_changing_any_trace_or_table(self):
+        rows, summary = self.sample_receipts("test")
+        counts = {"wins": 0, "losses": 0, "ties": 1, "rate_difference": 0.0}
+        summary["primary_paired_contrast"] = {"7": {"all": counts.copy(), "by_family": {"quoted": counts.copy()},
+                                                    "paired_95_percentile_interval": [0.0, 0.0]}}
+        audit.check(rows, summary, {"test": [self.job]})
+        for section, field, value in (("all", "wins", 1), ("all", "rate_difference", 0.25),
+                                      ("quoted", "ties", 0), ("interval", 1, 1.0)):
+            changed = copy.deepcopy(summary)
+            headline = changed["primary_paired_contrast"]["7"]
+            target = {"all": headline["all"], "quoted": headline["by_family"]["quoted"],
+                      "interval": headline["paired_95_percentile_interval"]}[section]
+            target[field] = value
+            with self.subTest(section=section, field=field), self.assertRaisesRegex(ValueError, "paired contrast"):
+                audit.check(rows, changed, {"test": [self.job]})
+
+    def test_audit_rejects_changed_fit_receipt_or_fixture_identity_before_grading(self):
+        with TemporaryDirectory() as tmp:
+            run = Path(tmp)
+            fits = b'{}'
+            (run / "fits.json").write_bytes(fits)
+            (run / "freeze.json").write_text(json.dumps({"seeds": [7], "fits_sha256": sha256(fits).hexdigest()}))
+            (run / "summary.json").write_text(json.dumps({"seeds": [7], "fixture_sha256": {"test": "altered"}}))
+            with self.assertRaisesRegex(ValueError, "fixture SHA-256"):
+                audit.audit(run)
+            (run / "fits.json").write_bytes(b'{"changed":true}')
+            with self.assertRaisesRegex(ValueError, "fits SHA-256"):
+                audit.audit(run)

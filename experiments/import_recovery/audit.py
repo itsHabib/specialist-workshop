@@ -5,6 +5,7 @@ import csv
 import gzip
 import io
 import json
+import random
 import re
 from collections import Counter, defaultdict
 from hashlib import sha256
@@ -106,6 +107,34 @@ def observation_ceiling(outcomes):
             "per_case": per_case}
 
 
+def paired_contrast(jobs_in_order, outcomes):
+    """Rebuild the reported tree-trained versus hint-trained paired contrast."""
+    def describe(differences):
+        counts = Counter(differences)
+        return {"wins": counts[1], "losses": counts[-1], "ties": counts[0],
+                "rate_difference": (counts[1] - counts[-1]) / len(differences)}
+
+    groups = defaultdict(list)
+    for job in jobs_in_order:
+        delta = int(outcomes[job.id, "tree"]) - int(outcomes[job.id, "hint"])
+        groups[job.family].append(delta)
+    # Sample whole files within each family in generator order. The seed,
+    # sample count and percentile ranks are fixed in the published protocol.
+    rng = random.Random(814)
+    size = len(jobs_in_order)
+    bootstrap = []
+    for _ in range(2000):
+        net = 0
+        for group in groups.values():
+            n = len(group)
+            net += sum(group[int(rng.random() * n)] for _ in range(n))
+        bootstrap.append(net / size)
+    bootstrap.sort()
+    return {"all": describe([d for group in groups.values() for d in group]),
+            "by_family": {family: describe(group) for family, group in groups.items()},
+            "paired_95_percentile_interval": [bootstrap[49], bootstrap[1949]]}
+
+
 def check(rows, summary, splits):
     """Require every expected job × seed × policy once, including referrals."""
     by_job = {(split, job.id): job for split, cohort in splits.items() for job in cohort}
@@ -116,6 +145,7 @@ def check(rows, summary, splits):
         raise ValueError("empty or repeated seed")
     total_expected = len(by_job) * len(seeds) * len(ARMS)
     seen, routes, actions, outcomes = set(), {}, {}, {}
+    contrast = defaultdict(dict)
     totals = defaultdict(Counter)
     for n, row in enumerate(rows, 1):
         try:
@@ -146,6 +176,9 @@ def check(rows, summary, splits):
             if attempt_key not in outcomes:
                 outcomes[attempt_key] = {a: decode(job, route, a) for a in (None, *ACTIONS)}
             counts = verify_decision(row, outcomes[attempt_key])
+            if split == "test" and policy in (("tree", "hint", "coarse", "tree"),
+                                               ("tree", "tree", "coarse", "tree")):
+                contrast[seed][job_id, policy[1]] = counts["final_exact"]
             if row["repair"] in ("tree", "bert") and row["first_status"] != "ok":
                 signal = "failed" if row["observation"] == "coarse" else row["first_status"]
                 learned_key = (seed, *policy[1:], signal)
@@ -168,6 +201,11 @@ def check(rows, summary, splits):
                 raise ValueError(f"{key} {metric}: expected {totals[key][metric]}, got {table[metric]}")
     if compared != totals.keys():
         raise ValueError("summary omitted one or more expected tables")
+    if "test" in splits:
+        expected_contrast = {str(seed): paired_contrast(splits["test"], contrast[seed]) for seed in seeds}
+        if json.dumps(summary.get("primary_paired_contrast"), sort_keys=True) != json.dumps(
+                expected_contrast, sort_keys=True):
+            raise ValueError("primary paired contrast differs from independent per-file reconstruction")
     test = defaultdict(list)
     for (split, job_id, seed, router), route in routes.items():
         if split == "test":
@@ -184,8 +222,22 @@ def audit(run):
     if len({job.id for job in all_jobs}) != len(all_jobs) or len({job.payload for job in all_jobs}) != len(all_jobs):
         raise ValueError("source jobs or byte payloads overlap")
     summary = json.loads((run / "summary.json").read_text(encoding="utf-8"))
-    if summary["seeds"] != json.loads((run / "freeze.json").read_text(encoding="utf-8"))["seeds"]:
+    freeze = json.loads((run / "freeze.json").read_text(encoding="utf-8"))
+    if summary["seeds"] != freeze["seeds"]:
         raise ValueError("summary does not cover the frozen seeds")
+    fits_path = run / "fits" / "receipt.json"
+    if not fits_path.is_file():
+        fits_path = run / "fits.json"
+    if sha256(fits_path.read_bytes()).hexdigest() != freeze["fits_sha256"]:
+        raise ValueError("training receipt differs from frozen fits SHA-256")
+    hashes = {}
+    for split, cohort in splits.items():
+        manifest = [(j.id, j.family, sha256(j.payload).hexdigest(), j.expected, j.state, j.route_target)
+                    for j in cohort]
+        encoded = json.dumps(manifest, separators=(",", ":"), sort_keys=True).encode()
+        hashes[split] = sha256(encoded).hexdigest()
+    if summary["fixture_sha256"] != hashes:
+        raise ValueError("fixture SHA-256 differs from the generated cohorts")
     raw = run / "cases.jsonl"
     trace_file = raw.open("rb") if raw.is_file() else gzip.open(run / "cases.jsonl.gz", "rb")
     digest = sha256()

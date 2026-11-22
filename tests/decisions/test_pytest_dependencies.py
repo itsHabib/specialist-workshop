@@ -39,6 +39,26 @@ class DependencyOrderTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "distinct"):
                 rank_tests(root, [], nodes * 2)
 
+    def test_nested_scopes_preserve_outer_imports_and_hide_inner_bindings(self):
+        bodies = [
+            "def helper(Leaf): return Leaf()\n    assert Leaf()",
+            "[Leaf for Leaf in range(2)]\n    assert Leaf()",
+            "def helper(Leaf): return Leaf()",
+            "assert [Leaf for Leaf in range(2)]",
+            "assert [x for x in Leaf()]",
+            "def helper(): return Leaf()\n    assert helper()",
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "src").mkdir()
+            (root / "src/leaf.py").write_text("class Leaf: pass")
+            (root / "test_host.py").write_text("from leaf import Leaf\n" + "".join(
+                f"def test_{i}():\n    {body}\n" for i, body in enumerate(bodies)))
+            nodes = [f"test_host.py::test_{i}" for i in range(len(bodies))]
+            result = rank_tests(root, ["src/leaf.py"], nodes)
+            self.assertEqual(result["order"], [nodes[i] for i in (0, 1, 4, 5, 2, 3)])
+            self.assertEqual(result["tiers"]["direct_reference"], 4)
+
     def test_analysis_reads_only_source_in_the_requested_checkout(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "project"

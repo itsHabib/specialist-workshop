@@ -1,5 +1,6 @@
 """Train a local preference score for candidates supplied by a deterministic program."""
 
+import json
 import math
 import os
 from pathlib import Path
@@ -69,7 +70,10 @@ def rank_candidates(model, candidates, *, native_ties=False):
             raise ValueError("each candidate needs a distinct, nonempty string ID")
         validate_state(task, features)
         seen.add(identifier)
-        items.append((tuple(features[f] for f in fields), identifier, features))
+        values = tuple(features[f] for f in fields)
+        # Python compares 1 and 1.0 as equal, but the tokenizer sees different text.
+        key = (values, json.dumps(values, allow_nan=False))
+        items.append((key, identifier, features))
     # Keep neural batch membership stable across incoming order and ID changes.
     feature_order = sorted(items, key=lambda item: item[0])
     distinct = {key: state for key, _, state in feature_order}

@@ -105,6 +105,15 @@ class MakeTests(unittest.TestCase):
         numerics = self.mock_numerics()
         make(self.source, self.output, self.base_dir)
 
+        snapshot = self.output / "inputs"
+        self.write_records(("test",))
+        self.assertEqual(json.loads((snapshot / "task.json").read_text()),
+                         json.loads((self.source / "task.json").read_text()))
+        rows = [json.loads(line) for line in (snapshot / "records.jsonl").read_text().splitlines()]
+        self.assertEqual([r["id"] for r in rows], ["train-id", "dev-id"])
+        self.assertEqual(numerics.fit_bert.call_args.args[1], rows[:1])
+        self.assertEqual(rows[1]["state"], {"text": "dev document"})
+
         practice = numerics.fit_bert.call_args.args[1]
         self.assertEqual([row["id"] for row in practice], ["train-id"])
         scorer = numerics.load_scorer.return_value

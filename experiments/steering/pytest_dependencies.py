@@ -47,18 +47,66 @@ def _resolve(target, modules, exports):
     return module
 
 
-def _references(node):
-    """Yield maximal dotted loads, including references inside decorators."""
-    parts = []
-    base = node
-    while isinstance(base, ast.Attribute):
-        parts.append(base.attr)
-        base = base.value
-    if isinstance(base, ast.Name) and isinstance(base.ctx, ast.Load):
-        yield ".".join([base.id, *reversed(parts)])
+_FUNCTIONS = (ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda)
+_COMPREHENSIONS = (ast.ListComp, ast.SetComp, ast.DictComp, ast.GeneratorExp)
+
+
+def _scope_nodes(nodes):
+    for node in nodes:
+        yield node
+        if not isinstance(node, (*_FUNCTIONS, *_COMPREHENSIONS, ast.ClassDef)):
+            yield from _scope_nodes(ast.iter_child_nodes(node))
+
+
+def _dependencies(node, bindings, package):
+    """Resolve dotted loads against the imports visible in each lexical scope."""
+    if isinstance(node, _FUNCTIONS):
+        args = node.args
+        parameters = [*args.posonlyargs, *args.args, *args.kwonlyargs,
+                      *([args.vararg] if args.vararg else []), *([args.kwarg] if args.kwarg else [])]
+        for expr in [*getattr(node, "decorator_list", []), *args.defaults, *args.kw_defaults,
+                     *(arg.annotation for arg in parameters), getattr(node, "returns", None)]:
+            if expr is not None:
+                yield from _dependencies(expr, bindings, package)
+        body = [node.body] if isinstance(node, ast.Lambda) else node.body
+        local = bindings.copy()
+        for arg in parameters:
+            local.pop(arg.arg, None)
+        nodes = list(_scope_nodes(body))
+        for item in nodes:
+            if isinstance(item, ast.Name) and isinstance(item.ctx, (ast.Store, ast.Del)):
+                local.pop(item.id, None)
+            elif isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                local.pop(item.name, None)
+        for name, target, dep in _imports(nodes, package):
+            local[name] = target
+            yield dep
+        for stmt in body:
+            yield from _dependencies(stmt, local, package)
+    elif isinstance(node, _COMPREHENSIONS):
+        local = bindings.copy()
+        for generator in node.generators:
+            yield from _dependencies(generator.iter, local, package)
+            for target in ast.walk(generator.target):
+                if isinstance(target, ast.Name) and isinstance(target.ctx, ast.Store):
+                    local.pop(target.id, None)
+            for expr in generator.ifs:
+                yield from _dependencies(expr, local, package)
+        outputs = [node.key, node.value] if isinstance(node, ast.DictComp) else [node.elt]
+        for expr in outputs:
+            yield from _dependencies(expr, local, package)
     else:
-        for child in ast.iter_child_nodes(node):
-            yield from _references(child)
+        parts = []
+        base = node
+        while isinstance(base, ast.Attribute):
+            parts.append(base.attr)
+            base = base.value
+        if isinstance(base, ast.Name) and isinstance(base.ctx, ast.Load):
+            if base.id in bindings:
+                yield ".".join([bindings[base.id], *reversed(parts)])
+        else:
+            for child in ast.iter_child_nodes(node):
+                yield from _dependencies(child, bindings, package)
 
 
 def _test_functions(body, prefix=()):
@@ -131,19 +179,8 @@ def rank_tests(root, changed_paths, roster, *, source_dir="src"):
             package = ".".join(Path(filename).parent.parts)
             imports = {a: b for a, b, _ in _imports(tree.body, package)}
             for fn, func in _test_functions(tree.body):
-                bindings = imports.copy()
-                for item in ast.walk(func):
-                    if isinstance(item, ast.arg):
-                        bindings.pop(item.arg, None)
-                    elif isinstance(item, ast.Name) and isinstance(item.ctx, (ast.Store, ast.Del)):
-                        bindings.pop(item.id, None)
-                local = list(_imports(ast.walk(func), package))
-                bindings.update((a, b) for a, b, _ in local)
-                used = {_resolve(dep, modules, exports) for _, _, dep in local}
-                for ref in _references(func):
-                    bound, dot, suffix = ref.partition(".")
-                    if bound in bindings:
-                        used.add(_resolve(bindings[bound] + dot + suffix, modules, exports))
+                used = {_resolve(dep, modules, exports)
+                        for dep in _dependencies(func, imports, package)}
                 # A package points to its entire public surface; give it credit
                 # only when its own initializer is among the changed files.
                 precise = used - packages

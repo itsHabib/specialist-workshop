@@ -19,6 +19,18 @@ class SteeringTests(unittest.TestCase):
         renamed = [("x", {"cost": 4}), ("z", {"cost": 2}), ("y", {"cost": 1})]
         self.assertEqual(rank_candidates(self.model, renamed), [("y", 1), ("z", 1), ("x", 0)])
 
+    def test_distinct_numeric_spellings_reach_scorer_in_stable_order(self):
+        from unittest.mock import Mock
+        scorer = Mock()
+        self.model["_score"] = scorer
+        candidates = [(str(i), {"cost": x}) for i, x in enumerate([1.0, 1, 0.0, -0.0, 1])]
+        def scores(states):
+            return [{"prefer": i / 4, "defer": 1 - i / 4} for i in range(len(states))]
+        scorer.score_many.side_effect = scores
+        first = dict(rank_candidates(self.model, candidates))
+        self.assertEqual(len(set(first.values())), 4)
+        self.assertEqual(first, dict(rank_candidates(self.model, reversed(candidates))))
+
     def test_empty_duplicate_invalid_or_identical_candidates(self):
         self.assertEqual(rank_candidates(self.model, []), [])
         self.assertEqual(rank_candidates(self.model, [("a", {"cost": 0}), ("b", {"cost": 0})]),

@@ -1,5 +1,6 @@
 """Build and compare local specialists from a decision definition and reviewed records."""
 
+import json
 import os
 from pathlib import Path
 import tempfile
@@ -29,6 +30,12 @@ def make(task_dir: Path, output: Path, base: Path, *, epochs=12, batch_size=8,
     with tempfile.TemporaryDirectory(dir=output.parent, prefix=".making-decisions-") as tmp:
         stage = Path(tmp) / "run"
         stage.mkdir()
+        inputs = stage / "inputs"
+        write_new(inputs / "task.json", task)
+        with (inputs / "records.jsonl").open("x", encoding="utf-8") as handle:
+            for row in rows:
+                if row["split"] in ("train", "dev"):
+                    handle.write(json.dumps(row, ensure_ascii=False, allow_nan=False) + "\n")
         neural = train_bert(task, practice, base, stage / "model", epochs=epochs,
                             seed=seed, batch_size=batch_size, learning_rate=learning_rate)
         write_new(stage / "tree.json", train(task, practice))

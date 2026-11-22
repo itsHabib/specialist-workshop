@@ -28,7 +28,7 @@ python -m decision_workshop make examples/decisions/software --out .state/ci-run
 python -m decision_workshop predict --model .state/ci-run/model --input examples/decisions/software/request.json
 ```
 
-Open `.state/ci-run/report.json` for the development comparison. The run also contains the trained checkpoint in `model/`, the baseline in `tree.json`, and per-case results in `bert-dev.json` and `tree-dev.json`. Use a fresh output directory for each run. The example's recorded `planner` and `llm` choices are synthetic.
+Open `.state/ci-run/report.json` for the development comparison. The run also contains the trained checkpoint in `model/`, the baseline in `tree.json`, and per-case results in `bert-dev.json` and `tree-dev.json`. The run preserves the task definition and the training and development rows in `inputs/`. This directory contains the original case data, so keep it private when sharing a checkpoint. Use a fresh output directory for each run. The example's recorded `planner` and `llm` choices are synthetic.
 
 For a second tree on the same data, try `--balanced-ties`. When several splits are equally predictive on the training records, this version prefers more evenly sized children. Compare it on development groups before choosing a model.
 

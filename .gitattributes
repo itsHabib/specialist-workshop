@@ -1,2 +1,7 @@
 # This copied corpus is hash-pinned to Workbench's original CRLF bytes.
 skills/ci-triage/workbench-evaluation.jsonl -text whitespace=cr-at-eol
+
+# Keep the byte digests in the synthetic reference receipt portable.
+examples/decisions/software/task.json text eol=lf
+examples/decisions/software/records.jsonl text eol=lf
+decision_workshop/clef_mlx_replay.py text eol=lf

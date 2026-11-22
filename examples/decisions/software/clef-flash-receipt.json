@@ -1,0 +1,1090 @@
+{
+  "format": "decision-workshop/clef-replay-v1",
+  "status": "complete",
+  "model": {
+    "id": "mlx-community/clef-flash-4bit",
+    "revision": "b5adbe2c3a95200d4bf04a0727c8ec457157d5e1",
+    "upstream_id": "Cloudflare/clef-flash",
+    "upstream_revision": "22b75507981345858dd152fbd9a6f8c0c4068b0a",
+    "upstream_revision_scope": "joint head hash",
+    "variant": "Clef-Flash 9B, MLX 4-bit",
+    "files": {
+      "chat_template.jinja": {
+        "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+        "size": 7756
+      },
+      "clef_mlx.py": {
+        "sha256": "852223c944819a32fad5cf798d9d1dff30419820eaf5ad1f10cb9698afec97d5",
+        "size": 33670
+      },
+      "config.json": {
+        "sha256": "c323f36eb35fb9349b2bde60b3e16ee3d86316e20a5166c91f4a0585286f0ec1",
+        "size": 3722
+      },
+      "generation_config.json": {
+        "sha256": "45707f8467bf4e54e112c6095a1b2d1f2d63651cf86816344cfff21f02dda0d4",
+        "size": 116
+      },
+      "joint_head.safetensors": {
+        "sha256": "19cdcec8c81dc9212be320fff47462ab342fbc1278be4368fb3da71241cf5ba0",
+        "size": 243538016
+      },
+      "joint_head_config.json": {
+        "sha256": "77efe959a38b5b17b241543e129e695f3c77465ece55a25985279bd8176279a0",
+        "size": 119
+      },
+      "model-00001-of-00002.safetensors": {
+        "sha256": "39894f085d844004c8e5c2394e45b5ab66bce4637ecdf23d92bf7c85cb66238f",
+        "size": 5349769710
+      },
+      "model-00002-of-00002.safetensors": {
+        "sha256": "40258d3d4f7225a0acbb45f4d34693465b98c8e2c0a4b0a512e536750379fcf3",
+        "size": 600449850
+      },
+      "model.safetensors.index.json": {
+        "sha256": "4518e4d98baed265cb25c5adb45839d5b69e0b9700f4bd573533392097bbb874",
+        "size": 123592
+      },
+      "processor_config.json": {
+        "sha256": "d89ef49ce9cd37fbf510158e13c1ef063d9286411c1ec9049932dbe0487143b1",
+        "size": 1191
+      },
+      "tokenizer.json": {
+        "sha256": "a5cd9732badce41de57e6efce8302930ded1c1188c5f81feb2bd6c24c4a1941f",
+        "size": 19989339
+      },
+      "tokenizer_config.json": {
+        "sha256": "7d884d6eaf8142a3343a933ca5ab6ccc2fa93d52591cdbbe2ea33559bb2b503a",
+        "size": 1190
+      }
+    }
+  },
+  "environment": {
+    "os": "26.6.2",
+    "machine": "arm64",
+    "python": "3.14.6",
+    "packages": {
+      "mlx": "0.32.3",
+      "mlx-lm": "0.32.0",
+      "mlx-vlm": "0.7.4",
+      "transformers": "5.24.0",
+      "huggingface_hub": "2.4.0",
+      "torch": "2.10.0",
+      "torchvision": "0.25.0"
+    }
+  },
+  "inputs": {
+    "task": "ci_failure_routing",
+    "task_sha256": "8d1c0b15151ffc3c23dc3a6f97537fa928e1ecf8cc3a0dd2c307f447ca81354d",
+    "records_sha256": "0b71ad390196c396fb17d3c7abb54239d48909bded4391a7a22864937531ab3e",
+    "port_loader_sha256": "852223c944819a32fad5cf798d9d1dff30419820eaf5ad1f10cb9698afec97d5",
+    "replay_script_sha256": "3ba98221ae8a11fa607cdea5c28cc018f95e2a55d204fd9deb5fd4d88846348c",
+    "choice_field": "action",
+    "options": [
+      "inspect_runner",
+      "triage_existing_failure",
+      "investigate_change",
+      "rerun_test"
+    ],
+    "split_counts": {
+      "dev": 12,
+      "test": 12
+    },
+    "model_request_fields": [
+      "model",
+      "state",
+      "questions"
+    ],
+    "trained_on_evaluation_rows": false
+  },
+  "load_seconds": 13.320894834119827,
+  "elapsed_seconds": 42.64342983299866,
+  "cases": [
+    {
+      "id": "change-13-1",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "setup",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 3,
+          "duration_seconds": 49
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.8187215328216553,
+          "investigate_change": 0.09816505014896393,
+          "rerun_test": 0.06437821686267853,
+          "triage_existing_failure": 0.01873513124883175
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.8187215328216553,
+        "investigate_change": 0.09816505014896393,
+        "rerun_test": 0.06437821686267853,
+        "triage_existing_failure": 0.01873513124883175
+      },
+      "elapsed_seconds": 1.3672810420393944,
+      "error": null
+    },
+    {
+      "id": "change-13-2",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": true,
+          "consecutive_failures": 4,
+          "duration_seconds": 536
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.02839706465601921,
+          "investigate_change": 0.13977527618408203,
+          "rerun_test": 0.0702834203839302,
+          "triage_existing_failure": 0.7615442872047424
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.02839706465601921,
+        "investigate_change": 0.13977527618408203,
+        "rerun_test": 0.0702834203839302,
+        "triage_existing_failure": 0.7615442872047424
+      },
+      "elapsed_seconds": 0.6862460840493441,
+      "error": null
+    },
+    {
+      "id": "change-13-3",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 3,
+          "duration_seconds": 392
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.11701122671365738,
+          "investigate_change": 0.1422494649887085,
+          "rerun_test": 0.7167806029319763,
+          "triage_existing_failure": 0.02395872212946415
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.11701122671365738,
+        "investigate_change": 0.1422494649887085,
+        "rerun_test": 0.7167806029319763,
+        "triage_existing_failure": 0.02395872212946415
+      },
+      "elapsed_seconds": 0.8640399579890072,
+      "error": null
+    },
+    {
+      "id": "change-13-4",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 1,
+          "duration_seconds": 248
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.049143869429826736,
+          "investigate_change": 0.06021231785416603,
+          "rerun_test": 0.8710957765579224,
+          "triage_existing_failure": 0.0195480789989233
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.049143869429826736,
+        "investigate_change": 0.06021231785416603,
+        "rerun_test": 0.8710957765579224,
+        "triage_existing_failure": 0.0195480789989233
+      },
+      "elapsed_seconds": 0.7712901248596609,
+      "error": null
+    },
+    {
+      "id": "change-14-1",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": true,
+          "consecutive_failures": 3,
+          "duration_seconds": 104
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.022867359220981598,
+          "investigate_change": 0.1275438815355301,
+          "rerun_test": 0.06215992569923401,
+          "triage_existing_failure": 0.7874287962913513
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.022867359220981598,
+        "investigate_change": 0.1275438815355301,
+        "rerun_test": 0.06215992569923401,
+        "triage_existing_failure": 0.7874287962913513
+      },
+      "elapsed_seconds": 0.7694228328764439,
+      "error": null
+    },
+    {
+      "id": "change-14-2",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 4,
+          "duration_seconds": 591
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.1315958946943283,
+          "investigate_change": 0.16635280847549438,
+          "rerun_test": 0.6788232326507568,
+          "triage_existing_failure": 0.023228053003549576
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.1315958946943283,
+        "investigate_change": 0.16635280847549438,
+        "rerun_test": 0.6788232326507568,
+        "triage_existing_failure": 0.023228053003549576
+      },
+      "elapsed_seconds": 0.7732210420072079,
+      "error": null
+    },
+    {
+      "id": "change-14-3",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 1,
+          "duration_seconds": 447
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.05009173974394798,
+          "investigate_change": 0.06234017014503479,
+          "rerun_test": 0.8673291206359863,
+          "triage_existing_failure": 0.02023889496922493
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.05009173974394798,
+        "investigate_change": 0.06234017014503479,
+        "rerun_test": 0.8673291206359863,
+        "triage_existing_failure": 0.02023889496922493
+      },
+      "elapsed_seconds": 0.7756678750738502,
+      "error": null
+    },
+    {
+      "id": "change-14-4",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "setup",
+          "seen_on_default_branch": true,
+          "consecutive_failures": 2,
+          "duration_seconds": 303
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.039530519396066666,
+          "investigate_change": 0.04142763093113899,
+          "rerun_test": 0.026333004236221313,
+          "triage_existing_failure": 0.8927088379859924
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.039530519396066666,
+        "investigate_change": 0.04142763093113899,
+        "rerun_test": 0.026333004236221313,
+        "triage_existing_failure": 0.8927088379859924
+      },
+      "elapsed_seconds": 0.769224583171308,
+      "error": null
+    },
+    {
+      "id": "change-15-1",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 2,
+          "duration_seconds": 159
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.05859289690852165,
+          "investigate_change": 0.08008699864149094,
+          "rerun_test": 0.8410708904266357,
+          "triage_existing_failure": 0.02024916373193264
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.05859289690852165,
+        "investigate_change": 0.08008699864149094,
+        "rerun_test": 0.8410708904266357,
+        "triage_existing_failure": 0.02024916373193264
+      },
+      "elapsed_seconds": 0.7796921660192311,
+      "error": null
+    },
+    {
+      "id": "change-15-2",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 1,
+          "duration_seconds": 646
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.04938425496220589,
+          "investigate_change": 0.06242753937840462,
+          "rerun_test": 0.8685446381568909,
+          "triage_existing_failure": 0.019643697887659073
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.04938425496220589,
+        "investigate_change": 0.06242753937840462,
+        "rerun_test": 0.8685446381568909,
+        "triage_existing_failure": 0.019643697887659073
+      },
+      "elapsed_seconds": 0.7610111669637263,
+      "error": null
+    },
+    {
+      "id": "change-15-3",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "setup",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 4,
+          "duration_seconds": 502
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.8496230840682983,
+          "investigate_change": 0.08090134710073471,
+          "rerun_test": 0.05142402648925781,
+          "triage_existing_failure": 0.018051527440547943
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.8496230840682983,
+        "investigate_change": 0.08090134710073471,
+        "rerun_test": 0.05142402648925781,
+        "triage_existing_failure": 0.018051527440547943
+      },
+      "elapsed_seconds": 0.7800454166717827,
+      "error": null
+    },
+    {
+      "id": "change-15-4",
+      "split": "dev",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": true,
+          "consecutive_failures": 2,
+          "duration_seconds": 358
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.025646956637501717,
+          "investigate_change": 0.13438044488430023,
+          "rerun_test": 0.18367630243301392,
+          "triage_existing_failure": 0.6562963128089905
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.025646956637501717,
+        "investigate_change": 0.13438044488430023,
+        "rerun_test": 0.18367630243301392,
+        "triage_existing_failure": 0.6562963128089905
+      },
+      "elapsed_seconds": 0.7901625842787325,
+      "error": null
+    },
+    {
+      "id": "change-16-1",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 1,
+          "duration_seconds": 214
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.04859647527337074,
+          "investigate_change": 0.05770975351333618,
+          "rerun_test": 0.8749581575393677,
+          "triage_existing_failure": 0.01873561181128025
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.04859647527337074,
+        "investigate_change": 0.05770975351333618,
+        "rerun_test": 0.8749581575393677,
+        "triage_existing_failure": 0.01873561181128025
+      },
+      "elapsed_seconds": 0.7924052500165999,
+      "error": null
+    },
+    {
+      "id": "change-16-2",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "setup",
+          "seen_on_default_branch": true,
+          "consecutive_failures": 3,
+          "duration_seconds": 70
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.051660191267728806,
+          "investigate_change": 0.04151013493537903,
+          "rerun_test": 0.019304007291793823,
+          "triage_existing_failure": 0.8875256776809692
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.051660191267728806,
+        "investigate_change": 0.04151013493537903,
+        "rerun_test": 0.019304007291793823,
+        "triage_existing_failure": 0.8875256776809692
+      },
+      "elapsed_seconds": 0.7946956250816584,
+      "error": null
+    },
+    {
+      "id": "change-16-3",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": true,
+          "consecutive_failures": 2,
+          "duration_seconds": 557
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.025533711537718773,
+          "investigate_change": 0.13378708064556122,
+          "rerun_test": 0.17178599536418915,
+          "triage_existing_failure": 0.6688932180404663
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.025533711537718773,
+        "investigate_change": 0.13378708064556122,
+        "rerun_test": 0.17178599536418915,
+        "triage_existing_failure": 0.6688932180404663
+      },
+      "elapsed_seconds": 0.7781064589507878,
+      "error": null
+    },
+    {
+      "id": "change-16-4",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 3,
+          "duration_seconds": 413
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.12331592291593552,
+          "investigate_change": 0.15958267450332642,
+          "rerun_test": 0.6931954622268677,
+          "triage_existing_failure": 0.023905882611870766
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.12331592291593552,
+        "investigate_change": 0.15958267450332642,
+        "rerun_test": 0.6931954622268677,
+        "triage_existing_failure": 0.023905882611870766
+      },
+      "elapsed_seconds": 0.7834319593384862,
+      "error": null
+    },
+    {
+      "id": "change-17-1",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "setup",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 2,
+          "duration_seconds": 269
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.6888302564620972,
+          "investigate_change": 0.15369881689548492,
+          "rerun_test": 0.13939878344535828,
+          "triage_existing_failure": 0.018072109669446945
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.6888302564620972,
+        "investigate_change": 0.15369881689548492,
+        "rerun_test": 0.13939878344535828,
+        "triage_existing_failure": 0.018072109669446945
+      },
+      "elapsed_seconds": 0.7815648326650262,
+      "error": null
+    },
+    {
+      "id": "change-17-2",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": true,
+          "consecutive_failures": 4,
+          "duration_seconds": 125
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.027791423723101616,
+          "investigate_change": 0.14561665058135986,
+          "rerun_test": 0.06361521035432816,
+          "triage_existing_failure": 0.7629766464233398
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.027791423723101616,
+        "investigate_change": 0.14561665058135986,
+        "rerun_test": 0.06361521035432816,
+        "triage_existing_failure": 0.7629766464233398
+      },
+      "elapsed_seconds": 0.7798211253248155,
+      "error": null
+    },
+    {
+      "id": "change-17-3",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 2,
+          "duration_seconds": 612
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.05744082108139992,
+          "investigate_change": 0.07261200249195099,
+          "rerun_test": 0.8507069945335388,
+          "triage_existing_failure": 0.01924026757478714
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.05744082108139992,
+        "investigate_change": 0.07261200249195099,
+        "rerun_test": 0.8507069945335388,
+        "triage_existing_failure": 0.01924026757478714
+      },
+      "elapsed_seconds": 0.8016482079401612,
+      "error": null
+    },
+    {
+      "id": "change-17-4",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 1,
+          "duration_seconds": 468
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.05021665617823601,
+          "investigate_change": 0.06152673065662384,
+          "rerun_test": 0.8694920539855957,
+          "triage_existing_failure": 0.018764590844511986
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.05021665617823601,
+        "investigate_change": 0.06152673065662384,
+        "rerun_test": 0.8694920539855957,
+        "triage_existing_failure": 0.018764590844511986
+      },
+      "elapsed_seconds": 0.7848506672307849,
+      "error": null
+    },
+    {
+      "id": "change-18-1",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": true,
+          "consecutive_failures": 4,
+          "duration_seconds": 324
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.02632751502096653,
+          "investigate_change": 0.14011867344379425,
+          "rerun_test": 0.06415100395679474,
+          "triage_existing_failure": 0.769402801990509
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.02632751502096653,
+        "investigate_change": 0.14011867344379425,
+        "rerun_test": 0.06415100395679474,
+        "triage_existing_failure": 0.769402801990509
+      },
+      "elapsed_seconds": 0.7821086249314249,
+      "error": null
+    },
+    {
+      "id": "change-18-2",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 5,
+          "duration_seconds": 180
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.17944826185703278,
+          "investigate_change": 0.38287144899368286,
+          "rerun_test": 0.41722968220710754,
+          "triage_existing_failure": 0.020450597628951073
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.17944826185703278,
+        "investigate_change": 0.38287144899368286,
+        "rerun_test": 0.41722968220710754,
+        "triage_existing_failure": 0.020450597628951073
+      },
+      "elapsed_seconds": 0.7600695830769837,
+      "error": null
+    },
+    {
+      "id": "change-18-3",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "tests",
+          "seen_on_default_branch": false,
+          "consecutive_failures": 1,
+          "duration_seconds": 36
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.036305591464042664,
+          "investigate_change": 0.04809708520770073,
+          "rerun_test": 0.9004629254341125,
+          "triage_existing_failure": 0.015134420245885849
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.036305591464042664,
+        "investigate_change": 0.04809708520770073,
+        "rerun_test": 0.9004629254341125,
+        "triage_existing_failure": 0.015134420245885849
+      },
+      "elapsed_seconds": 0.781500416342169,
+      "error": null
+    },
+    {
+      "id": "change-18-4",
+      "split": "test",
+      "input": {
+        "model": "clef-flash",
+        "state": {
+          "failed_stage": "setup",
+          "seen_on_default_branch": true,
+          "consecutive_failures": 2,
+          "duration_seconds": 523
+        },
+        "questions": {
+          "action": {
+            "type": "choice",
+            "instructions": "What should the developer do next about this CI failure?",
+            "criteria": {
+              "inspect_runner": "Inspect the job runner and its setup logs.",
+              "triage_existing_failure": "Follow up on the failure already affecting the default branch.",
+              "investigate_change": "Investigate the proposed change for a reproducible regression.",
+              "rerun_test": "Run the failed test again to see whether the failure repeats."
+            }
+          }
+        }
+      },
+      "raw_output": {
+        "action": {
+          "inspect_runner": 0.037384044378995895,
+          "investigate_change": 0.03979510813951492,
+          "rerun_test": 0.02413695678114891,
+          "triage_existing_failure": 0.8986839652061462
+        }
+      },
+      "probabilities": {
+        "inspect_runner": 0.037384044378995895,
+        "investigate_change": 0.03979510813951492,
+        "rerun_test": 0.02413695678114891,
+        "triage_existing_failure": 0.8986839652061462
+      },
+      "elapsed_seconds": 0.7910220003686845,
+      "error": null
+    }
+  ],
+  "errors": [],
+  "sha256": "b69556d420fc220fe737e70a75dd074356cd972548915946eea8ad5d11333d98"
+}

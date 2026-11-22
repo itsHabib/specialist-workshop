@@ -103,7 +103,8 @@ class MakeTests(unittest.TestCase):
 
     def test_publishes_run_and_keeps_test_examples_out_of_training_and_replay(self):
         numerics = self.mock_numerics()
-        make(self.source, self.output, self.base_dir)
+        with self.assertWarnsRegex(UserWarning, "no structured fields"):
+            make(self.source, self.output, self.base_dir, min_score=0.8)
 
         snapshot = self.output / "inputs"
         self.write_records(("test",))
@@ -124,8 +125,18 @@ class MakeTests(unittest.TestCase):
         summary = json.loads((self.output / "report.json").read_text(encoding="utf-8"))
         self.assertEqual(summary["task"], "document_route")
         self.assertEqual(summary["split"], "dev")
+        self.assertEqual(summary["min_score"], 0.8)
+        self.assertEqual(summary["bert"]["model"]["review"], 1)
+        manifest = json.loads((self.output / "model" / "manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["min_score"], 0.8)
+        tree = json.loads((self.output / "tree.json").read_text(encoding="utf-8"))
+        self.assertEqual(tree["min_score"], 0.8)
+        self.assertEqual(summary["tree"]["diagnostics"], tree["tree_diagnostics"])
+        self.assertEqual(summary["tree"]["diagnostics"]["split_features"], [])
+        self.assertIn("no structured fields", tree["tree_diagnostics"]["warnings"][0])
         for backend in ("bert", "tree"):
             report = json.loads((self.output / f"{backend}-dev.json").read_text(encoding="utf-8"))
+            self.assertEqual(report["min_score"], 0.8)
             self.assertEqual([case["id"] for case in report["cases"]], ["dev-id"])
             self.assertEqual(summary[backend]["model"], report["model"])
             expected_path = "model" if backend == "bert" else "tree.json"

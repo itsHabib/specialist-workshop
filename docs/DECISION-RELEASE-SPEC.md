@@ -70,4 +70,6 @@ python -m experiments.decision_limits.release_report --out .state/limits-release
 python -m unittest discover -s tests/decisions -p test_release_limits.py
 ```
 
+For the original experiment’s retained checkpoints, add `--min-score 0` to `release_report` to reproduce the hand checks. New runs record their cutoff.
+
 The task JSONL contains visible features and supervised targets. Only the offline episode traces contain realized fault status. The scoring interface accepts a policy called with a row ID, visible state and legal candidates. For an externally scored model, return an action plus its original preference and use `rollout(episode, policy)` and `summarize(traces)` from `experiments.decision_limits.release`. The test processes are reproducible with `episodes("iid")` and `episodes("shift")`.

@@ -24,7 +24,7 @@ class ScaffoldTests(unittest.TestCase):
         task = load_task(self.out / "task.json")
         self.assertEqual(task, {
             "name": "routing", "version": "1", "question": self.question,
-            "features": {"context": "text"}, "labels": ["billing", "support"],
+            "features": {"context": "text", "case_type": "category"}, "labels": ["billing", "support"],
             "descriptions": {"billing": "Handle billing", "support": "Handle cases with priority=high"},
         })
         self.assertEqual((self.out / "records.jsonl").read_bytes(), b"")

@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from decision_workshop import load_model, predict
+from decision_workshop.core import decision_min_score
 from decision_workshop.sequence import run_episode
 from .release import HORIZON, episodes, incumbent, oracle, rollout
 
@@ -46,11 +47,12 @@ class ReleaseTrial:
                 "total_cost": terminal_cost[self.final] + self.checks * self.case.price}
 
 
-def compare(tree_path=None):
+def compare(tree_path=None, *, min_score=None):
     policies = {"coded_rule": incumbent, "expected_cost": oracle}
     if tree_path is not None:
         model = load_model(tree_path)
-        policies["tree"] = lambda row_id, state, candidates: predict(model, state, candidates)
+        cutoff = decision_min_score(model, min_score)
+        policies["tree"] = lambda row_id, state, candidates: predict(model, state, candidates, min_score=cutoff)
     counts = {}
     for name, policy in policies.items():
         checked = 0
@@ -73,4 +75,9 @@ def compare(tree_path=None):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--tree", type=Path, help="optional trained release tree.json")
-    print(json.dumps(compare(parser.parse_args().tree)))
+    parser.add_argument("--min-score", type=float, help="override the decision cutoff for this replay")
+    args = parser.parse_args()
+    try:
+        print(json.dumps(compare(args.tree, min_score=args.min_score)))
+    except (OSError, ValueError) as exc:
+        parser.error(str(exc))

@@ -70,7 +70,7 @@ class ReplayTests(unittest.TestCase):
         paired = comparison["model_on_same_records"]
         self.assertEqual((paired["matched"], paired["rows"]), (3, 3))
 
-    def test_unknown_candidates_allow_only_raw_comparisons(self):
+    def test_unknown_candidates_count_as_reviews_and_keep_raw_comparisons(self):
         rows = [
             record("unknown", "test", True, candidates=None, baselines={"planner": "retry"}),
             record("empty", "test", False, candidates=[], baselines={"planner": "inspect"}),
@@ -82,8 +82,10 @@ class ReplayTests(unittest.TestCase):
         self.assertEqual((report["reference_in_candidates"], report["reference_missing"]), (2, 1))
         self.assertAlmostEqual(report["reference_in_candidates_rate"], 2 / 3)
         self.assertEqual(report["raw_model_preference"]["match_per_record"], 3 / 4)
-        self.assertEqual(report["model"]["rows"], 3)
-        self.assertEqual(report["train_majority"]["rows"], 3)
+        self.assertEqual(report["model"]["rows"], 4)
+        self.assertEqual(report["model_with_recorded_candidates"]["rows"], 3)
+        self.assertEqual(report["train_majority"]["rows"], 4)
+        self.assertEqual(report["train_majority"]["coverage"], 2 / 4)
         self.assertEqual(report["model_when_reference_present"]["match_per_record"], 1 / 2)
         comparison = report["recorded_baselines"]["planner"]
         self.assertEqual(comparison["raw_incumbent"]["match_per_record"], 3 / 4)
@@ -97,7 +99,9 @@ class ReplayTests(unittest.TestCase):
         # A dataset containing only historical final decisions has no candidate recall estimate.
         only_unknown = evaluate(self.model, rows[:1], "test")
         self.assertIsNone(only_unknown["reference_in_candidates_rate"])
-        self.assertIsNone(only_unknown["model"]["match_per_record"])
+        self.assertEqual(only_unknown["model"]["match_per_record"], 0)
+        self.assertEqual(only_unknown["model"]["review"], 1)
+        self.assertIsNone(only_unknown["model_with_recorded_candidates"]["coverage"])
         self.assertIn("candidates_unrecorded", only_unknown["cases"][0]["decision"]["reasons"])
         historical = only_unknown["recorded_baselines"]["planner"]
         self.assertEqual(historical["raw_incumbent"]["matched"], 1)

@@ -9,7 +9,8 @@ import sys
 from .checkpoint import FORMAT as BERT_ALGORITHM
 from .clef_mlx_replay import FILE_HASHES, MODEL_ID, REVISION, UPSTREAM_ID, UPSTREAM_REVISION, file_hash, request_for
 from .contracts import load_task, read_json, read_records
-from .core import ALGORITHM, digest, load_model, predict, training_rows, training_summary, write_new
+from .core import (ALGORITHM, decision_min_score, digest, load_model, predict,
+                   training_rows, training_summary, write_new)
 
 
 def _require(condition, message):
@@ -123,7 +124,7 @@ def _counts(cases, name, field):
     return {"correct": correct, "wrong": wrong, "review": review}
 
 
-def compare(task_dir, receipt_path, maker_dir, *, min_score=0.0):
+def compare(task_dir, receipt_path, maker_dir, *, min_score=None):
     """Verify the bindings and run all model preferences through the same review policy."""
     task_dir, maker_dir = Path(task_dir), Path(maker_dir)
     task_path, rows_path = task_dir / "task.json", task_dir / "records.jsonl"
@@ -135,6 +136,9 @@ def compare(task_dir, receipt_path, maker_dir, *, min_score=0.0):
     scores = _receipt_scores(receipt, task, held_out, hashes)
     training = training_summary(task, training_rows(rows))
     checkpoints = _load_checkpoints(maker_dir, task, rows, training)
+    cutoffs = {decision_min_score(model, min_score) for model in checkpoints.values()}
+    _require(len(cutoffs) == 1, "comparison needs a common min_score. Pass one explicitly")
+    min_score = cutoffs.pop()
     reference = {"algorithm": "clef-mlx-reference", "task": task, "training": training}
     splits = {}
     for split in ("dev", "test"):
@@ -176,7 +180,7 @@ def main():
     parser.add_argument("--receipt", type=Path, required=True)
     parser.add_argument("--maker", type=Path, required=True, help="completed maker run directory")
     parser.add_argument("--out", type=Path, required=True, help="new comparison JSON file")
-    parser.add_argument("--min-score", type=float, default=0.0)
+    parser.add_argument("--min-score", type=float, help="override the shared checkpoint cutoff")
     args = parser.parse_args()
     try:
         report = compare(args.task, args.receipt, args.maker, min_score=args.min_score)

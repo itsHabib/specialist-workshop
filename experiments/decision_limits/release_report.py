@@ -22,10 +22,10 @@ def paired_delta(traces, reference):
     return {"episodes": len(delta), "mean": mean(delta), "bootstrap_95pct": [samples[49], samples[1949]]}
 
 
-def hand_checks(root):
+def hand_checks(root, *, min_score=None):
+    tree = learned(load_model(root / "run/tree.json"), min_score=min_score)
     models = {"oracle": oracle, "incumbent": incumbent,
-              "tree": learned(load_model(root / "run/tree.json")),
-              "bert": learned(load_model(root / "run/model"))}
+              "tree": tree, "bert": learned(load_model(root / "run/model"), min_score=min_score)}
     out = []
     for name, reliability, observations in (("sharp", 90, ()), ("noisy", 60, ()),
                                             ("after_positive", 90, (True,)), ("after_negative", 90, (False,))):
@@ -38,7 +38,8 @@ def hand_checks(root):
     return out
 
 
-def diagnostics(root):
+def diagnostics(root, *, min_score=None):
+    checked = hand_checks(root, min_score=min_score)
     traces = defaultdict(lambda: defaultdict(list))
     for line in (root / "episodes.jsonl").read_text(encoding="utf-8").splitlines():
         trace = json.loads(line)
@@ -54,15 +55,19 @@ def diagnostics(root):
     for family in ("dev", "iid", "shift"):
         cohort = [row for row in rows if row["group"].startswith(family + "-")]
         overlaps[family] = {"rows": len(cohort), "seen_visible_states": sum(visible(r) in train_states for r in cohort)}
-    return {"mean_cost_minus_incumbent": contrasts, "hand_checks": hand_checks(root),
+    return {"mean_cost_minus_incumbent": contrasts, "hand_checks": checked,
             "visible_state_overlap_with_training": overlaps}
 
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--out", type=Path, required=True)
-    root = p.parse_args().out
-    result = diagnostics(root)
-    with (root / "diagnostics.json").open("x", encoding="utf-8") as f:
+    p.add_argument("--min-score", type=float, help="override both model cutoffs for the hand-checks")
+    args = p.parse_args()
+    try:
+        result = diagnostics(args.out, min_score=args.min_score)
+    except (ValueError, OSError) as exc:
+        p.error(str(exc))
+    with (args.out / "diagnostics.json").open("x", encoding="utf-8") as f:
         json.dump(result, f, indent=2)
         print(file=f)

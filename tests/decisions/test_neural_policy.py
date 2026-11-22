@@ -16,6 +16,7 @@ class NeuralPolicyTests(unittest.TestCase):
 
     def test_threshold_and_omitted_action_apply_to_full_vocabulary(self):
         model = {"algorithm": FORMAT, "task": self.task, "training": {"categories": {}},
+                 "min_score": 0.6,
                  "_score": lambda state: {"one": 0.6, "two": 0.4}}
         request = {"note": "a previously unseen note"}
         self.assertEqual(predict(model, request, ["one", "two"])["action"], "one")

@@ -6,13 +6,14 @@ import json
 from pathlib import Path
 
 from decision_workshop import load_model, predict
+from decision_workshop.core import decision_min_score
 from decision_workshop.sequence import run_episode
 from .features import SLACK_TASK, with_slack
 from .policy import TASK, status_first
 from .worker import Episode, Scenario
 
 
-def startup(path):
+def startup(path, *, min_score=None):
     if path is None or not Path(path).exists():
         return status_first, {"policy": "status_first", "reason": "model_unavailable"}
     try:
@@ -24,14 +25,18 @@ def startup(path):
     contract = {"1": TASK, "2": SLACK_TASK}.get(version)
     if contract is None or any(model["task"][k] != contract[k] for k in ("name", "labels", "features")):
         return status_first, {"policy": "status_first", "reason": "incompatible_task"}
+    try:
+        cutoff = decision_min_score(model, min_score)
+    except ValueError as exc:
+        return status_first, {"policy": "status_first", "reason": "model_cutoff_error", "error": str(exc)}
 
     def policy(state, candidates):
-        return predict(model, with_slack(state) if version == "2" else state, candidates)
-    return policy, {"policy": "model", "version": version, "model_sha256": model["sha256"]}
+        return predict(model, with_slack(state) if version == "2" else state, candidates, min_score=cutoff)
+    return policy, {"policy": "model", "version": version, "model_sha256": model["sha256"], "min_score": cutoff}
 
 
-def demo(path=None):
-    policy, identity = startup(path)
+def demo(path=None, *, min_score=None):
+    policy, identity = startup(path, min_score=min_score)
     jobs = []
     for fault in ("before", "checkpoint", "lost_reply", "none"):
         case = Scenario(f"demo-{fault}", ((2, 3), (-1, 9)), fault, deadline=10)
@@ -44,4 +49,6 @@ def demo(path=None):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", type=Path, help="optional local tree checkpoint")
-    print(json.dumps(demo(parser.parse_args().model), indent=2, allow_nan=False))
+    parser.add_argument("--min-score", type=float, help="override the decision cutoff for this run")
+    args = parser.parse_args()
+    print(json.dumps(demo(args.model, min_score=args.min_score), indent=2, allow_nan=False))

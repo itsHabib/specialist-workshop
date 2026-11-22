@@ -7,7 +7,8 @@ import textwrap
 import tempfile
 import unittest
 
-from decision_workshop.core import digest, train, write_new
+from decision_workshop.core import digest, load_model, predict, train, write_new
+from decision_workshop.evaluation import evaluate
 from decision_workshop.policy import load_policy, save_policy
 from decision_workshop.steering import LABELS, rank_candidates
 
@@ -24,7 +25,7 @@ class PolicyTests(unittest.TestCase):
         examples = [(0, "defer"), (0, "defer"), (0, "prefer"), (2, "prefer"), (2, "prefer"), (2, "prefer")]
         rows = [{"id": str(i), "group": str(i), "split": "train", "state": {"x": x},
                  "target": label, "candidates": LABELS} for i, (x, label) in enumerate(examples)]
-        model = train(task, rows)
+        model = train(task, rows, min_score=0.8)
         path = self.temp / "training" / "tree.json"
         write_new(path, model)
         self.path, self.model = path, model
@@ -43,6 +44,7 @@ class PolicyTests(unittest.TestCase):
             import json, sys
             from pathlib import Path
             sys.path.insert(0, str(Path.cwd()))
+            from decision_workshop import load_model, predict
             from decision_workshop.policy import load_policy
             directory = Path("deployment")
             settings = json.loads(sys.argv[1])
@@ -62,15 +64,50 @@ class PolicyTests(unittest.TestCase):
             roster = [("slow", {"x": 0}), ("z-new", {"x": 10}), ("a-new", {"x": 3})]
             for identifier, score in ranking.rank(iter(roster)):
                 dispatch(identifier)
-            print(json.dumps({"executed": executed, "reasons": decisions}))
+            reloaded = load_model(directory / "tree.json")
+            print(json.dumps({"executed": executed, "reasons": decisions,
+                              "bare": predict(reloaded, {"x": 0}, ["defer", "prefer"])}))
         """)
         run = subprocess.run([sys.executable, "-I", "-S", "-c", script, json.dumps(HOST),
                               fixed_digest, ranking_digest], cwd=host, check=True,
                              text=True, capture_output=True)
+        original = predict(self.model, {"x": 0}, ["defer", "prefer"])
+        self.assertEqual(original["reasons"], ["below_min_score"])
         self.assertEqual(json.loads(run.stdout), {
             "executed": ["default", "prefer", "default", "z-new", "a-new", "slow"],
             "reasons": [["below_min_score"], [], ["candidates_unrecorded"]],
+            "bare": original,
         })
+
+    def test_legacy_checkpoint_requires_cutoff_for_decisions_and_accepts_saved_policies(self):
+        body = {k: self.model[k] for k in ("algorithm", "format", "task", "settings", "training", "tree")}
+        legacy_path = self.path.with_name("legacy.json")
+        write_new(legacy_path, {**body, "sha256": digest(body)})
+        legacy = load_model(legacy_path)
+        row = dict(id="dev", group="dev", split="dev", state={"x": 0}, candidates=LABELS, target="defer")
+        with self.assertRaisesRegex(ValueError, "no recorded min_score"):
+            predict(legacy, row["state"], LABELS)
+        with self.assertRaisesRegex(ValueError, "no recorded min_score"):
+            evaluate(legacy, [row], "dev")
+        self.assertEqual(predict(legacy, row["state"], LABELS, min_score=0.0)["action"], "defer")
+        self.assertEqual(evaluate(legacy, [row], "dev", min_score=0.8)["model"]["review"], 1)
+        for kind, cutoff in (("fixed", 0.8), ("ranking", None)):
+            path = self.path.with_name(kind + ".json")
+            save_policy(path, legacy_path, kind=kind, min_score=cutoff, **HOST)
+            policy = load_policy(path, legacy_path, **HOST)
+            if kind == "fixed":
+                self.assertEqual(policy.decide(row["state"], LABELS)["reasons"], ["below_min_score"])
+            else:
+                self.assertEqual(policy.rank([("cold", {"x": 0}), ("hot", {"x": 2})])[0], ("hot", 1.0))
+
+    def test_zero_override_and_invalid_cutoffs(self):
+        row = dict(id="dev", group="dev", split="dev", state={"x": 0}, candidates=LABELS, target="defer")
+        report = evaluate(self.model, [row], "dev", min_score=0.0)
+        self.assertEqual(report["min_score"], 0.0)
+        self.assertEqual(report["cases"][0]["decision"]["action"], "defer")
+        for value in (True, None, -1, 1.01, "0.8", float("nan"), float("inf")):
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError, "min_score"):
+                train(self.model["task"], [{**row, "split": "train"}], min_score=value)
 
     def test_ranking_ties_are_opt_in_and_missing_rosters_are_visible(self):
         model_path, model = self.path, self.model

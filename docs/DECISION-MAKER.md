@@ -50,7 +50,9 @@ python -m decision_workshop init .state/tasks/triage \
   --action 'support=Route the request to technical support.'
 ```
 
-Supply at least two actions. By default the input is a free-text field named `context`. To define different fields, supply one `--field name=type` per field. Supported types are `text`, `number`, `boolean`, and `category`.
+Supply at least two actions. The starter includes free-text `context` and a structured `case_type` category. Replace the example category with an observation your host can make before choosing an action. To define your own schema, supply one `--field name=type` per field. Supported types are `text`, `number`, `boolean`, and `category`.
+
+The tree can split on numbers, categories and booleans. A text-only tree uses the same training label counts for every request. Training warns when the task has no structured fields or when more than half the training rows have a once-seen value for a text field. After `train`, inspect `tree_diagnostics.split_features` in the checkpoint. After `make`, the same list is in `tree.diagnostics.split_features` in the run report. An empty list means every request reaches the same leaf.
 
 The repository ignores `.state/`. You can also pass a task directory outside the checkout. Use `record.example.json` as a template and write one reviewed decision per line to the empty `records.jsonl`. Record what was known at decision time, the reviewer’s chosen action, and the options actually offered. Use `null` for an unknown historical option list and `[]` for a known empty list. Keep all records from a related job or thread in one `group` and one split. Include `train` and `dev` groups, and reserve unseen `test` groups for the final check.
 
@@ -58,11 +60,31 @@ The repository ignores `.state/`. You can also pass a task directory outside the
 python -m decision_workshop make .state/tasks/triage --out .state/triage-run
 ```
 
-The maker evaluates development groups by default. Choose a model and a minimum score using those groups. After freezing that choice, run the final test explicitly. Count correct suggestions, wrong suggestions and reviews together. Compare them with the current system's recorded choices on the same cases. For a live pilot, also measure time to an accepted decision and how often a reviewer changes it.
+The maker evaluates development groups by default. To compare cutoffs, run `evaluate --split dev --min-score VALUE` against the same checkpoint. Choose the model and cutoff on development groups. `train`, `train-bert` and `make` accept `--min-score` to store that choice. Training defaults to a recorded cutoff of zero. The maker records the cutoff in both checkpoints and in `report.json`. If you choose a new cutoff after fitting, use `save_policy` as shown below to bind it to those same weights. For BERT, supply the checkpoint directory in place of the tree JSON file. Load that policy in the host and use the same explicit cutoff when evaluating its bare checkpoint.
+
+Python and CLI `predict` and `evaluate` use the checkpoint’s cutoff when you omit it. An explicit override applies to that call. Older checkpoints without a recorded cutoff require an explicit value. For example, a tree leaf with two votes for A and one for B scores A at 2/3. A saved cutoff of 0.8 sends it to review before and after reload. Use unseen test groups for the final check.
 
 ```sh
 python -m decision_workshop evaluate --model .state/triage-run/model --data .state/tasks/triage/records.jsonl --split test --report .state/triage-test.json
 ```
+
+Read `model.suggested / model.rows` for coverage over every held-out case and `model_with_recorded_candidates.suggested / model_with_recorded_candidates.rows` for coverage where the host recorded its options. One correct suggestion and one review for unrecorded options give **1 of 2 overall (50%)** and **1 of 1 with recorded candidates (100%)**. In the headline, `matched + wrong_suggestions + review = rows`. A known empty list counts in both denominators. The training-majority baseline also uses every held-out row. Comparisons against a named incumbent use the paired rows disclosed in each comparison. Compare the host’s actual fallback and verified result separately with `compare-host`. In a live pilot, also measure time to an accepted decision and how often a reviewer changes it.
+
+## Import records from a host
+
+Keep the adapter in the adopting project. Expose a trusted Python function `iter_records(source) -> Iterable[dict]` in an importable module. The CLI passes a `pathlib.Path` for `--source`, or `None` when omitted. Each yielded dictionary follows the same contract as a line in `records.jsonl`. The importer checks state types, action IDs, candidate lists, unique record IDs, and one split per group. Use `None` for unrecorded candidates and `[]` for a recorded empty list.
+
+Try the included synthetic CI event adapter from the checkout. The output path must be new. When using an initialized task, write to a fresh filename and pass it to `train --data`. For `make`, put the task definition and imported `records.jsonl` together in a fresh task directory.
+
+```sh
+python -m decision_workshop import --task examples/decisions/software/task.json \
+  --adapter examples.decisions.software.host_adapter:iter_records \
+  --source examples/decisions/software/host-events.jsonl --out .state/imported/records.jsonl
+python -m decision_workshop train --task examples/decisions/software/task.json \
+  --data .state/imported/records.jsonl --model .state/imported/tree.json
+```
+
+To use your own module, install it in the same environment or add its containing directory to `PYTHONPATH` and pass `--adapter my_module:iter_records`. The summary counts rows, distinct groups per split, recorded candidate sets and reviewed targets missing from those sets. An empty list counts as a recorded set missing its target. With an unknown list, target membership stays unknown. Publication requires a filesystem that supports hard links or an atomic rename that refuses replacement. If the filesystem cannot do either, choose another output directory. A validation or adapter failure leaves the destination unpublished. [Example adapter](../examples/decisions/software/host_adapter.py) · [Synthetic input](../examples/decisions/software/host-events.jsonl)
 
 ## Use from Python
 
@@ -142,7 +164,7 @@ The example reports three arrivals, two paired outcomes, one improvement and one
 
 The optional comparison runs a 4-bit Apple MLX conversion of Cloudflare's 9B Clef-Flash. It scores every action from the same question and state that the maker sees. The comparison applies the same availability and review rules to all three models. Clef-Flash uses the Qwen3.5-9B backbone. The maker's Google and tree training paths run independently of it. [Cloudflare model card](https://huggingface.co/Cloudflare/clef-flash) · [Pinned MLX conversion and hardware requirements](https://huggingface.co/mlx-community/clef-flash-4bit/tree/b5adbe2c3a95200d4bf04a0727c8ec457157d5e1)
 
-After running `make` on the included example, replay its measured Clef-Flash outputs alongside your local checkpoints. This step works on the same CPU setup as the maker.
+After running `make` on the included example, replay its measured Clef-Flash outputs alongside your local checkpoints. This step works on the same CPU setup as the maker. The comparison uses the shared cutoff in the maker checkpoints. For an archived run that used zero, pass `--min-score 0` explicitly if the checkpoints predate stored cutoffs.
 
 ```sh
 python -m decision_workshop.clef_reference --task examples/decisions/software \

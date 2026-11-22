@@ -1,4 +1,5 @@
 from contextlib import contextmanager, nullcontext
+from itertools import islice
 import json
 from pathlib import Path
 import subprocess
@@ -7,9 +8,10 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from decision_workshop import load_model, predict
-from decision_workshop.core import train
+from decision_workshop.core import digest, train, write_new
 from decision_workshop.sequence import compare_verified, outcome_labels, replay_alternatives, run_episode
 from experiments.decision_limits.sequence_replay import compare
+from experiments.decision_limits import release
 
 
 TASK = {"name": "counting", "version": "1", "features": {"count": "number"}, "labels": ["add", "finish"]}
@@ -172,6 +174,16 @@ class SequenceTests(unittest.TestCase):
 
     def test_second_domain_matches_its_existing_rollout(self):
         self.assertEqual(compare(), {"coded_rule": 128, "expected_cost": 128})
+
+    def test_legacy_release_replay_uses_the_explicit_cutoff(self):
+        model = train(release.TASK, list(islice(release.records(), 3)))
+        legacy = {k: v for k, v in model.items() if k not in ("min_score", "sha256", "tree_diagnostics")}
+        with TemporaryDirectory() as folder:
+            path = Path(folder) / "legacy.json"
+            write_new(path, {**legacy, "sha256": digest(legacy)})
+            with self.assertRaisesRegex(ValueError, "no recorded min_score"):
+                compare(path)
+            self.assertEqual(compare(path, min_score=0)["tree"], 128)
 
     def test_a_good_first_move_can_fail_under_the_learned_continuation(self):
         # The job succeeds only after exactly one add followed by finish.

@@ -122,7 +122,7 @@ def _validate_row(task, row):
                 raise ValueError(f"baseline {name!r} has unknown label {label!r}")
 
 
-def _check_dataset(task, numbered_rows):
+def _validated_rows(task, numbered_rows):
     ids = set()
     group_splits = {}
     for location, row in numbered_rows:
@@ -137,16 +137,24 @@ def _check_dataset(task, numbered_rows):
                                  f"{split!r} and {row['split']!r}")
         except ValueError as exc:
             raise ValueError(f"{location}: {exc}") from exc
+        yield row
     if not ids:
         raise ValueError("dataset must include at least one record")
 
 
+def iter_validated_records(task, rows):
+    """Validate an adapter's iterable as it is consumed, including cross-row checks."""
+    validate_task(task)
+    numbered = ((f"record {i}", row) for i, row in enumerate(rows, 1))
+    yield from _validated_rows(task, numbered)
+
+
 def validate_records(task, rows):
     """Accept any nonempty split selection and prevent group leakage across splits."""
-    validate_task(task)
     if not isinstance(rows, list):
         raise ValueError("records must be a list")
-    _check_dataset(task, ((f"record {i}", row) for i, row in enumerate(rows, 1)))
+    for _ in iter_validated_records(task, rows):
+        pass
 
 
 def _unique_keys(pairs):
@@ -189,7 +197,6 @@ def read_records(path: Path, task) -> list[dict]:
     """Read JSONL, preserving physical line numbers in record-level errors."""
     path = Path(path).expanduser()
     validate_task(task)
-    rows = []
 
     def numbered_rows(stream):
         for line_number, line in enumerate(stream, 1):
@@ -200,11 +207,9 @@ def read_records(path: Path, task) -> list[dict]:
             except ValueError as exc:
                 raise ValueError(f"line {line_number}: {exc}") from exc
             yield f"line {line_number}", row
-            rows.append(row)
 
     try:
         with path.open(encoding="utf-8-sig") as stream:
-            _check_dataset(task, numbered_rows(stream))
+            return list(_validated_rows(task, numbered_rows(stream)))
     except (OSError, ValueError) as exc:
         raise ValueError(f"{path}: {exc}") from exc
-    return rows

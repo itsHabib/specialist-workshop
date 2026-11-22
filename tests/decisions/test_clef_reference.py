@@ -36,7 +36,7 @@ class ClefReferenceTests(unittest.TestCase):
         self.rows_file = self.root / "records.jsonl"
         self.task_file.write_text(json.dumps(self.task), encoding="utf-8")
         self.write_rows()
-        self.tree = train(self.task, self.rows, min_leaf=1)
+        self.tree = train(self.task, self.rows, min_leaf=1, min_score=0.95)
         self.bert = {**self.tree, "algorithm": ref.BERT_ALGORITHM, "sha256": "test-bert-manifest",
                      "_score": lambda state: {"inspect": 0.3, "retry": 0.7}}
         fake_load = patch.object(ref, "load_model", side_effect=lambda path:
@@ -97,6 +97,14 @@ class ClefReferenceTests(unittest.TestCase):
             self.assertIn("candidates_unrecorded", reasons)
             self.assertEqual(test["models"][name]["final"]["review"], 1)
             self.assertEqual(sum(test["models"][name]["known_candidates"].values()), 0)
+
+    def test_default_comparison_applies_frozen_cutoff_to_all_models(self):
+        report = self.compare()
+        self.assertEqual(report["min_score"], 0.95)
+        first = report["splits"]["dev"]["cases"][0]["models"]
+        self.assertEqual(first["clef"]["reasons"], ["below_min_score"])
+        self.assertIn("below_min_score", first["bert"]["reasons"])
+        self.assertEqual(first["tree"]["status"], "suggest")
 
     def test_rejects_resealed_incomplete_or_misbound_receipts(self):
         for change, error in [

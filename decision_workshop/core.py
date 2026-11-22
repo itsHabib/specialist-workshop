@@ -1,15 +1,18 @@
 """Local training, checkpoint I/O, and advisory decisions for one task."""
 
+from contextlib import contextmanager
 import errno
 import hashlib
 import json
 import math
 import os
 from pathlib import Path
+import sys
 import tempfile
+import warnings
 
 from .contracts import read_json, validate_candidates, validate_state, validate_task
-from .tree import fit, predict_counts
+from .tree import feature_diagnostics, fit, predict_counts
 
 
 ALGORITHM = "classification-tree-gini-v1"
@@ -21,41 +24,61 @@ def digest(value):
     return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
 
 
-def write_new(path, value):
-    """Publish complete JSON to a new path. Refuse to replace an existing run."""
+def _rename_without_replacing(source, destination):
+    """Publish on a volume without hard links, using a single exclusive rename."""
+    if os.name == "nt":
+        # Windows rename already refuses to overwrite any existing destination.
+        os.rename(source, destination)
+        return
+
+    import ctypes
+
+    libc = ctypes.CDLL(None, use_errno=True)
+    if sys.platform == "darwin":
+        rename = getattr(libc, "renamex_np", None)
+        args = (os.fsencode(source), os.fsencode(destination), 4)  # RENAME_EXCL
+    elif sys.platform.startswith("linux"):
+        rename = getattr(libc, "renameat2", None)
+        at_fdcwd = -100
+        args = (at_fdcwd, os.fsencode(source), at_fdcwd, os.fsencode(destination), 1)  # RENAME_NOREPLACE
+    else:
+        rename = None
+    if rename is None:
+        raise OSError(errno.ENOTSUP, "atomic no-replace publication unavailable", destination)
+    if rename(*args) != 0:
+        error = ctypes.get_errno()
+        raise OSError(error, os.strerror(error), destination)
+
+
+@contextmanager
+def new_output_file(path):
+    """Publish UTF-8 text at a fresh path only once the writer finishes."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
-                                     delete=False) as handle:
-        temporary = Path(handle.name)
-        try:
-            json.dump(value, handle, indent=2, allow_nan=False)
-            handle.write("\n")
+    handle = tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
+                                         delete=False)
+    temporary = Path(handle.name)
+    try:
+        with handle:
+            yield handle
             handle.flush()
             os.fsync(handle.fileno())
-        except BaseException:
-            handle.close()
-            temporary.unlink(missing_ok=True)
-            raise
-    try:
         try:
             os.link(temporary, path)
         except OSError as exc:
-            # Some removable media cannot hard-link. Serialize cooperating writers
-            # via a sibling lock so readers still only see a complete JSON file.
             unsupported = (errno.EPERM, errno.EACCES, errno.ENOSYS, errno.ENOTSUP)
             if exc.errno not in unsupported and getattr(exc, "winerror", None) != 1:
                 raise
-            lock = path.with_name("." + path.name + ".publishing")
-            lock.touch(exist_ok=False)
-            try:
-                if os.path.lexists(path):
-                    raise FileExistsError(f"output already exists: {path}")
-                os.replace(temporary, path)
-            finally:
-                lock.unlink()
+            _rename_without_replacing(temporary, path)
     finally:
         temporary.unlink(missing_ok=True)
+
+
+def write_new(path, value):
+    """Publish complete JSON to a new path. Refuse to replace an existing run."""
+    with new_output_file(path) as handle:
+        json.dump(value, handle, indent=2, allow_nan=False)
+        handle.write("\n")
 
 
 def training_rows(rows):
@@ -82,19 +105,39 @@ def training_summary(task, practice):
     }
 
 
-def train(task, rows, max_depth=5, min_leaf=2, *, balanced_ties=False):
+def validate_min_score(value):
+    if type(value) not in (int, float) or not 0 <= value <= 1:
+        raise ValueError("min_score must be a number between 0 and 1")
+
+
+def decision_min_score(model, override):
+    """Resolve the operating cutoff without guessing for a legacy checkpoint."""
+    if override is None:
+        if "min_score" not in model:
+            raise ValueError("checkpoint has no recorded min_score. Pass min_score explicitly (--min-score in the CLI)")
+        override = model["min_score"]
+    validate_min_score(override)
+    return override
+
+
+def train(task, rows, max_depth=5, min_leaf=2, *, balanced_ties=False, min_score=0.0):
     """Fit a tree to structured features from validated training records."""
     if not 0 <= max_depth <= 30 or min_leaf < 1:
         raise ValueError("max_depth must be 0..30 and min_leaf must be positive")
+    validate_min_score(min_score)
     practice = training_rows(rows)
     structured = {key: kind for key, kind in task["features"].items() if kind != "text"}
     model = {
-        "format": FORMAT, "algorithm": ALGORITHM, "task": task,
+        "format": FORMAT, "algorithm": ALGORITHM, "task": task, "min_score": min_score,
         "settings": {"max_depth": max_depth, "min_leaf": min_leaf},
         "training": training_summary(task, practice),
         "tree": fit(structured, practice, task["labels"],
                     max_depth=max_depth, min_leaf=min_leaf, balanced_ties=balanced_ties),
     }
+    diagnostics = feature_diagnostics(task["features"], practice, model["tree"])
+    model["tree_diagnostics"] = diagnostics
+    for message in diagnostics["warnings"]:
+        warnings.warn(message, stacklevel=2)
     if balanced_ties:
         model["settings"]["balanced_ties"] = True
     return {**model, "sha256": digest(model)}
@@ -112,17 +155,18 @@ def load_model(path):
     if model.get("sha256") != digest(body):
         raise ValueError("model digest mismatch")
     validate_task(model["task"])
+    if "min_score" in model:
+        validate_min_score(model["min_score"])
     return model
 
 
-def predict(model, state, candidates, *, min_score=0.0):
-    """Return the learned preference and surface disagreements with the caller's candidate set."""
+def predict(model, state, candidates, *, min_score=None):
+    """Apply the supplied or saved cutoff and check the preference against the current candidates."""
     task = model["task"]
     validate_state(task, state)
     if candidates is not None:
         validate_candidates(task, candidates)
-    if not math.isfinite(min_score) or not 0 <= min_score <= 1:
-        raise ValueError("min_score must be between 0 and 1")
+    min_score = decision_min_score(model, min_score)
     labels = task["labels"]
     if model["algorithm"] == ALGORITHM:
         counts = predict_counts(model["tree"], state)

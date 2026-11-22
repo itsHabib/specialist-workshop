@@ -12,7 +12,7 @@ from .evaluation import evaluate
 
 
 def make(task_dir: Path, output: Path, base: Path, *, epochs=12, batch_size=8,
-         learning_rate=0.0003, seed=17):
+         learning_rate=0.0003, seed=17, min_score=0.0):
     """Publish both checkpoints and their development comparisons as one run."""
     task_dir = Path(task_dir)
     output = Path(output)
@@ -37,12 +37,14 @@ def make(task_dir: Path, output: Path, base: Path, *, epochs=12, batch_size=8,
                 if row["split"] in ("train", "dev"):
                     handle.write(json.dumps(row, ensure_ascii=False, allow_nan=False) + "\n")
         neural = train_bert(task, practice, base, stage / "model", epochs=epochs,
-                            seed=seed, batch_size=batch_size, learning_rate=learning_rate)
-        write_new(stage / "tree.json", train(task, practice))
+                            seed=seed, batch_size=batch_size, learning_rate=learning_rate,
+                            min_score=min_score)
+        tree = train(task, practice, min_score=min_score)
+        write_new(stage / "tree.json", tree)
         report = {
             "task": task["name"], "version": task["version"], "question": task.get("question"),
             "split": "dev", "training_rows": len(practice), "development_rows": len(development),
-            "base": neural["base"],
+            "base": neural["base"], "min_score": min_score,
         }
         for name, checkpoint in (("bert", "model"), ("tree", "tree.json")):
             # Replay the saved artifact through the same loader a work application uses.
@@ -52,9 +54,12 @@ def make(task_dir: Path, output: Path, base: Path, *, epochs=12, batch_size=8,
             report[name] = {
                 "checkpoint": checkpoint, "report": detail, "model_sha256": replay["model_sha256"],
                 "evaluation_records_sha256": replay["evaluation_records_sha256"],
-                "model": replay["model"], "raw_model_preference": replay["raw_model_preference"],
+                "model": replay["model"],
+                "model_with_recorded_candidates": replay["model_with_recorded_candidates"],
+                "raw_model_preference": replay["raw_model_preference"],
                 "brier_multiclass": replay["brier_multiclass"],
             }
+        report["tree"]["diagnostics"] = tree["tree_diagnostics"]
         write_new(stage / "report.json", report)
         if os.path.lexists(output):
             raise FileExistsError(f"output already exists: {output}")

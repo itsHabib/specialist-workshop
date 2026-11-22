@@ -4,7 +4,7 @@ import sys
 import unittest
 
 from decision_workshop.tree import fit, predict_counts
-from decision_workshop.core import train
+from decision_workshop.core import digest, predict, train
 
 
 def records(feature, pairs):
@@ -12,13 +12,48 @@ def records(feature, pairs):
 
 
 class TreeTests(unittest.TestCase):
-    def test_balanced_ties_are_opt_in_and_preserve_the_default_digest(self):
+    def test_text_only_training_reports_a_single_leaf(self):
+        task = {"name": "routing", "version": "1", "labels": ["A", "B"], "features": {"context": "text"}}
+        rows = [
+            dict(id=str(i), group=str(i), split="train", state={"context": context},
+                 target=label, candidates=task["labels"])
+            for i, (context, label) in enumerate([("route to A", "A"), ("send to A", "A"), ("route to B", "B")])
+        ]
+        with self.assertWarnsRegex(UserWarning, "no structured fields") as emitted:
+            model = train(task, rows, min_leaf=1)
+        diagnostics = model["tree_diagnostics"]
+        self.assertEqual([str(w.message) for w in emitted.warnings], diagnostics["warnings"])
+        self.assertIn("3 of 3 training rows", diagnostics["warnings"][1])
+        self.assertEqual(diagnostics["split_features"], [])
+        unseen = predict(model, {"context": "send to B"}, task["labels"], min_score=0.0)
+        self.assertEqual(unseen["leaf_counts"], {"A": 2, "B": 1})
+
+    def test_reports_only_features_that_split_and_counts_unique_text_over_training_rows(self):
+        task = {"name": "xor", "version": "1", "labels": ["same", "different"],
+                "features": {"a": "boolean", "b": "boolean", "constant": "number",
+                             "notes": "text", "half_unique": "text"}}
+        rows = []
+        for i, (a, b) in enumerate([(True, True), (False, True), (False, False), (True, False)]):
+            rows.append(dict(id=str(i), group=str(i), split="train", candidates=task["labels"],
+                             target="same" if a == b else "different",
+                             state={"a": a, "b": b, "constant": 1, "notes": str(i),
+                                    "half_unique": str(i) if i < 2 else "repeated"}))
+        # Duplicate each training text on dev. A diagnostic using both splits would miss the warning.
+        dev = [{**row, "id": "dev-" + row["id"], "group": "dev", "split": "dev"} for row in rows]
+        with self.assertWarnsRegex(UserWarning, "'notes'.*4 of 4 training rows"):
+            model = train(task, rows + dev, min_leaf=1)
+        self.assertEqual(model["tree_diagnostics"]["split_features"], ["a", "b"])
+        self.assertEqual(len(model["tree_diagnostics"]["warnings"]), 1)
+
+    def test_balanced_ties_are_opt_in_and_preserve_the_original_fit(self):
         labels = list("abcd")
         task = {"name": "ordered", "version": "1", "labels": labels, "features": {"x": "number"}}
         rows = [dict(id=str(i), group=str(i), split="train", state={"x": i}, target=labels[i // 2],
                      candidates=labels) for i in range(8)]
         original = train(task, rows, max_depth=1)
-        self.assertEqual(original["sha256"], "d64a6938f7d323091b9b29d927a97ca5602c5f03416eb9f8f834ec70ca50bf08")
+        legacy_fields = ("algorithm", "format", "task", "settings", "training", "tree")
+        self.assertEqual(digest({k: original[k] for k in legacy_fields}),
+                         "d64a6938f7d323091b9b29d927a97ca5602c5f03416eb9f8f834ec70ca50bf08")
         self.assertEqual(train(task, rows, max_depth=1, balanced_ties=False), original)
         self.assertEqual(original["tree"]["value"], 1.5)
         balanced = train(task, rows, max_depth=1, balanced_ties=True)

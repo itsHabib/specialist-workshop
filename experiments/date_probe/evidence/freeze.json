@@ -1,0 +1,51 @@
+{
+  "code": {
+    "experiments/date_probe/PROTOCOL.md": "941903383e3073b73f98f028e999da03be36f22b0f50942c747279c2699e75c4",
+    "experiments/date_probe/host.py": "bb98bd27dbc54de32b458239c1e5328d9b75085545ed7949d9e7d0d7a0663f5b",
+    "experiments/date_probe/learn.py": "c88cd631c48035c7618eaf393696c6a2c3b1accf12105260b0895517999ec85f",
+    "experiments/date_probe/policy.py": "a8e51cfebbb9c4be46e1d9a67a32d0d9af4236da5232fccb707297327a14d247",
+    "experiments/date_probe/run.py": "d9f1041ac8b14b92ea02c9f2215264e6ea8ed72d7fc2209d35fc3dacafbf6207",
+    "decision_workshop/__init__.py": "9d427f17e7dfadd6b04c881f33a0f9da8e0adc2ef6ffec3d2e180693cfc5d4b0",
+    "decision_workshop/__main__.py": "d1857ee4a980931886f20d12e1a1f0fcf4373b032967a3ca54df2d15ac11c265",
+    "decision_workshop/base.py": "bfabe5f1dec838ecfb0e6b46af8282a3888a6e3c4006dd0749b9a3461e32e6d8",
+    "decision_workshop/bert.py": "7c622f7cfc3c591a9f81b396b00501493523574591344443293c9f755603f79d",
+    "decision_workshop/checkpoint.py": "bbd6e7d2ef120be33bae5987b7ef47a7e8c63581578fcb1e6297c175652ab3ed",
+    "decision_workshop/clef_mlx_replay.py": "3ba98221ae8a11fa607cdea5c28cc018f95e2a55d204fd9deb5fd4d88846348c",
+    "decision_workshop/clef_reference.py": "5919bde1d296e8014ac4df3886c17b64c4ed98587bb89f1f51ba4e72ce421f14",
+    "decision_workshop/contracts.py": "4da33bb0c7fa9dd77351d6ee1adbef711e194a6195a0d1b3e04dbcf2601a677d",
+    "decision_workshop/core.py": "1280115f13b4911459fbe4814cfdc514cbcac7e252d7c3d9bd4883819def5df0",
+    "decision_workshop/evaluation.py": "76b6053c33fa8ddddf3715f6d8696bd6932160776e930a1e50355ac9c8db3d70",
+    "decision_workshop/importer.py": "2715b34a0bf89261902a013c0746faf46a6f6786ceebed20eb1766c38de75035",
+    "decision_workshop/maker.py": "7fa1fb9d8d1a06d249dbac026142f104d435b40b2fbb8b21b617218640c4a5bc",
+    "decision_workshop/outcomes.py": "62c34e5801f432969114a676f285d84ca9ce7235184566d5a3d6c1397778873a",
+    "decision_workshop/policy.py": "87a0c4c2c1244ad8e13282100760f9ea115e0ee9efe41083b4fc4f86b04f748c",
+    "decision_workshop/scaffold.py": "78e381b30b14020f09efb76ebd099220d34e86686ba28c3b1e2b2d4baf541b15",
+    "decision_workshop/sequence.py": "31637139b2964ddbda08779a9f87186123661f5712816b99bd227ffd0238e682",
+    "decision_workshop/steering.py": "ccf68e464d3a13e8a6d5dd5c6544f75689cbbfbba6e2fa7577c7056b7d973bfa",
+    "decision_workshop/tree.py": "abd4a1a685e8b1e4c56c33957653bb02fd99bd2faceace4c81a4b189c3831120"
+  },
+  "fits_sha256": "d1b55d215d4f154d1eb50d6900c23ed5b7cfbdb8020720ab8b6e037a27d78202",
+  "budgets": [
+    1,
+    2,
+    3
+  ],
+  "policies": [
+    "none",
+    "largest",
+    "empirical_fixed",
+    "empirical_adaptive",
+    "empirical_lookahead",
+    "tree_fixed",
+    "tree_adaptive",
+    "bert_fixed",
+    "bert_adaptive",
+    "oracle"
+  ],
+  "python": "3.14.6",
+  "packages": {
+    "torch": "2.10.0",
+    "transformers": "4.57.6",
+    "safetensors": "0.7.0"
+  }
+}

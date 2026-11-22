@@ -67,3 +67,5 @@ The diagnostic release experiment already records decisions and realized cost. T
 python -m experiments.decision_limits.sequence_replay
 python -m experiments.decision_limits.sequence_replay --tree .state/limits-release/run/tree.json
 ```
+
+The tree replay uses the checkpoint’s stored cutoff. To reproduce the original experiment with a checkpoint that predates stored cutoffs, append `--min-score 0`.

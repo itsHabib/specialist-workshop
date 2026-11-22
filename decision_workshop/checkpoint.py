@@ -7,7 +7,7 @@ import tempfile
 
 from .base import FILE_HASHES, MODEL_ID, REVISION, verify_base
 from .contracts import read_json, validate_task
-from .core import digest, training_rows, training_summary, write_new
+from .core import digest, training_rows, training_summary, validate_min_score, write_new
 
 FORMAT = "decision-workshop/bert-choices-v1"
 
@@ -23,7 +23,8 @@ def _files(folder):
     return hashes
 
 
-def train_bert(task, rows, base, output, *, epochs, seed, batch_size, learning_rate):
+def train_bert(task, rows, base, output, *, epochs, seed, batch_size, learning_rate, min_score=0.0):
+    validate_min_score(min_score)
     from .bert import fit_bert
 
     output = Path(output)
@@ -38,7 +39,7 @@ def train_bert(task, rows, base, output, *, epochs, seed, batch_size, learning_r
         stats = fit_bert(task, practice, base, stage, epochs=epochs, seed=seed,
                          batch_size=batch_size, learning_rate=learning_rate)
         model = {
-            "format": FORMAT, "algorithm": FORMAT, "task": task,
+            "format": FORMAT, "algorithm": FORMAT, "task": task, "min_score": min_score,
             "base": {"model": MODEL_ID, "revision": REVISION, "files": FILE_HASHES},
             "training": training_summary(task, practice),
             "optimization": stats,
@@ -67,6 +68,8 @@ def load_bert(folder):
     if not model.get("artifacts") or model["artifacts"] != _files(folder):
         raise ValueError("checkpoint files differ from recorded hashes")
     validate_task(model["task"])
+    if "min_score" in model:
+        validate_min_score(model["min_score"])
     from .bert import load_scorer
     model["_score"] = load_scorer(folder, model["task"])
     return model

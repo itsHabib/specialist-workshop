@@ -1,0 +1,3 @@
+{"run":"run-1","change":"change-A","partition":"train","stage":"setup","already_failing":false,"streak":1,"seconds":18,"reviewed_next_step":"inspect_runner","offered_steps":["inspect_runner","rerun_test"]}
+{"run":"run-2","change":"change-A","partition":"train","stage":"tests","already_failing":false,"streak":1,"seconds":117,"reviewed_next_step":"rerun_test"}
+{"run":"run-3","change":"change-B","partition":"dev","stage":"tests","already_failing":true,"streak":2,"seconds":140,"reviewed_next_step":"triage_existing_failure","offered_steps":[]}

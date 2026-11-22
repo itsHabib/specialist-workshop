@@ -33,7 +33,9 @@ def create_task(directory: Path, question: str, actions: list[str],
     descriptions = _assignments(actions, "--action", "ACTION=DESCRIPTION")
     if len(descriptions) < 2:
         raise ValueError("supply at least two --action ACTION=DESCRIPTION options")
-    features = _assignments(fields or [], "--field", "FIELD=TYPE") or {"context": "text"}
+    features = _assignments(fields or [], "--field", "FIELD=TYPE") or {
+        "context": "text", "case_type": "category",
+    }
     sample_values = {
         "text": "Replace this synthetic example with the facts available before the decision.",
         "category": "example_category", "number": 1, "boolean": False,

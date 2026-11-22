@@ -79,7 +79,8 @@ def rank_candidates(model, candidates, *, native_ties=False):
     distinct = {key: state for key, _, state in feature_order}
     scorer = model.get("_score")
     if scorer is None:
-        distributions = [predict(model, state, LABELS)["scores"] for state in distinct.values()]
+        # Ranking uses the raw distribution, including for checkpoints predating cutoffs.
+        distributions = [predict(model, state, LABELS, min_score=0.0)["scores"] for state in distinct.values()]
     else:
         distributions = scorer.score_many(list(distinct.values()))
     scores = {}

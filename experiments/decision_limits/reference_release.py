@@ -45,7 +45,7 @@ def evaluate(packet, receipt_path, out):
         if states[row_id] != state:
             raise ValueError(f"simulator state differs from recorded input on {row_id}")
         model = {**base, "_score": lambda _: scores[row_id]}
-        return predict(model, state, candidates)
+        return predict(model, state, candidates, min_score=0.0)
 
     result = {"receipt_sha256": receipt["sha256"], "cohorts": {}}
     for family in ("iid", "shift"):

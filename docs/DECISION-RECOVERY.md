@@ -52,7 +52,7 @@ The new feature recovered 16 jobs the original tree missed, and lost zero that i
 
 ## Reproduce locally
 
-Use Python 3.12 or newer. The tree benchmark and example caller use the standard library. Choose fresh directories for each run so you can compare versions.
+Use Python 3.12 or newer. The tree benchmark and example caller use the standard library. Choose fresh directories for each run so you can compare versions. The audit verifies source hashes from the benchmark protocol. To audit an archived run, use the source revision that produced it.
 
 ```sh
 python -m experiments.decision_recovery.benchmark --out .state/recovery-benchmark
@@ -64,4 +64,4 @@ python -m experiments.decision_recovery.demo
 python -m unittest discover -s tests/decisions -p 'test_recovery*.py'
 ```
 
-The demo loads the model once at startup. When a checkpoint is missing, unreadable or belongs to another task, it records the reason and uses the coded status-first policy. The four demonstration requests exercise all three timeouts and uninterrupted completion. A model that deliberately defers sends the job to review. [Example caller](../experiments/decision_recovery/demo.py)
+The demo loads the model and its cutoff once at startup. For a retained model from the original zero-cutoff experiment, add `--min-score 0` to the demo or the slack comparison. If a legacy model has no cutoff and the demo receives no override, the host uses its coded fallback. When a checkpoint is missing, unreadable or belongs to another task, it records the reason and uses the coded status-first policy. The four demonstration requests exercise all three timeouts and uninterrupted completion. A model that deliberately defers sends the job to review. [Example caller](../experiments/decision_recovery/demo.py)

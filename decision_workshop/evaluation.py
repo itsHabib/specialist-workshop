@@ -1,6 +1,6 @@
 """Compare replayed suggestions and recorded incumbents on the same held-out decisions."""
 
-from .core import digest, predict
+from .core import decision_min_score, digest, predict
 
 
 def tally(pairs):
@@ -48,12 +48,13 @@ def baseline_comparison(cases, policy):
     }
 
 
-def evaluate(model, records, split, *, min_score=0.0):
+def evaluate(model, records, split, *, min_score=None):
     if split not in ("dev", "test"):
         raise ValueError("evaluate a dev or test split")
     rows = sorted((row for row in records if row["split"] == split), key=lambda row: row["id"])
     if not rows:
         raise ValueError("no records for the requested split")
+    min_score = decision_min_score(model, min_score)
     training = model["training"]
     groups = set(training["group_hashes"])
     ids = set(training["id_hashes"])
@@ -87,9 +88,10 @@ def evaluate(model, records, split, *, min_score=0.0):
         "reference_in_candidates": len(selectable), "reference_missing": len(known) - len(selectable),
         "reference_in_candidates_rate": len(selectable) / len(known) if known else None,
         "preference_matches_before_candidate_check": raw["matched"],
-        "raw_model_preference": raw, "model": model_tally(known, "action"),
+        "raw_model_preference": raw, "model": model_tally(cases, "action"),
+        "model_with_recorded_candidates": model_tally(known, "action"),
         "model_when_reference_present": model_tally(selectable, "action"),
-        "train_majority": tally([(case["majority_action"], case["target"]) for case in known]),
+        "train_majority": tally([(case["majority_action"], case["target"]) for case in cases]),
         "recorded_baselines": {policy: baseline_comparison(cases, policy) for policy in policies},
         "cases": cases,
     }

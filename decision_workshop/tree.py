@@ -113,6 +113,30 @@ def fit(features: dict, rows: list, labels: list, *, max_depth=5, min_leaf=2, ba
     return grow(rows, 0)
 
 
+def feature_diagnostics(features, practice, tree):
+    """Describe the fitted splits and text limitations using training rows only."""
+    warnings = []
+    if not any(kind != "text" for kind in features.values()):
+        warnings.append("The tree has no structured fields. Every prediction uses the same training label counts. "
+                        "Add a number, category, or boolean field available at decision time.")
+    for feature, kind in sorted(features.items()):
+        if kind == "text":
+            counts = Counter(row["state"][feature] for row in practice)
+            singletons = sum(count == 1 for count in counts.values())
+            if singletons * 2 > len(practice):
+                warnings.append(f"Text field {feature!r} is mostly unique ({singletons} of {len(practice)} "
+                                "training rows contain a value seen only once). The tree ignores text fields.")
+
+    used = set()
+    nodes = [tree]
+    while nodes:
+        node = nodes.pop()
+        if "feature" in node:
+            used.add(node["feature"])
+            nodes.extend((node["left"], node["right"]))
+    return {"split_features": sorted(used), "warnings": warnings}
+
+
 def predict_counts(tree: dict, state: dict) -> dict:
     """Return the unsmoothed label counts at the leaf reached by state."""
     node = tree

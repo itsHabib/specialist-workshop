@@ -20,13 +20,13 @@ An engineer should be able to give a fresh agent the toolkit and a separate appl
 
 [Model guide](DECISION-MAKER.md) · [Cold adoption evidence](DECISION-ADOPTION.md) · [Recovery comparison](DECISION-RECOVERY.md) · [Limits under shift](DECISION-LIMITS.md)
 
-### Three gaps that can change a decision today
+### Three adoption gaps found in replay
 
-These observations were reproduced on implementation revision `f25be5f`.
+These observations were reproduced on implementation revision `f25be5f`. For the current behavior, see the [maker guide](DECISION-MAKER.md) and the [two-job restart regression](../tests/decisions/test_adoption_restart.py).
 
 1. **A job can disappear from headline coverage.** With two labeled held-out jobs, one correct suggestion and one unrecorded candidate list, the top-level evaluator counted two jobs. Its `model` section counted one, reported zero reviews and showed 100% coverage. To an operator there were two jobs and one suggestion, or 50% coverage. Preserve the conditional statistic and show its denominator alongside the total and the actual fallback result. [Evaluator](../decision_workshop/evaluation.py)
-2. **A reloaded checkpoint can make a different operational decision.** A tree with two votes for action A and one for B produced a review at a cutoff of 0.8. Calling the reloaded checkpoint with the default cutoff of zero produced a suggestion on the same request. The final-test and integration examples currently rely on the caller to carry the development setting forward. Treat the threshold and fallback as part of the deployed policy. [Runtime](../decision_workshop/core.py) · [Integration examples](DECISION-MAKER.md)
-3. **The default starter can silently teach a tree only the majority action.** The scaffold starts with one text field. The tree consumes structured features and ignores text. Training on three cases whose text explicitly identified A, A and B produced the same A preference on both input strings. A tree-first handoff needs a structured example and a way for the adopter to see which features the learner consumed. A candidate ranker also needs an explicit host tie and fallback policy. [Task scaffold](../decision_workshop/scaffold.py) · [Tree training](../decision_workshop/core.py) · [Ranker](../decision_workshop/steering.py)
+2. **A reloaded checkpoint can make a different operational decision.** A tree with two votes for action A and one for B produced a review at a cutoff of 0.8. Calling the reloaded checkpoint with the default cutoff of zero produced a suggestion on the same request. The final-test and integration examples relied on the caller to carry the development setting forward. Treat the threshold and fallback as part of the deployed policy. [Runtime](../decision_workshop/core.py) · [Integration examples](DECISION-MAKER.md)
+3. **The default starter can silently teach a tree only the majority action.** The scaffold started with one text field. The tree consumes structured features and ignores text. Training on three cases whose text explicitly identified A, A and B produced the same A preference on both input strings. A tree-first handoff needs a structured example and a way for the adopter to see which features the learner consumed. A candidate ranker also needs an explicit host tie and fallback policy. [Task scaffold](../decision_workshop/scaffold.py) · [Tree training](../decision_workshop/core.py) · [Ranker](../decision_workshop/steering.py)
 
 ### Next work, in dependency order
 

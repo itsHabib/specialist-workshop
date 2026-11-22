@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from decision_workshop import load_model, predict
+from decision_workshop.core import decision_min_score
 from decision_workshop.maker import make
 from .release import TASK, episodes, incumbent, oracle, records, rollout, summarize
 
@@ -18,9 +19,11 @@ def generate(root):
             print(json.dumps(row), file=f)
 
 
-def learned(model):
+def learned(model, *, min_score=None):
+    cutoff = decision_min_score(model, min_score)
+
     def policy(row_id, state, candidates):
-        return predict(model, state, candidates)
+        return predict(model, state, candidates, min_score=cutoff)
     return policy
 
 

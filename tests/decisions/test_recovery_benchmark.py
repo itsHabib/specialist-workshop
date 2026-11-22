@@ -1,9 +1,35 @@
+from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
 
+from decision_workshop.core import digest, train, write_new
 from experiments.decision_recovery import benchmark as bench
+from experiments.decision_recovery.demo import startup
 
 
 class RecoveryBenchmarkTests(unittest.TestCase):
+    def test_demo_checks_cutoff_before_dispatch_and_can_replay_an_old_checkpoint(self):
+        state = {name: "unknown" if kind == "category" else 1 for name, kind in bench.TASK["features"].items()}
+        rows = [dict(id=str(i), group=str(i), split="train", state=state, target=label, candidates=bench.ACTIONS)
+                for i, label in enumerate(["lookup", "lookup", "retry"])]
+        model = train(bench.TASK, rows, min_score=0.8)
+        with TemporaryDirectory() as folder:
+            path = Path(folder) / "new.json"
+            write_new(path, model)
+            policy, identity = startup(path)
+            self.assertEqual(identity["min_score"], 0.8)
+            self.assertEqual(policy(state, bench.ACTIONS)["reasons"], ["below_min_score"])
+
+            old = {k: v for k, v in model.items() if k not in ("min_score", "sha256", "tree_diagnostics")}
+            legacy = Path(folder) / "legacy.json"
+            write_new(legacy, {**old, "sha256": digest(old)})
+            policy, identity = startup(legacy)
+            self.assertEqual(identity["reason"], "model_cutoff_error")
+            self.assertIs(policy, bench.status_first)
+            policy, identity = startup(legacy, min_score=0)
+            self.assertEqual(identity["min_score"], 0)
+            self.assertEqual(policy(state, bench.ACTIONS)["action"], "lookup")
+
     def test_free_shift_and_seeded_families_preserve_the_work(self):
         ordinary = list(bench.worlds("test"))
         for cohort in ("shift", "free"):

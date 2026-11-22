@@ -1,0 +1,15 @@
+{
+  "metric": "verified_within_deadline",
+  "direction": "higher",
+  "arrivals": ["run-17", "run-18", "run-19"],
+  "baseline": [
+    {"id": "run-17", "source": "native", "executed": "rerun_test", "value": 0},
+    {"id": "run-18", "source": "native", "executed": "inspect_runner", "value": 1}
+  ],
+  "candidate": [
+    {"id": "run-17", "source": "policy", "proposed": "investigate_change",
+     "executed": "investigate_change", "value": 1},
+    {"id": "run-18", "source": "fallback", "proposed": null,
+     "executed": "inspect_runner", "fallback_reason": "below_min_score", "value": 1}
+  ]
+}

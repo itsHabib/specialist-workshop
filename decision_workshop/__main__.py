@@ -59,6 +59,9 @@ def main():
     evaluator.add_argument("--data", type=Path, required=True)
     evaluator.add_argument("--split", choices=("dev", "test"), default="dev")
     evaluator.add_argument("--report", type=Path, help="new JSON file including per-case decisions")
+    host = commands.add_parser("compare-host", help="compare verified host outcomes on declared arrivals")
+    host.add_argument("--input", type=Path, required=True, help="arrival IDs, paired receipts, metric and direction")
+    host.add_argument("--report", type=Path, required=True, help="new JSON file including per-arrival outcomes")
     predictor = commands.add_parser("predict", help="score one request")
     predictor.add_argument("--model", type=Path, required=True)
     predictor.add_argument("--input", type=Path, required=True, help="JSON with state and candidates")
@@ -103,6 +106,16 @@ def main():
             report = evaluate(model, records, args.split, min_score=args.min_score)
             if args.report:
                 write_new(args.report, report)
+            output = {key: value for key, value in report.items() if key != "cases"}
+        elif args.command == "compare-host":
+            from .outcomes import compare_host_outcomes
+            bundle = read_json(args.input)
+            if not isinstance(bundle, dict) or set(bundle) != {"arrivals", "baseline", "candidate", "metric", "direction"}:
+                raise ValueError("host comparison requires arrivals, baseline, candidate, metric and direction")
+            if not all(isinstance(bundle[field], list) for field in ("arrivals", "baseline", "candidate")):
+                raise ValueError("arrivals, baseline and candidate must be arrays")
+            report = compare_host_outcomes(**bundle)
+            write_new(args.report, report)
             output = {key: value for key, value in report.items() if key != "cases"}
         else:
             model = load_model(args.model)

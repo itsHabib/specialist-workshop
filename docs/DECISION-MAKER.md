@@ -120,6 +120,24 @@ Dispatch the suggested action when `decision["status"] == "suggest"`. On review,
 
 For a variable list of candidates, save with `kind="ranking"` and use `policy.rank(candidates)`. Equal scores retain the supplied order. The Click trial includes a pytest collection adapter that keeps newly seen tests in their original slots and records fallback on an incompatible artifact. [Host adapter](../experiments/steering/pytest_history.py) · [Real test-history trial](DECISION-TEST-HISTORY.md)
 
+## Measure what the application delivered
+
+Start with an arrival ID from the application, before either decision path runs. On a replay, give the incumbent and candidate the same request, starting state, budget and verifier. Record the suggestion at the decision point, the action at the executor and the result at the verifier. An application that runs only one path on a request has an unobserved outcome for the other path.
+
+Use `compare-host` offline with those records. The included example uses three illustrative arrivals. One changed action meets the deadline, one referral uses the incumbent fallback successfully, and neither path has a receipt for the third arrival.
+
+```sh
+python3 -m decision_workshop compare-host \
+  --input examples/decisions/software/host-comparison.json \
+  --report .state/host-comparison.json
+```
+
+The input declares `arrivals`, `baseline`, `candidate`, a named `metric` and the direction of improvement (`higher` or `lower`). Each available receipt has its arrival `id`. For a binary endpoint, record `value: 1` for a verified success and `value: 0` for a verified miss. Leave the value unknown if the verifier never observed the result. Use `elapsed_seconds` only with a common start point and endpoint on both paths.
+
+For fixed actions, `proposed` and `executed` are action IDs. For rankings, supply the proposed order and the prefix that actually started by the first failure or deadline. Omit a proposal that was never observed. An explicit null proposal records a referral. Set `source` to `fallback` and record the reason when the executor uses its fallback. Comparing executed prefixes prevents changes in an unexecuted tail from appearing as changes to delivered behavior.
+
+The example reports three arrivals, two paired outcomes, one improvement and one unchanged outcome. The overall mean remains unknown. The per-case records and `summary.by_dispatch` distinguish changed actions that helped, changed actions that hurt, and identical actions with different observed results. The comparison is also available from Python as `decision_workshop.outcomes.compare_host_outcomes`. [Example input](../examples/decisions/software/host-comparison.json) · [Evaluator](../decision_workshop/outcomes.py)
+
 ## Compare with Cloudflare Clef-Flash
 
 The optional comparison runs a 4-bit Apple MLX conversion of Cloudflare's 9B Clef-Flash. It scores every action from the same question and state that the maker sees. The comparison applies the same availability and review rules to all three models. Clef-Flash uses the Qwen3.5-9B backbone. The maker's Google and tree training paths run independently of it. [Cloudflare model card](https://huggingface.co/Cloudflare/clef-flash) · [Pinned MLX conversion and hardware requirements](https://huggingface.co/mlx-community/clef-flash-4bit/tree/b5adbe2c3a95200d4bf04a0727c8ec457157d5e1)

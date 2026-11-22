@@ -26,6 +26,8 @@ Open `.state/ci-run/report.json` to compare the fine-tuned Google BERT model wit
 
 For structured inputs, a fresh checkout can train a tree offline with standard Python. Ship the trained tree, its decision settings and the runtime with your application. [Train and deploy the tree](docs/DECISION-MAKER.md#ship-a-trained-tree-with-its-decision-settings)
 
+To decide whether to use the model, compare what the incumbent and candidate actually did on the same arrivals. The offline report counts fallback, harm and missing evidence alongside improvements. [Compare verified host outcomes](docs/DECISION-MAKER.md#measure-what-the-application-delivered)
+
 For a decision that takes several steps, supply a local operation, replay its available actions and grade the result the caller received. [Train from verified outcomes](docs/DECISION-SEQUENCES.md)
 
 ## Start locally

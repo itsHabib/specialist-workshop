@@ -51,11 +51,17 @@ _FUNCTIONS = (ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda)
 _COMPREHENSIONS = (ast.ListComp, ast.SetComp, ast.DictComp, ast.GeneratorExp)
 
 
-def _scope_nodes(nodes):
+def _scope_nodes(nodes, *, comprehension=False):
     for node in nodes:
-        yield node
-        if not isinstance(node, (*_FUNCTIONS, *_COMPREHENSIONS, ast.ClassDef)):
-            yield from _scope_nodes(ast.iter_child_nodes(node))
+        if comprehension:
+            # Assignment expressions escape a comprehension into its enclosing scope.
+            if isinstance(node, ast.NamedExpr):
+                yield node.target
+        else:
+            yield node
+        if not isinstance(node, (*_FUNCTIONS, ast.ClassDef)):
+            yield from _scope_nodes(ast.iter_child_nodes(node),
+                                    comprehension=comprehension or isinstance(node, _COMPREHENSIONS))
 
 
 def _dependencies(node, bindings, package):

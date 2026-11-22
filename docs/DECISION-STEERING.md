@@ -1,5 +1,8 @@
 # Steering deterministic programs
 
+The measurements below were recorded before the scoring and Python scope fixes, with results available at commit `c7fd312`.
+
+
 A program supplies its current candidates and a numeric feature vector for each. The ranker scores the candidates and returns their handles in priority order. The program owns legality, execution, success checks and its search budget. This interface can rank candidates that have never appeared in training.
 
 ## Use the ranker from code

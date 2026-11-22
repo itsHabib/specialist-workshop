@@ -30,6 +30,8 @@ To decide whether to use the model, compare what the incumbent and candidate act
 
 For a decision that takes several steps, supply a local operation, replay its available actions and grade the result the caller received. [Train from verified outcomes](docs/DECISION-SEQUENCES.md)
 
+To train two specialists together, try the CSV import experiment. Swapping the first model improved 50 first attempts. Final successes stayed at 193 of 256 until the second model learned from the new failures or saw better diagnostics. The public example compares tree, Google BERT and coded handlers, with a standard-library audit you can run before downloading weights. [Train and compare a two-stage decision pipeline](experiments/import_recovery/README.md)
+
 ## Start locally
 
 Python 3.12+ is enough to explore packages and deterministic controls. **The web app’s MLX backend requires Apple Silicon for model inference and training.** No API key is needed for the local path. First model use downloads pinned weights from Hugging Face: about 2.5 GB for task packages.

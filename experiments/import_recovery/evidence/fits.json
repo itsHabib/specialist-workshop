@@ -1,0 +1,1359 @@
+{
+  "recipe": {
+    "epochs": 4,
+    "batch_size": 16,
+    "learning_rate": 0.0003
+  },
+  "seeds": {
+    "17": {
+      "routing": {
+        "tree": {
+          "checkpoint": "fits/17/route/tree.json",
+          "model_sha256": "14d308ea73e59961308b08b122fa06646f7e6d856b832e80b476c739ba34ef3b",
+          "records_sha256": "90cb9a821ba0cd15e7ab2105249d48ae8e89f82dcd8573b4df8f525a9c88f034",
+          "records": "fits/17/route/records.jsonl",
+          "rows": 128,
+          "label_counts": {
+            "comma": 64,
+            "semicolon": 64
+          }
+        },
+        "bert": {
+          "checkpoint": "fits/17/route/bert",
+          "model_sha256": "45bbb7ef96968dbb1143aaf0341fc7a31a188820df7bdf6c555665af285c573e",
+          "records_sha256": "90cb9a821ba0cd15e7ab2105249d48ae8e89f82dcd8573b4df8f525a9c88f034",
+          "records": "fits/17/route/records.jsonl",
+          "rows": 128,
+          "label_counts": {
+            "comma": 64,
+            "semicolon": 64
+          },
+          "base": "google/bert_uncased_L-2_H-128_A-2",
+          "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+          "optimizer_steps": 32,
+          "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+          "backbone_sha256_after": "1451fb894b666e288b35d666b34988613483965a8bbb287deb34fe926c10ea15",
+          "decision_head_sha256": "c1bb93a27e029172f78737c63a54c939249a95fe7289d320b6f858d9d333003d"
+        }
+      },
+      "matched_rows": 48,
+      "collection": {
+        "hint": {
+          "arrivals": 256,
+          "route_fallbacks": 0,
+          "first_status_counts": {
+            "ok": 144,
+            "shape_error": 54,
+            "decode_error": 51,
+            "value_error": 7
+          },
+          "outcome_counts": {
+            "exact_first": 144,
+            "no_fix": 25,
+            "unique_fix": 87
+          },
+          "eligible_label_counts": {
+            "switch_delimiter": 48,
+            "switch_encoding": 39
+          },
+          "selected_ids": [
+            "collect-22058",
+            "collect-22247",
+            "collect-22014",
+            "collect-22047",
+            "collect-22096",
+            "collect-22054",
+            "collect-22124",
+            "collect-22071",
+            "collect-22228",
+            "collect-22121",
+            "collect-22244",
+            "collect-22189",
+            "collect-22008",
+            "collect-22027",
+            "collect-22002",
+            "collect-22075",
+            "collect-22197",
+            "collect-22055",
+            "collect-22182",
+            "collect-22004",
+            "collect-22018",
+            "collect-22099",
+            "collect-22195",
+            "collect-22184",
+            "collect-22171",
+            "collect-22170",
+            "collect-22232",
+            "collect-22006",
+            "collect-22191",
+            "collect-22037",
+            "collect-22111",
+            "collect-22237",
+            "collect-22056",
+            "collect-22097",
+            "collect-22105",
+            "collect-22254",
+            "collect-22220",
+            "collect-22165",
+            "collect-22224",
+            "collect-22231",
+            "collect-22208",
+            "collect-22116",
+            "collect-22000",
+            "collect-22138",
+            "collect-22248",
+            "collect-22029",
+            "collect-22049",
+            "collect-22157"
+          ],
+          "selected_status_counts": {
+            "shape_error": 30,
+            "decode_error": 18
+          },
+          "selected_label_counts": {
+            "switch_delimiter": 30,
+            "switch_encoding": 18
+          }
+        },
+        "tree": {
+          "arrivals": 256,
+          "route_fallbacks": 0,
+          "first_status_counts": {
+            "ok": 192,
+            "value_error": 13,
+            "decode_error": 51
+          },
+          "outcome_counts": {
+            "exact_first": 192,
+            "no_fix": 16,
+            "unique_fix": 48
+          },
+          "eligible_label_counts": {
+            "switch_encoding": 48
+          },
+          "selected_ids": [
+            "collect-22014",
+            "collect-22047",
+            "collect-22096",
+            "collect-22121",
+            "collect-22162",
+            "collect-22189",
+            "collect-22008",
+            "collect-22015",
+            "collect-22055",
+            "collect-22099",
+            "collect-22110",
+            "collect-22232",
+            "collect-22137",
+            "collect-22191",
+            "collect-22111",
+            "collect-22215",
+            "collect-22097",
+            "collect-22220",
+            "collect-22153",
+            "collect-22231",
+            "collect-22208",
+            "collect-22138",
+            "collect-22086",
+            "collect-22049",
+            "collect-22157",
+            "collect-22072",
+            "collect-22112",
+            "collect-22125",
+            "collect-22211",
+            "collect-22240",
+            "collect-22059",
+            "collect-22241",
+            "collect-22012",
+            "collect-22236",
+            "collect-22089",
+            "collect-22070",
+            "collect-22142",
+            "collect-22181",
+            "collect-22133",
+            "collect-22065",
+            "collect-22057",
+            "collect-22046",
+            "collect-22255",
+            "collect-22202",
+            "collect-22064",
+            "collect-22003",
+            "collect-22190",
+            "collect-22092"
+          ],
+          "selected_status_counts": {
+            "decode_error": 48
+          },
+          "selected_label_counts": {
+            "switch_encoding": 48
+          }
+        },
+        "bert": {
+          "arrivals": 256,
+          "route_fallbacks": 0,
+          "first_status_counts": {
+            "ok": 144,
+            "shape_error": 54,
+            "decode_error": 51,
+            "value_error": 7
+          },
+          "outcome_counts": {
+            "exact_first": 144,
+            "no_fix": 25,
+            "unique_fix": 87
+          },
+          "eligible_label_counts": {
+            "switch_delimiter": 48,
+            "switch_encoding": 39
+          },
+          "selected_ids": [
+            "collect-22058",
+            "collect-22247",
+            "collect-22014",
+            "collect-22047",
+            "collect-22096",
+            "collect-22054",
+            "collect-22124",
+            "collect-22071",
+            "collect-22228",
+            "collect-22121",
+            "collect-22244",
+            "collect-22189",
+            "collect-22008",
+            "collect-22027",
+            "collect-22002",
+            "collect-22075",
+            "collect-22197",
+            "collect-22055",
+            "collect-22182",
+            "collect-22004",
+            "collect-22018",
+            "collect-22099",
+            "collect-22195",
+            "collect-22184",
+            "collect-22171",
+            "collect-22170",
+            "collect-22232",
+            "collect-22006",
+            "collect-22191",
+            "collect-22037",
+            "collect-22111",
+            "collect-22237",
+            "collect-22056",
+            "collect-22097",
+            "collect-22105",
+            "collect-22254",
+            "collect-22220",
+            "collect-22165",
+            "collect-22224",
+            "collect-22231",
+            "collect-22208",
+            "collect-22116",
+            "collect-22000",
+            "collect-22138",
+            "collect-22248",
+            "collect-22029",
+            "collect-22049",
+            "collect-22157"
+          ],
+          "selected_status_counts": {
+            "shape_error": 30,
+            "decode_error": 18
+          },
+          "selected_label_counts": {
+            "switch_delimiter": 30,
+            "switch_encoding": 18
+          }
+        }
+      },
+      "recovery": {
+        "hint": {
+          "coarse": {
+            "tree": {
+              "checkpoint": "fits/17/hint/coarse/tree.json",
+              "model_sha256": "9ae2bce70970c46693513c75bf8de15b281e7af93b95eb72b96df10ea85c5ddd",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/17/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/17/hint/coarse/bert",
+              "model_sha256": "7345f31c7a77eedfebfa29f00907c71e669be08bfaa3225cfa04b6c9ed2ecd76",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/17/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "ddbea0967367835a4387c952fd5e6c4b36d7407b19aa959a6ee0b149ac2e2c54",
+              "decision_head_sha256": "7190a20c3e18bc55448e12574e6fdebf6df181e959b05aa3acd2c0ddad2d94a7"
+            }
+          },
+          "diagnostic": {
+            "tree": {
+              "checkpoint": "fits/17/hint/diagnostic/tree.json",
+              "model_sha256": "50ad85f9bba825cb466cee21859385e31d078522906dddc19f22c63f83085ab9",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/17/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/17/hint/diagnostic/bert",
+              "model_sha256": "45ecced24ad9f7c91bedab946fd7976ffa8c3d65e9c9f60047eb6b18c9d6ec08",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/17/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "6a4bd7929d3131f508efe36541f9b1d383b5ac22972571e5bdd2117f33a03347",
+              "decision_head_sha256": "f56ac5cd876330248d7d5776fef6dbd7a6595ffa5653d23a53ca80326ea36f54"
+            }
+          }
+        },
+        "tree": {
+          "coarse": {
+            "tree": {
+              "checkpoint": "fits/17/tree/coarse/tree.json",
+              "model_sha256": "48d08ef8c18314569eb0c6034b12d207720a6d71a36ebd42ee4b1c46f624fb92",
+              "records_sha256": "de8761c4da2627050ae06559bd75bab486a8305486d33e57b4d2866b0494fb39",
+              "records": "fits/17/tree/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/17/tree/coarse/bert",
+              "model_sha256": "0eda4057c9cee61ea05e8d1630f189f11cdcbe14f94180786df99147efd1db3a",
+              "records_sha256": "de8761c4da2627050ae06559bd75bab486a8305486d33e57b4d2866b0494fb39",
+              "records": "fits/17/tree/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "0e4df4cce6882cf8bb8e19c52d10c10278cfa0fb898e2d0583f5ab7c03428d31",
+              "decision_head_sha256": "07c9cbfc18b8be1d21bbb372fb7743c56643ea982bc27b90fec63b38c5f49f29"
+            }
+          },
+          "diagnostic": {
+            "tree": {
+              "checkpoint": "fits/17/tree/diagnostic/tree.json",
+              "model_sha256": "d9085a935e8dfb414445a6ed03033ae0b09b3278b5d709358ab8f1978232a409",
+              "records_sha256": "a94de79ec7388fe0d2bf602562785256d267f17427243f7ee589104ca1f58fd5",
+              "records": "fits/17/tree/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/17/tree/diagnostic/bert",
+              "model_sha256": "503586a94e1513c39ec6495a687f09c3e9ac36dd79d15caf1e52adafc9bd1169",
+              "records_sha256": "a94de79ec7388fe0d2bf602562785256d267f17427243f7ee589104ca1f58fd5",
+              "records": "fits/17/tree/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "5ad15514a796ed6e931f8f13bb97b211b38eb7c95161a83347844f12dc83001b",
+              "decision_head_sha256": "333d66e5fe7d53805b98c5d8cefa636b90724552e22446d119a0589bf06078e6"
+            }
+          }
+        },
+        "bert": {
+          "coarse": {
+            "tree": {
+              "checkpoint": "fits/17/hint/coarse/tree.json",
+              "model_sha256": "9ae2bce70970c46693513c75bf8de15b281e7af93b95eb72b96df10ea85c5ddd",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/17/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/17/hint/coarse/bert",
+              "model_sha256": "7345f31c7a77eedfebfa29f00907c71e669be08bfaa3225cfa04b6c9ed2ecd76",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/17/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "ddbea0967367835a4387c952fd5e6c4b36d7407b19aa959a6ee0b149ac2e2c54",
+              "decision_head_sha256": "7190a20c3e18bc55448e12574e6fdebf6df181e959b05aa3acd2c0ddad2d94a7"
+            }
+          },
+          "diagnostic": {
+            "tree": {
+              "checkpoint": "fits/17/hint/diagnostic/tree.json",
+              "model_sha256": "50ad85f9bba825cb466cee21859385e31d078522906dddc19f22c63f83085ab9",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/17/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/17/hint/diagnostic/bert",
+              "model_sha256": "45ecced24ad9f7c91bedab946fd7976ffa8c3d65e9c9f60047eb6b18c9d6ec08",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/17/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "6a4bd7929d3131f508efe36541f9b1d383b5ac22972571e5bdd2117f33a03347",
+              "decision_head_sha256": "f56ac5cd876330248d7d5776fef6dbd7a6595ffa5653d23a53ca80326ea36f54"
+            }
+          }
+        }
+      }
+    },
+    "29": {
+      "routing": {
+        "tree": {
+          "checkpoint": "fits/29/route/tree.json",
+          "model_sha256": "14d308ea73e59961308b08b122fa06646f7e6d856b832e80b476c739ba34ef3b",
+          "records_sha256": "90cb9a821ba0cd15e7ab2105249d48ae8e89f82dcd8573b4df8f525a9c88f034",
+          "records": "fits/29/route/records.jsonl",
+          "rows": 128,
+          "label_counts": {
+            "comma": 64,
+            "semicolon": 64
+          }
+        },
+        "bert": {
+          "checkpoint": "fits/29/route/bert",
+          "model_sha256": "4248c13fe54031875ff5fbcd7c8e9d54fd46d41bf0407162224d5c6a0b0ade17",
+          "records_sha256": "90cb9a821ba0cd15e7ab2105249d48ae8e89f82dcd8573b4df8f525a9c88f034",
+          "records": "fits/29/route/records.jsonl",
+          "rows": 128,
+          "label_counts": {
+            "comma": 64,
+            "semicolon": 64
+          },
+          "base": "google/bert_uncased_L-2_H-128_A-2",
+          "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+          "optimizer_steps": 32,
+          "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+          "backbone_sha256_after": "52d21b8a63712aba04be5380cabd8cf29f79ec41eedfbc409bfdc6d8e0c15413",
+          "decision_head_sha256": "f9f88c1263cb22e4f88174ae26a32ba8d108f7e80223aa5ba62cd66126a86fe3"
+        }
+      },
+      "matched_rows": 48,
+      "collection": {
+        "hint": {
+          "arrivals": 256,
+          "route_fallbacks": 0,
+          "first_status_counts": {
+            "ok": 144,
+            "shape_error": 54,
+            "decode_error": 51,
+            "value_error": 7
+          },
+          "outcome_counts": {
+            "exact_first": 144,
+            "no_fix": 25,
+            "unique_fix": 87
+          },
+          "eligible_label_counts": {
+            "switch_delimiter": 48,
+            "switch_encoding": 39
+          },
+          "selected_ids": [
+            "collect-22058",
+            "collect-22247",
+            "collect-22014",
+            "collect-22047",
+            "collect-22096",
+            "collect-22054",
+            "collect-22124",
+            "collect-22071",
+            "collect-22228",
+            "collect-22121",
+            "collect-22244",
+            "collect-22189",
+            "collect-22008",
+            "collect-22027",
+            "collect-22002",
+            "collect-22075",
+            "collect-22197",
+            "collect-22055",
+            "collect-22182",
+            "collect-22004",
+            "collect-22018",
+            "collect-22099",
+            "collect-22195",
+            "collect-22184",
+            "collect-22171",
+            "collect-22170",
+            "collect-22232",
+            "collect-22006",
+            "collect-22191",
+            "collect-22037",
+            "collect-22111",
+            "collect-22237",
+            "collect-22056",
+            "collect-22097",
+            "collect-22105",
+            "collect-22254",
+            "collect-22220",
+            "collect-22165",
+            "collect-22224",
+            "collect-22231",
+            "collect-22208",
+            "collect-22116",
+            "collect-22000",
+            "collect-22138",
+            "collect-22248",
+            "collect-22029",
+            "collect-22049",
+            "collect-22157"
+          ],
+          "selected_status_counts": {
+            "shape_error": 30,
+            "decode_error": 18
+          },
+          "selected_label_counts": {
+            "switch_delimiter": 30,
+            "switch_encoding": 18
+          }
+        },
+        "tree": {
+          "arrivals": 256,
+          "route_fallbacks": 0,
+          "first_status_counts": {
+            "ok": 192,
+            "value_error": 13,
+            "decode_error": 51
+          },
+          "outcome_counts": {
+            "exact_first": 192,
+            "no_fix": 16,
+            "unique_fix": 48
+          },
+          "eligible_label_counts": {
+            "switch_encoding": 48
+          },
+          "selected_ids": [
+            "collect-22014",
+            "collect-22047",
+            "collect-22096",
+            "collect-22121",
+            "collect-22162",
+            "collect-22189",
+            "collect-22008",
+            "collect-22015",
+            "collect-22055",
+            "collect-22099",
+            "collect-22110",
+            "collect-22232",
+            "collect-22137",
+            "collect-22191",
+            "collect-22111",
+            "collect-22215",
+            "collect-22097",
+            "collect-22220",
+            "collect-22153",
+            "collect-22231",
+            "collect-22208",
+            "collect-22138",
+            "collect-22086",
+            "collect-22049",
+            "collect-22157",
+            "collect-22072",
+            "collect-22112",
+            "collect-22125",
+            "collect-22211",
+            "collect-22240",
+            "collect-22059",
+            "collect-22241",
+            "collect-22012",
+            "collect-22236",
+            "collect-22089",
+            "collect-22070",
+            "collect-22142",
+            "collect-22181",
+            "collect-22133",
+            "collect-22065",
+            "collect-22057",
+            "collect-22046",
+            "collect-22255",
+            "collect-22202",
+            "collect-22064",
+            "collect-22003",
+            "collect-22190",
+            "collect-22092"
+          ],
+          "selected_status_counts": {
+            "decode_error": 48
+          },
+          "selected_label_counts": {
+            "switch_encoding": 48
+          }
+        },
+        "bert": {
+          "arrivals": 256,
+          "route_fallbacks": 0,
+          "first_status_counts": {
+            "ok": 144,
+            "shape_error": 54,
+            "decode_error": 51,
+            "value_error": 7
+          },
+          "outcome_counts": {
+            "exact_first": 144,
+            "no_fix": 25,
+            "unique_fix": 87
+          },
+          "eligible_label_counts": {
+            "switch_delimiter": 48,
+            "switch_encoding": 39
+          },
+          "selected_ids": [
+            "collect-22058",
+            "collect-22247",
+            "collect-22014",
+            "collect-22047",
+            "collect-22096",
+            "collect-22054",
+            "collect-22124",
+            "collect-22071",
+            "collect-22228",
+            "collect-22121",
+            "collect-22244",
+            "collect-22189",
+            "collect-22008",
+            "collect-22027",
+            "collect-22002",
+            "collect-22075",
+            "collect-22197",
+            "collect-22055",
+            "collect-22182",
+            "collect-22004",
+            "collect-22018",
+            "collect-22099",
+            "collect-22195",
+            "collect-22184",
+            "collect-22171",
+            "collect-22170",
+            "collect-22232",
+            "collect-22006",
+            "collect-22191",
+            "collect-22037",
+            "collect-22111",
+            "collect-22237",
+            "collect-22056",
+            "collect-22097",
+            "collect-22105",
+            "collect-22254",
+            "collect-22220",
+            "collect-22165",
+            "collect-22224",
+            "collect-22231",
+            "collect-22208",
+            "collect-22116",
+            "collect-22000",
+            "collect-22138",
+            "collect-22248",
+            "collect-22029",
+            "collect-22049",
+            "collect-22157"
+          ],
+          "selected_status_counts": {
+            "shape_error": 30,
+            "decode_error": 18
+          },
+          "selected_label_counts": {
+            "switch_delimiter": 30,
+            "switch_encoding": 18
+          }
+        }
+      },
+      "recovery": {
+        "hint": {
+          "coarse": {
+            "tree": {
+              "checkpoint": "fits/29/hint/coarse/tree.json",
+              "model_sha256": "9ae2bce70970c46693513c75bf8de15b281e7af93b95eb72b96df10ea85c5ddd",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/29/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/29/hint/coarse/bert",
+              "model_sha256": "5c4ca4134fb9fb9ca916fa11db15e24a172812b773a06fbc924ae713314f6ef6",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/29/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "a5a0e4222091ee9b7226fb2a228f64bb0a60266063f90a8f0ccced851c52de9e",
+              "decision_head_sha256": "05c1badc70c41fa2435f68f76478dc947747e8f49016b287b071939a6f659273"
+            }
+          },
+          "diagnostic": {
+            "tree": {
+              "checkpoint": "fits/29/hint/diagnostic/tree.json",
+              "model_sha256": "50ad85f9bba825cb466cee21859385e31d078522906dddc19f22c63f83085ab9",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/29/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/29/hint/diagnostic/bert",
+              "model_sha256": "deaf74f007dd21da9a2fc701e46699ba32f988ba5c9ef4e1d3592fd08b306422",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/29/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "f9aa36de46666a64768b8f1eb01a56d63815079a15055cdb9dfd9f44f993e20f",
+              "decision_head_sha256": "7c06fff9794dbaefed6c99a4c3ff9e5a91bc6b3d5b57ca1d391c23d96b45d0b3"
+            }
+          }
+        },
+        "tree": {
+          "coarse": {
+            "tree": {
+              "checkpoint": "fits/29/tree/coarse/tree.json",
+              "model_sha256": "48d08ef8c18314569eb0c6034b12d207720a6d71a36ebd42ee4b1c46f624fb92",
+              "records_sha256": "de8761c4da2627050ae06559bd75bab486a8305486d33e57b4d2866b0494fb39",
+              "records": "fits/29/tree/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/29/tree/coarse/bert",
+              "model_sha256": "51befc7194917ee7f9b05ed76c2e97008c13ed4a9bd17182f330ebb644474dae",
+              "records_sha256": "de8761c4da2627050ae06559bd75bab486a8305486d33e57b4d2866b0494fb39",
+              "records": "fits/29/tree/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "53a1c9bcaa675adb9baf336e5e282998d3c10fb5bb832c7fa985159e34e7f021",
+              "decision_head_sha256": "564b405c2a50af39b6693782183e9833550924cad92fb0dcf28a950e3298d280"
+            }
+          },
+          "diagnostic": {
+            "tree": {
+              "checkpoint": "fits/29/tree/diagnostic/tree.json",
+              "model_sha256": "d9085a935e8dfb414445a6ed03033ae0b09b3278b5d709358ab8f1978232a409",
+              "records_sha256": "a94de79ec7388fe0d2bf602562785256d267f17427243f7ee589104ca1f58fd5",
+              "records": "fits/29/tree/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/29/tree/diagnostic/bert",
+              "model_sha256": "aef2eeb0c381365e398d02bd20e208f7de5d3460c70a2f969882e48254f5176f",
+              "records_sha256": "a94de79ec7388fe0d2bf602562785256d267f17427243f7ee589104ca1f58fd5",
+              "records": "fits/29/tree/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "2a0fa60bfbaf672c0c04da49bdc0b345c63a9a5a88c8b512fd7cbdd631d60f2e",
+              "decision_head_sha256": "c6a8371722fc53bc98e1b3990dec3e3012218ba9a96998d1755fd11939e1f7cb"
+            }
+          }
+        },
+        "bert": {
+          "coarse": {
+            "tree": {
+              "checkpoint": "fits/29/hint/coarse/tree.json",
+              "model_sha256": "9ae2bce70970c46693513c75bf8de15b281e7af93b95eb72b96df10ea85c5ddd",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/29/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/29/hint/coarse/bert",
+              "model_sha256": "5c4ca4134fb9fb9ca916fa11db15e24a172812b773a06fbc924ae713314f6ef6",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/29/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "a5a0e4222091ee9b7226fb2a228f64bb0a60266063f90a8f0ccced851c52de9e",
+              "decision_head_sha256": "05c1badc70c41fa2435f68f76478dc947747e8f49016b287b071939a6f659273"
+            }
+          },
+          "diagnostic": {
+            "tree": {
+              "checkpoint": "fits/29/hint/diagnostic/tree.json",
+              "model_sha256": "50ad85f9bba825cb466cee21859385e31d078522906dddc19f22c63f83085ab9",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/29/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/29/hint/diagnostic/bert",
+              "model_sha256": "deaf74f007dd21da9a2fc701e46699ba32f988ba5c9ef4e1d3592fd08b306422",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/29/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "f9aa36de46666a64768b8f1eb01a56d63815079a15055cdb9dfd9f44f993e20f",
+              "decision_head_sha256": "7c06fff9794dbaefed6c99a4c3ff9e5a91bc6b3d5b57ca1d391c23d96b45d0b3"
+            }
+          }
+        }
+      }
+    },
+    "43": {
+      "routing": {
+        "tree": {
+          "checkpoint": "fits/43/route/tree.json",
+          "model_sha256": "14d308ea73e59961308b08b122fa06646f7e6d856b832e80b476c739ba34ef3b",
+          "records_sha256": "90cb9a821ba0cd15e7ab2105249d48ae8e89f82dcd8573b4df8f525a9c88f034",
+          "records": "fits/43/route/records.jsonl",
+          "rows": 128,
+          "label_counts": {
+            "comma": 64,
+            "semicolon": 64
+          }
+        },
+        "bert": {
+          "checkpoint": "fits/43/route/bert",
+          "model_sha256": "81f0a2046dbe2893156e6ba1ce045badbe6c0fde908957e30d0c98502d14bf14",
+          "records_sha256": "90cb9a821ba0cd15e7ab2105249d48ae8e89f82dcd8573b4df8f525a9c88f034",
+          "records": "fits/43/route/records.jsonl",
+          "rows": 128,
+          "label_counts": {
+            "comma": 64,
+            "semicolon": 64
+          },
+          "base": "google/bert_uncased_L-2_H-128_A-2",
+          "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+          "optimizer_steps": 32,
+          "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+          "backbone_sha256_after": "b2cbadf687b778791c786b9ed64eb1249f8d84d816e549889d3844d308845390",
+          "decision_head_sha256": "4fbd75680abbb9ad72c59fc72dcec7d9daee2e98ef98f658c679494c7a6cb265"
+        }
+      },
+      "matched_rows": 48,
+      "collection": {
+        "hint": {
+          "arrivals": 256,
+          "route_fallbacks": 0,
+          "first_status_counts": {
+            "ok": 144,
+            "shape_error": 54,
+            "decode_error": 51,
+            "value_error": 7
+          },
+          "outcome_counts": {
+            "exact_first": 144,
+            "no_fix": 25,
+            "unique_fix": 87
+          },
+          "eligible_label_counts": {
+            "switch_delimiter": 48,
+            "switch_encoding": 39
+          },
+          "selected_ids": [
+            "collect-22058",
+            "collect-22247",
+            "collect-22014",
+            "collect-22047",
+            "collect-22096",
+            "collect-22054",
+            "collect-22124",
+            "collect-22071",
+            "collect-22228",
+            "collect-22121",
+            "collect-22244",
+            "collect-22189",
+            "collect-22008",
+            "collect-22027",
+            "collect-22002",
+            "collect-22075",
+            "collect-22197",
+            "collect-22055",
+            "collect-22182",
+            "collect-22004",
+            "collect-22018",
+            "collect-22099",
+            "collect-22195",
+            "collect-22184",
+            "collect-22171",
+            "collect-22170",
+            "collect-22232",
+            "collect-22006",
+            "collect-22191",
+            "collect-22037",
+            "collect-22111",
+            "collect-22237",
+            "collect-22056",
+            "collect-22097",
+            "collect-22105",
+            "collect-22254",
+            "collect-22220",
+            "collect-22165",
+            "collect-22224",
+            "collect-22231",
+            "collect-22208",
+            "collect-22116",
+            "collect-22000",
+            "collect-22138",
+            "collect-22248",
+            "collect-22029",
+            "collect-22049",
+            "collect-22157"
+          ],
+          "selected_status_counts": {
+            "shape_error": 30,
+            "decode_error": 18
+          },
+          "selected_label_counts": {
+            "switch_delimiter": 30,
+            "switch_encoding": 18
+          }
+        },
+        "tree": {
+          "arrivals": 256,
+          "route_fallbacks": 0,
+          "first_status_counts": {
+            "ok": 192,
+            "value_error": 13,
+            "decode_error": 51
+          },
+          "outcome_counts": {
+            "exact_first": 192,
+            "no_fix": 16,
+            "unique_fix": 48
+          },
+          "eligible_label_counts": {
+            "switch_encoding": 48
+          },
+          "selected_ids": [
+            "collect-22014",
+            "collect-22047",
+            "collect-22096",
+            "collect-22121",
+            "collect-22162",
+            "collect-22189",
+            "collect-22008",
+            "collect-22015",
+            "collect-22055",
+            "collect-22099",
+            "collect-22110",
+            "collect-22232",
+            "collect-22137",
+            "collect-22191",
+            "collect-22111",
+            "collect-22215",
+            "collect-22097",
+            "collect-22220",
+            "collect-22153",
+            "collect-22231",
+            "collect-22208",
+            "collect-22138",
+            "collect-22086",
+            "collect-22049",
+            "collect-22157",
+            "collect-22072",
+            "collect-22112",
+            "collect-22125",
+            "collect-22211",
+            "collect-22240",
+            "collect-22059",
+            "collect-22241",
+            "collect-22012",
+            "collect-22236",
+            "collect-22089",
+            "collect-22070",
+            "collect-22142",
+            "collect-22181",
+            "collect-22133",
+            "collect-22065",
+            "collect-22057",
+            "collect-22046",
+            "collect-22255",
+            "collect-22202",
+            "collect-22064",
+            "collect-22003",
+            "collect-22190",
+            "collect-22092"
+          ],
+          "selected_status_counts": {
+            "decode_error": 48
+          },
+          "selected_label_counts": {
+            "switch_encoding": 48
+          }
+        },
+        "bert": {
+          "arrivals": 256,
+          "route_fallbacks": 0,
+          "first_status_counts": {
+            "ok": 144,
+            "shape_error": 54,
+            "decode_error": 51,
+            "value_error": 7
+          },
+          "outcome_counts": {
+            "exact_first": 144,
+            "no_fix": 25,
+            "unique_fix": 87
+          },
+          "eligible_label_counts": {
+            "switch_delimiter": 48,
+            "switch_encoding": 39
+          },
+          "selected_ids": [
+            "collect-22058",
+            "collect-22247",
+            "collect-22014",
+            "collect-22047",
+            "collect-22096",
+            "collect-22054",
+            "collect-22124",
+            "collect-22071",
+            "collect-22228",
+            "collect-22121",
+            "collect-22244",
+            "collect-22189",
+            "collect-22008",
+            "collect-22027",
+            "collect-22002",
+            "collect-22075",
+            "collect-22197",
+            "collect-22055",
+            "collect-22182",
+            "collect-22004",
+            "collect-22018",
+            "collect-22099",
+            "collect-22195",
+            "collect-22184",
+            "collect-22171",
+            "collect-22170",
+            "collect-22232",
+            "collect-22006",
+            "collect-22191",
+            "collect-22037",
+            "collect-22111",
+            "collect-22237",
+            "collect-22056",
+            "collect-22097",
+            "collect-22105",
+            "collect-22254",
+            "collect-22220",
+            "collect-22165",
+            "collect-22224",
+            "collect-22231",
+            "collect-22208",
+            "collect-22116",
+            "collect-22000",
+            "collect-22138",
+            "collect-22248",
+            "collect-22029",
+            "collect-22049",
+            "collect-22157"
+          ],
+          "selected_status_counts": {
+            "shape_error": 30,
+            "decode_error": 18
+          },
+          "selected_label_counts": {
+            "switch_delimiter": 30,
+            "switch_encoding": 18
+          }
+        }
+      },
+      "recovery": {
+        "hint": {
+          "coarse": {
+            "tree": {
+              "checkpoint": "fits/43/hint/coarse/tree.json",
+              "model_sha256": "9ae2bce70970c46693513c75bf8de15b281e7af93b95eb72b96df10ea85c5ddd",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/43/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/43/hint/coarse/bert",
+              "model_sha256": "7fad61c89ebe478eb955a39ef4bcfb70c5ffd863f3cbd8ac2101925ca3a41b69",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/43/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "fd86cfc78b3e72900f0f7206f025d667d19a509550b434eadeff8ac1e4121a90",
+              "decision_head_sha256": "798934abfe61d07ba9a0356c909d6fa85f0a4b3b0c80b7dfb46a72e956d3ad68"
+            }
+          },
+          "diagnostic": {
+            "tree": {
+              "checkpoint": "fits/43/hint/diagnostic/tree.json",
+              "model_sha256": "50ad85f9bba825cb466cee21859385e31d078522906dddc19f22c63f83085ab9",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/43/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/43/hint/diagnostic/bert",
+              "model_sha256": "f87895bde43beecf09d7506ac7419026e28bde350c9cc120b91f97756914d6b1",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/43/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "3cb15d50398690cf1a3a8ab361258709ec0ca6678cc0cf325106c20419afa61a",
+              "decision_head_sha256": "0e0dac370777cf91c27fe6a2353da1dd2c8179d53c716f16e3dfbe34705634e2"
+            }
+          }
+        },
+        "tree": {
+          "coarse": {
+            "tree": {
+              "checkpoint": "fits/43/tree/coarse/tree.json",
+              "model_sha256": "48d08ef8c18314569eb0c6034b12d207720a6d71a36ebd42ee4b1c46f624fb92",
+              "records_sha256": "de8761c4da2627050ae06559bd75bab486a8305486d33e57b4d2866b0494fb39",
+              "records": "fits/43/tree/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/43/tree/coarse/bert",
+              "model_sha256": "669467bb541c8401a01243be62318b08cefa0183cb1183883e0bef332cdee0cf",
+              "records_sha256": "de8761c4da2627050ae06559bd75bab486a8305486d33e57b4d2866b0494fb39",
+              "records": "fits/43/tree/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "5922cdeeb2910dd6320d36ef0f23bdf84bb62b752ef010f186b965b7d7005603",
+              "decision_head_sha256": "5caa5a0b7ff2c3a9e7f7eb27e8427b8f5aef26b6a223d719295a9d37c0036603"
+            }
+          },
+          "diagnostic": {
+            "tree": {
+              "checkpoint": "fits/43/tree/diagnostic/tree.json",
+              "model_sha256": "d9085a935e8dfb414445a6ed03033ae0b09b3278b5d709358ab8f1978232a409",
+              "records_sha256": "a94de79ec7388fe0d2bf602562785256d267f17427243f7ee589104ca1f58fd5",
+              "records": "fits/43/tree/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/43/tree/diagnostic/bert",
+              "model_sha256": "5c6f01c9f8c32261488dfafbf75c07f3390363472627606adb8f4d102f36a95a",
+              "records_sha256": "a94de79ec7388fe0d2bf602562785256d267f17427243f7ee589104ca1f58fd5",
+              "records": "fits/43/tree/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 0,
+                "switch_encoding": 48
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "857d269f17394c088eeb1ad379d65e2293940835c09d2240a200a1a88a3c6bcc",
+              "decision_head_sha256": "e56613d7f56a645c533991dc0a39a0f8b5e91a4c8852b35bb68764ba9ee546d9"
+            }
+          }
+        },
+        "bert": {
+          "coarse": {
+            "tree": {
+              "checkpoint": "fits/43/hint/coarse/tree.json",
+              "model_sha256": "9ae2bce70970c46693513c75bf8de15b281e7af93b95eb72b96df10ea85c5ddd",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/43/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/43/hint/coarse/bert",
+              "model_sha256": "7fad61c89ebe478eb955a39ef4bcfb70c5ffd863f3cbd8ac2101925ca3a41b69",
+              "records_sha256": "cc5179561d4e66c3b74284274ab5da2d1d2a620e5a40eaa19ef099bfe4c2a675",
+              "records": "fits/43/hint/coarse/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "fd86cfc78b3e72900f0f7206f025d667d19a509550b434eadeff8ac1e4121a90",
+              "decision_head_sha256": "798934abfe61d07ba9a0356c909d6fa85f0a4b3b0c80b7dfb46a72e956d3ad68"
+            }
+          },
+          "diagnostic": {
+            "tree": {
+              "checkpoint": "fits/43/hint/diagnostic/tree.json",
+              "model_sha256": "50ad85f9bba825cb466cee21859385e31d078522906dddc19f22c63f83085ab9",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/43/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              }
+            },
+            "bert": {
+              "checkpoint": "fits/43/hint/diagnostic/bert",
+              "model_sha256": "f87895bde43beecf09d7506ac7419026e28bde350c9cc120b91f97756914d6b1",
+              "records_sha256": "9a2081156a2abd6f7035c79226a6513d959857d2824f2382a6e2b271f68ac753",
+              "records": "fits/43/hint/diagnostic/records.jsonl",
+              "rows": 48,
+              "label_counts": {
+                "switch_delimiter": 30,
+                "switch_encoding": 18
+              },
+              "base": "google/bert_uncased_L-2_H-128_A-2",
+              "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+              "optimizer_steps": 12,
+              "backbone_sha256_before": "0293b95c0785f2b34eaf1048c8b919f40aad42c7ff85f2b8090dbf2ce37867a5",
+              "backbone_sha256_after": "3cb15d50398690cf1a3a8ab361258709ec0ca6678cc0cf325106c20419afa61a",
+              "decision_head_sha256": "0e0dac370777cf91c27fe6a2353da1dd2c8179d53c716f16e3dfbe34705634e2"
+            }
+          }
+        }
+      }
+    }
+  }
+}

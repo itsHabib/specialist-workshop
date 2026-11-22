@@ -106,6 +106,34 @@ class ImportTests(unittest.TestCase):
             self.assertEqual(read_records(out, TASK), [row(id="winner")])
             self.assertEqual(list(Path(folder).iterdir()), [out])
 
+    def test_no_link_fallback_preserves_an_unrelated_writers_file(self):
+        with TemporaryDirectory() as folder:
+            out = Path(folder) / "records.jsonl"
+
+            def no_link(source, destination):
+                with open(destination, "x", encoding="utf-8") as other:
+                    other.write("concurrent producer")
+                raise OSError(errno.ENOTSUP, "unsupported")
+
+            # An existence check can report absence immediately before another
+            # producer creates the destination. Publication itself must exclude it.
+            with patch("decision_workshop.core.os.link", side_effect=no_link), patch(
+                    "decision_workshop.core.os.path.lexists", return_value=False):
+                with self.assertRaises(FileExistsError):
+                    import_records(TASK, lambda _: [row()], None, out)
+            self.assertEqual(out.read_text(encoding="utf-8"), "concurrent producer")
+            self.assertEqual(list(Path(folder).iterdir()), [out])
+
+    @unittest.skipIf(os.name == "nt", "Windows provides exclusive os.rename")
+    def test_no_safe_publication_primitive_leaves_no_output(self):
+        with TemporaryDirectory() as folder, patch("decision_workshop.core.os.link",
+                side_effect=OSError(errno.ENOTSUP, "unsupported")), patch.object(sys, "platform", "other"):
+            out = Path(folder) / "records.jsonl"
+            with self.assertRaises(OSError) as caught:
+                import_records(TASK, lambda _: [row()], None, out)
+            self.assertEqual(caught.exception.errno, errno.ENOTSUP)
+            self.assertEqual(list(Path(folder).iterdir()), [])
+
     def test_portable_publication_without_hard_links(self):
         with TemporaryDirectory() as folder, patch("decision_workshop.core.os.link",
                                                   side_effect=OSError(errno.ENOTSUP, "unsupported")):

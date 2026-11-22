@@ -7,6 +7,7 @@ import json
 import math
 import os
 from pathlib import Path
+import sys
 import tempfile
 import warnings
 
@@ -21,6 +22,32 @@ FORMAT = "decision-workshop/1"
 def digest(value):
     encoded = json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False)
     return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
+
+
+def _rename_without_replacing(source, destination):
+    """Publish on a volume without hard links, using a single exclusive rename."""
+    if os.name == "nt":
+        # Windows rename already refuses to overwrite any existing destination.
+        os.rename(source, destination)
+        return
+
+    import ctypes
+
+    libc = ctypes.CDLL(None, use_errno=True)
+    if sys.platform == "darwin":
+        rename = getattr(libc, "renamex_np", None)
+        args = (os.fsencode(source), os.fsencode(destination), 4)  # RENAME_EXCL
+    elif sys.platform.startswith("linux"):
+        rename = getattr(libc, "renameat2", None)
+        at_fdcwd = -100
+        args = (at_fdcwd, os.fsencode(source), at_fdcwd, os.fsencode(destination), 1)  # RENAME_NOREPLACE
+    else:
+        rename = None
+    if rename is None:
+        raise OSError(errno.ENOTSUP, "atomic no-replace publication unavailable", destination)
+    if rename(*args) != 0:
+        error = ctypes.get_errno()
+        raise OSError(error, os.strerror(error), destination)
 
 
 @contextmanager
@@ -39,19 +66,10 @@ def new_output_file(path):
         try:
             os.link(temporary, path)
         except OSError as exc:
-            # Some removable media cannot hard-link. Serialize cooperating writers
-            # via a sibling lock so readers still only see a complete JSON file.
             unsupported = (errno.EPERM, errno.EACCES, errno.ENOSYS, errno.ENOTSUP)
             if exc.errno not in unsupported and getattr(exc, "winerror", None) != 1:
                 raise
-            lock = path.with_name("." + path.name + ".publishing")
-            lock.touch(exist_ok=False)
-            try:
-                if os.path.lexists(path):
-                    raise FileExistsError(f"output already exists: {path}")
-                os.replace(temporary, path)
-            finally:
-                lock.unlink()
+            _rename_without_replacing(temporary, path)
     finally:
         temporary.unlink(missing_ok=True)
 

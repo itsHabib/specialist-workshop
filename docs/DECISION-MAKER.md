@@ -84,7 +84,7 @@ python -m decision_workshop train --task examples/decisions/software/task.json \
   --data .state/imported/records.jsonl --model .state/imported/tree.json
 ```
 
-To use your own module, install it in the same environment or add its containing directory to `PYTHONPATH` and pass `--adapter my_module:iter_records`. The summary counts rows, distinct groups per split, recorded candidate sets and reviewed targets missing from those sets. An empty list counts as a recorded set missing its target. With an unknown list, target membership stays unknown. A validation or adapter failure leaves the destination unpublished. [Example adapter](../examples/decisions/software/host_adapter.py) · [Synthetic input](../examples/decisions/software/host-events.jsonl)
+To use your own module, install it in the same environment or add its containing directory to `PYTHONPATH` and pass `--adapter my_module:iter_records`. The summary counts rows, distinct groups per split, recorded candidate sets and reviewed targets missing from those sets. An empty list counts as a recorded set missing its target. With an unknown list, target membership stays unknown. Publication requires a filesystem that supports hard links or an atomic rename that refuses replacement. If the filesystem cannot do either, choose another output directory. A validation or adapter failure leaves the destination unpublished. [Example adapter](../examples/decisions/software/host_adapter.py) · [Synthetic input](../examples/decisions/software/host-events.jsonl)
 
 ## Use from Python
 

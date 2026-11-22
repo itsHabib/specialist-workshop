@@ -83,6 +83,43 @@ print(decision["status"], decision["action"])
 
 Load the checkpoint once and reuse it for new requests. A null `action` means the request needs review. The result includes the model’s preferred action and the reason for review.
 
+## Ship a trained tree with its decision settings
+
+The structured tree trains from scratch using standard Python and your labeled records. This example works offline from a checkout. Use a fresh output directory for a new training run.
+
+```sh
+python3 -m decision_workshop train --task examples/decisions/software/task.json \
+  --data examples/decisions/software/records.jsonl --model .state/portable-ci/tree.json
+```
+
+Freeze the cutoff chosen on development records, the revision of the host code that constructs the features, and the revision of the host's fallback. The cutoff below is illustrative. Store the returned digest in the application's deployment configuration alongside its expected revisions.
+
+```python
+from pathlib import Path
+from decision_workshop.policy import save_policy
+
+bundle = Path(".state/portable-ci")
+pin = save_policy(bundle / "policy.json", bundle / "tree.json", kind="fixed",
+                  min_score=0.8, adapter_revision="ci-features/1",
+                  fallback_revision="ci-default/1")
+print(pin)
+```
+
+Ship both JSON files and the `decision_workshop` Python package. The application loads the policy once from its deployment directory. It supplies its own pinned digest, adapter and fallback revisions. The model sees the actions available on the current request.
+
+```python
+from decision_workshop.policy import load_policy
+
+policy = load_policy(bundle / "policy.json", bundle / "tree.json",
+                     expected_sha256=pin, adapter_revision="ci-features/1",
+                     fallback_revision="ci-default/1")
+decision = policy.decide(request["state"], request["candidates"])
+```
+
+Dispatch the suggested action when `decision["status"] == "suggest"`. On review, run the host's declared fallback and record the reason and the action actually taken. Handle a load error in the host as well. To roll back, restore the previous pair of files and its deployed pin. The digest identifies the selected content. The host owns the mapping from revision strings to running code.
+
+For a variable list of candidates, save with `kind="ranking"` and use `policy.rank(candidates)`. Equal scores retain the supplied order. The Click trial includes a pytest collection adapter that keeps newly seen tests in their original slots and records fallback on an incompatible artifact. [Host adapter](../experiments/steering/pytest_history.py) · [Real test-history trial](DECISION-TEST-HISTORY.md)
+
 ## Compare with Cloudflare Clef-Flash
 
 The optional comparison runs a 4-bit Apple MLX conversion of Cloudflare's 9B Clef-Flash. It scores every action from the same question and state that the maker sees. The comparison applies the same availability and review rules to all three models. Clef-Flash uses the Qwen3.5-9B backbone. The maker's Google and tree training paths run independently of it. [Cloudflare model card](https://huggingface.co/Cloudflare/clef-flash) · [Pinned MLX conversion and hardware requirements](https://huggingface.co/mlx-community/clef-flash-4bit/tree/b5adbe2c3a95200d4bf04a0727c8ec457157d5e1)

@@ -29,6 +29,24 @@ Supply only train-split examples to `fit_rankers`. Keep an entire queue, patch o
 
 Renaming a candidate cannot change its features or score. On equal scores the ranker orders by the sorted feature vector. Identical vectors retain their incoming order with equal scores. If an executor needs to distinguish two such candidates it must supply a meaningful feature or make its own tie decision.
 
+A deployed ranking policy can freeze native order for every score tie. Save the checkpoint with `save_policy(..., kind="ranking", adapter_revision=..., fallback_revision=...)`, then load the policy with the revisions and digest expected by the host. Pass the host's collected order to `policy.rank`. The result is a list of identifier and preference-score pairs. Capture the first items the executor actually starts so a bypass or fallback remains visible. [Deployment example](DECISION-MAKER.md#ship-a-trained-tree-with-its-decision-settings)
+
+The Click example uses the host's pytest collection hook. Here `prior_failures` contains a count for every previously observed node, including zero. The host supplies changed filenames from the tested diff and gets the policy digest from its deployment configuration.
+
+```python
+from experiments.steering.pytest_history import order_tests
+
+def pytest_collection_modifyitems(items):
+    decision = order_tests(items, bundle, policy_sha256=deployed_pin,
+                           changed_paths=changed_paths, prior_failures=prior_failures)
+    record_collection_decision(decision)
+
+def pytest_runtest_logstart(nodeid, location):
+    record_actual_start(nodeid)
+```
+
+The two recording functions belong to the application. Comparing their records distinguishes an executed reordering, a fallback to native order and a caller that silently ignores a valid decision. [Pytest adapter](../experiments/steering/pytest_history.py)
+
 ## What counts as improvement
 
 - **Candidate ordering.** Hold the executor and budget fixed. Compare the resulting solution or first detected regression against a deterministic control selected on development cases. Charge for scoring as well as execution. Report shifted workloads separately.

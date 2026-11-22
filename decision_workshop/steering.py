@@ -50,11 +50,17 @@ def fit_rankers(name, examples, out, base):
     return models
 
 
-def rank_candidates(model, candidates):
-    """Rank supplied IDs. Identical feature vectors keep caller order within their tie."""
+def validate_ranker(model):
+    """Check whether the checkpoint can score numeric candidate features."""
     task = model["task"]
     if task["labels"] != LABELS or set(task["features"].values()) != {"number"}:
         raise ValueError("expected a numeric candidate preference checkpoint")
+
+
+def rank_candidates(model, candidates, *, native_ties=False):
+    """Rank supplied IDs. With native_ties, every score tie keeps the input order."""
+    validate_ranker(model)
+    task = model["task"]
     fields = sorted(task["features"])
     seen = set()
     items = []
@@ -65,8 +71,8 @@ def rank_candidates(model, candidates):
         seen.add(identifier)
         items.append((tuple(features[f] for f in fields), identifier, features))
     # Keep neural batch membership stable across incoming order and ID changes.
-    items.sort(key=lambda item: item[0])
-    distinct = {key: state for key, _, state in items}
+    feature_order = sorted(items, key=lambda item: item[0])
+    distinct = {key: state for key, _, state in feature_order}
     scorer = model.get("_score")
     if scorer is None:
         distributions = [predict(model, state, LABELS)["scores"] for state in distinct.values()]
@@ -78,5 +84,6 @@ def rank_candidates(model, candidates):
                 or not math.isclose(sum(dist.values()), 1, abs_tol=1e-5)):
             raise ValueError("invalid candidate preference distribution")
         scores[key] = dist["prefer"]
-    ranked = [(identifier, scores[key]) for key, identifier, _ in items]
+    tie_order = items if native_ties else feature_order
+    ranked = [(identifier, scores[key]) for key, identifier, _ in tie_order]
     return sorted(ranked, key=lambda item: -item[1])

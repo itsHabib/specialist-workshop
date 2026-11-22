@@ -2,7 +2,7 @@
 
 **Decision to earn.** Can a fresh adopter use the maker to get an actionable test failure back sooner on a real change, at an acceptable cost on the rest of the workload? The host still runs its required checks to completion. The user-visible result is the time to trustworthy feedback. Choosing to retain the existing order or a small coded improvement is a successful trial outcome.
 
-This is the execution protocol for roadmap milestones A1–A3 and F1–F2. A1–A2 covers a portable policy and a fresh caller. A3 and F1–F2 cover evidence of application value. The preliminary inventory and two log imports below have run. Local historical execution, a new trained ranker, a sealed comparison, and external adoption are pending. [Roadmap](DECISION-DEPTH-PLAN.md) · [Existing synthetic test-selection study](STEERING-TEST-SELECTION.md)
+This is the execution protocol for roadmap milestones A1–A3 and F1–F2. A1–A2 covers a portable policy and a fresh caller. A3 and F1–F2 cover evidence of application value. The workflow inventory, two log imports and four local historical replays are complete. The portable policy, a ranker trained on this workload, a sealed comparison and external adoption are pending. [Roadmap](DECISION-DEPTH-PLAN.md) · [Existing synthetic test-selection study](STEERING-TEST-SELECTION.md)
 
 ## Choose the workload using evidence
 
@@ -14,6 +14,27 @@ This is the execution protocol for roadmap milestones A1–A3 and F1–F2. A1–
 
 **First historical checkout.** The red run advertises PR head `86851b5691d3c14f7db41f259496808483632236`. The job log identifies the actual tested merge commit `43cc813b98b19652630cccbd59d9a13eaf660aab`; the Git commit API resolves it. The green job tested `c55d2eef9bf70ea644928724889b6911c41f57ec`. The imported timestamps mark console lines. Neither extract supplies a measured elapsed duration for each test or an independently observed pre-run roster. Both jobs are development witnesses and excluded from the final comparison. [Tested red revision](https://github.com/pallets/click/commit/43cc813b98b19652630cccbd59d9a13eaf660aab) · [Tested green revision](https://github.com/pallets/click/commit/c55d2eef9bf70ea644928724889b6911c41f57ec)
 
+The 23 failed heads span 18 source branches and map to 19 PRs. Sixteen heads appear in their PR's commit list. Seven have a unique match by source repository, branch and the interval when the PR was open. The workflow and commit-to-PR endpoints supplied no associations for these heads. One branch served two successive PRs. PR 3764 accounts for three failed heads, PRs 3833 and 3872 for two each and the other 16 PRs for one apiece. The independent defect count still requires classifying the failures and grouping related changes before the split. [Workflow inventory](https://api.github.com/repos/pallets/click/actions/workflows/tests.yaml/runs?event=pull_request&created=2026-08-01..2026-11-21&per_page=100) · [First use of the shared branch](https://github.com/pallets/click/pull/3871) · [Second use](https://github.com/pallets/click/pull/3872)
+
+## Local replay of the two development jobs
+
+The replay used fresh network-isolated Ubuntu 24.04 x86-64 containers on an Arm Mac, the archived CPython 3.13.15 build, pytest 9.0.2, pluggy 1.6.0 and the locked dependencies. The failing revision used uv 0.12.15 and the passing revision used uv 0.12.14. All 177 source blobs at each revision matched its Git tree. The initial failing replay exposed 24 extra failures, all in tests that launch `less`. Installing that missing Ubuntu package restored the expected pager behavior. The host kernel, hardware and clock measurements are local.
+
+Each full run matched its archive on every named case and verdict. The actual dispatch order matched the requested order throughout. All four runs included 24 skips and one expected failure.
+
+| Revision and execution order | Cases | Passed | Failed | Full tox command, seconds |
+| --- | ---: | ---: | ---: | ---: |
+| Failing, native | 2,084 | 1,975 | 84 | 146.6 |
+| Failing, known failure first | 2,084 | 1,975 | 84 | 112.1 |
+| Passing, native | 2,085 | 2,060 | 0 | 62.5 |
+| Passing, same test first | 2,085 | 2,060 | 0 | 64.0 |
+
+On the failing revision, `tests/test_arguments.py::test_nargs_tup` failed at line 33 in both orders because `IntParamType` lacked `_number_class`. Moving this known failure from tenth to first brought the report forward from 0.476 to 0.230 seconds after collection. From command launch the two waits were 65.569 and 58.292 seconds, including tox and collection. With the native run's startup held fixed, even an instantaneous first verdict could save at most 0.476 seconds on this example. One run in each order cannot attribute the startup difference to ordering.
+
+**Replay handoff.** On the trial machine, change into `.state/test-history-preflight/click-replay` and run `python3 -B replay.py another-run`, then `python3 -B verify_replay.py another-run`. Choose a fresh output directory. The checked comparison is in `matched-pager/comparison.json`. The kit README includes the image rebuild command. The local image digest was `sha256:85c3564eefaf34399cc1de036f19f9b7c0f4c56a610f244875a6f623f22728f5`. The imported PR inventory is in `.state/test-history-preflight/click-pr-inventory.json`. These ignored files are local research artifacts. The source job links and tested revisions above identify the public inputs.
+
+**Next decision.** Classify the failure stage and group related PRs, then estimate how much waiting a perfect ordering could remove on development changes. Keep both witnesses out of evaluation. In parallel, test whether a fresh host loads the chosen feature version, tie rule and fallback and actually dispatches the resulting order. Train a tree when enough independent changes have measurable room to beat the best coded rule.
+
 ## Work sequence
 
 The local handoff is `.state/test-history-preflight/click-witnesses.json` in the maker checkout. It contains the two source job URLs, raw log digests, tested revisions and 4,169 distinct-per-job node observations in console order. On another machine use the two linked jobs, or the GitHub job-log endpoint for IDs `104810117027` and `104339026741`. Match the checked-out revision in the log and reconcile each parsed verdict tally to pytest's terminal summary. Historical log availability may change. [GitHub Actions API](https://docs.github.com/en/rest/actions/workflow-jobs#download-job-logs-for-a-workflow-run)
@@ -22,7 +43,7 @@ The proposed initial effort is one focused engineering week. The checkpoints bel
 
 | Task | Depends on | Deliverable and completion check |
 | --- | --- | --- |
-| T1. Reproduce a real job | Ready | In an isolated local checkout, read the tested revision's workflow, lockfile and runner details. Recreate Linux and the recorded Python version. Collect the candidate roster before running, execute the existing order, capture per-test outcome and monotonic start/end, and compare against the red and green witnesses. Explain differences in skips, identities or failures. Hand back a command, environment identity, time per replay and one reproducible failing node, or the exact missing dependency. |
+| T1. Reproduce a real job | Complete for the two development jobs | Four full-suite replays verified the collected roster, actual dispatch, per-case outcomes and the target assertion. Commands, environment, timings and the corrected pager dependency are recorded above. |
 | T2. Freeze the policy that actually runs | Ready, parallel to T1 | Add a small opt-in, versioned policy description around the existing checkpoint. Bind its digest to model identity, feature-adapter revision, fixed-action cutoff or ranking tie rule, and expected host fallback version. Keep the host's current eligible actions dynamic. Existing checkpoints and direct callers keep their current interface. A caller in a new process verifies these identities and records which implementation it dispatched. |
 | T3. Score application outcomes | Can start with synthetic receipts. Integrates T1 and T2 | Declare an independent list of arrivals, pair the baseline and candidate on the same opportunities, and account for every arrival even if both receipts are missing. Show proposed action, executed action or ordered prefix, fallback, verified endpoint, time and missing reason. Report changes after fallback, changes that helped or hurt, unknown outcomes, and the aggregate across all jobs. Keep historical-label agreement available separately. |
 | T4. Establish the best simple order | T1 | Inventory the selected workflow over a pinned time window. Deduplicate reruns and matrix copies. On development changes compare default collection order, most recent prior failure, a touched-file rule, shortest historical duration, and a smoothed prior failure rate divided by historical duration. For unseen tests use development-frozen priors and a duration estimate from comparable tests. Resolve equal priorities by the native suite order. Compute the optimistic headroom on comparable cases. Freeze the strongest rule and one usable budget. |

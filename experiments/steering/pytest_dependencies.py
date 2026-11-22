@@ -83,6 +83,21 @@ def _dependencies(node, bindings, package):
             yield dep
         for stmt in body:
             yield from _dependencies(stmt, local, package)
+    elif isinstance(node, ast.ClassDef):
+        for expr in [*node.decorator_list, *node.bases, *node.keywords]:
+            yield from _dependencies(expr, bindings, package)
+        local = bindings.copy()
+        for stmt in node.body:
+            # A nested method captures the enclosing function, not class locals.
+            scope = bindings if isinstance(stmt, (*_FUNCTIONS, ast.ClassDef)) else local
+            yield from _dependencies(stmt, scope, package)
+            nodes = list(_scope_nodes([stmt]))
+            for item in nodes:
+                if isinstance(item, ast.Name) and isinstance(item.ctx, (ast.Store, ast.Del)):
+                    local.pop(item.id, None)
+            for name, target, dep in _imports(nodes, package):
+                local[name] = target
+                yield dep
     elif isinstance(node, _COMPREHENSIONS):
         local = bindings.copy()
         for generator in node.generators:

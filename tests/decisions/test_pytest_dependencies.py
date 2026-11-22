@@ -47,6 +47,7 @@ class DependencyOrderTests(unittest.TestCase):
             "assert [Leaf for Leaf in range(2)]",
             "assert [x for x in Leaf()]",
             "def helper(): return Leaf()\n    assert helper()",
+            "class Nested:\n        from leaf import Leaf as Item\n        value = Item()",
         ]
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -56,8 +57,8 @@ class DependencyOrderTests(unittest.TestCase):
                 f"def test_{i}():\n    {body}\n" for i, body in enumerate(bodies)))
             nodes = [f"test_host.py::test_{i}" for i in range(len(bodies))]
             result = rank_tests(root, ["src/leaf.py"], nodes)
-            self.assertEqual(result["order"], [nodes[i] for i in (0, 1, 4, 5, 2, 3)])
-            self.assertEqual(result["tiers"]["direct_reference"], 4)
+            self.assertEqual(result["order"], [nodes[i] for i in (0, 1, 4, 5, 6, 2, 3)])
+            self.assertEqual(result["tiers"]["direct_reference"], 5)
 
     def test_analysis_reads_only_source_in_the_requested_checkout(self):
         with tempfile.TemporaryDirectory() as tmp:
